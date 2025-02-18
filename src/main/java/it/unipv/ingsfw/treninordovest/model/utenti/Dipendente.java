@@ -1,4 +1,4 @@
-package it.unipv.ingsfw.treninordovest.model;
+package it.unipv.ingsfw.treninordovest.model.utenti;
 
 public class Dipendente extends Utente {
 

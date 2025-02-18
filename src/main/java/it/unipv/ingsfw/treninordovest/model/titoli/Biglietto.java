@@ -1,4 +1,4 @@
-package it.unipv.ingsfw.treninordovest.model;
+package it.unipv.ingsfw.treninordovest.model.titoli;
 
 import java.util.Date;
 
