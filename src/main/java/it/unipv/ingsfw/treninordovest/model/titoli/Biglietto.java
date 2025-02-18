@@ -1,5 +1,7 @@
 package it.unipv.ingsfw.treninordovest.model.titoli;
 
+import it.unipv.ingsfw.treninordovest.model.ferrovia.Viaggio;
+
 import java.util.Date;
 
 public class Biglietto extends TitoloViaggio {
@@ -33,4 +35,6 @@ public class Biglietto extends TitoloViaggio {
     public void setRitorno(boolean ritorno) {
         this.ritorno = ritorno;
     }
+
+
 }
