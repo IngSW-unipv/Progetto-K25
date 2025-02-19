@@ -1,4 +1,7 @@
-DBDRIVER = "com.mysql.jdbc.Driver"
-DBURL = "jdbc:mysql://127.0.0.1:3306/%s";
+DBDRIVER = com.mysql.cj.jdbc.Driver
+DBURL = jdbc:mysql://localhost:3306/treninordovest
 db_usn=root
-db_psw=Andrea2003
+db_psw=Andrea@2003
+
+
+
