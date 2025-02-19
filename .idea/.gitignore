@@ -8,3 +8,4 @@
 /dataSources.local.xml
 # Excluded libraries
 /lib/mysql-connector-java-8.0.19.jar
+/target/

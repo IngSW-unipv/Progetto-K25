@@ -1,0 +1,4 @@
+DBDRIVER = "com.mysql.jdbc.Driver"
+DBURL = "jdbc:mysql://127.0.0.1:3306/%s";
+db_usn=root
+db_psw=Andrea2003
