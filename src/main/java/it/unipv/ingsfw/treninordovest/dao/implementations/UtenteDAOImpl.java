@@ -8,7 +8,7 @@ import java.util.List;
 public class UtenteDAOImpl implements UtenteDAO {
 
     @Override
-    public Utente get(int id) throws SQLException {
+    public Utente get(String id) throws SQLException {
         return null;
     }
 

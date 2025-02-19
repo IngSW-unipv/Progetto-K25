@@ -1,9 +1,11 @@
 package it.unipv.ingsfw.treninordovest.model.utenti;
 
+import java.util.Date;
+
 public class Cliente extends Utente {
 
     //Attributi
-    private double bilancia;
+    private double bilancio;
     private String email;
 
     //Costruttore vuoto
@@ -12,20 +14,20 @@ public class Cliente extends Utente {
     };
 
     //Costruttore completo
-    public Cliente(String id, String nome, String cognome, String luogoNascita, String dataNascita, char sesso, String cellulare, String indirizzo, double bilancia, String email) {
-        super(id, nome, cognome, luogoNascita, dataNascita, sesso, cellulare, indirizzo);
-        this.bilancia = bilancia;
+
+    public Cliente(String id, String userPassword, String nome, String cognome, String luogoNascita, char sesso, Date dataNascita, String cellulare, String indirizzo, double bilancio, String email) {
+        super(id, userPassword, nome, cognome, luogoNascita, sesso, dataNascita, cellulare, indirizzo);
+        this.bilancio = bilancio;
         this.email = email;
     }
+//Getters e Setters
 
-    //Getters e Setters
-
-    public double getBilancia() {
-        return bilancia;
+    public double getBilancio() {
+        return bilancio;
     }
 
-    public void setBilancia(double bilancia) {
-        this.bilancia = bilancia;
+    public void setBilancio(double bilancio) {
+        this.bilancio = bilancio;
     }
 
     public String getEmail() {

@@ -1,13 +1,16 @@
 package it.unipv.ingsfw.treninordovest.model.utenti;
 
+import java.util.Date;
+
 public class Utente {
 
     /*Attributi della classe*/
     private String id;
+    private String userPassword;
     private String nome;
     private String cognome;
     private String luogoNascita;
-    private String dataNascita;
+    private Date dataNascita;
     private char sesso;
     private String cellulare;
     private String indirizzo;
@@ -19,13 +22,16 @@ public class Utente {
     }
 
     //Costruttore completo
-    public Utente(String id, String nome, String cognome, String luogoNascita, String dataNascita, char sesso, String cellulare, String indirizzo) {
+
+
+    public Utente(String id, String userPassword, String nome, String cognome, String luogoNascita, char sesso, Date dataNascita, String cellulare, String indirizzo) {
         this.id = id;
+        this.userPassword = userPassword;
         this.nome = nome;
         this.cognome = cognome;
         this.luogoNascita = luogoNascita;
-        this.dataNascita = dataNascita;
         this.sesso = sesso;
+        this.dataNascita = dataNascita;
         this.cellulare = cellulare;
         this.indirizzo = indirizzo;
     }
@@ -63,11 +69,11 @@ public class Utente {
         this.cognome = cognome;
     }
 
-    public String getDataNascita() {
+    public Date getDataNascita() {
         return dataNascita;
     }
 
-    public void setDataNascita(String dataNascita) {
+    public void setDataNascita(Date dataNascita) {
         this.dataNascita = dataNascita;
     }
 

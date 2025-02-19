@@ -6,7 +6,7 @@ import java.util.List;
 public interface DAO<T> {
 
     /*Interfaccia generica per DAO degli utenti*/
-    T get(int id) throws SQLException;
+    T get(String id) throws SQLException;
     List<T> getAll() throws SQLException;
     int save(T t) throws SQLException;
     int delete(int id) throws SQLException;

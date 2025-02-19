@@ -1,5 +1,7 @@
 package it.unipv.ingsfw.treninordovest.model.utenti;
 
+import java.util.Date;
+
 public class Dipendente extends Utente {
 
    private String codTreno;
@@ -12,12 +14,14 @@ public class Dipendente extends Utente {
     }
 
     //Costruttore completo
-    public Dipendente(String id, String nome, String cognome, String luogoNascita, String dataNascita, char sesso, String cellulare, String indirizzo, String codTreno, double stipendio, String ruolo) {
-        super(id, nome, cognome, luogoNascita, dataNascita, sesso, cellulare, indirizzo);
+
+    public Dipendente(String id, String userPassword, String nome, String cognome, String luogoNascita, char sesso, Date dataNascita, String cellulare, String indirizzo, String codTreno, double stipendio, String ruolo) {
+        super(id, userPassword, nome, cognome, luogoNascita, sesso, dataNascita, cellulare, indirizzo);
         this.codTreno = codTreno;
         this.stipendio = stipendio;
         this.ruolo = ruolo;
     }
+
 
     //Getters e setters
 

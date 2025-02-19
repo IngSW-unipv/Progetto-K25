@@ -8,7 +8,7 @@ import java.util.List;
 
 public class TesseraDaoImpl implements TesseraDAO {
     @Override
-    public Tessera get(int id) throws SQLException {
+    public Tessera get(String id) throws SQLException {
         return null;
     }
 
