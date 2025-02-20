@@ -30,11 +30,11 @@ public class Tessera {
         this.idTessera = idTessera;
     }
 
-    public Date getEmissione() {
+    public LocalDate getEmissione() {
         return emissione;
     }
 
-    public void setEmissione(Date emissione) {
+    public void setEmissione(LocalDate emissione) {
         this.emissione = emissione;
     }
 
@@ -50,7 +50,7 @@ public class Tessera {
         return Scadenza;
     }
 
-    public void setScadenza(Date scadenza) {
+    public void setScadenza(LocalDate scadenza) {
         Scadenza = scadenza;
     }
 }

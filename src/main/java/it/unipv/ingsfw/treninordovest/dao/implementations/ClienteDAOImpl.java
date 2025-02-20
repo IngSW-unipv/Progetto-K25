@@ -118,8 +118,38 @@ public class ClienteDAOImpl implements ClienteDAO {
     }
 
     @Override
-    public int update(Cliente cliente) throws SQLException {
-        return 0;
+    public void update(Cliente cliente) throws SQLException {
+        String sql1="UPDATE utente set ID=?, password=?, nome=?, cognome=?, luogoNascita=?, sessoChar=?, dataNascita=?, cellulare=?, indirizzo=?";
+        String sql2="UPDATE cliente set IDCliente=?, Bilancio=?, Email=?";
+
+        try(Connection con = new Database().getConnection()){
+            //Prima Query
+            PreparedStatement ps1= con.prepareStatement(sql1);
+            PreparedStatement ps2= con.prepareStatement(sql1);
+            ps1.setString(1,cliente.getId());
+            ps1.setString(2,cliente.getUserPassword());
+            ps1.setString(3,cliente.getNome());
+            ps1.setString(4,cliente.getCognome());
+            ps1.setString(5,cliente.getLuogoNascita());
+            ps1.setString(6,cliente.getSesso());
+            ps1.setObject(7, cliente.getDataNascita());
+            ps1.setString(8,cliente.getCellulare());
+            ps1.setString(9,cliente.getIndirizzo());
+
+            //Seconda Query
+            ps2.setString(1,cliente.getId());
+            ps2.setDouble(2,cliente.getBilancio());
+            ps2.setString(3,cliente.getEmail());
+
+            ps1.executeUpdate();
+            ps2.executeUpdate();
+
+            Database.closeConnection(con);
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     @Override

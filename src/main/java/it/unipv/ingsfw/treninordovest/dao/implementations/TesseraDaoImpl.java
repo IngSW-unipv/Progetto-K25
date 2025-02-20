@@ -1,11 +1,18 @@
 package it.unipv.ingsfw.treninordovest.dao.implementations;
 
+import it.unipv.ingsfw.treninordovest.dao.database.Database;
 import it.unipv.ingsfw.treninordovest.dao.interfaces.TesseraDAO;
 import it.unipv.ingsfw.treninordovest.model.utenti.Cliente;
 import it.unipv.ingsfw.treninordovest.model.utenti.Tessera;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
+
+//idTessera emissione scadenza Idcliente
 
 public class TesseraDaoImpl implements TesseraDAO {
     @Override
@@ -50,8 +57,8 @@ public class TesseraDaoImpl implements TesseraDAO {
     }
 
     @Override
-    public int update(Tessera tessera) throws SQLException {
-        return 0;
+    public void update(Tessera tessera) throws SQLException {
+
     }
 
     @Override
