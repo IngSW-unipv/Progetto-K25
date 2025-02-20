@@ -1,6 +1,7 @@
 package it.unipv.ingsfw.treninordovest.model.utenti;
 
-import java.util.Date;
+
+import java.time.LocalDate;
 
 public class Cliente extends Utente {
 
@@ -15,7 +16,7 @@ public class Cliente extends Utente {
 
     //Costruttore completo
 
-    public Cliente(String id, String userPassword, String nome, String cognome, String luogoNascita, char sesso, Date dataNascita, String cellulare, String indirizzo, double bilancio, String email) {
+    public Cliente(String id, String userPassword, String nome, String cognome, String luogoNascita, String sesso, LocalDate dataNascita, String cellulare, String indirizzo, double bilancio, String email) {
         super(id, userPassword, nome, cognome, luogoNascita, sesso, dataNascita, cellulare, indirizzo);
         this.bilancio = bilancio;
         this.email = email;
@@ -36,5 +37,16 @@ public class Cliente extends Utente {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    //Metodi di verifica
+
+
+    @Override
+    public String toString() {
+        return "Cliente{" +
+                "bilancio=" + bilancio +
+                ", email='" + email + '\'' +
+                '}';
     }
 }

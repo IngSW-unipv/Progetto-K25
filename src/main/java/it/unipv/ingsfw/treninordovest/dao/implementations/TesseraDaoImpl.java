@@ -1,6 +1,7 @@
 package it.unipv.ingsfw.treninordovest.dao.implementations;
 
 import it.unipv.ingsfw.treninordovest.dao.interfaces.TesseraDAO;
+import it.unipv.ingsfw.treninordovest.model.utenti.Cliente;
 import it.unipv.ingsfw.treninordovest.model.utenti.Tessera;
 
 import java.sql.SQLException;
@@ -9,7 +10,33 @@ import java.util.List;
 public class TesseraDaoImpl implements TesseraDAO {
     @Override
     public Tessera get(String id) throws SQLException {
-        return null;
+
+        Tessera tessera = null;
+        PreparedStatement ps;
+        try (Connection con = new Database().getConnection()) {
+            tessera = null;
+            //Query effettuata su una vista creata nel DB per semplificare l'estrazione dei dati
+            String sql = "select * from tessera where id=?";
+
+            //Estrazione dei dati dal DB
+            ps = con.prepareStatement(sql);
+            ps.setString(1,id);
+            ResultSet rs=ps.executeQuery();
+
+            if(rs.next()){
+             String idTessera = rs.getString("IDTessera");
+             LocalDate Emissione = (LocalDate) rs.getObject("Emissione");
+             LocalDate Scadenza = (LocalDate) rs.getObject("Scadenza");
+             String idCliente = rs.getString("IDCliente");
+
+             tessera=new Tessera(idTessera, Emissione, Scadenza, idCliente);
+            }
+            Database.closeConnection(con);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return tessera;
     }
 
     @Override
@@ -18,13 +45,8 @@ public class TesseraDaoImpl implements TesseraDAO {
     }
 
     @Override
-    public int save(Tessera tessera) throws SQLException {
-        return 0;
-    }
+    public void delete(String id) throws SQLException {
 
-    @Override
-    public int delete(int id) throws SQLException {
-        return 0;
     }
 
     @Override
@@ -33,7 +55,29 @@ public class TesseraDaoImpl implements TesseraDAO {
     }
 
     @Override
-    public int insert(Tessera tessera) throws SQLException {
-        return 0;
+    public void insert(Tessera tessera) throws SQLException {
+        Connection con = null;
+        try {
+            con = new Database().getConnection();
+            String sql1 = "INSERT INTO tessera (IDTessera, emissione, scadenza, idcliente) VALUES (?, ?, ?, ?)";
+            try (PreparedStatement ps1 = con.prepareStatement(sql1)) {
+                // Impostazione dei parametri per la query 1
+                ps1.setString(1, tessera.getIdTessera());
+                ps1.setObject(2, tessera.getEmissione());
+                ps1.setObject(3, tessera.getScadenza());
+                ps1.setObject(4, tessera.getIdCliente());
+
+                // Esecuzione delle query
+                ps1.executeUpdate();
+
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        } finally {
+            if (con != null && !con.isClosed()) {
+                con.close();
+            }
+        }
+
     }
 }

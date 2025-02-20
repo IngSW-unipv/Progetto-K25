@@ -1,6 +1,8 @@
 package it.unipv.ingsfw.treninordovest.model.utenti;
 
-import java.util.Date;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Utente {
 
@@ -10,8 +12,8 @@ public class Utente {
     private String nome;
     private String cognome;
     private String luogoNascita;
-    private Date dataNascita;
-    private char sesso;
+    private LocalDate dataNascita;
+    private String sesso;
     private String cellulare;
     private String indirizzo;
 
@@ -24,7 +26,7 @@ public class Utente {
     //Costruttore completo
 
 
-    public Utente(String id, String userPassword, String nome, String cognome, String luogoNascita, char sesso, Date dataNascita, String cellulare, String indirizzo) {
+    public Utente(String id, String userPassword, String nome, String cognome, String luogoNascita, String sesso, LocalDate dataNascita, String cellulare, String indirizzo) {
         this.id = id;
         this.userPassword = userPassword;
         this.nome = nome;
@@ -69,19 +71,19 @@ public class Utente {
         this.cognome = cognome;
     }
 
-    public Date getDataNascita() {
+    public LocalDate getDataNascita() {
         return dataNascita;
     }
 
-    public void setDataNascita(Date dataNascita) {
+    public void setDataNascita(LocalDate dataNascita) {
         this.dataNascita = dataNascita;
     }
 
-    public char getSesso() {
+    public String getSesso() {
         return sesso;
     }
 
-    public void setSesso(char sesso) {
+    public void setSesso(String sesso) {
         this.sesso = sesso;
     }
 
@@ -101,7 +103,29 @@ public class Utente {
         this.indirizzo = indirizzo;
     }
 
+    public String getUserPassword() {
+        return userPassword;
+    }
+
+    public void setUserPassword(String userPassword) {
+        this.userPassword = userPassword;
+    }
+
     //Metodi vari
 
 
+    @Override
+    public String toString() {
+        return "Utente{" +
+                "id='" + id + '\'' +
+                ", userPassword='" + userPassword + '\'' +
+                ", nome='" + nome + '\'' +
+                ", cognome='" + cognome + '\'' +
+                ", luogoNascita='" + luogoNascita + '\'' +
+                ", dataNascita=" + dataNascita +
+                ", sesso=" + sesso +
+                ", cellulare='" + cellulare + '\'' +
+                ", indirizzo='" + indirizzo + '\'' +
+                '}';
+    }
 }
