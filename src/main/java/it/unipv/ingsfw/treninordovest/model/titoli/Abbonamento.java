@@ -1,14 +1,13 @@
 package it.unipv.ingsfw.treninordovest.model.titoli;
 
-import java.util.Date;
-import java.time.Instant;
+import java.time.LocalDate;
 
 
-public class Abbonamento extends TitoloViaggio{
+
+public class Abbonamento extends TitoloViaggio {
     //Attributi
     private String tipoAbbonamento;
-    private Date scadenza;
-    private Instant dataPagamento;
+    private LocalDate scadenza;
     private String idTessera;
 
     //Costruttore Vuoto
@@ -16,15 +15,13 @@ public class Abbonamento extends TitoloViaggio{
         super();
     }
 
-    public Abbonamento(String id, String idPagamento, Date emissione, double prezzo, String idAbbonamento, String tipoAbbonamento, Date scadenza, Instant dataPagamento, String idTessera) {
+    public Abbonamento(String id, String idPagamento, LocalDate emissione, double prezzo, String tipoAbbonamento, LocalDate scadenza, String idTessera) {
         super(id, idPagamento, emissione, prezzo);
         this.tipoAbbonamento = tipoAbbonamento;
         this.scadenza = scadenza;
-        this.dataPagamento = dataPagamento;
         this.idTessera = idTessera;
     }
 
-    //getters e setters
 
     public String getTipoAbbonamento() {
         return tipoAbbonamento;
@@ -34,20 +31,12 @@ public class Abbonamento extends TitoloViaggio{
         this.tipoAbbonamento = tipoAbbonamento;
     }
 
-    public Date getScadenza() {
+    public LocalDate getScadenza() {
         return scadenza;
     }
 
-    public void setScadenza(Date scadenza) {
+    public void setScadenza(LocalDate scadenza) {
         this.scadenza = scadenza;
-    }
-
-    public Instant getDataPagamento() {
-        return dataPagamento;
-    }
-
-    public void setDataPagamento(Instant dataPagamento) {
-        this.dataPagamento = dataPagamento;
     }
 
     public String getIdTessera() {
@@ -57,4 +46,10 @@ public class Abbonamento extends TitoloViaggio{
     public void setIdTessera(String idTessera) {
         this.idTessera = idTessera;
     }
+
 }
+//getters e setters
+
+
+
+

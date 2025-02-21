@@ -1,26 +1,19 @@
 package it.unipv.ingsfw.treninordovest.main;
 
-import it.unipv.ingsfw.treninordovest.dao.database.Database;
-import it.unipv.ingsfw.treninordovest.dao.implementations.ClienteDAOImpl;
-import it.unipv.ingsfw.treninordovest.dao.interfaces.ClienteDAO;
-import it.unipv.ingsfw.treninordovest.dao.interfaces.UtenteDAO;
-import it.unipv.ingsfw.treninordovest.model.utenti.Cliente;
-import it.unipv.ingsfw.treninordovest.model.utenti.Utente;
+import it.unipv.ingsfw.treninordovest.view.JMainFrame;
+
 
 import java.sql.*;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.List;
 
 public class Main {
 
     //Classe di prova -- Verrà rimossa in futuro
     public static void main(String[] args) throws SQLException, ParseException {
 
-
+/*
         try {
+
             Connection conn=Database.getConnection();
 
             ClienteDAO clienteDAO = new ClienteDAOImpl();
@@ -34,16 +27,24 @@ public class Main {
                     "Verona'", "M", data1, "3337778889", "Via Arena 22, Verona",
                     200.00, "luca.rossi@example.com");
 
-            clienteDAO.insert(cliente2);
+            clienteDAO.insert(cliente2);*
 
         }catch(SQLException e){
             e.printStackTrace();
-        }
+        }*/
 
 
 
 
         //Controllare insert
+
+        JMainFrame menu = new JMainFrame();
+
+        menu.initialize();
+
+
+
+
 
 
     }

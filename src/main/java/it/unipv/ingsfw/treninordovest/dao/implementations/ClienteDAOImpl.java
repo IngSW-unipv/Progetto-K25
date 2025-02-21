@@ -125,7 +125,8 @@ public class ClienteDAOImpl implements ClienteDAO {
         try(Connection con = new Database().getConnection()){
             //Prima Query
             PreparedStatement ps1= con.prepareStatement(sql1);
-            PreparedStatement ps2= con.prepareStatement(sql1);
+            PreparedStatement ps2= con.prepareStatement(sql2);
+            //Impostazione degli attributi
             ps1.setString(1,cliente.getId());
             ps1.setString(2,cliente.getUserPassword());
             ps1.setString(3,cliente.getNome());

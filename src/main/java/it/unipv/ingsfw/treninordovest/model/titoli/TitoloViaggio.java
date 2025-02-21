@@ -1,18 +1,19 @@
 package it.unipv.ingsfw.treninordovest.model.titoli;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public abstract class TitoloViaggio {
     private String id;
     private String idPagamento;
-    private Date emissione;
+    private LocalDate emissione;
     private double prezzo;
 
     //Costruttore vuoto
     public TitoloViaggio() {}
 
     //Costruttore completo
-    public TitoloViaggio(String id, String idPagamento, Date emissione, double prezzo) {
+    public TitoloViaggio(String id, String idPagamento, LocalDate emissione, double prezzo) {
         this.id = id;
         this.idPagamento = idPagamento;
         this.emissione = emissione;
@@ -36,11 +37,11 @@ public abstract class TitoloViaggio {
         this.idPagamento = idPagamento;
     }
 
-    public Date getEmissione() {
+    public LocalDate getEmissione() {
         return emissione;
     }
 
-    public void setEmissione(Date emissione) {
+    public void setEmissione(LocalDate emissione) {
         this.emissione = emissione;
     }
 

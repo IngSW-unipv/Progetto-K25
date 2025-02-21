@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 //idTessera emissione scadenza Idcliente
@@ -48,16 +49,75 @@ public class TesseraDaoImpl implements TesseraDAO {
 
     @Override
     public List<Tessera> getAll() throws SQLException {
-        return List.of();
+        List listaTessere =  null;
+        Tessera tessera= null;
+        PreparedStatement ps;
+        try (Connection con = new Database().getConnection()) {
+
+            listaTessere = new ArrayList<>();
+            String sql = "select * from tessera";
+            ps=null;
+
+            //Prepared Statement
+            ps = con.prepareStatement(sql);
+            ResultSet rs=ps.executeQuery();
+
+            while (rs.next()){
+                String idTessera = rs.getString("IDTessera");
+                LocalDate Emissione = (LocalDate) rs.getObject("Emissione");
+                LocalDate Scadenza = (LocalDate) rs.getObject("Scadenza");
+                String idCliente = rs.getString("IDCliente");
+
+                tessera=new Tessera(idTessera, Emissione, Scadenza, idCliente);
+                listaTessere.add(tessera);
+            }
+            Database.closeConnection(con);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        return listaTessere;
     }
 
     @Override
     public void delete(String id) throws SQLException {
+        try(Connection con = new Database().getConnection()){
+            PreparedStatement ps = con.prepareStatement("delete from tessera where IDTessera=?");
+            ps.setString(1,id);
+            ps.executeUpdate();
+            Database.closeConnection(con);
 
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
     public void update(Tessera tessera) throws SQLException {
+        String sql1="UPDATE tessera set IDTessera=?, emissione=?, scadenza=?, idcliente=?";
+
+        try(Connection con = new Database().getConnection()){
+            //Prima Query
+            PreparedStatement ps1= con.prepareStatement(sql1);
+
+            //Impostazione degli attributi
+            ps1.setString(1,tessera.getIdTessera());
+            ps1.setObject(2,(LocalDate)tessera.getEmissione());
+            ps1.setObject(3,(LocalDate) tessera.getScadenza());
+            ps1.setString(4,tessera.getIdCliente());
+
+            ps1.executeUpdate();
+
+            //Chiusura della connessione col Database
+            Database.closeConnection(con);
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+
 
     }
 
