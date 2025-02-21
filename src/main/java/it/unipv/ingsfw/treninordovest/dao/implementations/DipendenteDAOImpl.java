@@ -104,8 +104,8 @@ public class DipendenteDAOImpl implements DipendenteDAO {
         try(Connection con = new Database().getConnection()){
             PreparedStatement ps = con.prepareStatement("delete from utente where ID=?");
             ps.setString(1,id);
-            Database.closeConnection(con);
             ps.executeUpdate();
+            Database.closeConnection(con);
 
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -120,7 +120,7 @@ public class DipendenteDAOImpl implements DipendenteDAO {
         try(Connection con = new Database().getConnection()){
             //Prima Query
             PreparedStatement ps1= con.prepareStatement(sql1);
-            PreparedStatement ps2= con.prepareStatement(sql1);
+            PreparedStatement ps2= con.prepareStatement(sql2);
             ps1.setString(1,dipendente.getId());
             ps1.setString(2,dipendente.getUserPassword());
             ps1.setString(3,dipendente.getNome());

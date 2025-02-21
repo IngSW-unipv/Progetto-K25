@@ -1,6 +1,7 @@
 package it.unipv.ingsfw.treninordovest.model.titoli;
 
 import java.time.Instant;
+import java.time.LocalDate;
 
 public class Pagamento {
 
@@ -10,13 +11,13 @@ public class Pagamento {
     private String idCliente;
     private String idTitolo;
     private String Tipo;
-    private Instant dataPagamento;
+    private LocalDate dataPagamento;
 
     //Costruttore vuoto
     public Pagamento() {
     }
 
-    public Pagamento(String idPagamento, String idCliente, double totale, String idTitolo, String tipo, Instant dataPagamento) {
+    public Pagamento(String idPagamento, String idCliente, double totale, String idTitolo, String tipo, LocalDate dataPagamento) {
         this.idPagamento = idPagamento;
         this.idCliente = idCliente;
         this.totale = totale;
@@ -67,11 +68,11 @@ public class Pagamento {
         Tipo = tipo;
     }
 
-    public Instant getDataPagamento() {
+    public LocalDate getDataPagamento() {
         return dataPagamento;
     }
 
-    public void setDataPagamento(Instant dataPagamento) {
+    public void setDataPagamento(LocalDate dataPagamento) {
         this.dataPagamento = dataPagamento;
     }
 }

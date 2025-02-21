@@ -106,14 +106,16 @@ public class ClienteDAOImpl implements ClienteDAO {
     @Override
     public void delete(String id) throws SQLException {
         try(Connection con = new Database().getConnection()){
-            PreparedStatement ps = con.prepareStatement("delete from utente where ID=?");
-            ps.setString(1,id);
-            Database.closeConnection(con);
-            ps.executeUpdate();
+                     PreparedStatement ps = con.prepareStatement("delete from utente where ID=?");
+                     ps.setString(1,id);
 
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+                     ps.executeUpdate();
+
+                    Database.closeConnection(con);
+
+                 } catch (Exception e) {
+                     throw new RuntimeException(e);
+                 }
 
     }
 
