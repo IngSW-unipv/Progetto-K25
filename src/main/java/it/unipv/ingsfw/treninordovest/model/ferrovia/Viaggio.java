@@ -1,5 +1,7 @@
 package it.unipv.ingsfw.treninordovest.model.ferrovia;
 
+import java.time.LocalDate;
+
 public class Viaggio {
     public Viaggio() {
     }
