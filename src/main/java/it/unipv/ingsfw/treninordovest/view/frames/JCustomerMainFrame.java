@@ -6,7 +6,12 @@ import javax.swing.*;
 import java.awt.*;
 
 public class JCustomerMainFrame extends JFrame {
-    private JTabbedPane tabbedPane;
+    private final JTabbedPane tabbedPane = new JTabbedPane();;
+    private final JPanel ticketPurchasePanel = new TicketPurchasePanel();
+    private final JPanel subscriptionPanel = new SubscriptionPanel();
+    private final JPanel cardPurchasePanel = new CardPurchasePanel();
+    private final JPanel travelSearchPanel = new TravelSearchPanel();
+    private final JPanel refundPanel = new RefundPanel();
 
     public JCustomerMainFrame() {
         setTitle("Treninordovest - Area Cliente");
@@ -17,15 +22,9 @@ public class JCustomerMainFrame extends JFrame {
     }
 
     private void initComponents() {
-        tabbedPane = new JTabbedPane();
+
 
         // Crea i pannelli per ogni funzionalità
-        JPanel ticketPurchasePanel = new TicketPurchasePanel();
-        JPanel subscriptionPanel = new SubscriptionPanel();
-        JPanel cardPurchasePanel = new CardPurchasePanel();
-        JPanel travelSearchPanel = new TravelSearchPanel();
-        JPanel refundPanel = new RefundPanel();
-
         // Aggiungi le schede al tabbed pane
         tabbedPane.addTab("Acquisto Biglietto", ticketPurchasePanel);
         tabbedPane.addTab("Abbonamento", subscriptionPanel);
