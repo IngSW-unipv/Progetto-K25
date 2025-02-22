@@ -3,13 +3,12 @@ package it.unipv.ingsfw.treninordovest.dao.implementations;
 import it.unipv.ingsfw.treninordovest.dao.database.Database;
 import it.unipv.ingsfw.treninordovest.dao.interfaces.PagamentoDAO;
 import it.unipv.ingsfw.treninordovest.model.titoli.Pagamento;
-import it.unipv.ingsfw.treninordovest.model.utenti.Cliente;
+
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.Instant;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -130,7 +129,7 @@ public class PagamentoDAOImpl implements PagamentoDAO {
 
     @Override
     public void insert(Pagamento pagamento) throws SQLException {
-        
+
         Connection con = null;
 
         try {

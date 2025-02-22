@@ -1,9 +1,8 @@
 package it.unipv.ingsfw.treninordovest.model.titoli;
 
-import java.time.Instant;
 import java.time.LocalDate;
 
-public class Pagamento {
+public class StoricoPagamento {
 
     //Attributi
     private String idStorico;

@@ -1,8 +1,7 @@
 package it.unipv.ingsfw.treninordovest.dao.implementations;
 
 import it.unipv.ingsfw.treninordovest.dao.database.Database;
-import it.unipv.ingsfw.treninordovest.model.titoli.Pagamento;
-import it.unipv.ingsfw.treninordovest.dao.database.Database;
+import it.unipv.ingsfw.treninordovest.model.titoli.StoricoPagamento;
 import org.junit.jupiter.api.Test;
 
 import java.sql.Connection;
@@ -10,7 +9,6 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
-import static org.junit.jupiter.api.Assertions.*;
 class PagamentoDAOImplTest {
 
     @Test
@@ -53,7 +51,7 @@ class PagamentoDAOImplTest {
 
         /*
         LocalDate date = LocalDate.now();
-        Pagamento pagamento = new Pagamento("PG2283","US0013",200,"paypal",date);
+        StoricoPagamento pagamento = new StoricoPagamento("PG2283","US0013",200,"paypal",date);
         String sql1="UPDATE pagamento set idCliente=?,totale=?, tipo=?, dataPagamento=? where idPagamento=?";
 
         try(Connection con = new Database().getConnection()){
