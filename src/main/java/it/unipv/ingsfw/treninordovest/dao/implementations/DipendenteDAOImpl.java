@@ -114,8 +114,8 @@ public class DipendenteDAOImpl implements DipendenteDAO {
 
     @Override
     public void update(Dipendente dipendente) throws SQLException {
-        String sql1="UPDATE utente set ID=?, password=?, nome=?, cognome=?, luogoNascita=?, sessoChar=?, dataNascita=?, cellulare=?, indirizzo=?";
-        String sql2="UPDATE dipendente set IdDipendente=?, codTreno=?, stipendio=?, ruolo=?";
+        String sql1="UPDATE utente set password=?, nome=?, cognome=?, luogoNascita=?, sessoChar=?, dataNascita=?, cellulare=?, indirizzo=? where ID=?";
+        String sql2="UPDATE dipendente set codTreno=?, stipendio=?, ruolo=? where IdDipendente=?";
 
         try(Connection con = new Database().getConnection()){
             //Prima Query

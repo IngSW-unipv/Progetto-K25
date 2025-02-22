@@ -16,12 +16,11 @@ public class Pagamento {
     public Pagamento() {
     }
 
-    public Pagamento(String idPagamento, String idCliente, double totale, String idTitolo, String tipo, LocalDate dataPagamento) {
+    public Pagamento(String idPagamento, String idCliente, double totale, String tipo, LocalDate dataPagamento) {
         this.idPagamento = idPagamento;
         this.idCliente = idCliente;
         this.totale = totale;
-        this.idTitolo = idTitolo;
-        Tipo = tipo;
+        this.tipo = tipo;
         this.dataPagamento = dataPagamento;
     }
 
@@ -51,13 +50,6 @@ public class Pagamento {
         this.idCliente = idCliente;
     }
 
-    public String getIdTitolo() {
-        return idTitolo;
-    }
-
-    public void setIdTitolo(String idTitolo) {
-        this.idTitolo = idTitolo;
-    }
 
     public String getTipo() {
         return tipo;

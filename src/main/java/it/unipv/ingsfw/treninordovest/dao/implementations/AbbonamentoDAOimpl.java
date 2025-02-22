@@ -91,7 +91,7 @@ public class AbbonamentoDAOimpl implements AbbonamentoDAO {
     public void delete(String id) throws SQLException {
 
         try(Connection con = new Database().getConnection()){
-            PreparedStatement ps = con.prepareStatement("delete from abbonamento where IDAbbonamento=?");
+            PreparedStatement ps = con.prepareStatement("delete from titoloviaggio where IDTitolo=?");
             ps.setString(1,id);
 
             ps.executeUpdate();

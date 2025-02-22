@@ -108,6 +108,38 @@ public class BigliettoDAOImpl implements BigliettoDAO {
     @Override
     public void update(Biglietto biglietto) throws SQLException {
 
+        String sql1="UPDATE titoloviaggio set IDPagamento=?, Emissione=?, Prezzo=? where IDTitolo=?";
+        String sql2="UPDATE biglietto set ritorno=?, validato=?, dataRitorno=?, dataValidazione=?  where IDBiglietto=?";
+
+        try(Connection con = new Database().getConnection()){
+            //Prima Query
+            PreparedStatement ps1= con.prepareStatement(sql1);
+            PreparedStatement ps2 = con.prepareStatement(sql2);
+
+            //Impostazione degli attributi
+            ps1.setString(1,biglietto.getIdPagamento());
+            ps1.setObject(2,biglietto.getEmissione());
+            ps1.setDouble(3,biglietto.getPrezzo());
+            ps1.setString(4,biglietto.getId());
+
+            ps2.setObject(1,biglietto.isValidato());
+            ps2.setObject(2,biglietto.isRitorno());
+            ps2.setObject(2,biglietto.getDataRitorno());
+            ps2.setObject(2,biglietto.getDataValidazione());
+            ps2.setString(3,biglietto.getId());
+
+
+            ps1.executeUpdate();
+            ps2.executeUpdate();
+
+            //Chiusura della connessione col Database
+            Database.closeConnection(con);
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+
     }
 
     @Override

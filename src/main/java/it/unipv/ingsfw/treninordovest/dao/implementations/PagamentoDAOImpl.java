@@ -38,7 +38,7 @@ public class PagamentoDAOImpl implements PagamentoDAO {
                 String tipo=rs.getString("tipo");
                 LocalDate dataPagamento= (LocalDate) rs.getObject("dataPagamento");
 
-                pagamento=new Pagamento(idPagamento,idCliente,totale,idTitolo, tipo, dataPagamento);
+                pagamento=new Pagamento(idPagamento,idCliente,totale, tipo, dataPagamento);
             }
 
             Database.closeConnection(con);
@@ -60,7 +60,7 @@ public class PagamentoDAOImpl implements PagamentoDAO {
         try (Connection con = new Database().getConnection()) {
 
             //Query effettuata su una vista creata nel DB per semplificare l'estrazione dei dati
-            String sql = "select idPagamento,idCliente,totale,idTitolo, tipo, dataPagamento from Pagamento";
+            String sql = "select idPagamento,idCliente,totale, tipo, dataPagamento from Pagamento";
 
             //Estrazione dei dati dal DB
             ps = null;
@@ -107,17 +107,16 @@ public class PagamentoDAOImpl implements PagamentoDAO {
 
     @Override
     public void update(Pagamento pagamento) throws SQLException {
-        String sql1="UPDATE pagamento set idPagamento=?, idCliente=?,totale=?,idTitolo=?, tipo=?, dataPagamento=?";
+        String sql1="UPDATE pagamento set idCliente=?,totale=?, tipo=?, dataPagamento=? where idPagamento=?";
 
         try(Connection con = new Database().getConnection()){
             //Prima Query
             PreparedStatement ps1= con.prepareStatement(sql1);
-            ps1.setString(1,pagamento.getIdPagamento());
-            ps1.setString(2,pagamento.getIdCliente());
-            ps1.setDouble(3,pagamento.getTotale());
-            ps1.setString(4,pagamento.getIdTitolo());
-            ps1.setString(5,pagamento.getTipo());
-            ps1.setObject(6,pagamento.getDataPagamento());
+            ps1.setString(1,pagamento.getIdCliente());
+            ps1.setDouble(2,pagamento.getTotale());
+            ps1.setString(3,pagamento.getTipo());
+            ps1.setObject(4,pagamento.getDataPagamento());
+            ps1.setString(5,pagamento.getIdPagamento());
 
             ps1.executeUpdate();
 

@@ -121,28 +121,29 @@ public class ClienteDAOImpl implements ClienteDAO {
 
     @Override
     public void update(Cliente cliente) throws SQLException {
-        String sql1="UPDATE utente set ID=?, password=?, nome=?, cognome=?, luogoNascita=?, sessoChar=?, dataNascita=?, cellulare=?, indirizzo=?";
-        String sql2="UPDATE cliente set IDCliente=?, Bilancio=?, Email=?";
+        String sql1="UPDATE utente set password=?, nome=?, cognome=?, luogoNascita=?, sessoChar=?, dataNascita=?, cellulare=?, indirizzo=? where ID=?";
+        String sql2="UPDATE cliente set Bilancio=?, Email=? where IDCliente=?";
 
         try(Connection con = new Database().getConnection()){
             //Prima Query
             PreparedStatement ps1= con.prepareStatement(sql1);
             PreparedStatement ps2= con.prepareStatement(sql2);
             //Impostazione degli attributi
-            ps1.setString(1,cliente.getId());
-            ps1.setString(2,cliente.getUserPassword());
-            ps1.setString(3,cliente.getNome());
-            ps1.setString(4,cliente.getCognome());
-            ps1.setString(5,cliente.getLuogoNascita());
-            ps1.setString(6,cliente.getSesso());
-            ps1.setObject(7, cliente.getDataNascita());
-            ps1.setString(8,cliente.getCellulare());
-            ps1.setString(9,cliente.getIndirizzo());
+
+            ps1.setString(1,cliente.getUserPassword());
+            ps1.setString(2,cliente.getNome());
+            ps1.setString(3,cliente.getCognome());
+            ps1.setString(4,cliente.getLuogoNascita());
+            ps1.setString(5,cliente.getSesso());
+            ps1.setObject(6, cliente.getDataNascita());
+            ps1.setString(7,cliente.getCellulare());
+            ps1.setString(8,cliente.getIndirizzo());
+            ps1.setString(9,cliente.getId());
 
             //Seconda Query
-            ps2.setString(1,cliente.getId());
-            ps2.setDouble(2,cliente.getBilancio());
-            ps2.setString(3,cliente.getEmail());
+            ps2.setDouble(1,cliente.getBilancio());
+            ps2.setString(2,cliente.getEmail());
+            ps2.setString(3,cliente.getId());
 
             ps1.executeUpdate();
             ps2.executeUpdate();

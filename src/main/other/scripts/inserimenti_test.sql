@@ -59,4 +59,3 @@ insert into pagamento values ("PG2314","US0013",5.2,"Carta","2025-02-12 12:34:56
 
 select  * from pagamento;
 
-
