@@ -13,7 +13,6 @@ public class JRegistrationFrame extends JFrame {
     public JRegistrationFrame() {
         setTitle("Treninordovest - Registrazione");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(800, 800);
         setLocationRelativeTo(null);
         this.getContentPane().setBackground(Color.BLUE);
 
