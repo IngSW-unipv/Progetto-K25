@@ -1,12 +1,15 @@
 package it.unipv.ingsfw.treninordovest.model.titoli;
 
+import org.hibernate.boot.jaxb.internal.stax.LocalSchemaLocator;
+
 import java.time.Instant;
+import java.time.LocalDate;
 
 public class Rimborso {
 
     //Attributi
     private String idRimborso;
-    private Instant dataOra;
+    private LocalDate dataRimborso;
     private double totale;
     private String idBiglietto;
     private String idRichiedente;
@@ -14,9 +17,9 @@ public class Rimborso {
     //Costruttori
     public Rimborso() {}
 
-    public Rimborso(String idRimborso, Instant dataOra, double totale, String idBiglietto, String idRichiedente) {
+    public Rimborso(String idRimborso, LocalDate dataOra, double totale, String idBiglietto, String idRichiedente) {
         this.idRimborso = idRimborso;
-        this.dataOra = dataOra;
+        this.dataRimborso = dataOra;
         this.totale = totale;
         this.idBiglietto = idBiglietto;
         this.idRichiedente = idRichiedente;
@@ -31,12 +34,12 @@ public class Rimborso {
         this.idRimborso = idRimborso;
     }
 
-    public Instant getDataOra() {
-        return dataOra;
+    public LocalDate getDataRimborso() {
+        return dataRimborso;
     }
 
-    public void setDataOra(Instant dataOra) {
-        this.dataOra = dataOra;
+    public void setDataRimborso(LocalDate dataRimborso) {
+        this.dataRimborso = dataRimborso;
     }
 
     public double getTotale() {
@@ -61,5 +64,16 @@ public class Rimborso {
 
     public void setIdRichiedente(String idRichiedente) {
         this.idRichiedente = idRichiedente;
+    }
+
+    @Override
+    public String toString() {
+        return "Rimborso{" +
+                "idRimborso='" + idRimborso + '\'' +
+                ", dataRimborso=" + dataRimborso +
+                ", totale=" + totale +
+                ", idBiglietto='" + idBiglietto + '\'' +
+                ", idRichiedente='" + idRichiedente + '\'' +
+                '}';
     }
 }

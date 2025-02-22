@@ -18,7 +18,6 @@ import java.util.List;
 public class TesseraDaoImpl implements TesseraDAO {
     @Override
     public Tessera get(String id) throws SQLException {
-
         Tessera tessera = null;
         PreparedStatement ps;
         try (Connection con = new Database().getConnection()) {
