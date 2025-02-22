@@ -86,7 +86,7 @@ primary key (ID)
 
 create table cliente (
 IDCliente varchar(10) not null,
-Bilancio double not null,
+Bilancio double default 0,
 Email varchar(40) not null,
 primary key (IDCliente),
 foreign key (IDCliente) references utente(ID) on delete cascade on update cascade
@@ -115,12 +115,14 @@ foreign key (IDCliente) references cliente(IDCliente) on delete cascade on updat
 create table pagamento(
 IDPagamento varchar(10) not null,
 IDCliente varchar(10) not null,
-Totale double not null,
+Totale double default 0,
 Tipo varchar(30) not null,
-Dataora timestamp default current_timestamp on update current_timestamp, 
+DataPagamento date not null ,
 primary key (IDPagamento),
 foreign key (IDCliente) references cliente(IDCliente) on delete cascade on update cascade
 );
+
+
 
 
 /*Area Titoli*/
@@ -137,6 +139,8 @@ create table biglietto(
 IDBiglietto varchar(10) not null,
 Ritorno bool default false,
 Validato bool default false,
+DataRitorno date null ,
+DataValidazione date null ,
 primary key (IDBiglietto),
 foreign key (IDBiglietto) references titoloviaggio(IDTitolo) on delete cascade on update cascade
 );
@@ -156,7 +160,6 @@ foreign key (IDAbbonamento) references titoloviaggio(IDTitolo) on delete cascade
 create table storicopagamento(
 IDStorico varchar(10) not null,
 IDPagamento varchar(10) not null,
-Dataora timestamp default current_timestamp on update current_timestamp, 
 Stato varchar(10) not null,
 primary key (IDStorico),
 foreign key (IDPagamento) references pagamento(IDPagamento) on delete cascade on update cascade
@@ -186,7 +189,7 @@ foreign key (IDBiglietto) references biglietto(IDBiglietto) on delete cascade on
 
 create table rimborso(
 IDRimborso varchar(10) not null,
-Dataora timestamp default current_timestamp on update current_timestamp,
+DataRimborso date not null ,
 Totale double not null, 
 IDBiglietto varchar(10) not null,
 IDRichiedente varchar(10) not null,

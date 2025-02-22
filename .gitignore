@@ -1,3 +1,4 @@
 #File da ignorare
 /lib/mysql-connector-java-8.0.19.jar
+/lib/jcalendar-1.4.jar
 /target/

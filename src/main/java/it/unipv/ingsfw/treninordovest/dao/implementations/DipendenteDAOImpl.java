@@ -121,21 +121,22 @@ public class DipendenteDAOImpl implements DipendenteDAO {
             //Prima Query
             PreparedStatement ps1= con.prepareStatement(sql1);
             PreparedStatement ps2= con.prepareStatement(sql2);
-            ps1.setString(1,dipendente.getId());
-            ps1.setString(2,dipendente.getUserPassword());
-            ps1.setString(3,dipendente.getNome());
-            ps1.setString(4,dipendente.getCognome());
-            ps1.setString(5,dipendente.getLuogoNascita());
-            ps1.setString(6,dipendente.getSesso());
-            ps1.setObject(7, dipendente.getDataNascita());
-            ps1.setString(8,dipendente.getCellulare());
-            ps1.setString(9,dipendente.getIndirizzo());
 
+            ps1.setString(1,dipendente.getUserPassword());
+            ps1.setString(2,dipendente.getNome());
+            ps1.setString(3,dipendente.getCognome());
+            ps1.setString(4,dipendente.getLuogoNascita());
+            ps1.setString(5,dipendente.getSesso());
+            ps1.setObject(6, dipendente.getDataNascita());
+            ps1.setString(7,dipendente.getCellulare());
+            ps1.setString(8,dipendente.getIndirizzo());
+            ps1.setString(9,dipendente.getId());
             //Seconda Query
-            ps2.setString(1,dipendente.getId());
+
+            ps2.setString(1,dipendente.getCodTreno());
             ps2.setDouble(2,dipendente.getStipendio());
             ps2.setString(3,dipendente.getRuolo());
-            ps2.setString(1,dipendente.getCodTreno());
+            ps2.setString(4,dipendente.getId());
 
             ps1.executeUpdate();
             ps2.executeUpdate();

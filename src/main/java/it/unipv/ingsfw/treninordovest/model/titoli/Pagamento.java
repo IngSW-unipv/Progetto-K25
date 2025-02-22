@@ -9,8 +9,7 @@ public class Pagamento {
     private String idPagamento;
     private double totale;
     private String idCliente;
-    private String idTitolo;
-    private String Tipo;
+    private String tipo;
     private LocalDate dataPagamento;
 
     //Costruttore vuoto
@@ -61,11 +60,11 @@ public class Pagamento {
     }
 
     public String getTipo() {
-        return Tipo;
+        return tipo;
     }
 
     public void setTipo(String tipo) {
-        Tipo = tipo;
+        this.tipo = tipo;
     }
 
     public LocalDate getDataPagamento() {

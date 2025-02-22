@@ -96,17 +96,17 @@ public class TesseraDaoImpl implements TesseraDAO {
 
     @Override
     public void update(Tessera tessera) throws SQLException {
-        String sql1="UPDATE tessera set IDTessera=?, emissione=?, scadenza=?, idcliente=?";
+        String sql1="UPDATE tessera set emissione=?, scadenza=?, idcliente=? where IDTessera=?";
 
         try(Connection con = new Database().getConnection()){
             //Prima Query
             PreparedStatement ps1= con.prepareStatement(sql1);
 
             //Impostazione degli attributi
-            ps1.setString(1,tessera.getIdTessera());
-            ps1.setObject(2,(LocalDate)tessera.getEmissione());
-            ps1.setObject(3,(LocalDate) tessera.getScadenza());
-            ps1.setString(4,tessera.getIdCliente());
+            ps1.setObject(1,(LocalDate)tessera.getEmissione());
+            ps1.setObject(2,(LocalDate) tessera.getScadenza());
+            ps1.setString(3,tessera.getIdCliente());
+            ps1.setString(4,tessera.getIdTessera());
 
             ps1.executeUpdate();
 

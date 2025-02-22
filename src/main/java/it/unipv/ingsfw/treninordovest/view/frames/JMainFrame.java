@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.util.Objects;
 
 public class JMainFrame extends JFrame {
 
@@ -15,6 +16,10 @@ public class JMainFrame extends JFrame {
     private JPasswordField campoPassword;
     private JButton bottoneAccesso;
     private JButton bottoneRegistrazione;
+    // Creazione dei componenti
+//Logo
+    private ImageIcon logoIcon = new ImageIcon(getClass().getResource("/logo.png"));
+    private JLabel logoLabel;
 
     public JMainFrame() {
         setTitle("Treninordovest - Login");
@@ -28,13 +33,17 @@ public class JMainFrame extends JFrame {
     }
 
     private void inizializzaComponenti() {
-        // Creazione dei componenti
+        logoLabel = new JLabel(logoIcon);
+
         campoUtente = new JTextField(15);
         campoPassword = new JPasswordField(15);
         bottoneAccesso = new JButton("Accesso");
         bottoneRegistrazione = new JButton("Registrazione");
 
         // Layout dei componenti
+        JPanel pannelloimg = new JPanel(new FlowLayout(FlowLayout.LEADING));
+        pannelloimg.add(logoLabel);
+
         JPanel pannello = new JPanel(new GridBagLayout());
         pannello.setBackground(Color.getHSBColor(205,33,76));
         GridBagConstraints gbc = new GridBagConstraints();

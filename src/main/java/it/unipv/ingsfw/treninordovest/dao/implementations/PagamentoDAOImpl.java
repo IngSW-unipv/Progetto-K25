@@ -22,7 +22,7 @@ public class PagamentoDAOImpl implements PagamentoDAO {
         try (Connection con = new Database().getConnection()) {
             pagamento = null;
             //Query effettuata su una vista creata nel DB per semplificare l'estrazione dei dati
-            String sql = "select idPagamento,totale,idCliente,idTitolo,Tipo,dataPagamento from Pagamento where idPagamento=?";
+            String sql = "select idPagamento,totale,idCliente,Tipo,dataPagamento from Pagamento where idPagamento=?";
 
             //Estrazione dei dati dal DB
             ps = null;
@@ -35,7 +35,6 @@ public class PagamentoDAOImpl implements PagamentoDAO {
                 String idPagamento=rs.getString("idPagamento");
                 double totale=rs.getDouble("totale");
                 String idCliente=rs.getString("idCliente");
-                String idTitolo=rs.getString("idTitolo");
                 String tipo=rs.getString("tipo");
                 LocalDate dataPagamento= (LocalDate) rs.getObject("dataPagamento");
 
@@ -74,12 +73,11 @@ public class PagamentoDAOImpl implements PagamentoDAO {
                 String idPagamento=rs.getString("idPagamento");
                 String idCliente=rs.getString("idCliente");
                 double totale=rs.getDouble("totale");
-                String idTitolo=rs.getString("idTitolo");
                 String tipo=rs.getString("tipo");
                 LocalDate dataPagamento=(LocalDate) rs.getObject("dataPagamento");
 
 
-                pagamento=new Pagamento(idPagamento,idCliente,totale,idTitolo, tipo, dataPagamento);
+                pagamento=new Pagamento(idPagamento,idCliente,totale, tipo, dataPagamento);
                 paga.add(pagamento);
             }
 
@@ -133,10 +131,12 @@ public class PagamentoDAOImpl implements PagamentoDAO {
 
     @Override
     public void insert(Pagamento pagamento) throws SQLException {
+        
         Connection con = null;
+
         try {
             con = new Database().getConnection();
-            String sql1 = "INSERT INTO pagamento (idPagamento,idCliente,totale,idTitolo, tipo, dataPagamento) VALUES (?, ?, ?, ?, ?, ?)";
+            String sql1 = "INSERT INTO pagamento (idPagamento,idCliente,totale, tipo, dataPagamento) VALUES (?, ?, ?, ?, ?, ?)";
 
             try (PreparedStatement ps1 = con.prepareStatement(sql1)) {
 
@@ -144,11 +144,8 @@ public class PagamentoDAOImpl implements PagamentoDAO {
                 ps1.setString(1,pagamento.getIdPagamento());
                 ps1.setString(2,pagamento.getIdCliente());
                 ps1.setDouble(3,pagamento.getTotale());
-                ps1.setString(4,pagamento.getIdTitolo());
-                ps1.setString(5,pagamento.getTipo());
-                ps1.setObject(6,pagamento.getDataPagamento());
-
-
+                ps1.setString(4,pagamento.getTipo());
+                ps1.setObject(5,pagamento.getDataPagamento());
 
                 // Esecuzione delle query
                 ps1.executeUpdate();

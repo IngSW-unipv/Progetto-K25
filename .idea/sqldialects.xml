@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="SqlDialectMappings">
-    <file url="file://$PROJECT_DIR$/src/main/java/it/unipv/ingsfw/treninordovest/dao/database/scripts/CreazioneDB.sql" dialect="MySQL" />
-    <file url="file://$PROJECT_DIR$/src/main/java/it/unipv/ingsfw/treninordovest/dao/database/scripts/viste.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/main/other/scripts/CreazioneDB.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/main/other/scripts/Query_esempio.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/main/other/scripts/inserimenti_test.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/main/other/scripts/utenti_permessi.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/main/other/scripts/viste.sql" dialect="MySQL" />
   </component>
 </project>

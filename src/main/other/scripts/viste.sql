@@ -16,6 +16,9 @@ select * from titoloviaggio tv join biglietto bg on tv.IDTitolo=bg.IDBiglietto;
 
 
 select * from titoliAbbonamenti;
+select * from titoliBiglietti;
+
+drop view titoliBiglietti;
 
 /*
 create view titoloBiglietto

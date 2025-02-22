@@ -23,7 +23,7 @@ public class AbbonamentoDAOimpl implements AbbonamentoDAO {
         try (Connection con = new Database().getConnection()) {
             abbonamento= null;
             //Query effettuata su una vista creata nel DB per semplificare l'estrazione dei dati
-            String sql = "select IDTitolo, IDPagamento, Emissione, Prezzo, Tipo, Scadenza, IDTessera from titoliAbbonamenti where id=?";
+            String sql = "select IDTitolo, IDPagamento, Emissione, Prezzo, Tipo, Scadenza, IDTessera from titoliAbbonamenti where IDTitolo=?";
 
             //Estrazione dei dati dal DB
             ps = con.prepareStatement(sql);
@@ -108,8 +108,8 @@ public class AbbonamentoDAOimpl implements AbbonamentoDAO {
     @Override
     public void update(Abbonamento abbonamento) throws SQLException {
 
-        String sql1="UPDATE titoloviaggio set IDTitolo=?, IDPagamento=?, Emissione=?, Prezzo=?";
-        String sql2="UPDATE abbonamento set IDAbbonamento=?, Tipo=?, Scadenza=?, IDTessera=?";
+        String sql1="UPDATE titoloviaggio set IDPagamento=?, Emissione=?, Prezzo=? where IDTitolo=? ";
+        String sql2="UPDATE abbonamento set Tipo=?, Scadenza=?, IDTessera=? where IDAbbonamento=?";
 
         try(Connection con = new Database().getConnection()){
             //Prima Query
@@ -117,15 +117,15 @@ public class AbbonamentoDAOimpl implements AbbonamentoDAO {
             PreparedStatement ps2 = con.prepareStatement(sql2);
 
             //Impostazione degli attributi
-            ps1.setString(1,abbonamento.getId());
-            ps1.setString(2, abbonamento.getIdPagamento());
-            ps1.setObject(3,abbonamento.getEmissione());
-            ps1.setDouble(4,abbonamento.getPrezzo());
+            ps1.setString(1, abbonamento.getIdPagamento());
+            ps1.setObject(2,abbonamento.getEmissione());
+            ps1.setDouble(3,abbonamento.getPrezzo());
+            ps1.setString(4,abbonamento.getId());
 
-            ps2.setString(1,abbonamento.getId());
-            ps2.setString(2, abbonamento.getTipoAbbonamento());
-            ps2.setObject(3,abbonamento.getScadenza());
-            ps2.setString(4,abbonamento.getIdTessera());
+            ps2.setString(1, abbonamento.getTipoAbbonamento());
+            ps2.setObject(2,abbonamento.getScadenza());
+            ps2.setString(3,abbonamento.getIdTessera());
+            ps2.setString(4,abbonamento.getId());
 
             ps1.executeUpdate();
             ps2.executeUpdate();

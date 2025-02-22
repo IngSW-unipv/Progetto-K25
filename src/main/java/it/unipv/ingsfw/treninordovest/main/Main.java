@@ -1,6 +1,8 @@
 package it.unipv.ingsfw.treninordovest.main;
 
+import it.unipv.ingsfw.treninordovest.view.frames.JCustomerMainFrame;
 import it.unipv.ingsfw.treninordovest.view.frames.JMainFrame;
+import it.unipv.ingsfw.treninordovest.view.frames.JRegistrationFrame;
 
 
 import java.sql.*;
@@ -14,6 +16,11 @@ public class Main {
         JMainFrame menu = new JMainFrame();
 
         menu.show();
+
+        JRegistrationFrame registration = new JRegistrationFrame();
+
+        registration.show();
+
 
 
 
