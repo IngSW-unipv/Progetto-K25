@@ -1,4 +1,4 @@
-package it.unipv.ingsfw.treninordovest.dao.implementations;
+package it.unipv.ingsfw.treninordovest.dao.implementations.utenti;
 
 import it.unipv.ingsfw.treninordovest.dao.database.Database;
 import it.unipv.ingsfw.treninordovest.dao.interfaces.ClienteDAO;

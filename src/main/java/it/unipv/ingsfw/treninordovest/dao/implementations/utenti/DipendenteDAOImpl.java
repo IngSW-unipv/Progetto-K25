@@ -1,8 +1,7 @@
-package it.unipv.ingsfw.treninordovest.dao.implementations;
+package it.unipv.ingsfw.treninordovest.dao.implementations.utenti;
 
 import it.unipv.ingsfw.treninordovest.dao.database.Database;
 import it.unipv.ingsfw.treninordovest.dao.interfaces.DipendenteDAO;
-import it.unipv.ingsfw.treninordovest.model.utenti.Cliente;
 import it.unipv.ingsfw.treninordovest.model.utenti.Dipendente;
 
 import java.sql.Connection;

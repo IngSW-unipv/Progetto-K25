@@ -1,4 +1,4 @@
-package it.unipv.ingsfw.treninordovest.dao.implementations;
+package it.unipv.ingsfw.treninordovest.dao.implementations.titoli;
 
 import it.unipv.ingsfw.treninordovest.dao.database.Database;
 import it.unipv.ingsfw.treninordovest.dao.interfaces.StoricoPagamentoDAO;
@@ -8,7 +8,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 

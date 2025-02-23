@@ -1,9 +1,8 @@
-package it.unipv.ingsfw.treninordovest.dao.implementations;
+package it.unipv.ingsfw.treninordovest.dao.implementations.titoli;
 
 import it.unipv.ingsfw.treninordovest.dao.database.Database;
 import it.unipv.ingsfw.treninordovest.dao.interfaces.AbbonamentoDAO;
 import it.unipv.ingsfw.treninordovest.model.titoli.Abbonamento;
-import it.unipv.ingsfw.treninordovest.model.utenti.Tessera;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
