@@ -3,14 +3,14 @@ package it.unipv.ingsfw.treninordovest.model.ferrovia;
 public class Treno {
     private String idTreno;
     private String modello;
-    private double kw;
+    private int kw;
     private int numPosti;
 
     //Costruttori
 
     public Treno (){}
 
-    public Treno(String idTreno, String modello, double kw, int numPosti) {
+    public Treno(String idTreno, String modello, int kw, int numPosti) {
         this.idTreno = idTreno;
         this.modello = modello;
         this.kw = kw;
@@ -33,11 +33,11 @@ public class Treno {
         this.modello = modello;
     }
 
-    public double getKw() {
+    public int getKw() {
         return kw;
     }
 
-    public void setKw(double kw) {
+    public void setKw(int kw) {
         this.kw = kw;
     }
 

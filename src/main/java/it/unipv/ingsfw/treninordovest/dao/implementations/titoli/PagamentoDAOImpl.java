@@ -131,7 +131,6 @@ public class PagamentoDAOImpl implements PagamentoDAO {
     public void insert(Pagamento pagamento) throws SQLException {
 
         Connection con = null;
-
         try {
             con = new Database().getConnection();
             String sql1 = "INSERT INTO pagamento (idPagamento,idCliente,totale, tipo, dataPagamento) VALUES (?, ?, ?, ?, ?, ?)";

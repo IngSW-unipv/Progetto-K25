@@ -11,8 +11,8 @@ public class Viaggio {
     private String IDPartenza;
     private String IDArrivo;
     private LocalDate DataViaggio;
-    private LocalDate OraPartenza;
-    private LocalDate OraArrivo;
+    private LocalTime OraPartenza;
+    private LocalTime OraArrivo;
 
 
     public Viaggio(String idViaggio, String IDTratta, String IDPartenza, String IDArrivo, LocalDate DataViaggio, LocalDate OraPartenza, LocalDate OraArrivo) {
@@ -69,15 +69,15 @@ public class Viaggio {
         return OraPartenza;
     }
 
-    public void setOraPartenza(LocalDate oraPartenza) {
+    public void setOraPartenza(LocalTime oraPartenza) {
         OraPartenza = oraPartenza;
     }
 
-    public LocalDate getOraArrivo() {
+    public LocalTime getOraArrivo() {
         return OraArrivo;
     }
 
-    public void setOraArrivo(LocalDate oraArrivo) {
+    public void setOraArrivo(LocalTime oraArrivo) {
         OraArrivo = oraArrivo;
     }
 }

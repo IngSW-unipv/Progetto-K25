@@ -80,7 +80,6 @@ public class StoricoPagamentoDAOImpl implements StoricoPagamentoDAO {
     }
 
 
-
     @Override
     public void delete(String idStorico) throws SQLException {
         try(Connection con = new Database().getConnection()){
@@ -99,14 +98,14 @@ public class StoricoPagamentoDAOImpl implements StoricoPagamentoDAO {
 
     @Override
     public void update(StoricoPagamento storicoPagamento) throws SQLException {
-        String sql1="UPDATE StoricoPagamento set idStorico=?,idPagamento=?, Stato=? where idStorico=?";
+        String sql1="UPDATE StoricoPagamento set idPagamento=?, Stato=? where idStorico=?";
 
         try(Connection con = new Database().getConnection()){
             //Prima Query
             PreparedStatement ps1= con.prepareStatement(sql1);
-            ps1.setString(1,storicoPagamento.getIdStorico());
-            ps1.setString(2,storicoPagamento.getIdPagamento());
-            ps1.setString(3,storicoPagamento.getStatoPagamento());
+            ps1.setString(3,storicoPagamento.getIdStorico());
+            ps1.setString(1,storicoPagamento.getIdPagamento());
+            ps1.setString(2,storicoPagamento.getStatoPagamento());
 
             ps1.executeUpdate();
 

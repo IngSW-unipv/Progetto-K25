@@ -1,8 +1,9 @@
-package it.unipv.ingsfw.treninordovest.dao.implementations.utenti;
+package it.unipv.ingsfw.treninordovest.dao.implementations.ferrovia;
 
 import it.unipv.ingsfw.treninordovest.dao.database.Database;
-import it.unipv.ingsfw.treninordovest.dao.interfaces.TesseraDAO;
-import it.unipv.ingsfw.treninordovest.model.utenti.Tessera;
+import it.unipv.ingsfw.treninordovest.dao.interfaces.TrenoDAO;
+import it.unipv.ingsfw.treninordovest.model.ferrovia.Treno;
+
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,17 +13,15 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-//idTessera emissione scadenza Idcliente
-
-public class TesseraDaoImpl implements TesseraDAO {
+public class TrenoDAOImpl implements TrenoDAO {
     @Override
-    public Tessera get(String id) throws SQLException {
-        Tessera tessera = null;
+    public Treno get(String id) throws SQLException {
+        Treno treno = null;
         PreparedStatement ps;
         try (Connection con = new Database().getConnection()) {
-            tessera = null;
+            treno = null;
             //Query effettuata su una vista creata nel DB per semplificare l'estrazione dei dati
-            String sql = "select * from tessera where id=?";
+            String sql = "select * from treno where IDTreno=?";
 
             //Estrazione dei dati dal DB
             ps = con.prepareStatement(sql);
@@ -30,44 +29,44 @@ public class TesseraDaoImpl implements TesseraDAO {
             ResultSet rs=ps.executeQuery();
 
             if(rs.next()){
-             String idTessera = rs.getString("IDTessera");
-             LocalDate Emissione = (LocalDate) rs.getObject("Emissione");
-             LocalDate Scadenza = (LocalDate) rs.getObject("Scadenza");
-             String idCliente = rs.getString("IDCliente");
+                String modello = rs.getString("modello");
+                int kw = rs.getInt("KW");
+                int numPosti = rs.getInt("numPosti");
 
-             tessera=new Tessera(idTessera, Emissione, Scadenza, idCliente);
+                treno=new Treno(id, modello, kw,numPosti );
             }
             Database.closeConnection(con);
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return tessera;
+        return treno;
     }
 
     @Override
-    public List<Tessera> getAll() throws SQLException {
-        List listaTessere =  null;
-        Tessera tessera= null;
+    public List<Treno> getAll() throws SQLException {
+
+        Treno treno = null;
+        List treni = new ArrayList<Treno>();
         PreparedStatement ps;
         try (Connection con = new Database().getConnection()) {
+            treno = null;
+            //Query effettuata su una vista creata nel DB per semplificare l'estrazione dei dati
+            String sql = "select * from treno";
 
-            listaTessere = new ArrayList<>();
-            String sql = "select * from tessera";
-            ps=null;
-
-            //Prepared Statement
+            //Estrazione dei dati dal DB
             ps = con.prepareStatement(sql);
+            //ps.setString(1,id);
             ResultSet rs=ps.executeQuery();
 
             while (rs.next()){
-                String idTessera = rs.getString("IDTessera");
-                LocalDate Emissione = (LocalDate) rs.getObject("Emissione");
-                LocalDate Scadenza = (LocalDate) rs.getObject("Scadenza");
-                String idCliente = rs.getString("IDCliente");
+                String idTreno = rs.getString("IDTreno");
+                String modello = rs.getString("modello");
+                int kw = rs.getInt("KW");
+                int numPosti = rs.getInt("numPosti");
 
-                tessera=new Tessera(idTessera, Emissione, Scadenza, idCliente);
-                listaTessere.add(tessera);
+                treno=new Treno(idTreno, modello, kw,numPosti );
+                treni.add(treno);
             }
             Database.closeConnection(con);
 
@@ -75,14 +74,14 @@ public class TesseraDaoImpl implements TesseraDAO {
             e.printStackTrace();
         }
 
-
-        return listaTessere;
+        return treni;
     }
 
     @Override
     public void delete(String id) throws SQLException {
+
         try(Connection con = new Database().getConnection()){
-            PreparedStatement ps = con.prepareStatement("delete from tessera where IDTessera=?");
+            PreparedStatement ps = con.prepareStatement("delete from treno where IDTreno=?");
             ps.setString(1,id);
             ps.executeUpdate();
             Database.closeConnection(con);
@@ -90,22 +89,23 @@ public class TesseraDaoImpl implements TesseraDAO {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+
     }
 
     @Override
-    public void update(Tessera tessera) throws SQLException {
+    public void update(Treno treno) throws SQLException {
 
-        String sql1="UPDATE tessera set emissione=?, scadenza=?, idcliente=? where IDTessera=?";
+        String sql1="UPDATE treno set modello=?, kw=?, numposti=? where IDTreno=?";
 
         try(Connection con = new Database().getConnection()){
             //Prima Query
             PreparedStatement ps1= con.prepareStatement(sql1);
 
             //Impostazione degli attributi
-            ps1.setObject(1,(LocalDate)tessera.getEmissione());
-            ps1.setObject(2,(LocalDate) tessera.getScadenza());
-            ps1.setString(3,tessera.getIdCliente());
-            ps1.setString(4,tessera.getIdTessera());
+            ps1.setString(1, treno.getModello());
+            ps1.setInt(2, treno.getKw());
+            ps1.setInt(3,treno.getNumPosti());
+            ps1.setString(4,treno.getIdTreno());
 
             ps1.executeUpdate();
 
@@ -117,21 +117,20 @@ public class TesseraDaoImpl implements TesseraDAO {
         }
 
 
-
     }
 
     @Override
-    public void insert(Tessera tessera) throws SQLException {
+    public void insert(Treno treno) throws SQLException {
         Connection con = null;
         try {
             con = new Database().getConnection();
-            String sql1 = "INSERT INTO tessera (IDTessera, emissione, scadenza, idcliente) VALUES (?, ?, ?, ?)";
+            String sql1 = "INSERT INTO treno (IDTreno, modello, kw, numPosti) VALUES (?, ?, ?, ?)";
             try (PreparedStatement ps1 = con.prepareStatement(sql1)) {
                 // Impostazione dei parametri per la query 1
-                ps1.setString(1, tessera.getIdTessera());
-                ps1.setObject(2, tessera.getEmissione());
-                ps1.setObject(3, tessera.getScadenza());
-                ps1.setObject(4, tessera.getIdCliente());
+                ps1.setString(1, treno.getIdTreno() );
+                ps1.setObject(2, treno.getModello() );
+                ps1.setInt(3, treno.getKw());
+                ps1.setInt(4,  treno.getNumPosti());
 
                 // Esecuzione delle query
                 ps1.executeUpdate();
@@ -144,6 +143,10 @@ public class TesseraDaoImpl implements TesseraDAO {
                 con.close();
             }
         }
+
+
+
+
 
     }
 }
