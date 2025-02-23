@@ -1,6 +1,7 @@
 package it.unipv.ingsfw.treninordovest.model.ferrovia;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class Viaggio {
     public Viaggio() {
@@ -15,7 +16,7 @@ public class Viaggio {
     private LocalTime OraArrivo;
 
 
-    public Viaggio(String idViaggio, String IDTratta, String IDPartenza, String IDArrivo, LocalDate DataViaggio, LocalDate OraPartenza, LocalDate OraArrivo) {
+    public Viaggio(String idViaggio, String IDTratta, String IDPartenza, String IDArrivo, LocalDate DataViaggio, LocalTime OraPartenza, LocalTime OraArrivo) {
         this.idViaggio = idViaggio;
         this.IDTratta = IDTratta;
         this.IDPartenza = IDPartenza;
@@ -65,7 +66,7 @@ public class Viaggio {
         DataViaggio = dataViaggio;
     }
 
-    public LocalDate getOraPartenza() {
+    public LocalTime getOraPartenza() {
         return OraPartenza;
     }
 
