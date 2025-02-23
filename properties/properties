@@ -1,7 +1,7 @@
 DBDRIVER = com.mysql.cj.jdbc.Driver
-DBURL = jdbc:mysql://localhost:3306/treninordovest
-db_usn=root
-db_psw=Andrea@2003
+DBURL = jdbc:mysql://:3306/treninordovest
+db_usn=
+db_psw=
 
 
 

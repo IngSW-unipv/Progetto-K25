@@ -1,16 +1,11 @@
 package it.unipv.ingsfw.treninordovest.view.frames;
 
 import it.unipv.ingsfw.treninordovest.view.panels.LogoPanel;
-import it.unipv.ingsfw.treninordovest.view.panels.StartMenuPanel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.util.Objects;
 
-public class JMainFrame extends JFrame {
+public class JStartFrame extends JFrame {
 
     private JTextField campoUtente;
     private JPasswordField campoPassword;
@@ -18,10 +13,10 @@ public class JMainFrame extends JFrame {
     private JButton bottoneRegistrazione;
     // Creazione dei componenti
 //Logo
-    private ImageIcon logoIcon = new ImageIcon(getClass().getResource("/logo.png"));
+    private ImageIcon logoIcon = new ImageIcon("/logo.png");
     private JLabel logoLabel;
 
-    public JMainFrame() {
+    public JStartFrame() {
         setTitle("Treninordovest - Login");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(400, 200);
@@ -33,7 +28,8 @@ public class JMainFrame extends JFrame {
     }
 
     private void inizializzaComponenti() {
-        logoLabel = new JLabel(logoIcon);
+
+
 
         campoUtente = new JTextField(15);
         campoPassword = new JPasswordField(15);
@@ -41,34 +37,44 @@ public class JMainFrame extends JFrame {
         bottoneRegistrazione = new JButton("Registrazione");
 
         // Layout dei componenti
-        JPanel pannelloimg = new JPanel(new FlowLayout(FlowLayout.LEADING));
-        pannelloimg.add(logoLabel);
+
+        JPanel panel = new LogoPanel();
 
         JPanel pannello = new JPanel(new GridBagLayout());
-        pannello.setBackground(Color.getHSBColor(205,33,76));
+        pannello.setBackground(Color.BLUE);
         GridBagConstraints gbc = new GridBagConstraints();
+
+        ImageIcon icon = new ImageIcon(getClass().getResource("/logo.png"));
+        JLabel labelLogo = new JLabel(icon);
+
+
         gbc.insets = new Insets(5, 5, 5, 5);
 
         gbc.gridx = 0;
-        gbc.gridy = 0;
+        gbc.gridy = 1;
         pannello.add(new JLabel("Nome utente/email:"), gbc);
 
         gbc.gridx = 1;
         pannello.add(campoUtente, gbc);
 
         gbc.gridx = 0;
-        gbc.gridy = 1;
+        gbc.gridy = 2;
         pannello.add(new JLabel("Password:"), gbc);
 
         gbc.gridx = 1;
         pannello.add(campoPassword, gbc);
 
         gbc.gridx = 0;
-        gbc.gridy = 2;
+        gbc.gridy = 3;
         pannello.add(bottoneAccesso, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 8;
+        pannello.add(labelLogo, gbc);
 
         gbc.gridx = 1;
         pannello.add(bottoneRegistrazione, gbc);
+
 
         add(pannello);
     }

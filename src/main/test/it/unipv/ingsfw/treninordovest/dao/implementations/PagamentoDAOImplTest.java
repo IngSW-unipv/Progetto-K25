@@ -1,6 +1,7 @@
 package it.unipv.ingsfw.treninordovest.dao.implementations;
 
 import it.unipv.ingsfw.treninordovest.dao.database.Database;
+import it.unipv.ingsfw.treninordovest.model.titoli.Pagamento;
 import it.unipv.ingsfw.treninordovest.model.titoli.StoricoPagamento;
 import org.junit.jupiter.api.Test;
 
@@ -14,9 +15,9 @@ class PagamentoDAOImplTest {
     @Test
     void insert() throws SQLException {
 
-        /*
+
         LocalDate date = LocalDate.now();
-        Pagamento pagamento = new Pagamento("PG2583","US0013",357,"carta",date);
+        Pagamento pagamento = new Pagamento("PG2583","CL32",200,"carta",date);
 
         Connection con = null;
         try {
@@ -39,7 +40,7 @@ class PagamentoDAOImplTest {
             if (con != null && !con.isClosed()) {
                 con.close();
             }
-        }*/
+        }
 
 
 
@@ -77,7 +78,7 @@ class PagamentoDAOImplTest {
     
     @Test
      void delete() throws SQLException {
-        /*
+
         String id = "PG2583";
         try{
             Connection con = new Database().getConnection();
@@ -90,8 +91,7 @@ class PagamentoDAOImplTest {
 
         } catch (Exception e) {
             throw new RuntimeException(e);
-        }*/
-
+        }
     }
     
     

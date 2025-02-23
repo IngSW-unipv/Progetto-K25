@@ -9,6 +9,10 @@ public class CardPurchasePanel extends JPanel {
     private JButton buttonAcquistaTessera;
 
     public CardPurchasePanel() {
+
+        Color color = new Color(255, 255, 255);
+        this.setBackground(color);
+
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 5, 5);

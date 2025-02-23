@@ -1,5 +1,8 @@
 package it.unipv.ingsfw.treninordovest.view.panels;
 
+import com.toedter.calendar.JCalendar;
+import com.toedter.calendar.JDateChooser;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -7,20 +10,22 @@ public class SubscriptionPanel extends JPanel {
     private JLabel labelTipo;
     private JComboBox<String> comboTipo;
     private JLabel labelDataInizio;
-    private JTextField textDataInizio;
+    private JDateChooser textDataInizio;
     private JButton buttonAbbonati;
 
     public SubscriptionPanel() {
+
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 5, 5);
+
 
         labelTipo = new JLabel("Tipo Abbonamento:");
         String[] tipi = {"Mensile", "Annuale", "Settimanale"};
         comboTipo = new JComboBox<>(tipi);
 
         labelDataInizio = new JLabel("Data Inizio (yyyy-MM-dd):");
-        textDataInizio = new JTextField(10);
+        textDataInizio = new JDateChooser();
 
         buttonAbbonati = new JButton("Abbonati");
 
@@ -47,7 +52,7 @@ public class SubscriptionPanel extends JPanel {
         return comboTipo;
     }
 
-    public JTextField getTextDataInizio() {
+    public JDateChooser getTextDataInizio() {
         return textDataInizio;
     }
 
