@@ -34,13 +34,13 @@ public class MainMenuController {
         JLoginFrame loginFrame = new JLoginFrame();
         loginFrame.setVisible(true);
         this.mainMenuFrame.setVisible(false);
-        JOptionPane.showMessageDialog(view, "Apri finestra di Login Cliente");
+        //JOptionPane.showMessageDialog(view, "Apri finestra di Login Cliente");
         // mainFrame.setContentPane(new LoginClientePanel(...));
         // mainFrame.revalidate();
     }
 
     private void apriLoginDipendente() {
-        JOptionPane.showMessageDialog(view, "Apri finestra di Login Dipendente");
+       // JOptionPane.showMessageDialog(view, "Apri finestra di Login Dipendente");
         JLoginFrame loginFrame = new JLoginFrame();
         loginFrame.setVisible(true);
         this.mainMenuFrame.setVisible(false);
@@ -48,7 +48,7 @@ public class MainMenuController {
     }
 
     private void apriRegistrazioneCliente() {
-        JOptionPane.showMessageDialog(view, "Apri finestra di Registrazione Cliente");
+        //JOptionPane.showMessageDialog(view, "Apri finestra di Registrazione Cliente");
         JCustomerRegFrame customerRegFrame = new JCustomerRegFrame();
         customerRegFrame.setVisible(true);
         this.mainMenuFrame.setVisible(false);
@@ -58,7 +58,7 @@ public class MainMenuController {
     }
 
     private void apriRegistrazioneDipendente() {
-        JOptionPane.showMessageDialog(view, "Apri finestra di Registrazione Dipendente");
+        //JOptionPane.showMessageDialog(view, "Apri finestra di Registrazione Dipendente");
         JEmployeeRegFrame employeeRegFrame = new JEmployeeRegFrame();
         employeeRegFrame.setVisible(true);
         this.mainMenuFrame.setVisible(false);

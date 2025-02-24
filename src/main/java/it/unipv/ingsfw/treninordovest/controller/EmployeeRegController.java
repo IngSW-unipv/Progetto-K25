@@ -50,23 +50,32 @@ public class EmployeeRegController {
         String cellulare = view.getTxtCellulare().getText();
         String indirizzo = view.getTxtIndirizzo().getText();
         double stipendio = 0;
-        //String codTreno= randTreno();
-        String codTreno= "FS1127";
+        String codTreno= randTreno();
+        //String codTreno= "FS1127";
         String ruolo = view.getComboRuolo();
 
 
-        if (password.isEmpty() || nome.isEmpty() || cognome.isEmpty()|| sesso.isEmpty() || luogoNascita.isEmpty() || cellulare.isEmpty() || indirizzo.isEmpty() || dataNascita.equals(null) ) {
-            JOptionPane.showMessageDialog(view, "Compilazione di tutti i campi obbligatoria", "Errore", JOptionPane.ERROR_MESSAGE);
-            return;
+        try {
+            if (password.isEmpty() || nome.isEmpty() || cognome.isEmpty()|| sesso.isEmpty() || luogoNascita.isEmpty() || cellulare.isEmpty() || indirizzo.isEmpty() || (dataNascitaLocal.isAfter(LocalDate.now()) || dataNascitaLocal==null)) {
+                JOptionPane.showMessageDialog(view, "Compilazione di tutti i campi obbligatoria", "Errore", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        }catch (NullPointerException e) {
+            e.printStackTrace();
+            e.getMessage();
         }
+
+
 
         Dipendente dipendenteinserito = new Dipendente(id,password,nome,cognome,luogoNascita,sesso,dataNascitaLocal,cellulare,indirizzo,codTreno,stipendio,ruolo);
         dipendenteDAO = new DipendenteDAOImpl();
         try  {
             dipendenteDAO.insert(dipendenteinserito);
+            JOptionPane.showMessageDialog(view,"Registrazione avvenuta con successo !!");
+
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(view, "Errore riprovare...", "Errore", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
+            JOptionPane.showMessageDialog(view, "Errore riprovare...", "Errore", JOptionPane.ERROR_MESSAGE);
         }
     }
 

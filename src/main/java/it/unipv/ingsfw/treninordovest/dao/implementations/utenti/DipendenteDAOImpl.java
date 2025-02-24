@@ -174,7 +174,7 @@ public class DipendenteDAOImpl implements DipendenteDAO {
                 ps2.setString(1, dipendente.getId());
                 ps2.setDouble(2, dipendente.getStipendio());
                 ps2.setString(3, dipendente.getRuolo());
-                ps2.setString(1, dipendente.getCodTreno());
+                ps2.setString(4, dipendente.getCodTreno());
 
                 // Esecuzione delle query
                 ps1.executeUpdate();

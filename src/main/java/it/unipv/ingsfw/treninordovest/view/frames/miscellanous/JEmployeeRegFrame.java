@@ -31,7 +31,6 @@ public class JEmployeeRegFrame extends JFrame {
         add(employeeRegistrationPanel, BorderLayout.CENTER);
        employeeRegController = new EmployeeRegController(employeeRegistrationPanel,this);
 
-
     }
 
 

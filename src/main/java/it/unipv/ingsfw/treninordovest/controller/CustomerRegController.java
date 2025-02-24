@@ -58,6 +58,7 @@ public class CustomerRegController {
         clienteDAO = new ClienteDAOImpl();
         try  {
             clienteDAO.insert(clienteinserito);
+            JOptionPane.showMessageDialog(view,"Registrazione avvenuta con successo !!");
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(view, "Errore riprovare...", "Errore", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
