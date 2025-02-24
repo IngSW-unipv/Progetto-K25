@@ -4,6 +4,7 @@ import javax.swing.*;
 import com.toedter.calendar.JDateChooser;
 
 import java.awt.*;
+import java.time.LocalDate;
 
 
 public class CustomerRegistrationPanel extends JPanel {
@@ -18,6 +19,7 @@ public class CustomerRegistrationPanel extends JPanel {
     private JComboBox<String> comboSesso;
     private JDateChooser dateChooser;
     private JTextField txtLuogoNascita;
+    private Color colorePannello;
 
 
 
@@ -25,6 +27,9 @@ public class CustomerRegistrationPanel extends JPanel {
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 5, 5);
+
+        colorePannello= new Color(131,168,195);
+        setBackground(colorePannello);
 
         /*JLabel lblUsername = new JLabel("Username:");
         txtUsername = new JTextField(15);*/
@@ -39,7 +44,8 @@ public class CustomerRegistrationPanel extends JPanel {
         txtCognome = new JTextField(15);
 
         JLabel lblsesso = new JLabel("Sesso:");
-        comboSesso = new JComboBox<>(new String[] {"M", "F"});
+        String sesso[]= {"-","M", "F"};
+        comboSesso = new JComboBox(sesso);
 
         JLabel lblcellulare = new JLabel("Cellulare:");
         txtCellulare = new JTextField(15);
@@ -134,9 +140,6 @@ public class CustomerRegistrationPanel extends JPanel {
         gbc.gridx = 1;
         add(txtIndirizzo, gbc);
 
-
-
-
         //Bottone di registrazione
         gbc.gridx = 0;
         gbc.gridy = 10;
@@ -151,5 +154,21 @@ public class CustomerRegistrationPanel extends JPanel {
     public JTextField getTxtCognome() { return txtCognome; }
     public JTextField getTxtEmail() { return txtEmail; }
     public JButton getBtnRegister() { return btnRegister; }
+    public JTextField getTxtCellulare() {
+        return txtCellulare;
+    }
+    public JTextField getTxtIndirizzo() {
+        return txtIndirizzo;
+    }
+    public String getComboSesso() {
+        return (String) comboSesso.getSelectedItem();
+    }
+    public JDateChooser getDataNascita() {
+        return dateChooser;
+    }
+    public JTextField getTxtLuogoNascita() {
+        return txtLuogoNascita;
+    }
+
 
 }

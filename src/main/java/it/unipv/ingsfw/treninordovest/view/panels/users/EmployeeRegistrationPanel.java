@@ -16,6 +16,7 @@ public class EmployeeRegistrationPanel extends JPanel  {
     private JComboBox<String> comboRuolo;
     private JDateChooser dateChooser;
     private JTextField txtLuogoNascita;
+    private Color colorePannello;
 
 
     public EmployeeRegistrationPanel() {
@@ -23,6 +24,9 @@ public class EmployeeRegistrationPanel extends JPanel  {
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 5, 5);
+
+        colorePannello= new Color(131,168,195);
+        setBackground(colorePannello);
 
         /*JLabel lblUsername = new JLabel("Username:");
         txtUsername = new JTextField(15);*/
@@ -60,22 +64,6 @@ public class EmployeeRegistrationPanel extends JPanel  {
         JLabel lblLuogoNascita = new JLabel("Luogo di nascita:");
         txtLuogoNascita = new JTextField(15);
 
-
-        //Username
-        /*
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        add(lblUsername, gbc);
-        gbc.gridx = 1;
-        add(txtUsername, gbc);*/
-
-        //Email
-        /*
-        gbc.gridx = 0;
-        gbc.gridy = 1;
-        add(lblemail, gbc);
-        gbc.gridx = 1;
-        add(txtEmail, gbc);*/
 
         //Password
         gbc.gridx = 0;
@@ -141,13 +129,51 @@ public class EmployeeRegistrationPanel extends JPanel  {
         add(comboRuolo, gbc);
 
 
-
-
         //Bottone di registrazione
         gbc.gridx = 0;
         gbc.gridy = 11;
         gbc.gridwidth = 2;
         add(btnRegister, gbc);
 
+    }
+
+    public JPasswordField getTxtPassword() {
+        return txtPassword;
+    }
+
+    public JTextField getTxtNome() {
+        return txtNome;
+    }
+
+    public JTextField getTxtCellulare() {
+        return txtCellulare;
+    }
+
+    public JTextField getTxtCognome() {
+        return txtCognome;
+    }
+
+    public JTextField getTxtIndirizzo() {
+        return txtIndirizzo;
+    }
+
+    public JButton getBtnRegister() {
+        return btnRegister;
+    }
+
+    public JComboBox<String> getComboSesso() {
+        return comboSesso;
+    }
+
+    public JComboBox<String> getComboRuolo() {
+        return comboRuolo;
+    }
+
+    public JTextField getTxtLuogoNascita() {
+        return txtLuogoNascita;
+    }
+
+    public JDateChooser getDateChooser() {
+        return dateChooser;
     }
 }

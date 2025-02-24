@@ -31,4 +31,11 @@ public class TravelDocCheckPanel extends JPanel {
         add(verificaButton, gbc);
     }
 
+    public JTextField getTextFieldIdTitolo() {
+        return textFieldIdTitolo;
+    }
+
+    public JButton getVerificaButton() {
+        return verificaButton;
+    }
 }
