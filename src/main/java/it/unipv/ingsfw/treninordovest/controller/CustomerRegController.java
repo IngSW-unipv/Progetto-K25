@@ -4,6 +4,7 @@ import it.unipv.ingsfw.treninordovest.dao.implementations.utenti.ClienteDAOImpl;
 import it.unipv.ingsfw.treninordovest.model.utenti.Cliente;
 import it.unipv.ingsfw.treninordovest.model.varie.GeneraID;
 import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JCustomerRegFrame;
+import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JMainMenuFrame;
 import it.unipv.ingsfw.treninordovest.view.panels.users.CustomerRegistrationPanel;
 
 import javax.swing.*;
@@ -27,14 +28,13 @@ public class CustomerRegController {
 
     private void initController() {
         view.getBtnRegister().addActionListener(e -> createCustomer());
-        //view
+        view.getBtnMenuPrincipal().addActionListener(e -> tornaAlMenuPrincipale());
     }
-
+/*Funzione che crea inserisce*/
     private void createCustomer() {
-        GeneraID idGen = new GeneraID("CLX");
-
+        GeneraID idGen = new GeneraID("CL");
         String id = idGen.getID();
-        String password = view.getTxtPassword().getText();
+        String password = view.getTxtPassword().getText();  /*Appunto : Mettere la crittazione della password */
         String nome = view.getTxtNome().getText();
         String cognome = view.getTxtCognome().getText();
         String email = view.getTxtEmail().getText();
@@ -49,21 +49,26 @@ public class CustomerRegController {
         String indirizzo = view.getTxtIndirizzo().getText();
         double bilancio = 0;
 
-        if (password.isEmpty() || nome.isEmpty() || cognome.isEmpty() || email.isEmpty() || sesso.isEmpty() || luogoNascita.isEmpty() || cellulare.isEmpty() || indirizzo.isEmpty() ) {
+        if (password.isEmpty() || nome.isEmpty() || cognome.isEmpty() || email.isEmpty() || sesso.isEmpty() || luogoNascita.isEmpty() || cellulare.isEmpty() || indirizzo.isEmpty() || dataNascita.equals(null) ) {
             JOptionPane.showMessageDialog(view, "Compilazione di tutti i campi obbligatoria", "Errore", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
         Cliente clienteinserito = new Cliente(id,password,nome,cognome,luogoNascita,sesso,dataNascitaLocal,cellulare,indirizzo,0,email);
-       try {
-           clienteDAO = new ClienteDAOImpl();
-          clienteDAO.insert(clienteinserito);
-        } catch (Exception e) {
+        clienteDAO = new ClienteDAOImpl();
+        try  {
+            clienteDAO.insert(clienteinserito);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(view, "Errore riprovare...", "Errore", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }
     }
 
-
+    private void tornaAlMenuPrincipale(){
+        JMainMenuFrame mainMenuFrame = new JMainMenuFrame();
+        customerRegFrame.setVisible(false);
+        mainMenuFrame.setVisible(true);
+    }
 
 
 

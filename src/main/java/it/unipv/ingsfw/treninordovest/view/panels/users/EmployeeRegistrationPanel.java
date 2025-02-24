@@ -17,6 +17,7 @@ public class EmployeeRegistrationPanel extends JPanel  {
     private JDateChooser dateChooser;
     private JTextField txtLuogoNascita;
     private Color colorePannello;
+    private JButton btnMenuPrincipal;
 
 
     public EmployeeRegistrationPanel() {
@@ -55,6 +56,7 @@ public class EmployeeRegistrationPanel extends JPanel  {
 
 
         btnRegister = new JButton("Registrati");
+        btnMenuPrincipal = new JButton("Menu Principale");
 
 
         JLabel lbldataNascita= new JLabel("Data di nascita:");
@@ -135,6 +137,12 @@ public class EmployeeRegistrationPanel extends JPanel  {
         gbc.gridwidth = 2;
         add(btnRegister, gbc);
 
+        //Bottone indietro
+        gbc.gridx = 0;
+        gbc.gridy = 12;
+        gbc.gridwidth = 2;
+        add(btnMenuPrincipal, gbc);
+
     }
 
     public JPasswordField getTxtPassword() {
@@ -161,19 +169,19 @@ public class EmployeeRegistrationPanel extends JPanel  {
         return btnRegister;
     }
 
-    public JComboBox<String> getComboSesso() {
-        return comboSesso;
+    public String getComboSesso() {
+        return (String) comboSesso.getSelectedItem();
     }
 
-    public JComboBox<String> getComboRuolo() {
-        return comboRuolo;
+    public String getComboRuolo() {
+        return (String) comboRuolo.getSelectedItem();
     }
 
     public JTextField getTxtLuogoNascita() {
         return txtLuogoNascita;
     }
 
-    public JDateChooser getDateChooser() {
+    public JDateChooser getDataNascita() {
         return dateChooser;
     }
 }

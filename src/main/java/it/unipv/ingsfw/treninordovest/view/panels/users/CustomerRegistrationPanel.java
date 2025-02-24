@@ -16,6 +16,7 @@ public class CustomerRegistrationPanel extends JPanel {
     private JTextField txtEmail;
     private JTextField txtIndirizzo;
     private JButton btnRegister;
+    private JButton btnMenuPrincipal;
     private JComboBox<String> comboSesso;
     private JDateChooser dateChooser;
     private JTextField txtLuogoNascita;
@@ -59,7 +60,7 @@ public class CustomerRegistrationPanel extends JPanel {
 
 
         btnRegister = new JButton("Registrati");
-
+        btnMenuPrincipal = new JButton("Menu Principale");
 
         JLabel lbldataNascita= new JLabel("Data di nascita:");
         dateChooser= new JDateChooser();
@@ -144,7 +145,15 @@ public class CustomerRegistrationPanel extends JPanel {
         gbc.gridx = 0;
         gbc.gridy = 10;
         gbc.gridwidth = 2;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
         add(btnRegister, gbc);
+        //Bottone che torna al menu
+        gbc.gridx = 0;
+        gbc.gridy = 11;
+        gbc.gridwidth = 2;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        add(btnMenuPrincipal, gbc);
+
     }
 
     // Getters per il Controller
@@ -169,6 +178,6 @@ public class CustomerRegistrationPanel extends JPanel {
     public JTextField getTxtLuogoNascita() {
         return txtLuogoNascita;
     }
-
+    public JButton getBtnMenuPrincipal() {return btnMenuPrincipal; }
 
 }

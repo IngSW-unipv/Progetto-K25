@@ -10,14 +10,14 @@ public class Dipendente extends Utente {
    private String ruolo;
 
    //Costruttore vuoto
-    public Dipendente(String id, String password, String nome, String cognome, String luogoNascita, String sesso, LocalDate dataNascita, String cellulare, String indirizzo, String codTreno, double stipendio, String ruolo) {
+    public Dipendente() {
         super();
     }
 
     //Costruttore completo
 
-    public Dipendente(String id, String userPassword, String nome, String cognome, String luogoNascita, char sesso, LocalDate dataNascita, String cellulare, String indirizzo, String codTreno, double stipendio, String ruolo) {
-        super(id, userPassword, nome, cognome, luogoNascita, String.valueOf(sesso), dataNascita, cellulare, indirizzo);
+    public Dipendente(String id, String userPassword, String nome, String cognome, String luogoNascita, String sesso, LocalDate dataNascita, String cellulare, String indirizzo, String codTreno, double stipendio, String ruolo) {
+        super(id, userPassword, nome, cognome, luogoNascita, sesso, dataNascita, cellulare, indirizzo);
         this.codTreno = codTreno;
         this.stipendio = stipendio;
         this.ruolo = ruolo;
@@ -49,6 +49,7 @@ public class Dipendente extends Utente {
     public void setRuolo(String ruolo) {
         this.ruolo = ruolo;
     }
+
 
     //Metodi vari (se necessari)
 

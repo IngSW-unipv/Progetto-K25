@@ -1,5 +1,7 @@
 package it.unipv.ingsfw.treninordovest.view.frames.miscellanous;
 
+import it.unipv.ingsfw.treninordovest.controller.CustomerRegController;
+import it.unipv.ingsfw.treninordovest.controller.EmployeeRegController;
 import it.unipv.ingsfw.treninordovest.view.panels.users.CustomerRegistrationPanel;
 import it.unipv.ingsfw.treninordovest.view.panels.users.EmployeeRegistrationPanel;
 
@@ -11,10 +13,11 @@ public class JEmployeeRegFrame extends JFrame {
     private static final long serialVersionUID = 1L;
     private Color coloreSfondo;
     private EmployeeRegistrationPanel employeeRegistrationPanel;
+    private EmployeeRegController employeeRegController;
 
 
     public JEmployeeRegFrame() {
-        setTitle("Treninordovest - Registrazione cliente");
+        setTitle("Treninordovest - Registrazione dipendente");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1220, 450);
         setLocationRelativeTo(null);
@@ -26,6 +29,7 @@ public class JEmployeeRegFrame extends JFrame {
     private void inizializzaComponenti() {
        employeeRegistrationPanel = new EmployeeRegistrationPanel();
         add(employeeRegistrationPanel, BorderLayout.CENTER);
+       employeeRegController = new EmployeeRegController(employeeRegistrationPanel,this);
 
 
     }
