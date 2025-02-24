@@ -184,4 +184,9 @@ public class EmployeeRegistrationPanel extends JPanel  {
     public JDateChooser getDataNascita() {
         return dateChooser;
     }
+
+    public JButton getBtnMenuPrincipal (){
+        return btnMenuPrincipal;
+    }
+
 }
