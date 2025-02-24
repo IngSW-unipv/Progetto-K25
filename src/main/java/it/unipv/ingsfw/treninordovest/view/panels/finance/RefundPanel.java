@@ -1,4 +1,4 @@
-package it.unipv.ingsfw.treninordovest.view.panels;
+package it.unipv.ingsfw.treninordovest.view.panels.finance;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,16 +1,6 @@
 package it.unipv.ingsfw.treninordovest.controller.panels;
 
 
-import it.unipv.ingsfw.treninordovest.dao.interfaces.UtenteDAO;
-import it.unipv.ingsfw.treninordovest.model.utenti.Cliente;
-import it.unipv.ingsfw.treninordovest.model.utenti.Utente;
-import it.unipv.ingsfw.treninordovest.model.varie.SessionManager;
-
-import it.unipv.ingsfw.treninordovest.view.panels.ProfilePanel;
-
-import javax.swing.*;
-import java.sql.Connection;
-import java.sql.SQLException;
 /*
 public class ProfileController {
     private ProfilePanel view;

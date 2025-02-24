@@ -1,6 +1,5 @@
-package it.unipv.ingsfw.treninordovest.view.panels;
+package it.unipv.ingsfw.treninordovest.view.panels.finance;
 
-import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
 
 import javax.swing.*;

@@ -1,13 +1,12 @@
-package it.unipv.ingsfw.treninordovest.view.panels;
+package it.unipv.ingsfw.treninordovest.view.panels.users;
 
 import javax.swing.*;
 import com.toedter.calendar.JDateChooser;
-import javax.swing.text.DateFormatter;
+
 import java.awt.*;
-import java.text.SimpleDateFormat;
 
 
-public class RegistrationPanel extends JPanel {
+public class CustomerRegistrationPanel extends JPanel {
     //private JTextField txtUsername;
     private JPasswordField txtPassword;
     private JTextField txtNome;
@@ -18,10 +17,11 @@ public class RegistrationPanel extends JPanel {
     private JButton btnRegister;
     private JComboBox<String> comboSesso;
     private JDateChooser dateChooser;
+    private JTextField txtLuogoNascita;
 
 
 
-    public RegistrationPanel() {
+    public CustomerRegistrationPanel() {
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 5, 5);
@@ -59,8 +59,8 @@ public class RegistrationPanel extends JPanel {
         dateChooser= new JDateChooser();
         dateChooser.setDateFormatString("yyyy-MM-dd");
 
-
-
+        JLabel lblLuogoNascita = new JLabel("Luogo di nascita:");
+        txtLuogoNascita = new JTextField(15);
 
 
         //Username
@@ -113,16 +113,23 @@ public class RegistrationPanel extends JPanel {
         gbc.gridx = 1;
         add(dateChooser, gbc);
 
-        //Celullare
+        //Luogo di nascita
         gbc.gridx = 0;
         gbc.gridy = 7;
+        add(lblLuogoNascita, gbc);
+        gbc.gridx = 1;
+        add(txtLuogoNascita, gbc);
+
+        //Celullare
+        gbc.gridx = 0;
+        gbc.gridy = 8;
         add(lblcellulare, gbc);
         gbc.gridx = 1;
         add(txtCellulare, gbc);
 
         //Indirizzo
         gbc.gridx = 0;
-        gbc.gridy = 8;
+        gbc.gridy = 9;
         add(lblindirizzo, gbc);
         gbc.gridx = 1;
         add(txtIndirizzo, gbc);

@@ -1,4 +1,4 @@
-package it.unipv.ingsfw.treninordovest.view.panels;
+package it.unipv.ingsfw.treninordovest.view.panels.miscellanous;
 import javax.swing.*;
 import java.awt.*;
 
@@ -22,11 +22,11 @@ public class StartMenuPanel extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         // Sfondo blu
-        g.setColor(new Color(0, 0, 168));
+        g.setColor(new Color(131, 168, 195));
         g.fillRect(0, 0, getWidth(), getHeight());
 
         // Disegna il testo "treninordovest" al centro
-        g.setColor(Color.BLUE);
+        //g.setColor(Color.BLUE);
         g.setFont(new Font("Arial", Font.BOLD, 48));
         String text = "Treninordovest";
         FontMetrics fm = g.getFontMetrics();

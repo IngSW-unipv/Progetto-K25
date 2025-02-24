@@ -1,6 +1,10 @@
-package it.unipv.ingsfw.treninordovest.view.frames;
+package it.unipv.ingsfw.treninordovest.view.frames.miscellanous;
 
-import it.unipv.ingsfw.treninordovest.view.panels.*;
+import it.unipv.ingsfw.treninordovest.view.panels.finance.CardPurchasePanel;
+import it.unipv.ingsfw.treninordovest.view.panels.finance.RefundPanel;
+import it.unipv.ingsfw.treninordovest.view.panels.finance.SubscriptionPanel;
+import it.unipv.ingsfw.treninordovest.view.panels.finance.TicketPurchasePanel;
+import it.unipv.ingsfw.treninordovest.view.panels.miscellanous.TravelSearchPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,7 +20,7 @@ public class JCustomerMainFrame extends JFrame {
     public JCustomerMainFrame() {
         setTitle("Treninordovest - Area Cliente");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(1200, 900);
+        setSize(1120, 230);
         setLocationRelativeTo(null);
         initComponents();
     }

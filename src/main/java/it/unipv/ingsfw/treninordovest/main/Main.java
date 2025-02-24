@@ -1,7 +1,8 @@
 package it.unipv.ingsfw.treninordovest.main;
 
-import it.unipv.ingsfw.treninordovest.view.frames.JStartFrame;
-import it.unipv.ingsfw.treninordovest.view.frames.JRegistrationFrame;
+import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JDecisionFrame;
+import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JLoginFrame;
+import it.unipv.ingsfw.treninordovest.view.frames.registration.JCustomerRegistrationFrame;
 
 
 import java.sql.*;
@@ -12,11 +13,15 @@ public class Main {
     //Classe di prova -- Verrà rimossa in futuro
     public static void main(String[] args) throws SQLException, ParseException {
 
-        JStartFrame menu = new JStartFrame();
+        JDecisionFrame frame = new JDecisionFrame();
+
+        frame.show();
+
+        JLoginFrame menu = new JLoginFrame();
 
         menu.show();
 
-        JRegistrationFrame registration = new JRegistrationFrame();
+        JCustomerRegistrationFrame registration = new JCustomerRegistrationFrame();
 
         registration.show();
 

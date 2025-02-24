@@ -1,4 +1,4 @@
-package it.unipv.ingsfw.treninordovest.view.panels;
+package it.unipv.ingsfw.treninordovest.view.panels.miscellanous;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,15 +23,20 @@ public class ProfilePanel extends JPanel {
 
         btnAggiorna = new JButton("Aggiorna Profilo");
 
+        //Nome
         gbc.gridx = 0;
         gbc.gridy = 0;
         add(lblNome, gbc);
+
+        //Cognome
         gbc.gridx = 1;
+
         add(txtNome, gbc);
 
         gbc.gridx = 0;
         gbc.gridy = 1;
         add(lblCognome, gbc);
+
         gbc.gridx = 1;
         add(txtCognome, gbc);
 
