@@ -3,6 +3,7 @@ package it.unipv.ingsfw.treninordovest.main;
 import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JDecisionFrame;
 import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JLoginFrame;
 import it.unipv.ingsfw.treninordovest.view.frames.registration.JCustomerRegistrationFrame;
+import it.unipv.ingsfw.treninordovest.view.frames.registration.JEmployeeRegistrationFrame;
 
 
 import java.sql.*;
@@ -23,7 +24,11 @@ public class Main {
 
         JCustomerRegistrationFrame registration = new JCustomerRegistrationFrame();
 
+        JEmployeeRegistrationFrame employee = new JEmployeeRegistrationFrame();
+
         registration.show();
+
+        employee.show();
 
         //JCalendar calendar = new JCalendar();
 

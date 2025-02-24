@@ -136,9 +136,9 @@ public class EmployeeRegistrationPanel extends JPanel  {
         //Ruolo
         gbc.gridx = 0;
         gbc.gridy = 10;
-        add(lblindirizzo, gbc);
+        add(lblRuolo, gbc);
         gbc.gridx = 1;
-        add(txtIndirizzo, gbc);
+        add(comboRuolo, gbc);
 
 
 

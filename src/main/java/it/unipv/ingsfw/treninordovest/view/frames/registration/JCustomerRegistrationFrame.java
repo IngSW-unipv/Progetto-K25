@@ -9,6 +9,7 @@ public class JCustomerRegistrationFrame extends JFrame {
 
     private static final long serialVersionUID = 1L;
     private CustomerRegistrationPanel registrationPanel;
+    private Color coloreSfondo = new Color(131,168,195);
 
     public JCustomerRegistrationFrame() {
         setTitle("Treninordovest - Registrazione Clienti");
@@ -23,6 +24,7 @@ public class JCustomerRegistrationFrame extends JFrame {
 
     private void inizializzaComponenti() {
         registrationPanel = new CustomerRegistrationPanel();
+        registrationPanel.setBackground(coloreSfondo);
         getContentPane().add(registrationPanel, BorderLayout.CENTER);
     }
 
