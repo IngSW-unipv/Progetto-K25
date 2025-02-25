@@ -22,7 +22,7 @@ public class TesseraDAOImpl implements TesseraDAO {
         try (Connection con = new Database().getConnection()) {
             tessera = null;
             //Query effettuata su una vista creata nel DB per semplificare l'estrazione dei dati
-            String sql = "select * from tessera where id=?";
+            String sql = "select * from tessera where IDTessera=?";
 
             //Estrazione dei dati dal DB
             ps = con.prepareStatement(sql);
