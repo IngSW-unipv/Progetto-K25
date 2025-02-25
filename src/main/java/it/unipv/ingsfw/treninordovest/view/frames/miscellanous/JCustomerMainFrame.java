@@ -1,5 +1,6 @@
 package it.unipv.ingsfw.treninordovest.view.frames.miscellanous;
 
+import it.unipv.ingsfw.treninordovest.controller.CardPurchasController;
 import it.unipv.ingsfw.treninordovest.view.panels.finance.CardPurchasePanel;
 import it.unipv.ingsfw.treninordovest.view.panels.finance.RefundPanel;
 import it.unipv.ingsfw.treninordovest.view.panels.finance.SubscriptionPanel;
@@ -12,13 +13,15 @@ import java.awt.*;
 
 public class JCustomerMainFrame extends JFrame {
     private final JTabbedPane tabbedPane = new JTabbedPane();;
-    private final JPanel ticketPurchasePanel = new TicketPurchasePanel();
-    private final JPanel subscriptionPanel = new SubscriptionPanel();
-    private final JPanel cardPurchasePanel = new CardPurchasePanel();
-    private final JPanel travelSearchPanel = new TravelSearchPanel();
-    private final JPanel refundPanel = new RefundPanel();
-    private final JPanel profilePanel = new ProfilePanel();
+    private final TicketPurchasePanel ticketPurchasePanel = new TicketPurchasePanel();
+    private final SubscriptionPanel subscriptionPanel = new SubscriptionPanel();
+    private final CardPurchasePanel cardPurchasePanel = new CardPurchasePanel();
+    private final TravelSearchPanel travelSearchPanel = new TravelSearchPanel();
+    private final RefundPanel refundPanel = new RefundPanel();
+    private final ProfilePanel profilePanel = new ProfilePanel();
     private Color coloreSfondo = new Color(131,168,195);
+
+    private CardPurchasController cardPurchasController;
 
 
     public JCustomerMainFrame() {
@@ -49,8 +52,10 @@ public class JCustomerMainFrame extends JFrame {
         tabbedPane.addTab("Rimborso", refundPanel);
         tabbedPane.addTab("Profilo", profilePanel);
 
-
         add(tabbedPane, BorderLayout.CENTER);
+
+        /*Aggiunta dei controller*/
+        cardPurchasController = new CardPurchasController(cardPurchasePanel,this);
 
     }
 

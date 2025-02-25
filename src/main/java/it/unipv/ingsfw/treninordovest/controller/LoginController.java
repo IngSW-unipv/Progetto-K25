@@ -47,10 +47,8 @@ public class LoginController {
 
         try {
             /*Uso del pattern Factory per unificare il login del cliente e del dipendente*/
-
             ClienteDAOImpl clienteDAO;
             DipendenteDAOImpl dipendenteDAO;
-            //utenteDAOFactory.getUtenteDao(ruolo);
 
             //Verifica del ruolo della combobox in cui si istanziano i rispettivi DAO a secondo della scelta adottata.
             if (ruolo.equals("Cliente")) {
@@ -58,8 +56,12 @@ public class LoginController {
 
                 if(clienteDAO.autenticate(username,password)!=null){
                     //Imposto l'utente loggato
-                    SessionManager.getInstance().setCurrentUser(clienteDAO.get(username));
+                    SessionManager.getInstance().setCurrentUser(clienteDAO.autenticate(username,password));
+
+                    System.out.println(SessionManager.getInstance().getCurrentUser()); //Riga di debug
+
                     JCustomerMainFrame customerMainFrame = new JCustomerMainFrame();
+
                     customerMainFrame.setVisible(true);
                     frame.setVisible(false);
                 }else {
@@ -71,7 +73,10 @@ public class LoginController {
 
                   if(dipendenteDAO.autenticate(username,password)!=null){
                       //Imposto l'utente loggato
-                      SessionManager.getInstance().setCurrentUser(dipendenteDAO.get(username));
+                      SessionManager.getInstance().setCurrentUser(dipendenteDAO.autenticate(username,password));
+
+                      System.out.println(SessionManager.getInstance().getCurrentUser());
+
                       JEmployeeMainFrame employeeFrame = new JEmployeeMainFrame();
                       employeeFrame.setVisible(true);
                       frame.setVisible(false);

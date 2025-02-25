@@ -14,7 +14,7 @@ import java.util.List;
 
 //idTessera emissione scadenza Idcliente
 
-public class TesseraDaoImpl implements TesseraDAO {
+public class TesseraDAOImpl implements TesseraDAO {
     @Override
     public Tessera get(String id) throws SQLException {
         Tessera tessera = null;

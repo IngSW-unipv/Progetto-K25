@@ -71,7 +71,7 @@ public class EmployeeRegController {
         dipendenteDAO = new DipendenteDAOImpl();
         try  {
             dipendenteDAO.insert(dipendenteinserito);
-            JOptionPane.showMessageDialog(view,"Registrazione avvenuta con successo !!");
+            JOptionPane.showMessageDialog(view,"Registrazione avvenuta con successo !!"+"\nSalvati il tuo ID dipendente:    "+id);
 
         } catch (SQLException e) {
             e.printStackTrace();

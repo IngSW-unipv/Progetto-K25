@@ -20,13 +20,7 @@ public class Main {
 
         SessionManager sessionManager = SessionManager.getInstance();
 
-
-
-        GeneraID generaID = new GeneraID("CL");
-        System.out.println(generaID.getID());
-        System.out.println(generaID.getID());
-        System.out.println(generaID.getID());
-        System.out.println(generaID.getID());
+        System.out.println(sessionManager.getCurrentUser());
 
     }
 }
