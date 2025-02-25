@@ -2,6 +2,7 @@ package it.unipv.ingsfw.treninordovest.dao.implementations.utenti;
 
 import it.unipv.ingsfw.treninordovest.dao.database.Database;
 import it.unipv.ingsfw.treninordovest.dao.interfaces.DipendenteDAO;
+import it.unipv.ingsfw.treninordovest.model.utenti.Cliente;
 import it.unipv.ingsfw.treninordovest.model.utenti.Dipendente;
 
 import java.sql.Connection;
@@ -13,6 +14,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DipendenteDAOImpl implements DipendenteDAO {
+
+    public DipendenteDAOImpl() {
+    }
+
     @Override
     public Dipendente get(String id) throws SQLException {
         //Dipendenti
@@ -190,5 +195,14 @@ public class DipendenteDAOImpl implements DipendenteDAO {
 
 
 
+    }
+
+    @Override
+    public Dipendente autenticate(String id, String password) throws SQLException {
+       Dipendente dipendente = get(id);
+        if(dipendente.getUserPassword().equals(password) && dipendente!=null){
+            return dipendente;
+        }
+        return null;
     }
 }

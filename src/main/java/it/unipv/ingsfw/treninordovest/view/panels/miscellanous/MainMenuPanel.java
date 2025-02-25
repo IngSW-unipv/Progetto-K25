@@ -5,10 +5,10 @@ import java.awt.*;
 
 public class MainMenuPanel extends JPanel {
 
-    private JButton accessoCliente;
+    //private JButton accessoCliente;
     private JButton registrazioneCliente;
     private JButton registrazioneDipendente;
-    private JButton accessoDipendente;
+    private JButton accesso;
     private Color coloreSfondo;
 
     public MainMenuPanel() {
@@ -16,8 +16,8 @@ public class MainMenuPanel extends JPanel {
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 5, 5);
 
-        accessoCliente = new JButton("Accesso Cliente");
-        accessoDipendente = new JButton("Accesso Dipendente");
+        //accessoCliente = new JButton("Accesso Cliente");
+        accesso = new JButton("Accesso");
         registrazioneCliente = new JButton("Registrazione Cliente");
         registrazioneDipendente = new JButton("Registrazione Dipendente");
 
@@ -26,24 +26,23 @@ public class MainMenuPanel extends JPanel {
         this.add(new JLabel("Benvenuti in TreniNordOvest, scegliere un'opzione tra le seguenti"), gbc);
 
         /*------------------------------------------*/
+        //  gbc.gridy = 1;
+        // this.add(accessoCliente, gbc);
+        /*------------------------------------------*/
         gbc.gridy = 1;
-        this.add(accessoCliente, gbc);
+        this.add(accesso, gbc);
         /*------------------------------------------*/
         gbc.gridy = 2;
-        this.add(accessoDipendente, gbc);
+        this.add(registrazioneCliente, gbc);
         /*------------------------------------------*/
         gbc.gridy = 3;
-       this.add(registrazioneCliente, gbc);
-        /*------------------------------------------*/
-        gbc.gridy = 4;
         this.add(registrazioneDipendente, gbc);
-
 
 
     }
 
-    public JButton getAccessoCliente() {
-        return accessoCliente;
+    public JButton getAccesso() {
+        return accesso;
     }
 
     public JButton getRegistrazioneCliente() {
@@ -55,22 +54,8 @@ public class MainMenuPanel extends JPanel {
     }
 
     public JButton getAccessoDipendente() {
-        return accessoDipendente;
+        return accesso;
     }
-    // @Override
-   /* protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        // Sfondo blu
-        g.setColor(new Color(131, 168, 195));
-        g.fillRect(0, 0, getWidth(), getHeight());
 
-        // Disegna il testo "treninordovest" al centro
-        //g.setColor(Color.BLUE);
-        g.setFont(new Font("Arial", Font.BOLD, 48));
-        String text = "Treninordovest";
-        FontMetrics fm = g.getFontMetrics();
-        int x = (getWidth() - fm.stringWidth(text)) / 2;
-        int y = getHeight() / 2;
-        g.drawString(text, x, y);
-    }*/
+
 }

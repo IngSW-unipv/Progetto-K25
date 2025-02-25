@@ -1,12 +1,7 @@
 package it.unipv.ingsfw.treninordovest.main;
 
-import it.unipv.ingsfw.treninordovest.controller.MainMenuController;
 import it.unipv.ingsfw.treninordovest.model.varie.GeneraID;
 import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JMainMenuFrame;
-import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JLoginFrame;
-import it.unipv.ingsfw.treninordovest.view.frames.registration.JCustomerRegistrationFrame;
-import it.unipv.ingsfw.treninordovest.view.frames.registration.JEmployeeRegistrationFrame;
-import it.unipv.ingsfw.treninordovest.view.panels.miscellanous.MainMenuPanel;
 
 
 import java.sql.*;

@@ -1,14 +1,12 @@
-package it.unipv.ingsfw.treninordovest.view.frames.miscellanous;
+package it.unipv.ingsfw.treninordovest.view.frames.login;
 
 import it.unipv.ingsfw.treninordovest.view.panels.miscellanous.LoginPanel;
-import it.unipv.ingsfw.treninordovest.view.panels.miscellanous.LogoPanel;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class JLoginFrame extends JFrame {
 
-   private JPanel loginPanel;
+   private LoginPanel loginPanel;
 
     public JLoginFrame() {
         setTitle("Treninordovest - Login");

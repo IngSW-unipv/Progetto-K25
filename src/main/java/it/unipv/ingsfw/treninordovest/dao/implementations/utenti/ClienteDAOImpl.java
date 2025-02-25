@@ -16,6 +16,10 @@ import java.util.List;
 
 
 public class ClienteDAOImpl implements ClienteDAO {
+
+    public ClienteDAOImpl() {
+    }
+
     @Override
     public Cliente get(String id) throws SQLException {
 
@@ -195,6 +199,17 @@ public class ClienteDAOImpl implements ClienteDAO {
             }
         }
 
+
+    }
+
+
+    @Override
+    public Cliente autenticate(String id, String password) throws SQLException {
+        Cliente cliente = get(id);
+        if(cliente.getUserPassword().equals(password) && cliente!=null){
+            return cliente;
+        }
+        return null;
 
     }
 }
