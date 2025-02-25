@@ -1,6 +1,7 @@
 package it.unipv.ingsfw.treninordovest.view.frames.miscellanous;
 
 import it.unipv.ingsfw.treninordovest.controller.MainMenuController;
+import it.unipv.ingsfw.treninordovest.controller.SubscriptionController;
 import it.unipv.ingsfw.treninordovest.view.panels.miscellanous.MainMenuPanel;
 
 import javax.swing.*;
@@ -10,6 +11,7 @@ public class JMainMenuFrame extends JFrame {
 
     private MainMenuPanel mainMenuPanel = new MainMenuPanel();
     private MainMenuController mainMenuController;
+
 
     public JMainMenuFrame() {
         setTitle("Treninordovest - Benvenuti");

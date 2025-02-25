@@ -53,12 +53,20 @@ public class CardPurchasController {
             tDAO = new TesseraDAOImpl();
             tessera = new Tessera(idTessera,dataEmissione,dataScadenza,idCliente);
 
-            if (clienteLoggato != null) {
-                tDAO.insert(tessera);
-                JOptionPane.showMessageDialog(view, "Tessera acquistata", "Conferma",JOptionPane.INFORMATION_MESSAGE);
-                view.setTextIDCliente("");
+            if (tDAO.exists(clienteLoggato.getId())){
+                JOptionPane.showMessageDialog(view, "Hai già una tessera", "Errore", JOptionPane.ERROR_MESSAGE);
+            } else if (!tDAO.exists(idTessera)){
+                if (clienteLoggato != null && clienteLoggato.getId().equals(idCliente)) {
+                    tDAO.insert(tessera);
+                    JOptionPane.showMessageDialog(view, "Tessera acquistata", "Conferma",JOptionPane.INFORMATION_MESSAGE);
+                    view.setTextIDCliente("");
+                } else {
+                    JOptionPane.showMessageDialog(view, "ID non valido riprovare", "Errore", JOptionPane.ERROR_MESSAGE);
+                    view.setTextIDCliente("");
+                }
 
             }
+
 
             System.out.println(clienteLoggato);
 

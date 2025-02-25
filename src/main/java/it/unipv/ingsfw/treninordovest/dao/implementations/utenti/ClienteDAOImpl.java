@@ -216,4 +216,25 @@ public class ClienteDAOImpl implements ClienteDAO {
         } else return null;
 
     }
+
+    @Override
+    public boolean updateBilancio(String IdCliente, double bilancio) {
+
+        String sql = "UPDATE cliente set Bilancio=? where IDCliente=?";
+        Connection con = null;
+        try {
+            con= Database.getConnection();
+            if (con != null) {
+                PreparedStatement ps = con.prepareStatement(sql);
+                ps.setDouble(1, bilancio);
+                ps.setString(2, IdCliente);
+                ps.executeUpdate();
+                Database.closeConnection(con);
+                return true;
+            }
+            return false;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

@@ -1,10 +1,12 @@
-//package it.unipv.ingsfw.treninordovest.controller.panels;
+package it.unipv.ingsfw.treninordovest.controller;
 
 
+import it.unipv.ingsfw.treninordovest.model.utenti.Cliente;
+import it.unipv.ingsfw.treninordovest.view.panels.miscellanous.ProfilePanel;
 /*
 public class ProfileController {
     private ProfilePanel view;
-    private UtenteDAO utenteDAO;
+    private UtenteDAOImpl utenteDAO;
 
     public ProfileController(ProfilePanel view, Connection connection) {
         this.view = view;
@@ -51,5 +53,5 @@ public class ProfileController {
             JOptionPane.showMessageDialog(view, "Errore nel database: " + ex.getMessage(), "Errore", JOptionPane.ERROR_MESSAGE);
         }
     }
-}
-*/
+}*/
+

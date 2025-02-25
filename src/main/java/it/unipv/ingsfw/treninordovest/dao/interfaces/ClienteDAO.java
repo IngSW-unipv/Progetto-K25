@@ -8,5 +8,7 @@ public interface ClienteDAO extends DAO<Cliente> {
 
     Cliente autenticate(String id, String password) throws SQLException;
 
+    boolean updateBilancio(String IdCliente, double prezzo);
+
 
 }

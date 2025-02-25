@@ -1,6 +1,7 @@
 package it.unipv.ingsfw.treninordovest.view.frames.miscellanous;
 
 import it.unipv.ingsfw.treninordovest.controller.CardPurchasController;
+import it.unipv.ingsfw.treninordovest.controller.SubscriptionController;
 import it.unipv.ingsfw.treninordovest.view.panels.finance.CardPurchasePanel;
 import it.unipv.ingsfw.treninordovest.view.panels.finance.RefundPanel;
 import it.unipv.ingsfw.treninordovest.view.panels.finance.SubscriptionPanel;
@@ -22,6 +23,7 @@ public class JCustomerMainFrame extends JFrame {
     private Color coloreSfondo = new Color(131,168,195);
 
     private CardPurchasController cardPurchasController;
+    private SubscriptionController subscriptionController;
 
 
     public JCustomerMainFrame() {
@@ -56,6 +58,7 @@ public class JCustomerMainFrame extends JFrame {
 
         /*Aggiunta dei controller*/
         cardPurchasController = new CardPurchasController(cardPurchasePanel,this);
+        subscriptionController = new SubscriptionController(subscriptionPanel,this);
 
     }
 

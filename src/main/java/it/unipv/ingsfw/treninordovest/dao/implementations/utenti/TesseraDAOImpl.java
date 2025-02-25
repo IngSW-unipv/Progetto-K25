@@ -146,4 +146,59 @@ public class TesseraDAOImpl implements TesseraDAO {
         }
 
     }
+
+    @Override
+    public boolean exists(String idCliente) throws SQLException {
+        Tessera tessera = null;
+        PreparedStatement ps;
+        try (Connection con = new Database().getConnection()) {
+            tessera = null;
+            //Query effettuata su una vista creata nel DB per semplificare l'estrazione dei dati
+            String sql = "select idTessera, idCliente from tessera where IDCliente=?";
+
+            //Estrazione dei dati dal DB
+            ps = con.prepareStatement(sql);
+            ps.setString(1,idCliente);
+            ResultSet rs=ps.executeQuery();
+
+            if(rs.next()){
+                String idTessera = rs.getString("IDTessera");
+                String idCLiente = rs.getString("IDCliente");
+                return true;
+            }
+            Database.closeConnection(con);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    @Override
+    public String getIdTessera(String idCliente) throws SQLException {
+
+        String idTessera = null;
+        Tessera tessera = null;
+        PreparedStatement ps;
+        try (Connection con = new Database().getConnection()) {
+            tessera = null;
+            String sql = "select idTessera, idCliente from tessera where IDCliente=?";
+            ps = con.prepareStatement(sql);
+            ps.setString(1,idCliente);
+            ResultSet rs=ps.executeQuery();
+            if(rs.next()){
+                idTessera = rs.getString("IDTessera");
+                idCliente = rs.getString("IDCliente");
+
+            }
+            Database.closeConnection(con);
+
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+
+        return idTessera;
+    }
 }
