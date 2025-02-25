@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.sql.Date;
 import java.util.List;
 
 /*Classe che implementa l'interfaccia DAO derivata specifica di ogni entità, con essa si rispetta il CRUD per estrapolare dati dal DB */
@@ -44,13 +45,16 @@ public class ClienteDAOImpl implements ClienteDAO {
                 String password=rs.getString("UserPassword");
                 double bilancio=rs.getDouble("bilancio");
                 String luogoNascita=rs.getString("luogoNascita");
-                LocalDate dataNascita= (LocalDate) rs.getObject("dataNascita");
+
+                Date dataNascita= rs.getDate("dataNascita");
+                LocalDate dataNascitaLocal = dataNascita.toLocalDate();
+
                 String sesso=rs.getString("sesso");
                 String cellulare=rs.getString("cellulare");
                 String indirizzo=rs.getString("indirizzo");
 
 
-                cliente=new Cliente(id,password,nome,cognome,luogoNascita, sesso, dataNascita,cellulare,indirizzo,bilancio,email);
+                cliente=new Cliente(id,password,nome,cognome,luogoNascita, sesso, dataNascitaLocal ,cellulare,indirizzo,bilancio,email);
             }
 
             Database.closeConnection(con);
@@ -206,10 +210,10 @@ public class ClienteDAOImpl implements ClienteDAO {
     @Override
     public Cliente autenticate(String id, String password) throws SQLException {
         Cliente cliente = get(id);
-        if(cliente.getUserPassword().equals(password) && cliente!=null){
-            return cliente;
-        }
-        return null;
+        if(cliente != null && cliente.getUserPassword().equals(password)){
+                return cliente;
+
+        } else return null;
 
     }
 }

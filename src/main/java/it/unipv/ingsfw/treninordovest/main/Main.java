@@ -1,6 +1,7 @@
 package it.unipv.ingsfw.treninordovest.main;
 
 import it.unipv.ingsfw.treninordovest.model.varie.GeneraID;
+import it.unipv.ingsfw.treninordovest.model.varie.SessionManager;
 import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JMainMenuFrame;
 
 
@@ -16,6 +17,10 @@ public class Main {
         JMainMenuFrame frame = new JMainMenuFrame();
 
         frame.setVisible(true);
+
+        SessionManager sessionManager = SessionManager.getInstance();
+
+
 
         GeneraID generaID = new GeneraID("CL");
         System.out.println(generaID.getID());

@@ -5,9 +5,15 @@ import it.unipv.ingsfw.treninordovest.dao.implementations.utenti.DipendenteDAOIm
 import it.unipv.ingsfw.treninordovest.dao.interfaces.ClienteDAO;
 import it.unipv.ingsfw.treninordovest.dao.interfaces.DipendenteDAO;
 import it.unipv.ingsfw.treninordovest.factory.UtenteDAOFactory;
+import it.unipv.ingsfw.treninordovest.model.utenti.Cliente;
+import it.unipv.ingsfw.treninordovest.model.utenti.Dipendente;
 import it.unipv.ingsfw.treninordovest.model.utenti.Utente;
 import it.unipv.ingsfw.treninordovest.model.varie.Ruolo;
 import it.unipv.ingsfw.treninordovest.model.varie.SessionManager;
+import it.unipv.ingsfw.treninordovest.view.frames.login.JLoginFrame;
+import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JCustomerMainFrame;
+import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JEmployeeMainFrame;
+import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JMainMenuFrame;
 import it.unipv.ingsfw.treninordovest.view.panels.miscellanous.LoginPanel;
 
 
@@ -15,20 +21,22 @@ import javax.swing.*;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+/*Controller del Login, effettua verifiche sulle credenziali e crea i frame dei rispettivi utenti. Con ciò si unifica e si semplifica l'accesso al sistema */
+
 public class LoginController {
     private LoginPanel view;
-    private Connection connection;
-    private Ruolo ruolo; // CLIENTE o DIPENDENTE
+    private JLoginFrame frame;
+    //private Ruolo ruolo; // CLIENTE o DIPENDENTE
 
-    public LoginController(LoginPanel view, Connection connection /*, Ruolo ruolo*/) {
+    public LoginController(LoginPanel view, JLoginFrame loginFrame) {
         this.view = view;
-        this.connection = connection;
-        //this.ruolo = ruolo;
+        this.frame = loginFrame;
         initController();
     }
 
     private void initController() {
         view.getBottoneAccesso().addActionListener(e -> doLogin());
+        view.getBottoneIndietro().addActionListener(e-> tornaAlMenu());
     }
 
     private void doLogin() {
@@ -38,15 +46,54 @@ public class LoginController {
         UtenteDAOFactory utenteDAOFactory= new UtenteDAOFactory();
 
         try {
-            utenteDAOFactory.getUtenteDao(ruolo);
+            /*Uso del pattern Factory per unificare il login del cliente e del dipendente*/
 
+            ClienteDAOImpl clienteDAO;
+            DipendenteDAOImpl dipendenteDAO;
+            //utenteDAOFactory.getUtenteDao(ruolo);
 
+            //Verifica del ruolo della combobox in cui si istanziano i rispettivi DAO a secondo della scelta adottata.
+            if (ruolo.equals("Cliente")) {
+                clienteDAO = (ClienteDAOImpl) utenteDAOFactory.getUtenteDao(ruolo);
 
+                if(clienteDAO.autenticate(username,password)!=null){
+                    //Imposto l'utente loggato
+                    SessionManager.getInstance().setCurrentUser(clienteDAO.get(username));
+                    JCustomerMainFrame customerMainFrame = new JCustomerMainFrame();
+                    customerMainFrame.setVisible(true);
+                    frame.setVisible(false);
+                }else {
+                    JOptionPane.showMessageDialog(view, "Credenziali errate !!!");
+                }
 
-        } catch (SQLException ex) {
+            }else if (ruolo.equals("Dipendente")) {
+                  dipendenteDAO= (DipendenteDAOImpl) utenteDAOFactory.getUtenteDao(ruolo);
+
+                  if(dipendenteDAO.autenticate(username,password)!=null){
+                      //Imposto l'utente loggato
+                      SessionManager.getInstance().setCurrentUser(dipendenteDAO.get(username));
+                      JEmployeeMainFrame employeeFrame = new JEmployeeMainFrame();
+                      employeeFrame.setVisible(true);
+                      frame.setVisible(false);
+                  }
+                  else {
+                      JOptionPane.showMessageDialog(view, "Credenziali errate !!!");
+                  }
+
+            }
+
+        } catch (Exception ex) {
+            ex.getMessage();
             ex.printStackTrace();
-            JOptionPane.showMessageDialog(view, "Errore nel DB: " + ex.getMessage(), "Errore", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(view, "Errore", "Errore", JOptionPane.ERROR_MESSAGE);
         }
+    }
+
+    private void tornaAlMenu(){
+        //Pulsante di ritorno al menù principale
+        frame.setVisible(false);
+        JMainMenuFrame newFrame = new JMainMenuFrame();
+        newFrame.setVisible(true);
     }
 }
 

@@ -5,10 +5,7 @@ import it.unipv.ingsfw.treninordovest.dao.interfaces.DipendenteDAO;
 import it.unipv.ingsfw.treninordovest.model.utenti.Cliente;
 import it.unipv.ingsfw.treninordovest.model.utenti.Dipendente;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +21,7 @@ public class DipendenteDAOImpl implements DipendenteDAO {
         Dipendente dipendente = null;
         PreparedStatement ps;
         try (Connection con = new Database().getConnection()) {
-            String sql = "select * from utentiDipendenti where id=?";
+            String sql = "select ID,Userpassword,Nome,Cognome,Sesso,LuogoNascita,DataNascita, Cellulare,Indirizzo,Stipendio,Ruolo,CodTreno from utentiDipendenti where id=?";
 
             //Preparazione della Query
             ps = null;
@@ -35,18 +32,22 @@ public class DipendenteDAOImpl implements DipendenteDAO {
             if(rs.next()){
                 String nome=rs.getString("nome");
                 String cognome=rs.getString("cognome");
-                String email=rs.getString("email");
+                //String email=rs.getString("email");
                 String password=rs.getString("UserPassword");
                 double stipendio=rs.getDouble("stipendio");
                 String luogoNascita=rs.getString("luogoNascita");
-                LocalDate dataNascita= (LocalDate) rs.getObject("dataNascita");
+
+
+                Date dataNascita= rs.getDate("dataNascita");
+                LocalDate dataNascitaLocal = dataNascita.toLocalDate();
+
                 String sesso=rs.getString("sesso");
                 String cellulare=rs.getString("cellulare");
                 String indirizzo=rs.getString("indirizzo");
                 String codTreno=rs.getString("codTreno");
                 String ruolo =rs.getString("ruolo");
 
-               dipendente=new Dipendente(id,password,nome,cognome,luogoNascita, sesso, dataNascita,cellulare,indirizzo,codTreno,stipendio,ruolo);
+               dipendente=new Dipendente(id,password,nome,cognome,luogoNascita, sesso, dataNascitaLocal,cellulare,indirizzo,codTreno,stipendio,ruolo);
             }
 
             //Chiusura connesione
@@ -200,9 +201,9 @@ public class DipendenteDAOImpl implements DipendenteDAO {
     @Override
     public Dipendente autenticate(String id, String password) throws SQLException {
        Dipendente dipendente = get(id);
-        if(dipendente.getUserPassword().equals(password) && dipendente!=null){
-            return dipendente;
-        }
-        return null;
+       if (dipendente != null && dipendente.getUserPassword().equals(password)) {
+                return dipendente;
+        } else return null;
+
     }
 }
