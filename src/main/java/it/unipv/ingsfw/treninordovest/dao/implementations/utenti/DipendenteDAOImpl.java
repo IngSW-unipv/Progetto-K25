@@ -185,6 +185,8 @@ public class DipendenteDAOImpl implements DipendenteDAO {
                 // Esecuzione delle query
                 ps1.executeUpdate();
                 ps2.executeUpdate();
+
+                Database.closeConnection(con);
             }
         } catch (Exception e) {
             throw new RuntimeException(e);

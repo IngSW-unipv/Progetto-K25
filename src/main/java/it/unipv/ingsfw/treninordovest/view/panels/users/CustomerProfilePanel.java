@@ -256,24 +256,24 @@ public class CustomerProfilePanel extends JPanel {
         this.txtID.setText(ID);
     }
 
-    public void setTxtLuogoNascita(JTextField txtLuogoNascita) {
-        this.txtLuogoNascita = txtLuogoNascita;
+    public void setTxtLuogoNascita(String txtLuogoNascita) {
+        this.txtLuogoNascita.setText(txtLuogoNascita);
     }
 
-    public void setTxtDataNascita(JTextField txtDataNascita) {
-        this.txtDataNascita = txtDataNascita;
+    public void setTxtDataNascita(String txtDataNascita) {
+        this.txtDataNascita.setText(txtDataNascita);
     }
 
-    public void setTxtCellulare(JTextField txtCellulare) {
-        this.txtCellulare = txtCellulare;
+    public void setTxtCellulare(String txtCellulare) {
+       this.txtCellulare.setText(txtCellulare);
     }
 
-    public void setTxtBilancio(JTextField txtBilancio) {
-        this.txtBilancio = txtBilancio;
+    public void setTxtBilancio(String txtBilancio) {
+        this.txtBilancio.setText(txtBilancio);
     }
 
-    public void setTxtIndirizzo(JTextField txtIndirizzo) {
-        this.txtIndirizzo = txtIndirizzo;
+    public void setTxtIndirizzo(String txtIndirizzo) {
+        this.txtIndirizzo.setText(txtIndirizzo);
     }
 
     public JButton getBtnEsci() {

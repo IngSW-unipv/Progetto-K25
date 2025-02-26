@@ -105,7 +105,7 @@ public class ClienteDAOImpl implements ClienteDAO {
             cliente=new Cliente(id,password,nome,cognome,luogoNascita, sesso, dataNascita,cellulare,indirizzo,bilancio,email);
             clienti.add(cliente);
         }
-
+            Database.closeConnection(con);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -194,6 +194,8 @@ public class ClienteDAOImpl implements ClienteDAO {
                 // Esecuzione delle query
                 ps1.executeUpdate();
                 ps2.executeUpdate();
+
+                Database.closeConnection(con);
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
