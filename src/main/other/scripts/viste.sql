@@ -18,7 +18,8 @@ select * from titoloviaggio tv join biglietto bg on tv.IDTitolo=bg.IDBiglietto;
 select * from titoliAbbonamenti;
 select * from titoliBiglietti;
 
-drop view titoliBiglietti;
+create view FermateTratte as
+select fe.*,ta.*,tt.NumOrdine,tt.Binario,tt.OraPartenza,tt.OraArrivo from (fermata fe join trattafermata tt on fe.IDFermata=tt.IDFermata)join tratta ta on tt.IDTratta=ta.IDTratta;
 
 /*
 create view titoloBiglietto

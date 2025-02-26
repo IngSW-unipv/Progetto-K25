@@ -52,7 +52,7 @@ public class JCustomerMainFrame extends JFrame {
         tabbedPane.addTab("Acquisto Biglietto", ticketPurchasePanel);
         tabbedPane.addTab("Abbonamento", subscriptionPanel);
         tabbedPane.addTab("Acquisto Tessera", cardPurchasePanel);
-        tabbedPane.addTab("Ricerca Viaggio", travelSearchPanel);
+       // tabbedPane.addTab("Ricerca Viaggio", travelSearchPanel);
         tabbedPane.addTab("Rimborso", refundPanel);
         tabbedPane.addTab("Profilo", profilePanel);
 

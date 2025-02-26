@@ -15,18 +15,15 @@ public class Main {
     //Classe di prova -- Verrà rimossa in futuro
     public static void main(String[] args) throws SQLException, ParseException {
 
-
         JMainMenuFrame frame = new JMainMenuFrame();
-
         frame.setVisible(true);
-
+        frame.validate();
         SessionManager sessionManager = SessionManager.getInstance();
-
         System.out.println(sessionManager.getCurrentUser());
 
-        TesseraDAOImpl tdao = new TesseraDAOImpl();
+        //TesseraDAOImpl tdao = new TesseraDAOImpl();
 
-        System.out.println(tdao.getIdTessera("CL42863"));
+        //System.out.println(tdao.getIdTessera("CL42863"));
 
 
     }

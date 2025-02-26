@@ -50,6 +50,18 @@ public class EmployeeRegController {
         String cellulare = view.getTxtCellulare().getText();
         String indirizzo = view.getTxtIndirizzo().getText();
         double stipendio = 0;
+
+        if (view.getComboRuolo().equals("Capotreno")) {
+            stipendio= 2000;
+        }else if (view.getComboRuolo().equals("Macchinista")) {
+            stipendio= 1800;
+        }else if (view.getComboRuolo().equals("Controllore")) {
+            stipendio= 1500;
+        }else if (view.getComboRuolo().equals("Impiegato")) {
+            stipendio= 1300;
+        }
+
+
         String codTreno= randTreno();
         //String codTreno= "FS1127";
         String ruolo = view.getComboRuolo();
