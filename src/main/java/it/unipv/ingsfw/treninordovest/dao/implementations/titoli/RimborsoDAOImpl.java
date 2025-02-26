@@ -144,7 +144,7 @@ public class RimborsoDAOImpl implements RimborsoDAO {
                 // Esecuzione delle query
                 ps1.executeUpdate();
 
-                Database.closeConnection(con);
+                //Database.closeConnection(con);
             }
         } catch (Exception e) {
             throw new RuntimeException(e);

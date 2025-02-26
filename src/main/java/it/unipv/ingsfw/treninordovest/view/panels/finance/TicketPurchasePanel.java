@@ -1,5 +1,7 @@
 package it.unipv.ingsfw.treninordovest.view.panels.finance;
 
+import it.unipv.ingsfw.treninordovest.view.panels.miscellanous.TratteTablePanel;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -9,6 +11,8 @@ public class TicketPurchasePanel extends JPanel {
     private JLabel labelPartenza;
     private JTextField textFieldPartenza;
     private JButton buttonAcquista;
+    private JButton buttonMostraTratte;
+    //private TratteTablePanel tratteTablePanel;
 
     /*DA MODIFICARE*/
 
@@ -25,12 +29,16 @@ public class TicketPurchasePanel extends JPanel {
         textFieldDestinazione = new JTextField(20);
         //Pulsante
         buttonAcquista = new JButton("Acquista Biglietto");
+        buttonMostraTratte = new JButton("Mostra Tratte");
 
         panelInput.add(labelDestinazione);
         panelInput.add(textFieldDestinazione);
         panelInput.add(labelPartenza);
         panelInput.add(textFieldPartenza);
         panelInput.add(buttonAcquista);
+        panelInput.add(buttonMostraTratte);
+
+
 
 
         add(panelInput, BorderLayout.NORTH);
@@ -45,5 +53,9 @@ public class TicketPurchasePanel extends JPanel {
 
     public JButton getButtonAcquista() {
         return buttonAcquista;
+    }
+
+    public JButton getButtonMostraTratte() {
+        return buttonMostraTratte;
     }
 }

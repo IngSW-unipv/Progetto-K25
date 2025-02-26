@@ -1,4 +1,4 @@
-package it.unipv.ingsfw.treninordovest.wallet;
+package it.unipv.ingsfw.treninordovest.model.varie.wallet;
 
 public class EUWallet implements IValuable {
 

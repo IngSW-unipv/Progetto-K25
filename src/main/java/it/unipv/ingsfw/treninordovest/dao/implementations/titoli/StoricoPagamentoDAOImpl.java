@@ -138,7 +138,7 @@ public class StoricoPagamentoDAOImpl implements StoricoPagamentoDAO {
                 // Esecuzione delle query
                 ps1.executeUpdate();
 
-                Database.closeConnection(con);
+                //Database.closeConnection(con);
             }
         } catch (Exception e) {
             throw new RuntimeException(e);

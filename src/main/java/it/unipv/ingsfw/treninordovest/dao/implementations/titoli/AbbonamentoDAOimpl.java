@@ -164,7 +164,7 @@ public class AbbonamentoDAOimpl implements AbbonamentoDAO {
                 ps2.setString(4, abbonamento.getIdTessera());
                 // Esecuzione delle query
                 ps2.executeUpdate();
-                Database.closeConnection(con);
+                //Database.closeConnection(con);
             }
 
         } catch (Exception e) {

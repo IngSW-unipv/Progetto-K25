@@ -54,7 +54,7 @@ public class TrattaDAOImpl implements TrattaDAO {
         try (Connection con = new Database().getConnection()) {
             tratta = null;
             //Query effettuata su una vista creata nel DB per semplificare l'estrazione dei dati
-            String sql = "select * from tratta";
+            String sql = "select IDTratta,Nome,Lunghezza from tratta";
 
             //Estrazione dei dati dal DB
             ps = con.prepareStatement(sql);

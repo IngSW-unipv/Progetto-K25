@@ -148,7 +148,7 @@ public class PagamentoDAOImpl implements PagamentoDAO {
                 // Esecuzione delle query
                 ps1.executeUpdate();
 
-                Database.closeConnection(con);
+                //Database.closeConnection(con);
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
