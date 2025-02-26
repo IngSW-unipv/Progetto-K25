@@ -135,6 +135,7 @@ public class TesseraDAOImpl implements TesseraDAO {
 
                 // Esecuzione delle query
                 ps1.executeUpdate();
+                Database.closeConnection(con);
 
             }
         } catch (Exception e) {

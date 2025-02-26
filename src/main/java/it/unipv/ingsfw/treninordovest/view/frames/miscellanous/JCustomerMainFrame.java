@@ -1,12 +1,13 @@
 package it.unipv.ingsfw.treninordovest.view.frames.miscellanous;
 
 import it.unipv.ingsfw.treninordovest.controller.CardPurchasController;
+import it.unipv.ingsfw.treninordovest.controller.CustomerProfileController;
 import it.unipv.ingsfw.treninordovest.controller.SubscriptionController;
 import it.unipv.ingsfw.treninordovest.view.panels.finance.CardPurchasePanel;
 import it.unipv.ingsfw.treninordovest.view.panels.finance.RefundPanel;
 import it.unipv.ingsfw.treninordovest.view.panels.finance.SubscriptionPanel;
 import it.unipv.ingsfw.treninordovest.view.panels.finance.TicketPurchasePanel;
-import it.unipv.ingsfw.treninordovest.view.panels.miscellanous.CustomerProfilePanel;
+import it.unipv.ingsfw.treninordovest.view.panels.users.CustomerProfilePanel;
 import it.unipv.ingsfw.treninordovest.view.panels.miscellanous.TravelSearchPanel;
 
 import javax.swing.*;
@@ -24,6 +25,7 @@ public class JCustomerMainFrame extends JFrame {
 
     private CardPurchasController cardPurchasController;
     private SubscriptionController subscriptionController;
+    private CustomerProfileController customerProfileController;
 
 
     public JCustomerMainFrame() {
@@ -59,6 +61,7 @@ public class JCustomerMainFrame extends JFrame {
         /*Aggiunta dei controller*/
         cardPurchasController = new CardPurchasController(cardPurchasePanel,this);
         subscriptionController = new SubscriptionController(subscriptionPanel,this);
+        customerProfileController = new CustomerProfileController(profilePanel,this);
 
     }
 

@@ -1,7 +1,7 @@
 package it.unipv.ingsfw.treninordovest.view.frames.miscellanous;
 
 import it.unipv.ingsfw.treninordovest.view.panels.finance.RefundPanel;
-import it.unipv.ingsfw.treninordovest.view.panels.miscellanous.CustomerProfilePanel;
+import it.unipv.ingsfw.treninordovest.view.panels.users.CustomerProfilePanel;
 import it.unipv.ingsfw.treninordovest.view.panels.miscellanous.TravelDocCheckPanel;
 
 import javax.swing.*;

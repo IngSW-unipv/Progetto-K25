@@ -241,7 +241,7 @@ public class ClienteDAOImpl implements ClienteDAO {
     @Override
     public boolean updatePassword(String id, String password) {
 
-        String sql = "UPDATE cliente set UserPassowrd=? where IDCliente=?";
+        String sql = "UPDATE utente set UserPassword=? where ID=?";
         Connection con = null;
         try {
             con= Database.getConnection();

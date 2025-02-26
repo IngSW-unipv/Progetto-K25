@@ -1,6 +1,4 @@
-package it.unipv.ingsfw.treninordovest.view.panels.miscellanous;
-
-import it.unipv.ingsfw.treninordovest.view.panels.finance.CardPurchasePanel;
+package it.unipv.ingsfw.treninordovest.view.panels.users;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,6 +18,9 @@ public class CustomerProfilePanel extends JPanel {
     private JTextField txtBilancio;
     private JTextField txtIndirizzo;
     private Color coloreSfondo;
+    private JButton btnEsci;
+    private JTextField txtDenaro;
+    private JButton btnConfermaDenaro;
 
     public CustomerProfilePanel() {
         setLayout(new GridBagLayout());
@@ -63,11 +64,13 @@ public class CustomerProfilePanel extends JPanel {
         JLabel lblID = new JLabel("ID Cliente:");
         txtID= new JTextField(15);
 
-
+        txtDenaro = new JTextField(15);
+        btnConfermaDenaro = new JButton("Carica credito");
 
 
         btnAggiornaPassword = new JButton("Aggiorna password");
         btnAggionaProfilo = new JButton("Aggiorna profilo");
+        btnEsci = new JButton("Esci");
 
 
         /*Dati profilo*/
@@ -193,6 +196,30 @@ public class CustomerProfilePanel extends JPanel {
         gbc.gridwidth = 2;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         add(btnAggiornaPassword, gbc);
+
+        //Bottone Esci
+        gbc.gridx = 0;
+        gbc.gridy = 11;
+        gbc.gridwidth = 2;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        add(btnEsci, gbc);
+
+
+        //Portafoglio
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        gbc.gridwidth = 2;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        add(txtDenaro, gbc);
+
+        //Bottone conferma caricamento denaro
+        gbc.gridx = 0;
+        gbc.gridy = 4;
+        gbc.gridwidth = 2;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        add(btnConfermaDenaro, gbc);
+
+
     }
 
     // Getters per il controller
@@ -209,24 +236,24 @@ public class CustomerProfilePanel extends JPanel {
         return txtPassword;
     }
 
-    public void setTxtNome(JTextField txtNome) {
-        this.txtNome = txtNome;
+    public void setTxtNome(String txtNome) {
+       this.txtNome.setText(txtNome);
     }
 
-    public void setTxtCognome(JTextField txtCognome) {
-        this.txtCognome = txtCognome;
+    public void setTxtCognome(String cognome) {
+        this.txtCognome.setText(cognome);
     }
 
-    public void setTxtEmail(JTextField txtEmail) {
-        this.txtEmail = txtEmail;
+    public void setTxtEmail(String txtEmail) {
+       this.txtEmail.setText(txtEmail);
     }
 
-    public void setTxtSesso(JTextField txtSesso) {
-        this.txtSesso = txtSesso;
+    public void setTxtSesso(String  txtSesso) {
+        this.txtSesso.setText(txtSesso);
     }
 
-    public void setTxtID(JTextField txtID) {
-        this.txtID = txtID;
+    public void setTxtID(String ID) {
+        this.txtID.setText(ID);
     }
 
     public void setTxtLuogoNascita(JTextField txtLuogoNascita) {
@@ -247,5 +274,18 @@ public class CustomerProfilePanel extends JPanel {
 
     public void setTxtIndirizzo(JTextField txtIndirizzo) {
         this.txtIndirizzo = txtIndirizzo;
+    }
+
+    public JButton getBtnEsci() {
+        return btnEsci;
+    }
+
+    public JButton getBtnConfermaDenaro() {
+        return btnConfermaDenaro;
+    }
+
+    public double getTxtDenaro() {
+        double denaro = Double.parseDouble(txtDenaro.getText().toString());
+        return denaro;
     }
 }
