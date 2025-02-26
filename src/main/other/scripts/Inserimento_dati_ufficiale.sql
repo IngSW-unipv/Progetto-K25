@@ -156,11 +156,11 @@ VALUES
   ('V002', 'T002', 'F003', 'F004', '2023-06-11', '10:00:00', '12:00:00');
 
 -- 16. Bigliettoviaggio (collegamento tra viaggi e biglietti)
-INSERT INTO bigliettoviaggio (IDViaggio, IDBiglietto)
+/*INSERT INTO bigliettoviaggio (IDViaggio, IDBiglietto)
 VALUES
   ('V001', 'TV001'),
   ('V002', 'TV002');
-
+*/
 -- 17. Rimborso (registro dei rimborsi effettuati)
 INSERT INTO rimborso (IDRimborso, Dataora, Totale, IDBiglietto, IDRichiedente)
 VALUES

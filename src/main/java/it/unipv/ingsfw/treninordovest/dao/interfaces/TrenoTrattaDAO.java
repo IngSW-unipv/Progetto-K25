@@ -6,5 +6,5 @@ import java.sql.SQLException;
 
 public interface TrenoTrattaDAO extends DAO<TrenoTratta> {
 
-    TrenoTratta get(String idTreno, String idTratta) throws SQLException;
+    TrenoTratta getTT(String idTreno, String idTratta) throws SQLException;
 }
