@@ -134,6 +134,7 @@ public class TrenoDAOImpl implements TrenoDAO {
 
                 // Esecuzione delle query
                 ps1.executeUpdate();
+                Database.closeConnection(con);
 
             }
         } catch (Exception e) {

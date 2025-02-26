@@ -72,6 +72,7 @@ public class StoricoPagamentoDAOImpl implements StoricoPagamentoDAO {
                 storicoPagamento=new StoricoPagamento(idStorico,idPagamento,stato);
                 storicopaga.add(storicoPagamento);
             }
+            Database.closeConnection(con);
 
         } catch (SQLException e) {
             e.printStackTrace();

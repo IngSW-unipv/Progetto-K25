@@ -79,6 +79,7 @@ public class PagamentoDAOImpl implements PagamentoDAO {
                 pagamento=new Pagamento(idPagamento,idCliente,totale, tipo, dataPagamento);
                 paga.add(pagamento);
             }
+            Database.closeConnection(con);
 
         } catch (SQLException e) {
             e.printStackTrace();

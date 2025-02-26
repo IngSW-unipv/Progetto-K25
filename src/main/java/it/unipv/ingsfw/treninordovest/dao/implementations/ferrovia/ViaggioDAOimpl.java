@@ -84,6 +84,7 @@ public class ViaggioDAOimpl implements ViaggioDAO {
                 viaggio=new Viaggio(idViaggio, idTratta, idPartenza, idArrivo, dataViaggio, oraPartenza, oraArrivo);
                 viaggi.add(viaggio);
             }
+            Database.closeConnection(con);
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -154,7 +155,7 @@ public class ViaggioDAOimpl implements ViaggioDAO {
                 // Esecuzione delle query
                 ps1.executeUpdate();
 
-                //Database.closeConnection(con);
+                Database.closeConnection(con);
             }
         } catch (Exception e) {
             throw new RuntimeException(e);

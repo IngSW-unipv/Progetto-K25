@@ -74,6 +74,7 @@ public class FermataDAOImpl implements FermataDAO {
                 fermata=new Fermata(idFermata, citta, numBinari);
                 fermate.add(fermata);
             }
+            Database.closeConnection(con);
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -136,7 +137,7 @@ public class FermataDAOImpl implements FermataDAO {
                 // Esecuzione delle query
                 ps1.executeUpdate();
 
-                //Database.closeConnection(con);
+                Database.closeConnection(con);
             }
         } catch (Exception e) {
             throw new RuntimeException(e);

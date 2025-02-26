@@ -98,6 +98,8 @@ public class DipendenteDAOImpl implements DipendenteDAO {
                 clienti.add(dipendente);
             }
 
+            Database.closeConnection(con);
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
