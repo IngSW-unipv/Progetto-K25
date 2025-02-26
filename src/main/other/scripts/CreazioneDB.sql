@@ -6,7 +6,7 @@ use treninordovest;
 drop table if exists rimborso;
 drop table if exists dipendente;
 drop table if exists abbonamento;
-drop table if exists bigliettoviaggio;
+#drop table if exists bigliettoviaggio;
 drop table if exists storicopagamento;
 drop table if exists biglietto;
 drop table if exists titoloviaggio;
@@ -173,19 +173,22 @@ IDArrivo varchar(10) not null,
 DataViaggio date not null,
 OrarioPartenza TIME NOT NULL,
 OrarioArrivo TIME NOT NULL,
+IDBiglietto varchar(10) not null,
 primary key (IDViaggio),
 foreign key (IDTratta) references tratta(IDTratta) on delete cascade on update cascade,
 foreign key (IDPartenza) references fermata(IDFermata) on delete cascade on update cascade,
-foreign key (IDArrivo) references fermata(IDFermata) on delete cascade on update cascade
+foreign key (IDArrivo) references fermata(IDFermata) on delete cascade on update cascade,
+foreign key (IDBiglietto) references biglietto(idbiglietto) on delete cascade on update cascade
 );
 
+/* Non usata
 create table bigliettoviaggio(
 IDViaggio varchar(10) not null,
 IDBiglietto varchar(10) not null,
 primary key (IDViaggio,IDBiglietto),
 foreign key (IDViaggio) references viaggio(IDViaggio) on delete cascade on update cascade,
 foreign key (IDBiglietto) references biglietto(IDBiglietto) on delete cascade on update cascade
-);
+);*/
 
 create table rimborso(
 IDRimborso varchar(10) not null,

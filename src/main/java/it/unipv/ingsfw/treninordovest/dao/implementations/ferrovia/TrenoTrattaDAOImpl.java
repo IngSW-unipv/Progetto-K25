@@ -21,6 +21,10 @@ public class TrenoTrattaDAOImpl implements TrenoTrattaDAO{
     public TrenoTratta get(String id) throws SQLException {
         return null;
     }
+    @Override
+    public TrenoTratta get(String id) throws SQLException {
+        return null;
+    }
 
     @Override
     public List<TrenoTratta> getAll() throws SQLException {
