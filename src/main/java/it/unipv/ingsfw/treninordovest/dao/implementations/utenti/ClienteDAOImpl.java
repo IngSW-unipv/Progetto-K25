@@ -237,4 +237,27 @@ public class ClienteDAOImpl implements ClienteDAO {
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public boolean updatePassword(String id, String password) {
+
+        String sql = "UPDATE cliente set UserPassowrd=? where IDCliente=?";
+        Connection con = null;
+        try {
+            con= Database.getConnection();
+            if (con != null) {
+                PreparedStatement ps = con.prepareStatement(sql);
+                ps.setString(1, password);
+                ps.setString(2, id);
+                ps.executeUpdate();
+                Database.closeConnection(con);
+                return true;
+            }
+            return false;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+
+    }
 }

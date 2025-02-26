@@ -10,5 +10,7 @@ public interface ClienteDAO extends DAO<Cliente> {
 
     boolean updateBilancio(String IdCliente, double prezzo);
 
+    boolean updatePassword (String id, String password);
+
 
 }

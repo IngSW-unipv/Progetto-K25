@@ -48,16 +48,16 @@ public class SubscriptionController {
 
     protected Pagamento creaPagamento(double totale) {
         //Dichiarazione classi
-        PagamentoDAOImpl inserimentoPagamento = new PagamentoDAOImpl();
         Pagamento pagamento;
-
+        String tipoPagamento;
+        LocalDate dataPagamento;
         //Generazione dell'ID del Pagamento
         GeneraID idGen = new GeneraID("PG");
         String IDPagamento = idGen.getID();
 
         //Acquisizione del tipo di pagamento
-        String tipoPagamento = (String) view.getComboTipo().getSelectedItem();
-        LocalDate dataPagamento = LocalDate.now();
+        tipoPagamento = (String) view.getComboTipo().getSelectedItem();
+        dataPagamento = LocalDate.now();
 
         //Acquisizione del utente loggato
         clienteLoggato = (Cliente) SessionManager.getInstance().getCurrentUser();
@@ -75,11 +75,13 @@ public class SubscriptionController {
         try {
 
             String tipoAbbonamento = (String) view.getComboTipo().getSelectedItem();
-            ClienteDAO clienteDAO = new ClienteDAOImpl();
+            ClienteDAO clienteDAO ;
             double prezzoAbbonamento;
             LocalDate scadenza;
             Pagamento pagamento;
             Abbonamento abbonamento;
+
+            //Istanziamento degli oggetti
             pagamentoDAO = new PagamentoDAOImpl();
             abbonamentoDAO = new AbbonamentoDAOimpl();
             clienteDAO = new ClienteDAOImpl();
@@ -101,14 +103,23 @@ public class SubscriptionController {
                     return;
                 }
 
-                clienteDAO.updateBilancio(clienteLoggato.getId(), clienteLoggato.getBilancio()-prezzoAbbonamento);
+
 
                 //Creazione pagamento e abbonamento
                 pagamento= creaPagamento(prezzoAbbonamento);
                 abbonamento = creaAbbonamento(scadenza,pagamento.getIdPagamento(),prezzoAbbonamento,tipoAbbonamento);
 
-                abbonamentoDAO.insert(abbonamento);
+                //Scalamento denaro
+                System.out.println("Debug: "+clienteLoggato.getBilancio());
+                double differenza = clienteLoggato.getBilancio() - prezzoAbbonamento;
+                clienteLoggato.setBilancio(differenza);
+
+                clienteDAO.updateBilancio(clienteLoggato.getId(), clienteLoggato.getBilancio());
+
                 pagamentoDAO.insert(pagamento);
+                abbonamentoDAO.insert(abbonamento);
+
+                JOptionPane.showMessageDialog(view,"Abbonamento Acquistato - Bilancio attuale" +clienteLoggato.getBilancio());
 
 
             } else if (tipoAbbonamento.equals("Mensile")) {
@@ -124,9 +135,17 @@ public class SubscriptionController {
                 pagamento= creaPagamento(prezzoAbbonamento);
                 abbonamento = creaAbbonamento(scadenza,pagamento.getIdPagamento(),prezzoAbbonamento,tipoAbbonamento);
 
+                //Scalamento denaro
+                double differenza = clienteLoggato.getBilancio() - prezzoAbbonamento;
+                clienteLoggato.setBilancio(differenza);
+                System.out.println("Debug bilancio: "+clienteLoggato.getBilancio());
+
+                clienteDAO.updateBilancio(clienteLoggato.getId(), clienteLoggato.getBilancio());
+
                 pagamentoDAO.insert(pagamento);
                 abbonamentoDAO.insert(abbonamento);
 
+                JOptionPane.showMessageDialog(view,"Abbonamento Acquistato - Bilancio attuale" +clienteLoggato.getBilancio());
 
 
             } else if (tipoAbbonamento.equals("Annuale")) {
@@ -142,8 +161,16 @@ public class SubscriptionController {
                 pagamento= creaPagamento(prezzoAbbonamento);
                 abbonamento = creaAbbonamento(scadenza,pagamento.getIdPagamento(),prezzoAbbonamento,tipoAbbonamento);
 
+                //Scalamento denaro
+                double differenza = clienteLoggato.getBilancio() - prezzoAbbonamento;
+                clienteLoggato.setBilancio(differenza);
+                System.out.println("Debug: "+clienteLoggato.getBilancio());
+                clienteDAO.updateBilancio(clienteLoggato.getId(), clienteLoggato.getBilancio());
+
                 pagamentoDAO.insert(pagamento);
                 abbonamentoDAO.insert(abbonamento);
+
+                JOptionPane.showMessageDialog(view,"Abbonamento Acquistato - Bilancio attuale" +clienteLoggato.getBilancio());
             }
         }catch (Exception e) {
             e.printStackTrace();

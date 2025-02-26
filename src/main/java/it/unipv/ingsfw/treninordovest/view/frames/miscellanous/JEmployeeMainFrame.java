@@ -1,7 +1,7 @@
 package it.unipv.ingsfw.treninordovest.view.frames.miscellanous;
 
 import it.unipv.ingsfw.treninordovest.view.panels.finance.RefundPanel;
-import it.unipv.ingsfw.treninordovest.view.panels.miscellanous.ProfilePanel;
+import it.unipv.ingsfw.treninordovest.view.panels.miscellanous.CustomerProfilePanel;
 import it.unipv.ingsfw.treninordovest.view.panels.miscellanous.TravelDocCheckPanel;
 
 import javax.swing.*;
@@ -12,7 +12,7 @@ public class JEmployeeMainFrame extends JFrame {
     private final JTabbedPane tabbedPane = new JTabbedPane();;
     private final JPanel travelDocCheck = new TravelDocCheckPanel();
     private final JPanel refundPanel = new RefundPanel();
-    private final JPanel profilePanel = new ProfilePanel();
+    private final JPanel profilePanel = new CustomerProfilePanel();
 
     public JEmployeeMainFrame() {
         setTitle("Treninordovest - Area Dipendenti");

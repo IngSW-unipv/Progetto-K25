@@ -3,13 +3,13 @@ package it.unipv.ingsfw.treninordovest.view.panels.miscellanous;
 import javax.swing.*;
 import java.awt.*;
 
-public class ProfilePanel extends JPanel {
+public class EmployeeProfilePanel extends JPanel {
     private JTextField txtNome;
     private JTextField txtCognome;
     private JTextField txtEmail;
     private JButton btnAggiorna;
 
-    public ProfilePanel() {
+    public EmployeeProfilePanel() {
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5,5,5,5);
@@ -21,25 +21,24 @@ public class ProfilePanel extends JPanel {
         JLabel lblEmail = new JLabel("Email:");
         txtEmail = new JTextField(15);
 
-        btnAggiorna = new JButton("Aggiorna Profilo");
+        btnAggiorna = new JButton("Aggiorna Password");
+
 
         //Nome
         gbc.gridx = 0;
         gbc.gridy = 0;
         add(lblNome, gbc);
-
-        //Cognome
         gbc.gridx = 1;
-
         add(txtNome, gbc);
 
+        //Cognome
         gbc.gridx = 0;
         gbc.gridy = 1;
         add(lblCognome, gbc);
-
         gbc.gridx = 1;
         add(txtCognome, gbc);
 
+        //Email
         gbc.gridx = 0;
         gbc.gridy = 2;
         add(lblEmail, gbc);
@@ -51,10 +50,4 @@ public class ProfilePanel extends JPanel {
         gbc.gridwidth = 2;
         add(btnAggiorna, gbc);
     }
-
-    // Getters per il controller
-    public JTextField getTxtNome() { return txtNome; }
-    public JTextField getTxtCognome() { return txtCognome; }
-    public JTextField getTxtEmail() { return txtEmail; }
-    public JButton getBtnAggiorna() { return btnAggiorna; }
 }

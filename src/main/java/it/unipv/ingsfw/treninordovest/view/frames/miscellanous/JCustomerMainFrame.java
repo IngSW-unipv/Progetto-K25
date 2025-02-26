@@ -6,7 +6,7 @@ import it.unipv.ingsfw.treninordovest.view.panels.finance.CardPurchasePanel;
 import it.unipv.ingsfw.treninordovest.view.panels.finance.RefundPanel;
 import it.unipv.ingsfw.treninordovest.view.panels.finance.SubscriptionPanel;
 import it.unipv.ingsfw.treninordovest.view.panels.finance.TicketPurchasePanel;
-import it.unipv.ingsfw.treninordovest.view.panels.miscellanous.ProfilePanel;
+import it.unipv.ingsfw.treninordovest.view.panels.miscellanous.CustomerProfilePanel;
 import it.unipv.ingsfw.treninordovest.view.panels.miscellanous.TravelSearchPanel;
 
 import javax.swing.*;
@@ -19,7 +19,7 @@ public class JCustomerMainFrame extends JFrame {
     private final CardPurchasePanel cardPurchasePanel = new CardPurchasePanel();
     private final TravelSearchPanel travelSearchPanel = new TravelSearchPanel();
     private final RefundPanel refundPanel = new RefundPanel();
-    private final ProfilePanel profilePanel = new ProfilePanel();
+    private final CustomerProfilePanel profilePanel = new CustomerProfilePanel();
     private Color coloreSfondo = new Color(131,168,195);
 
     private CardPurchasController cardPurchasController;

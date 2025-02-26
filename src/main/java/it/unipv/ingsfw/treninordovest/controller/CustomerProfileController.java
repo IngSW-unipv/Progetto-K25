@@ -1,31 +1,33 @@
 package it.unipv.ingsfw.treninordovest.controller;
 
 
+import it.unipv.ingsfw.treninordovest.dao.implementations.utenti.ClienteDAOImpl;
 import it.unipv.ingsfw.treninordovest.model.utenti.Cliente;
-import it.unipv.ingsfw.treninordovest.view.panels.miscellanous.ProfilePanel;
-/*
-public class ProfileController {
-    private ProfilePanel view;
-    private UtenteDAOImpl utenteDAO;
+import it.unipv.ingsfw.treninordovest.model.varie.SessionManager;
+import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JCustomerMainFrame;
+import it.unipv.ingsfw.treninordovest.view.panels.miscellanous.CustomerProfilePanel;
+import it.unipv.ingsfw.treninordovest.view.panels.users.CustomerRegistrationPanel;
+import it.unipv.ingsfw.treninordovest.model.varie.SessionManager;
 
-    public ProfileController(ProfilePanel view, Connection connection) {
+public class CustomerProfileController {
+    private CustomerProfilePanel view;
+    private JCustomerMainFrame mainFrame;
+    private ClienteDAOImpl clienteDAO;
+
+    public CustomerProfileController(CustomerProfilePanel view, JCustomerMainFrame mainFrame) {
         this.view = view;
-        this.utenteDAO = new UtenteDAO(connection);
+        this.mainFrame = mainFrame;
         initController();
     }
 
     private void initController() {
         // Carica i dati dell'utente dalla sessione
-        Cliente currentUser = SessionManager.getInstance().getCurrentUser();
-        if (currentUser != null) {
-            view.getTxtNome().setText(currentUser.getNome());
-            view.getTxtCognome().setText(currentUser.getCognome());
-            view.getTxtEmail().setText(currentUser.getEmail());
-        }
-        // Aggiunge l'ActionListener per aggiornare il profilo
-        view.getBtnAggiorna().addActionListener(e -> aggiornaProfilo());
+
+        view.getBtnAggiornaPassword().addActionListener(e -> aggiornaPassword());
+
     }
 
+    /*
     private void aggiornaProfilo() {
         String nome = view.getTxtNome().getText();
         String cognome = view.getTxtCognome().getText();
@@ -52,6 +54,23 @@ public class ProfileController {
             ex.printStackTrace();
             JOptionPane.showMessageDialog(view, "Errore nel database: " + ex.getMessage(), "Errore", JOptionPane.ERROR_MESSAGE);
         }
+    }*/
+
+    private void aggiornaPassword (){
+        clienteDAO = new ClienteDAOImpl();
+        String idUtenteLog = SessionManager.getInstance().getCurrentUser().getId();
+        String nuovapassword = view.getTxtPassword().getText();
+
+        if (clienteDAO.updatePassword(idUtenteLog, nuovapassword)) {
+
+        }
+
+
+
+
+
+
+
     }
-}*/
+}
 
