@@ -1,4 +1,4 @@
-package it.unipv.ingsfw.treninordovest.controller;
+package it.unipv.ingsfw.treninordovest.controller.users;
 
 import it.unipv.ingsfw.treninordovest.dao.implementations.utenti.ClienteDAOImpl;
 import it.unipv.ingsfw.treninordovest.model.utenti.Cliente;
@@ -8,8 +8,6 @@ import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JMainMenuFrame;
 import it.unipv.ingsfw.treninordovest.view.panels.users.CustomerRegistrationPanel;
 
 import javax.swing.*;
-import java.sql.Connection;
-import java.sql.SQLDataException;
 import java.sql.SQLException;
 import java.time.ZoneId;
 import java.util.Date;

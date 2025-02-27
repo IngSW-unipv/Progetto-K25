@@ -38,8 +38,9 @@ public class ViaggioDAOimpl implements ViaggioDAO {
                 LocalDate dataViaggio= (LocalDate) rs.getObject("dataPagamento");
                 LocalTime oraPartenza=(LocalTime)rs.getObject("oraPartenza");
                 LocalTime oraArrivo=(LocalTime) rs.getObject("oraArrivo");
+                String idBiglietto=rs.getString("idBiglietto");
 
-                viaggio=new Viaggio(idViaggio, idTratta, idPartenza, idArrivo, dataViaggio, oraPartenza, oraArrivo);
+                viaggio=new Viaggio(idViaggio, idTratta, idPartenza, idArrivo, dataViaggio, oraPartenza, oraArrivo,idBiglietto);
             }
 
             Database.closeConnection(con);
@@ -61,7 +62,7 @@ public class ViaggioDAOimpl implements ViaggioDAO {
         try (Connection con = new Database().getConnection()) {
 
             //Query effettuata su una vista creata nel DB per semplificare l'estrazione dei dati
-            String sql = "select idViaggio, idTratta, idPartenza, idArrivo, dataViaggio, oraPartenza, oraArrivo from Viaggio";
+            String sql = "select idViaggio, idTratta, idPartenza, idArrivo, dataViaggio, oraPartenza, oraArrivo, idbiglietto from Viaggio";
 
             //Estrazione dei dati dal DB
             ps = null;
@@ -78,10 +79,11 @@ public class ViaggioDAOimpl implements ViaggioDAO {
                 LocalDate dataViaggio= (LocalDate) rs.getObject("dataPagamento");
                 LocalTime oraPartenza=(LocalTime)rs.getObject("oraPartenza");
                 LocalTime oraArrivo=(LocalTime) rs.getObject("oraArrivo");
+                String IdBiglietto=rs.getString("idbiglietto");
 
 
 
-                viaggio=new Viaggio(idViaggio, idTratta, idPartenza, idArrivo, dataViaggio, oraPartenza, oraArrivo);
+                viaggio=new Viaggio(idViaggio, idTratta, idPartenza, idArrivo, dataViaggio, oraPartenza, oraArrivo,IdBiglietto);
                 viaggi.add(viaggio);
             }
             Database.closeConnection(con);
@@ -110,7 +112,7 @@ public class ViaggioDAOimpl implements ViaggioDAO {
 
     @Override
     public void update(Viaggio viaggio) throws SQLException {
-        String sql1="UPDATE Viaggio set idTratta=?, idPartenza=?, idArrivo=?, dataViaggio=?, oraPartenza=?, oraArrivo=? where idViaggio=?";
+        String sql1="UPDATE Viaggio set idTratta=?, idPartenza=?, idArrivo=?, dataViaggio=?, oraPartenza=?, oraArrivo=?  where idViaggio=?";
 
         try(Connection con = new Database().getConnection()){
             //Prima Query
@@ -139,7 +141,7 @@ public class ViaggioDAOimpl implements ViaggioDAO {
         Connection con = null;
         try {
             con = new Database().getConnection();
-            String sql1 = "INSERT INTO viaggio (IDViaggio,IDTratta,IDPartenza,IDArrivo,DataViaggio,OrarioPartenza,OrarioArrivo) VALUES (?, ?, ?, ?, ?, ?,?)";
+            String sql1 = "INSERT INTO viaggio (IDViaggio,IDTratta,IDPartenza,IDArrivo,DataViaggio,OrarioPartenza,OrarioArrivo,idbiglietto) VALUES (?, ?, ?, ?, ?, ?,?,?)";
 
             try (PreparedStatement ps1 = con.prepareStatement(sql1)) {
 
@@ -151,6 +153,7 @@ public class ViaggioDAOimpl implements ViaggioDAO {
                 ps1.setObject(5,viaggio.getDataViaggio());
                 ps1.setObject(6,viaggio.getOraPartenza());
                 ps1.setObject(7,viaggio.getOraArrivo());
+                ps1.setString(8,viaggio.getIdBiglietto());
 
                 // Esecuzione delle query
                 ps1.executeUpdate();

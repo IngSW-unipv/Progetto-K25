@@ -1,4 +1,4 @@
-package it.unipv.ingsfw.treninordovest.controller;
+package it.unipv.ingsfw.treninordovest.controller.users;
 
 
 import it.unipv.ingsfw.treninordovest.dao.implementations.utenti.ClienteDAOImpl;
@@ -8,7 +8,6 @@ import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JCustomerMainFram
 import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JMainMenuFrame;
 import it.unipv.ingsfw.treninordovest.view.panels.users.CustomerProfilePanel;
 
-import javax.swing.*;
 import java.sql.SQLException;
 
 public class CustomerProfileController {

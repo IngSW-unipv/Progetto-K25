@@ -1,4 +1,4 @@
-package it.unipv.ingsfw.treninordovest.controller;
+package it.unipv.ingsfw.treninordovest.controller.titoli;
 
 import it.unipv.ingsfw.treninordovest.dao.implementations.titoli.AbbonamentoDAOimpl;
 import it.unipv.ingsfw.treninordovest.dao.implementations.titoli.PagamentoDAOImpl;
@@ -11,9 +11,7 @@ import it.unipv.ingsfw.treninordovest.model.utenti.Cliente;
 import it.unipv.ingsfw.treninordovest.model.varie.GeneraID;
 import it.unipv.ingsfw.treninordovest.model.varie.SessionManager;
 import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JCustomerMainFrame;
-import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JMainMenuFrame;
 import it.unipv.ingsfw.treninordovest.view.panels.finance.SubscriptionPanel;
-import it.unipv.ingsfw.treninordovest.view.panels.miscellanous.MainMenuPanel;
 
 import javax.swing.*;
 import java.sql.SQLException;
@@ -56,7 +54,7 @@ public class SubscriptionController {
         String IDPagamento = idGen.getID();
 
         //Acquisizione del tipo di pagamento
-        tipoPagamento = (String) view.getComboTipo().getSelectedItem();
+        tipoPagamento = "Digitale";
         dataPagamento = LocalDate.now();
 
         //Acquisizione del utente loggato
@@ -80,6 +78,7 @@ public class SubscriptionController {
             LocalDate scadenza;
             Pagamento pagamento;
             Abbonamento abbonamento;
+            LocalDate oggi;
 
             //Istanziamento degli oggetti
             pagamentoDAO = new PagamentoDAOImpl();
@@ -87,13 +86,14 @@ public class SubscriptionController {
             clienteDAO = new ClienteDAOImpl();
             clienteLoggato = (Cliente) SessionManager.getInstance().getCurrentUser();
             LocalDate dataInizio = view.getTextDataInizio().getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            oggi = LocalDate.now();
 
             /*---------------------------------------------------------------------------*/
             //Verifica del tipo di abbonamento con relativi prezzi e date di scadenza
 
             /*APP*/
 
-            if (tipoAbbonamento.equals("Settimanale")) {
+            if (tipoAbbonamento.equals("Settimanale") && dataInizio.isAfter(oggi)) {
                 //Definizione prezzo e scadenza
                 prezzoAbbonamento = 10;
                 scadenza = dataInizio.plusWeeks(1);
@@ -122,7 +122,7 @@ public class SubscriptionController {
                 JOptionPane.showMessageDialog(view,"Abbonamento Acquistato - Bilancio attuale" +clienteLoggato.getBilancio());
 
 
-            } else if (tipoAbbonamento.equals("Mensile")) {
+            } else if (tipoAbbonamento.equals("Mensile")&& dataInizio.isAfter(oggi)) {
                 prezzoAbbonamento = 30;
                 scadenza=dataInizio.plusMonths(1);
 
@@ -148,7 +148,7 @@ public class SubscriptionController {
                 JOptionPane.showMessageDialog(view,"Abbonamento Acquistato - Bilancio attuale" +clienteLoggato.getBilancio());
 
 
-            } else if (tipoAbbonamento.equals("Annuale")) {
+            } else if (tipoAbbonamento.equals("Annuale")&& dataInizio.isAfter(oggi)) {
                 prezzoAbbonamento = 300;
                 scadenza=dataInizio.plusYears(1);
 
@@ -157,6 +157,10 @@ public class SubscriptionController {
                     JOptionPane.showMessageDialog(view,"Credito Insufficiente" +clienteLoggato.getBilancio());
                     return;
                 }
+                else {
+                    JOptionPane.showMessageDialog(view,"Data o credito non corretti" ,"Errore",JOptionPane.ERROR_MESSAGE);
+                }
+
 
                 pagamento= creaPagamento(prezzoAbbonamento);
                 abbonamento = creaAbbonamento(scadenza,pagamento.getIdPagamento(),prezzoAbbonamento,tipoAbbonamento);

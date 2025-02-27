@@ -202,8 +202,27 @@ foreign key (IDRichiedente) references cliente(IDCliente) on delete cascade on u
 );
 
 
+drop view if exists utenticlienti;
+drop view if exists utentidipendenti;
+drop view if exists titoliabbonamenti;
+drop view if exists titoliBiglietti;
+
+/*Viste*/
+create view utentiClienti as
+select *
+from utente ut join cliente cl on ut.ID=cl.IDCliente;
+
+create view utentiDipendenti as
+select *
+from utente ut join dipendente cl on ut.ID=cl.IDDipendente;
+
+create view titoliAbbonamenti as
+select * from titoloviaggio tv join abbonamento ab on tv.IDTitolo=ab.IDAbbonamento;
+
+create view titoliBiglietti as
+select * from titoloviaggio tv join biglietto bg on tv.IDTitolo=bg.IDBiglietto;
 
 
-
-
-
+create view tratteFermateCompleto as
+select tr.IDTratta,Nome,Lunghezza,Fe.idFermata,Citta,NumOrdine,OraPartenza,OraArrivo,NumBinari from tratta tr ,trattafermata tf,fermata fe
+where tf.IDFermata = fe.IDFermata and tf.IDTratta=tr.IDtratta;

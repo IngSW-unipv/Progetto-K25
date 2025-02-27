@@ -8,11 +8,15 @@ import java.util.List;
 
 public class TableModelTratte extends AbstractTableModel {
 
-    private List<Tratta> tratte=new ArrayList<Tratta>();
+    private List<Tratta> listaTratte;//=new ArrayList<Tratta>();
     private String[] columnNames = {"ID", "Nome tratta","Lunghezza"};
 
     public TableModelTratte() {
 
+    }
+
+    public void setData(List<Tratta> tratte ){
+        this.listaTratte = tratte;
     }
 
     @Override
@@ -20,14 +24,11 @@ public class TableModelTratte extends AbstractTableModel {
         return columnNames[column];
     }
 
-    public void setData(List<Tratta> tratte ){
-        this.tratte = tratte;
-    }
 
 
     @Override
     public int getRowCount() {
-        return this.tratte.size();
+        return listaTratte.size();
     }
 
     @Override
@@ -37,14 +38,14 @@ public class TableModelTratte extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Tratta tratta = tratte.get(rowIndex);
+        Tratta tratta = listaTratte.get(rowIndex);
         switch (columnIndex) {
             case 0:
                 return tratta.getIdTratta();
                 case 1:
                     return tratta.getNome();
                     case 2:
-                        return  tratta.toString();
+                        return  tratta.getLunghezza();
         }
 
         return null;

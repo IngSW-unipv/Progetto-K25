@@ -1,9 +1,9 @@
 package it.unipv.ingsfw.treninordovest.view.frames.miscellanous;
 
-import it.unipv.ingsfw.treninordovest.controller.CardPurchasController;
-import it.unipv.ingsfw.treninordovest.controller.CustomerProfileController;
-import it.unipv.ingsfw.treninordovest.controller.CustomerTicketController;
-import it.unipv.ingsfw.treninordovest.controller.SubscriptionController;
+import it.unipv.ingsfw.treninordovest.controller.titoli.CardPurchasController;
+import it.unipv.ingsfw.treninordovest.controller.users.CustomerProfileController;
+import it.unipv.ingsfw.treninordovest.controller.users.CustomerTicketController;
+import it.unipv.ingsfw.treninordovest.controller.titoli.SubscriptionController;
 import it.unipv.ingsfw.treninordovest.view.panels.finance.CardPurchasePanel;
 import it.unipv.ingsfw.treninordovest.view.panels.finance.RefundPanel;
 import it.unipv.ingsfw.treninordovest.view.panels.finance.SubscriptionPanel;
@@ -25,7 +25,7 @@ public class JCustomerMainFrame extends JFrame {
     private final RefundPanel refundPanel = new RefundPanel();
     private final CustomerProfilePanel profilePanel = new CustomerProfilePanel();
     private Color coloreSfondo = new Color(131,168,195);
-    private TratteTablePanel tratteTablePanel;
+    private TratteTablePanel tratteTablePanel = new TratteTablePanel();;
     private CustomerTicketController customerTicketController;
 
     private CardPurchasController cardPurchasController;
@@ -33,7 +33,7 @@ public class JCustomerMainFrame extends JFrame {
     private CustomerProfileController customerProfileController;
 
 
-    public JCustomerMainFrame() {
+    public JCustomerMainFrame() throws SQLException {
         setTitle("Treninordovest - Area Cliente");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1120, 500);
@@ -41,7 +41,7 @@ public class JCustomerMainFrame extends JFrame {
         initComponents();
     }
 
-    private void initComponents()  {
+    private void initComponents() throws SQLException {
 
 
         // Crea i pannelli per ogni funzionalità
@@ -54,20 +54,19 @@ public class JCustomerMainFrame extends JFrame {
         travelSearchPanel.setBackground(coloreSfondo);
         refundPanel.setBackground(coloreSfondo);
 
+        tratteTablePanel.aggiornaTratta();
         tabbedPane.addTab("Acquisto Biglietto", ticketPurchasePanel);
         tabbedPane.addTab("Abbonamento", subscriptionPanel);
         tabbedPane.addTab("Acquisto Tessera", cardPurchasePanel);
-       // tabbedPane.addTab("Ricerca Viaggio", travelSearchPanel);
+        //tabbedPane.addTab("Lista Tratte", tratteTablePanel);
         tabbedPane.addTab("Rimborso", refundPanel);
         tabbedPane.addTab("Profilo", profilePanel);
 
-
-        tratteTablePanel = new TratteTablePanel();
-
-
         ticketPurchasePanel.add(tratteTablePanel);
+
+        //Aggiunta di tutte le schede nel frame
         add(tabbedPane, BorderLayout.CENTER);
-        tratteTablePanel.aggiornaTratta();
+
 
         /*Aggiunta dei controller*/
         cardPurchasController = new CardPurchasController(cardPurchasePanel,this);
@@ -75,17 +74,25 @@ public class JCustomerMainFrame extends JFrame {
         customerProfileController = new CustomerProfileController(profilePanel,this);
         customerTicketController = new CustomerTicketController(this,tratteTablePanel,ticketPurchasePanel);
 
-        try{
-            customerTicketController = new CustomerTicketController(this,tratteTablePanel,ticketPurchasePanel);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+        try {
+            tratteTablePanel.setData(customerTicketController.getTratte());
+        } catch (SQLException e) {
+          System.out.println(e.getMessage());
+          e.printStackTrace();
         }
+
+
 
     }
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            JCustomerMainFrame frame = new JCustomerMainFrame();
+            JCustomerMainFrame frame = null;
+            try {
+                frame = new JCustomerMainFrame();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
             frame.setVisible(true);
         });
     }

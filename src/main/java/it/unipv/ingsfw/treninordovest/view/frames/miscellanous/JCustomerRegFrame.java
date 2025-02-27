@@ -1,7 +1,6 @@
 package it.unipv.ingsfw.treninordovest.view.frames.miscellanous;
 
-import it.unipv.ingsfw.treninordovest.controller.CustomerRegController;
-import it.unipv.ingsfw.treninordovest.controller.MainMenuController;
+import it.unipv.ingsfw.treninordovest.controller.users.CustomerRegController;
 import it.unipv.ingsfw.treninordovest.view.panels.users.CustomerRegistrationPanel;
 
 import javax.swing.*;

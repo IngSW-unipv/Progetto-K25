@@ -1,9 +1,8 @@
-package it.unipv.ingsfw.treninordovest.controller;
+package it.unipv.ingsfw.treninordovest.controller.users;
 
 
 import it.unipv.ingsfw.treninordovest.dao.implementations.ferrovia.TrenoDAOImpl;
 import it.unipv.ingsfw.treninordovest.dao.implementations.utenti.DipendenteDAOImpl;
-import it.unipv.ingsfw.treninordovest.main.Main;
 import it.unipv.ingsfw.treninordovest.model.ferrovia.Treno;
 import it.unipv.ingsfw.treninordovest.model.utenti.Dipendente;
 import it.unipv.ingsfw.treninordovest.model.varie.GeneraID;

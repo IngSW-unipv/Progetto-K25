@@ -1,4 +1,4 @@
-package it.unipv.ingsfw.treninordovest.controller;
+package it.unipv.ingsfw.treninordovest.controller.titoli;
 
 import it.unipv.ingsfw.treninordovest.dao.implementations.utenti.TesseraDAOImpl;
 import it.unipv.ingsfw.treninordovest.model.utenti.Cliente;

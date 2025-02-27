@@ -1,8 +1,6 @@
 package it.unipv.ingsfw.treninordovest.view.frames.miscellanous;
 
-import it.unipv.ingsfw.treninordovest.controller.EmployeeProfileController;
-import it.unipv.ingsfw.treninordovest.view.panels.finance.RefundPanel;
-import it.unipv.ingsfw.treninordovest.view.panels.users.CustomerProfilePanel;
+import it.unipv.ingsfw.treninordovest.controller.users.EmployeeProfileController;
 import it.unipv.ingsfw.treninordovest.view.panels.miscellanous.TravelDocCheckPanel;
 import it.unipv.ingsfw.treninordovest.view.panels.users.EmployeeProfilePanel;
 

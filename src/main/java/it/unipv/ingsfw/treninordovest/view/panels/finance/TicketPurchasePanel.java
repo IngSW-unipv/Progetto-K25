@@ -1,17 +1,19 @@
 package it.unipv.ingsfw.treninordovest.view.panels.finance;
 
-import it.unipv.ingsfw.treninordovest.view.panels.miscellanous.TratteTablePanel;
+import com.toedter.calendar.JDateChooser;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class TicketPurchasePanel extends JPanel {
-    private JLabel labelDestinazione;
-    private JTextField textFieldDestinazione;
-    private JLabel labelPartenza;
-    private JTextField textFieldPartenza;
+    //private JLabel labelDestinazione;
+    //private JTextField textFieldDestinazione;
+    private JLabel labelIDTratta;
+    private JTextField textFieldTratta;
     private JButton buttonAcquista;
-    private JButton buttonMostraTratte;
+    private JCheckBox checkBoxRitorno;
+    private JLabel labelRitorno;
+    private JDateChooser dataRitorno;
     //private TratteTablePanel tratteTablePanel;
 
     /*DA MODIFICARE*/
@@ -22,21 +24,23 @@ public class TicketPurchasePanel extends JPanel {
         // Pannello per i controlli
         JPanel panelInput = new JPanel(new FlowLayout());
         //Partenza
-        labelPartenza = new JLabel("Inserisci partenza:");
-        textFieldPartenza = new JTextField(20);
-        //Destinazione
-        labelDestinazione = new JLabel("Inserisci destinazione:");
-        textFieldDestinazione = new JTextField(20);
-        //Pulsante
+        labelIDTratta = new JLabel("Inserisci l'ID Tratta:");
+        textFieldTratta = new JTextField(20);
+        labelRitorno = new JLabel("Data Ritorno:");
+        checkBoxRitorno = new JCheckBox("Ritorno");
+        dataRitorno = new JDateChooser();
         buttonAcquista = new JButton("Acquista Biglietto");
-        buttonMostraTratte = new JButton("Mostra Tratte");
 
-        panelInput.add(labelDestinazione);
-        panelInput.add(textFieldDestinazione);
-        panelInput.add(labelPartenza);
-        panelInput.add(textFieldPartenza);
+
+        /*panelInput.add(labelDestinazione);
+        panelInput.add(textFieldDestinazione);*/
+        panelInput.add(labelIDTratta);
+        panelInput.add(textFieldTratta);
         panelInput.add(buttonAcquista);
-        panelInput.add(buttonMostraTratte);
+        panelInput.add(checkBoxRitorno);
+        panelInput.add(labelRitorno);
+        panelInput.add(dataRitorno);
+
 
 
 
@@ -47,15 +51,20 @@ public class TicketPurchasePanel extends JPanel {
     }
 
     // Metodi getter per il controller
-    public JTextField getTextFieldDestinazione() {
-        return textFieldDestinazione;
-    }
 
     public JButton getButtonAcquista() {
         return buttonAcquista;
     }
 
-    public JButton getButtonMostraTratte() {
-        return buttonMostraTratte;
+    public JDateChooser getDataRitorno() {
+        return dataRitorno;
+    }
+
+    public JTextField getTextFieldTratta() {
+        return textFieldTratta;
+    }
+
+    public JCheckBox getCheckBoxRitorno() {
+        return checkBoxRitorno;
     }
 }

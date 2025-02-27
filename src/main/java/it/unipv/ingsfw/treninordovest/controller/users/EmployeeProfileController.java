@@ -1,14 +1,10 @@
-package it.unipv.ingsfw.treninordovest.controller;
+package it.unipv.ingsfw.treninordovest.controller.users;
 
-import it.unipv.ingsfw.treninordovest.dao.implementations.utenti.ClienteDAOImpl;
 import it.unipv.ingsfw.treninordovest.dao.implementations.utenti.DipendenteDAOImpl;
-import it.unipv.ingsfw.treninordovest.model.utenti.Cliente;
 import it.unipv.ingsfw.treninordovest.model.utenti.Dipendente;
 import it.unipv.ingsfw.treninordovest.model.varie.SessionManager;
-import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JCustomerMainFrame;
 import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JEmployeeMainFrame;
 import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JMainMenuFrame;
-import it.unipv.ingsfw.treninordovest.view.panels.users.CustomerProfilePanel;
 import it.unipv.ingsfw.treninordovest.view.panels.users.EmployeeProfilePanel;
 
 import java.sql.SQLException;

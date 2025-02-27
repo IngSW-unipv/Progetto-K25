@@ -25,8 +25,8 @@ public class TratteTablePanel extends JPanel {
 
     }
 
-    public void setData(List<Tratta> tratte ){
-        tableModelTratte.setData(tratte);
+    public void setData(List<Tratta> listaTratte ){
+        tableModelTratte.setData(listaTratte);
     }
 
     public void aggiornaTratta() {

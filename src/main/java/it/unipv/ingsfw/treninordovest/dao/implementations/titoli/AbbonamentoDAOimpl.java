@@ -154,7 +154,6 @@ public class AbbonamentoDAOimpl implements AbbonamentoDAO {
                 ps1.setDouble(4, abbonamento.getPrezzo());
                 // Esecuzione delle query
                 ps1.executeUpdate();
-                Database.closeConnection(con);
             }
             try (PreparedStatement ps2 = con.prepareStatement(sql2)) {
                 // Impostazione dei parametri per la query 1
@@ -164,7 +163,6 @@ public class AbbonamentoDAOimpl implements AbbonamentoDAO {
                 ps2.setString(4, abbonamento.getIdTessera());
                 // Esecuzione delle query
                 ps2.executeUpdate();
-                //Database.closeConnection(con);
             }
 
         } catch (Exception e) {
