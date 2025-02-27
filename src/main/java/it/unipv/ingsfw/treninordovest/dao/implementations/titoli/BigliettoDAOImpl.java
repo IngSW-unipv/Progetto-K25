@@ -163,8 +163,8 @@ public class BigliettoDAOImpl implements BigliettoDAO {
             ps1.setDouble(4,biglietto.getPrezzo());
 
             ps2.setString(1,biglietto.getId());
-            ps2.setObject(2,biglietto.isValidato());
-            ps2.setObject(3,biglietto.isRitorno());
+            ps2.setObject(2,biglietto.isRitorno());
+            ps2.setObject(3,biglietto.isValidato());
             ps2.setObject(4,biglietto.getDataRitorno());
             ps2.setObject(5,biglietto.getDataValidazione());
 

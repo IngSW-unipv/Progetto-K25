@@ -1,6 +1,8 @@
 package it.unipv.ingsfw.treninordovest.model.ferrovia;
 
 import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class TrattaFermata {
     //Attributi
@@ -8,8 +10,8 @@ public class TrattaFermata {
     private String idTratta;
     private int numOrdine;
     private int binario;
-    private Time oraPartenza;
-    private Time oraArrivo;
+    private LocalTime oraPartenza;
+    private LocalTime oraArrivo;
 
     //Costruttori
     public TrattaFermata() {}
@@ -47,7 +49,7 @@ public class TrattaFermata {
         this.numOrdine = numOrdine;
     }
 
-    public Time getOraArrivo() {
+    public LocalTime getOraArrivo() {
         return oraArrivo;
     }
 
