@@ -67,7 +67,6 @@ public class CardPurchasController {
 
             }
 
-
             System.out.println(clienteLoggato);
 
 
@@ -75,12 +74,6 @@ public class CardPurchasController {
         }catch (Exception e){
             e.printStackTrace();
         }
-
-
-
-
-
-
 
 
 
