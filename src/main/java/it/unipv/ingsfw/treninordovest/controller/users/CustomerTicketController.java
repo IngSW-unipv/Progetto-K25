@@ -107,7 +107,7 @@ public class CustomerTicketController {
             JOptionPane.showMessageDialog(ticketPurchasePanel,"Credito Insufficiente" ,"Errore",JOptionPane.ERROR_MESSAGE);
             return;
         }
-        else  JOptionPane.showMessageDialog(ticketPurchasePanel,"Biglietto acquistato" +totaleScalato);
+        else  JOptionPane.showMessageDialog(ticketPurchasePanel,"Biglietto acquistato:   " +totaleScalato+ "    Codice Titolo:  "+ idBiglietto);
 
 
 

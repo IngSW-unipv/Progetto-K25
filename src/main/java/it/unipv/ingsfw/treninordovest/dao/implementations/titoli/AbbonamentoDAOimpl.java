@@ -4,10 +4,7 @@ import it.unipv.ingsfw.treninordovest.dao.database.Database;
 import it.unipv.ingsfw.treninordovest.dao.interfaces.AbbonamentoDAO;
 import it.unipv.ingsfw.treninordovest.model.titoli.Abbonamento;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,24 +17,28 @@ public class AbbonamentoDAOimpl implements AbbonamentoDAO {
         Abbonamento abbonamento = null;
         PreparedStatement ps;
         try (Connection con = new Database().getConnection()) {
-            abbonamento= null;
+            //abbonamento= null;
             //Query effettuata su una vista creata nel DB per semplificare l'estrazione dei dati
             String sql = "select IDTitolo, IDPagamento, Emissione, Prezzo, Tipo, Scadenza, IDTessera from titoliAbbonamenti where IDTitolo=?";
 
             //Estrazione dei dati dal DB
             ps = con.prepareStatement(sql);
+            ps.setString(1, id);
             ResultSet rs=ps.executeQuery();
+
 
             if(rs.next()){
                 String idTitolo = rs.getString("IDTitolo");
                 String idPagamento = rs.getString("IDPagamento");
-                LocalDate emissione = (LocalDate) rs.getObject("Emissione");
+                Date emissione = rs.getDate("Emissione");
+                LocalDate emissioneLoc= emissione.toLocalDate();
                 Double prezzo = (Double) rs.getObject("Prezzo");
                 String tipo = rs.getString("Tipo");
-                LocalDate scadenza = (LocalDate) rs.getObject("Scadenza");
+                Date scadenza = rs.getDate("Scadenza");
+                LocalDate scadenzaLoc= scadenza.toLocalDate();
                 String idTessera = rs.getString("IDTessera");
 
-                abbonamento=new Abbonamento(idTitolo,idPagamento,emissione,prezzo,tipo,scadenza,idTessera);
+                abbonamento=new Abbonamento(idTitolo,idPagamento,emissioneLoc,prezzo,tipo,scadenzaLoc,idTessera);
             }
             Database.closeConnection(con);
 

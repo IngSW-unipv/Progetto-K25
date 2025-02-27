@@ -119,7 +119,7 @@ public class SubscriptionController {
                 pagamentoDAO.insert(pagamento);
                 abbonamentoDAO.insert(abbonamento);
 
-                JOptionPane.showMessageDialog(view,"Abbonamento Acquistato - Bilancio attuale" +clienteLoggato.getBilancio());
+                JOptionPane.showMessageDialog(view,"Abbonamento Acquistato - Bilancio attuale" +clienteLoggato.getBilancio()+" ID Titolo: "+abbonamento.getId());
 
 
             } else if (tipoAbbonamento.equals("Mensile")&& dataInizio.isAfter(oggi)) {
@@ -145,7 +145,7 @@ public class SubscriptionController {
                 pagamentoDAO.insert(pagamento);
                 abbonamentoDAO.insert(abbonamento);
 
-                JOptionPane.showMessageDialog(view,"Abbonamento Acquistato - Bilancio attuale" +clienteLoggato.getBilancio());
+                JOptionPane.showMessageDialog(view,"Abbonamento Acquistato - Bilancio attuale" +clienteLoggato.getBilancio()+" ID Titolo: "+abbonamento.getId());
 
 
             } else if (tipoAbbonamento.equals("Annuale")&& dataInizio.isAfter(oggi)) {
@@ -171,7 +171,7 @@ public class SubscriptionController {
                 pagamentoDAO.insert(pagamento);
                 abbonamentoDAO.insert(abbonamento);
 
-                JOptionPane.showMessageDialog(view,"Abbonamento Acquistato - Bilancio attuale" +clienteLoggato.getBilancio());
+                JOptionPane.showMessageDialog(view,"Abbonamento Acquistato - Bilancio attuale" +clienteLoggato.getBilancio()+" ID Titolo: "+abbonamento.getId());
             }
         }catch (Exception e) {
             e.printStackTrace();

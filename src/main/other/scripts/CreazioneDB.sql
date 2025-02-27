@@ -222,7 +222,8 @@ select * from titoloviaggio tv join abbonamento ab on tv.IDTitolo=ab.IDAbbonamen
 create view titoliBiglietti as
 select * from titoloviaggio tv join biglietto bg on tv.IDTitolo=bg.IDBiglietto;
 
-
+/*
 create view tratteFermateCompleto as
 select tr.IDTratta,Nome,Lunghezza,Fe.idFermata,Citta,NumOrdine,OraPartenza,OraArrivo,NumBinari from tratta tr ,trattafermata tf,fermata fe
 where tf.IDFermata = fe.IDFermata and tf.IDTratta=tr.IDtratta;
+*/

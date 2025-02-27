@@ -88,7 +88,7 @@ public class JCustomerMainFrame extends JFrame {
 
 
     }
-
+/*
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             JCustomerMainFrame frame = null;
@@ -100,5 +100,5 @@ public class JCustomerMainFrame extends JFrame {
             frame.setVisible(true);
         });
     }
-
+*/
 }
