@@ -1,7 +1,7 @@
 # COMPAGNIA FERROVIARIA TRENINORDOVEST 
 
 <div style="text-align: center;">
-  <img src="[URL_dell_immagine](https://github.com/user-attachments/assets/fdc2b77d-f3fe-482e-b3a3-3a431662da12)" alt="" />
+  <img src="(https://github.com/user-attachments/assets/fdc2b77d-f3fe-482e-b3a3-3a431662da12)" alt="" />
 </div>
 
 
