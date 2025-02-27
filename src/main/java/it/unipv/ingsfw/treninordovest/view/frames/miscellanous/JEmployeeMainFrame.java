@@ -1,5 +1,6 @@
 package it.unipv.ingsfw.treninordovest.view.frames.miscellanous;
 
+import it.unipv.ingsfw.treninordovest.controller.titoli.TicketCheckController;
 import it.unipv.ingsfw.treninordovest.controller.users.EmployeeProfileController;
 import it.unipv.ingsfw.treninordovest.view.panels.miscellanous.TravelDocCheckPanel;
 import it.unipv.ingsfw.treninordovest.view.panels.users.EmployeeProfilePanel;
@@ -10,10 +11,11 @@ import java.awt.*;
 public class JEmployeeMainFrame extends JFrame {
 
     private final JTabbedPane tabbedPane = new JTabbedPane();;
-    private final JPanel travelDocCheck = new TravelDocCheckPanel();
+    private final TravelDocCheckPanel travelDocCheck = new TravelDocCheckPanel();
     private final EmployeeProfilePanel profilePanel = new EmployeeProfilePanel();
 
     private EmployeeProfileController employeeProfileController;
+    private TicketCheckController ticketCheckController;
 
     public JEmployeeMainFrame() {
         setTitle("Treninordovest - Area Dipendenti");
@@ -31,6 +33,7 @@ public class JEmployeeMainFrame extends JFrame {
 
         add(tabbedPane, BorderLayout.CENTER);
         employeeProfileController= new EmployeeProfileController(profilePanel,this);
+        ticketCheckController = new TicketCheckController(this,travelDocCheck);
 
 
     }

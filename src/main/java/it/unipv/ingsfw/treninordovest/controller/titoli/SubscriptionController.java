@@ -157,9 +157,6 @@ public class SubscriptionController {
                     JOptionPane.showMessageDialog(view,"Credito Insufficiente" +clienteLoggato.getBilancio());
                     return;
                 }
-                else {
-                    JOptionPane.showMessageDialog(view,"Data o credito non corretti" ,"Errore",JOptionPane.ERROR_MESSAGE);
-                }
 
 
                 pagamento= creaPagamento(prezzoAbbonamento);
@@ -169,7 +166,7 @@ public class SubscriptionController {
                 double differenza = clienteLoggato.getBilancio() - prezzoAbbonamento;
                 clienteLoggato.setBilancio(differenza);
                 System.out.println("Debug: "+clienteLoggato.getBilancio());
-                clienteDAO.updateBilancio(clienteLoggato.getId(), clienteLoggato.getBilancio());
+                clienteDAO.updateBilancio(clienteLoggato.getId(), differenza);
 
                 pagamentoDAO.insert(pagamento);
                 abbonamentoDAO.insert(abbonamento);
