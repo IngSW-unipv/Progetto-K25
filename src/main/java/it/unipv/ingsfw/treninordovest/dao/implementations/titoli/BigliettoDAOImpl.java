@@ -5,13 +5,11 @@ import it.unipv.ingsfw.treninordovest.dao.interfaces.BigliettoDAO;
 import it.unipv.ingsfw.treninordovest.model.titoli.Abbonamento;
 import it.unipv.ingsfw.treninordovest.model.titoli.Biglietto;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class BigliettoDAOImpl implements BigliettoDAO {
     @Override
@@ -28,19 +26,30 @@ public class BigliettoDAOImpl implements BigliettoDAO {
 
             //Estrazione dei dati dal DB
             ps = con.prepareStatement(sql);
+            ps.setString(1, id);
             ResultSet rs=ps.executeQuery();
 
             if(rs.next()){
                 String idTitolo = rs.getString("IDTitolo");
                 String idPagamento = rs.getString("IDPagamento");
-                LocalDate emissione = (LocalDate) rs.getObject("Emissione");
+                Date emissione =  rs.getDate("Emissione");
+
+                LocalDate emissioneLocal= emissione.toLocalDate();
+
                 Double prezzo = (Double) rs.getObject("Prezzo");
                 Boolean validato = (Boolean) rs.getObject("Validato");
                 Boolean ritorno = (Boolean) rs.getObject("Ritorno");
-                LocalDate dataRitorno = (LocalDate) rs.getObject("DataRitorno");
-                LocalDate dataValidazione = (LocalDate) rs.getObject("DataValidazione");
 
-               biglietto=new Biglietto(idTitolo,idPagamento,emissione,prezzo,ritorno,validato,dataRitorno,dataValidazione);
+                LocalDate dataRitornoLocal=LocalDate.now();
+                if (rs.getDate("DataRitorno") == null ) {
+                    dataRitornoLocal = LocalDate.now();
+                }else
+                    rs.getDate("DataRitorno");
+                Date dataValidazione = rs.getDate("DataValidazione");
+
+                LocalDate dataValLocal= dataValidazione.toLocalDate();
+
+               biglietto=new Biglietto(idTitolo,idPagamento,emissioneLocal,prezzo,ritorno,validato,dataRitornoLocal,dataValLocal);
             }
             Database.closeConnection(con);
 

@@ -1,6 +1,7 @@
 package it.unipv.ingsfw.treninordovest.view.frames.miscellanous;
 
 import it.unipv.ingsfw.treninordovest.controller.titoli.CardPurchasController;
+import it.unipv.ingsfw.treninordovest.controller.titoli.TicketRefundController;
 import it.unipv.ingsfw.treninordovest.controller.users.CustomerProfileController;
 import it.unipv.ingsfw.treninordovest.controller.users.CustomerTicketController;
 import it.unipv.ingsfw.treninordovest.controller.titoli.SubscriptionController;
@@ -27,6 +28,7 @@ public class JCustomerMainFrame extends JFrame {
     private Color coloreSfondo = new Color(131,168,195);
     private TratteTablePanel tratteTablePanel = new TratteTablePanel();;
     private CustomerTicketController customerTicketController;
+    private TicketRefundController ticketRefundController;
 
     private CardPurchasController cardPurchasController;
     private SubscriptionController subscriptionController;
@@ -80,6 +82,8 @@ public class JCustomerMainFrame extends JFrame {
           System.out.println(e.getMessage());
           e.printStackTrace();
         }
+
+        ticketRefundController = new TicketRefundController(this,refundPanel);
 
 
 

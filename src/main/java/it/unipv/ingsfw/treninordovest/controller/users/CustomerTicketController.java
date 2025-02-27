@@ -22,6 +22,7 @@ import it.unipv.ingsfw.treninordovest.view.panels.finance.TicketPurchasePanel;
 import it.unipv.ingsfw.treninordovest.view.panels.miscellanous.TratteTablePanel;
 
 import javax.persistence.Id;
+import javax.swing.*;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -100,11 +101,24 @@ public class CustomerTicketController {
 
         Viaggio viaggio = creaViaggio(idBiglietto,idPart,idArr,idTratta);
 
+        double totaleScalato= clienteLoggato.getBilancio()-pagamento.getTotale();
+
+        if (clienteLoggato.getBilancio()<=0){
+            JOptionPane.showMessageDialog(ticketPurchasePanel,"Credito Insufficiente" ,"Errore",JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        else  JOptionPane.showMessageDialog(ticketPurchasePanel,"Biglietto acquistato" +totaleScalato);
+
+
+
+        ClienteDAOImpl clienteDAO = new ClienteDAOImpl();
+        clienteDAO.updateBilancio(clienteLoggato.getId(),totaleScalato);
+        clienteLoggato.setBilancio(totaleScalato);
+
         //Inserimento nel DB
         pagamentoDAO.insert(pagamento);
         bigliettoDAO.insert(biglietto);
         viaggioDAO.insert(viaggio);
-
 
     }
 
@@ -130,7 +144,6 @@ public class CustomerTicketController {
 
     return bigliettoCreato;
     }
-
 
     private Viaggio creaViaggio (String idBiglietto,String idPartenza,String idArrivo,String idTratta) throws SQLException {
         generaID = new GeneraID("VG");
