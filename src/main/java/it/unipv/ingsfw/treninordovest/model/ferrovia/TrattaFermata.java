@@ -16,7 +16,7 @@ public class TrattaFermata {
     //Costruttori
     public TrattaFermata() {}
 
-    public TrattaFermata(String idFermata, int numOrdine, String idTratta, Time oraPartenza, Time oraArrivo, int binario) {
+    public TrattaFermata(String idFermata, int numOrdine, String idTratta, LocalTime oraPartenza, LocalTime oraArrivo, int binario) {
         this.idFermata = idFermata;
         this.numOrdine = numOrdine;
         this.idTratta = idTratta;
@@ -53,15 +53,15 @@ public class TrattaFermata {
         return oraArrivo;
     }
 
-    public void setOraArrivo(Time oraArrivo) {
+    public void setOraArrivo(LocalTime oraArrivo) {
         this.oraArrivo = oraArrivo;
     }
 
-    public Time getOraPartenza() {
+    public LocalTime getOraPartenza() {
         return oraPartenza;
     }
 
-    public void setOraPartenza(Time oraPartenza) {
+    public void setOraPartenza(LocalTime oraPartenza) {
         this.oraPartenza = oraPartenza;
     }
 

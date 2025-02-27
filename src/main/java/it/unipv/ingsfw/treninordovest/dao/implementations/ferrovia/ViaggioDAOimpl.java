@@ -141,7 +141,7 @@ public class ViaggioDAOimpl implements ViaggioDAO {
         Connection con = null;
         try {
             con = new Database().getConnection();
-            String sql1 = "INSERT INTO viaggio (IDViaggio,IDTratta,IDPartenza,IDArrivo,DataViaggio,OrarioPartenza,OrarioArrivo,idbiglietto) VALUES (?, ?, ?, ?, ?, ?,?,?)";
+            String sql1 = "INSERT INTO viaggio (IDViaggio,IDTratta,IDPartenza,IDArrivo,DataViaggio,OrarioPartenza,OrarioArrivo,IDBiglietto) VALUES (?,?,?,?,?,?,?,?)";
 
             try (PreparedStatement ps1 = con.prepareStatement(sql1)) {
 
@@ -158,7 +158,7 @@ public class ViaggioDAOimpl implements ViaggioDAO {
                 // Esecuzione delle query
                 ps1.executeUpdate();
 
-                Database.closeConnection(con);
+                //Database.closeConnection(con);
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
