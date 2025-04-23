@@ -37,13 +37,6 @@ public class JEmployeeMainFrame extends JFrame {
 
 
     }
-/*
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            JEmployeeMainFrame frame = new JEmployeeMainFrame();
-            frame.setVisible(true);
-        });
-    }*/
 
 }
 

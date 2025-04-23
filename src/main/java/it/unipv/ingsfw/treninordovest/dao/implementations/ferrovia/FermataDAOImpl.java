@@ -25,7 +25,6 @@ public class FermataDAOImpl implements FermataDAO {
             String sql = "select idFermata, citta, numBinari from Fermata where idFermata=?";
 
             //Estrazione dei dati dal DB
-            ps = null;
             ps = con.prepareStatement(sql);
             ps.setString(1, id);
             ResultSet rs = ps.executeQuery();
@@ -84,8 +83,8 @@ public class FermataDAOImpl implements FermataDAO {
 
 
     @Override
-    public void delete(String id) throws SQLException {
-        try(Connection con = new Database().getConnection()){
+    public void delete(String id)  {
+        try(Connection con = Database.getConnection()){
             PreparedStatement ps = con.prepareStatement("delete from Fermata where idFermata=?");
             ps.setString(1,id);
 
@@ -102,7 +101,7 @@ public class FermataDAOImpl implements FermataDAO {
     public void update(Fermata fermata) throws SQLException {
         String sql1="UPDATE fermata set citta=?, numBinari=? where idFermata=?";
 
-        try(Connection con = new Database().getConnection()){
+        try(Connection con = Database.getConnection()){
             //Prima Query
             PreparedStatement ps1= con.prepareStatement(sql1);
             ps1.setString(1,fermata.getCitta());
@@ -120,11 +119,11 @@ public class FermataDAOImpl implements FermataDAO {
     }
 
     @Override
-    public void insert(Fermata fermata) throws SQLException {
+    public void insert(Fermata fermata)  {
 
         Connection con = null;
         try {
-            con = new Database().getConnection();
+            con = Database.getConnection();
             String sql1 = "INSERT INTO Fermata (idFermata, citta, numBinari) VALUES (?,?,?)";
 
             try (PreparedStatement ps1 = con.prepareStatement(sql1)) {
@@ -141,10 +140,6 @@ public class FermataDAOImpl implements FermataDAO {
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
-        } finally {
-            if (con != null && !con.isClosed()) {
-                con.close();
-            }
         }
 
     }

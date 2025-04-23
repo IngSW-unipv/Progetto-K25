@@ -80,14 +80,11 @@ public class EmployeeRegController {
 
         Dipendente dipendenteinserito = new Dipendente(id,password,nome,cognome,luogoNascita,sesso,dataNascitaLocal,cellulare,indirizzo,codTreno,stipendio,ruolo);
         dipendenteDAO = new DipendenteDAOImpl();
-        try  {
-            dipendenteDAO.insert(dipendenteinserito);
-            JOptionPane.showMessageDialog(view,"Registrazione avvenuta con successo !!"+"\nSalvati il tuo ID dipendente:    "+id);
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(view, "Errore riprovare...", "Errore", JOptionPane.ERROR_MESSAGE);
-        }
+        dipendenteDAO.insert(dipendenteinserito);
+        JOptionPane.showMessageDialog(view,"Registrazione avvenuta con successo !!"+"\nSalvati il tuo ID dipendente:    "+id);
+
+
     }
 
     private void tornaAlMenuPrincipale(){

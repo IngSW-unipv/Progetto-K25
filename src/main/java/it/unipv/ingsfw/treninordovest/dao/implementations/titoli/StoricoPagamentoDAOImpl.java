@@ -22,7 +22,6 @@ public class StoricoPagamentoDAOImpl implements StoricoPagamentoDAO {
             String sql = "select idStorico,idPagamento,Stato from StoricoPagamento where idStorico=?";
 
             //Estrazione dei dati dal DB
-            ps = null;
             ps = con.prepareStatement(sql);
             ps.setString(1,id);
             ResultSet rs=ps.executeQuery();
@@ -58,7 +57,6 @@ public class StoricoPagamentoDAOImpl implements StoricoPagamentoDAO {
             String sql = "select idStorico,idPagamento,Stato from StoricoPagamento from StoricoPagamento";
 
             //Estrazione dei dati dal DB
-            ps = null;
             ps = con.prepareStatement(sql);
 
             //ps.setString(1,id);
@@ -119,7 +117,7 @@ public class StoricoPagamentoDAOImpl implements StoricoPagamentoDAO {
     }
 
     @Override
-    public void insert(StoricoPagamento storicoPagamento) throws SQLException {
+    public void insert(StoricoPagamento storicoPagamento)  {
         
         Connection con = null;
 
@@ -142,10 +140,6 @@ public class StoricoPagamentoDAOImpl implements StoricoPagamentoDAO {
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
-        } finally {
-            if (con != null && !con.isClosed()) {
-                con.close();
-            }
         }
     }
 }

@@ -53,22 +53,22 @@ public class TrenoTrattaDAOImpl implements TrenoTrattaDAO{
     }
 
     @Override
-    public List<TrenoTratta> getAll() throws SQLException {
+    public List<TrenoTratta> getAll()  {
         return List.of();
     }
 
     @Override
-    public void delete(String id) throws SQLException {
+    public void delete(String id)  {
 
     }
 
     @Override
-    public void update(TrenoTratta trenoTratta) throws SQLException {
+    public void update(TrenoTratta trenoTratta)  {
 
     }
 
     @Override
-    public void insert(TrenoTratta trenoTratta) throws SQLException {
+    public void insert(TrenoTratta trenoTratta)  {
 
     }
 

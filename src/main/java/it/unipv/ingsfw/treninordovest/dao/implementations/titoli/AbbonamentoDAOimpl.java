@@ -12,7 +12,7 @@ import java.util.List;
 public class AbbonamentoDAOimpl implements AbbonamentoDAO {
 
     @Override
-    public Abbonamento get(String id) throws SQLException {
+    public Abbonamento get(String id)  {
 
         Abbonamento abbonamento = null;
         PreparedStatement ps;
@@ -50,7 +50,7 @@ public class AbbonamentoDAOimpl implements AbbonamentoDAO {
     }
 
     @Override
-    public List<Abbonamento> getAll() throws SQLException {
+    public List<Abbonamento> getAll()  {
 
         List listaAbbonamenti =  null;
         Abbonamento abbonamento= null;
@@ -88,7 +88,7 @@ public class AbbonamentoDAOimpl implements AbbonamentoDAO {
     }
 
     @Override
-    public void delete(String id) throws SQLException {
+    public void delete(String id)  {
 
         try(Connection con = new Database().getConnection()){
             PreparedStatement ps = con.prepareStatement("delete from titoloviaggio where IDTitolo=?");
@@ -106,7 +106,7 @@ public class AbbonamentoDAOimpl implements AbbonamentoDAO {
     }
 
     @Override
-    public void update(Abbonamento abbonamento) throws SQLException {
+    public void update(Abbonamento abbonamento)  {
 
         String sql1="UPDATE titoloviaggio set IDPagamento=?, Emissione=?, Prezzo=? where IDTitolo=? ";
         String sql2="UPDATE abbonamento set Tipo=?, Scadenza=?, IDTessera=? where IDAbbonamento=?";
@@ -141,7 +141,7 @@ public class AbbonamentoDAOimpl implements AbbonamentoDAO {
     }
 
     @Override
-    public void insert(Abbonamento abbonamento) throws SQLException {
+    public void insert(Abbonamento abbonamento)  {
         Connection con = null;
         try {
             con = new Database().getConnection();
@@ -168,10 +168,6 @@ public class AbbonamentoDAOimpl implements AbbonamentoDAO {
 
         } catch (Exception e) {
             throw new RuntimeException(e);
-        } finally {
-            if (con != null && !con.isClosed()) {
-                con.close();
-            }
         }
 
     }

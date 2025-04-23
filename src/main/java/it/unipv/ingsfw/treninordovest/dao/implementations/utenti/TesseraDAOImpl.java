@@ -46,7 +46,7 @@ public class TesseraDAOImpl implements TesseraDAO {
     }
 
     @Override
-    public List<Tessera> getAll() throws SQLException {
+    public List<Tessera> getAll()  {
         List listaTessere =  null;
         Tessera tessera= null;
         PreparedStatement ps;
@@ -80,8 +80,8 @@ public class TesseraDAOImpl implements TesseraDAO {
     }
 
     @Override
-    public void delete(String id) throws SQLException {
-        try(Connection con = new Database().getConnection()){
+    public void delete(String id)  {
+        try(Connection con = Database.getConnection()){
             PreparedStatement ps = con.prepareStatement("delete from tessera where IDTessera=?");
             ps.setString(1,id);
             ps.executeUpdate();
@@ -93,11 +93,11 @@ public class TesseraDAOImpl implements TesseraDAO {
     }
 
     @Override
-    public void update(Tessera tessera) throws SQLException {
+    public void update(Tessera tessera)  {
 
         String sql1="UPDATE tessera set emissione=?, scadenza=?, idcliente=? where IDTessera=?";
 
-        try(Connection con = new Database().getConnection()){
+        try(Connection con = Database.getConnection()){
             //Prima Query
             PreparedStatement ps1= con.prepareStatement(sql1);
 
@@ -121,7 +121,7 @@ public class TesseraDAOImpl implements TesseraDAO {
     }
 
     @Override
-    public void insert(Tessera tessera) throws SQLException {
+    public void insert(Tessera tessera)  {
         Connection con = null;
         try {
             con = new Database().getConnection();

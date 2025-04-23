@@ -96,7 +96,7 @@ public class ViaggioDAOimpl implements ViaggioDAO {
 
 
     @Override
-    public void delete(String id) throws SQLException {
+    public void delete(String id)  {
         try(Connection con = new Database().getConnection()){
             PreparedStatement ps = con.prepareStatement("delete from Viaggio where idViaggio=?");
             ps.setString(1,id);
@@ -136,11 +136,11 @@ public class ViaggioDAOimpl implements ViaggioDAO {
     }
 
     @Override
-    public void insert(Viaggio viaggio) throws SQLException {
+    public void insert(Viaggio viaggio)  {
 
         Connection con = null;
         try {
-            con = new Database().getConnection();
+            con = Database.getConnection();
             String sql1 = "INSERT INTO viaggio (IDViaggio,IDTratta,IDPartenza,IDArrivo,DataViaggio,OrarioPartenza,OrarioArrivo,IDBiglietto) VALUES (?,?,?,?,?,?,?,?)";
 
             try (PreparedStatement ps1 = con.prepareStatement(sql1)) {
@@ -162,10 +162,6 @@ public class ViaggioDAOimpl implements ViaggioDAO {
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
-        } finally {
-            if (con != null && !con.isClosed()) {
-                con.close();
-            }
         }
 
     }

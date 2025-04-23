@@ -35,13 +35,7 @@ public class SubscriptionController {
     }
 
     private void initComponents() {
-        view.getButtonAbbonati().addActionListener(e -> {
-            try {
-                acquistoAbbonamento();
-            } catch (SQLException ex) {
-                throw new RuntimeException(ex);
-            }
-        });
+        view.getButtonAbbonati().addActionListener(e -> {acquistoAbbonamento();});
     }
 
     protected Pagamento creaPagamento(double totale) {
@@ -67,7 +61,7 @@ public class SubscriptionController {
 
     }
 
-    private void acquistoAbbonamento() throws SQLException {
+    private void acquistoAbbonamento() /*throws SQLException*/ {
         /*Dichiarazioni varianili*/
 
         try {

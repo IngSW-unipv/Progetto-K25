@@ -87,8 +87,6 @@ public class PagamentoDAOImpl implements PagamentoDAO {
         return paga;
     }
 
-
-
     @Override
     public void delete(String idPagamento) throws SQLException {
         try(Connection con = new Database().getConnection()){

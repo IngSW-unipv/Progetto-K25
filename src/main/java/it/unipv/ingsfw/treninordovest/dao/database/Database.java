@@ -1,6 +1,9 @@
 package it.unipv.ingsfw.treninordovest.dao.database;
 
+import it.unipv.ingsfw.treninordovest.exceptions.DatabaseConnectionException;
+
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -17,53 +20,70 @@ public class Database {
     private static String password;
     private static String dbDriver;
     private static String dbURL;
-    private static Database conn;
+    private static String filePath="properties/properties";
 
 
     private static void init() {
-        Properties p = new Properties();
         try {
-            p.load(new FileInputStream("properties/properties"));
+            Properties p = loadProperties();
             username=p.getProperty(PROPERTYNAME);
             password=p.getProperty(PROPERTYPSW);
             dbDriver =p.getProperty(PROPERTYDBDRIVER);
             dbURL =p.getProperty(PROPERTYDBURL);
 
         }catch(Exception e) {
-            e.printStackTrace();
+            System.err.println("Errore:"+e.getMessage());
+
         }
     }
 
-    public static Connection getConnection() throws SQLException
+
+    private static Properties loadProperties() {
+        Properties p = new Properties();
+        try (FileInputStream fis = new FileInputStream(filePath)) {
+            p.load(fis);
+        }catch(IOException e) {
+            System.err.println("Errore nella lettura dei parametri di connessione: "+e.getMessage());
+            e.printStackTrace();
+            throw new RuntimeException("Impossibile caricare il file di configurazione",e);
+        }
+        return p;
+    }
+
+    //Metodo statico di ottenimento della connessione
+    public static Connection getConnection()
     {
         Connection conn=null;
         init();
-        System.out.println(dbURL);
+        System.out.println("Debug: "+ dbURL);
         if ( isOpen(conn) )
             closeConnection(conn);
         try
         {
-            //dbURL=String.format(dbURL);
-            //	System.out.println(dbURL);
            Class.forName(dbDriver);
            conn = DriverManager.getConnection(dbURL, username, password);// Apertura connessione
-            //System.out.println("Connesione stabilita");
         }
-        catch (Exception e)
+        catch (ClassNotFoundException e)
         {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-            return null;
+            throw new DatabaseConnectionException("Impossibile trovare i driver JBDC",e);
+
+        } catch (SQLException e) {
+           System.out.println("Errore durante la connessione alle base dati: "+ e.getMessage());
+
         }
         return conn;
     }
 
     public static boolean isOpen(Connection conn)
     {
-        if (conn == null)
+        try
+        {
+            return (conn != null && !conn.isClosed());
+        }catch (SQLException e){
+            e.printStackTrace();
             return false;
-        else
-            return true;
+        }
+
     }
 
     public static Connection closeConnection(Connection conn)
@@ -72,7 +92,6 @@ public class Database {
             return null;
         try
         {
-
             conn.close();
             conn = null;
         }

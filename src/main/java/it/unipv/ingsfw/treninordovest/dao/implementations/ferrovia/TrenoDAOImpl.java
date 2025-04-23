@@ -15,10 +15,10 @@ import java.util.List;
 
 public class TrenoDAOImpl implements TrenoDAO {
     @Override
-    public Treno get(String id) throws SQLException {
+    public Treno get(String id)  {
         Treno treno = null;
         PreparedStatement ps;
-        try (Connection con = new Database().getConnection()) {
+        try (Connection con = Database.getConnection()) {
             treno = null;
             //Query effettuata su una vista creata nel DB per semplificare l'estrazione dei dati
             String sql = "select * from treno where IDTreno=?";
@@ -44,12 +44,12 @@ public class TrenoDAOImpl implements TrenoDAO {
     }
 
     @Override
-    public List<Treno> getAll() throws SQLException {
+    public List<Treno> getAll()  {
 
         Treno treno = null;
         List treni = new ArrayList<Treno>();
         PreparedStatement ps;
-        try (Connection con = new Database().getConnection()) {
+        try (Connection con = Database.getConnection()) {
             treno = null;
             //Query effettuata su una vista creata nel DB per semplificare l'estrazione dei dati
             String sql = "select * from treno";
@@ -78,7 +78,7 @@ public class TrenoDAOImpl implements TrenoDAO {
     }
 
     @Override
-    public void delete(String id) throws SQLException {
+    public void delete(String id)  {
 
         try(Connection con = new Database().getConnection()){
             PreparedStatement ps = con.prepareStatement("delete from treno where IDTreno=?");
@@ -93,11 +93,11 @@ public class TrenoDAOImpl implements TrenoDAO {
     }
 
     @Override
-    public void update(Treno treno) throws SQLException {
+    public void update(Treno treno)  {
 
         String sql1="UPDATE treno set modello=?, kw=?, numposti=? where IDTreno=?";
 
-        try(Connection con = new Database().getConnection()){
+        try(Connection con = Database.getConnection()){
             //Prima Query
             PreparedStatement ps1= con.prepareStatement(sql1);
 
@@ -120,10 +120,10 @@ public class TrenoDAOImpl implements TrenoDAO {
     }
 
     @Override
-    public void insert(Treno treno) throws SQLException {
+    public void insert(Treno treno) {
         Connection con = null;
         try {
-            con = new Database().getConnection();
+            con = Database.getConnection();
             String sql1 = "INSERT INTO treno (IDTreno, modello, kw, numPosti) VALUES (?, ?, ?, ?)";
             try (PreparedStatement ps1 = con.prepareStatement(sql1)) {
                 // Impostazione dei parametri per la query 1
@@ -139,12 +139,7 @@ public class TrenoDAOImpl implements TrenoDAO {
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
-        } finally {
-            if (con != null && !con.isClosed()) {
-                con.close();
-            }
         }
-
 
 
 

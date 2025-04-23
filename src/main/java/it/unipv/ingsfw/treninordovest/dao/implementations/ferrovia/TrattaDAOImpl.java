@@ -19,7 +19,7 @@ public class TrattaDAOImpl implements TrattaDAO {
 
        Tratta tratta = null;
         PreparedStatement ps;
-        try (Connection con = new Database().getConnection()) {
+        try (Connection con =Database.getConnection()) {
             tratta = null;
             //Query effettuata su una vista creata nel DB per semplificare l'estrazione dei dati
             String sql = "select * from tratta where IDTratta=?";
@@ -51,7 +51,7 @@ public class TrattaDAOImpl implements TrattaDAO {
         Tratta tratta = null;
         List tratte = new ArrayList<Tratta>();
         PreparedStatement ps;
-        try (Connection con = new Database().getConnection()) {
+        try (Connection con = Database.getConnection()) {
             tratta = null;
             //Query effettuata su una vista creata nel DB per semplificare l'estrazione dei dati
             String sql = "select IDTratta,Nome,Lunghezza from tratta";
@@ -96,10 +96,10 @@ public class TrattaDAOImpl implements TrattaDAO {
     }
 
     @Override
-    public void update(Tratta tratta) throws SQLException {
+    public void update(Tratta tratta) {
         String sql1="UPDATE Tratta set nome=?, lunghezza=? where idTratta=?=?";
 
-        try(Connection con = new Database().getConnection()){
+        try(Connection con = Database.getConnection()){
             //Prima Query
             PreparedStatement ps1= con.prepareStatement(sql1);
             ps1.setString(1,tratta.getNome());
@@ -116,10 +116,10 @@ public class TrattaDAOImpl implements TrattaDAO {
     }
 
     @Override
-    public void insert(Tratta tratta) throws SQLException {
+    public void insert(Tratta tratta) {
         Connection con = null;
         try {
-            con = new Database().getConnection();
+            con = Database.getConnection();
             String sql1 = "INSERT INTO tratta (idTratta, nome, lunghezza) VALUES (?, ?, ?)";
 
             try (PreparedStatement ps1 = con.prepareStatement(sql1)) {
@@ -136,10 +136,6 @@ public class TrattaDAOImpl implements TrattaDAO {
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
-        } finally {
-            if (con != null && !con.isClosed()) {
-                con.close();
-            }
         }
 
     }

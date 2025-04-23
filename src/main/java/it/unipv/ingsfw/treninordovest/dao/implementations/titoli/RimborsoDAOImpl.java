@@ -47,7 +47,7 @@ public class RimborsoDAOImpl implements RimborsoDAO {
     }
 
     @Override
-    public List<Rimborso> getAll() throws SQLException {
+    public List<Rimborso> getAll()  {
 
         List<Rimborso> rimborsi = null;
         Rimborso rimborso = null;
@@ -84,7 +84,7 @@ public class RimborsoDAOImpl implements RimborsoDAO {
     }
 
     @Override
-    public void delete(String id) throws SQLException {
+    public void delete(String id)  {
 
         try(Connection con = new Database().getConnection()){
             PreparedStatement ps = con.prepareStatement("delete from rimborso where idRimborso=?");
@@ -102,10 +102,10 @@ public class RimborsoDAOImpl implements RimborsoDAO {
     }
 
     @Override
-    public void update(Rimborso rimborso) throws SQLException {
+    public void update(Rimborso rimborso)  {
         String sql1="UPDATE rimborso set Totale=?,IDBiglietto=?, IDRichiedente=?,DataRimborso=? where idRimborso=?";
 
-        try(Connection con = new Database().getConnection()){
+        try(Connection con = Database.getConnection()){
             //Prima Query
             PreparedStatement ps1= con.prepareStatement(sql1);
             ps1.setDouble(1,rimborso.getTotale());
@@ -126,7 +126,7 @@ public class RimborsoDAOImpl implements RimborsoDAO {
     }
 
     @Override
-    public void insert(Rimborso rimborso) throws SQLException {
+    public void insert(Rimborso rimborso)  {
         Connection con = null;
 
         try {

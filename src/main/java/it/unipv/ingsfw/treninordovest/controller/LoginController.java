@@ -2,13 +2,7 @@ package it.unipv.ingsfw.treninordovest.controller;
 
 import it.unipv.ingsfw.treninordovest.dao.implementations.utenti.ClienteDAOImpl;
 import it.unipv.ingsfw.treninordovest.dao.implementations.utenti.DipendenteDAOImpl;
-import it.unipv.ingsfw.treninordovest.dao.interfaces.ClienteDAO;
-import it.unipv.ingsfw.treninordovest.dao.interfaces.DipendenteDAO;
 import it.unipv.ingsfw.treninordovest.factory.UtenteDAOFactory;
-import it.unipv.ingsfw.treninordovest.model.utenti.Cliente;
-import it.unipv.ingsfw.treninordovest.model.utenti.Dipendente;
-import it.unipv.ingsfw.treninordovest.model.utenti.Utente;
-import it.unipv.ingsfw.treninordovest.model.varie.Ruolo;
 import it.unipv.ingsfw.treninordovest.model.varie.SessionManager;
 import it.unipv.ingsfw.treninordovest.view.frames.login.JLoginFrame;
 import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JCustomerMainFrame;
@@ -18,8 +12,7 @@ import it.unipv.ingsfw.treninordovest.view.panels.miscellanous.LoginPanel;
 
 
 import javax.swing.*;
-import java.sql.Connection;
-import java.sql.SQLException;
+
 
 /*Controller del Login, effettua verifiche sulle credenziali e crea i frame dei rispettivi utenti. Con ciò si unifica e si semplifica l'accesso al sistema */
 

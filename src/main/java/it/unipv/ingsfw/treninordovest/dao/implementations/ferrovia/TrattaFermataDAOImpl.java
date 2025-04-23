@@ -11,7 +11,7 @@ import java.util.List;
 
 public class TrattaFermataDAOImpl implements TrattaFermataDAO {
     @Override
-    public TrattaFermata get(String idTratta, String idFermata) throws SQLException {
+    public TrattaFermata get(String idTratta, String idFermata)  {
 
         TrattaFermata trattaFermata = new TrattaFermata();
         PreparedStatement ps;
@@ -49,7 +49,7 @@ public class TrattaFermataDAOImpl implements TrattaFermataDAO {
     }
 
     @Override
-    public TrattaFermata getPartenza(String idTratta) throws SQLException {
+    public TrattaFermata getPartenza(String idTratta) {
         TrattaFermata tratta = new TrattaFermata();
         String sql = "SELECT t1.IDTratta, t1.NumOrdine, t1.IDFermata, t1.Binario, t1.OraPartenza, t1.OraArrivo " +
                 "FROM trattafermata t1 " +
@@ -59,7 +59,7 @@ public class TrattaFermataDAOImpl implements TrattaFermataDAO {
                 "    WHERE t2.IDTratta = t1.IDTratta" +
                 ") AND t1.IDTratta = ?;";
 
-        try (Connection con = new Database().getConnection();
+        try (Connection con = Database.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
 
             ps.setString(1, idTratta);
@@ -79,7 +79,7 @@ public class TrattaFermataDAOImpl implements TrattaFermataDAO {
         } catch (SQLException e) {
             // Loggare l'errore o gestirlo in modo appropriato
             e.printStackTrace();
-            throw e;
+
         }
 
         return tratta;
@@ -87,7 +87,7 @@ public class TrattaFermataDAOImpl implements TrattaFermataDAO {
 
 
     @Override
-    public TrattaFermata getArrivo(String idTratta) throws SQLException {
+    public TrattaFermata getArrivo(String idTratta)  {
         TrattaFermata tratta = new TrattaFermata();
         String sql = "SELECT t1.IDTratta, t1.NumOrdine, t1.IDFermata, t1.Binario, t1.OraPartenza, t1.OraArrivo " +
                 "FROM trattafermata t1 " +
@@ -97,7 +97,7 @@ public class TrattaFermataDAOImpl implements TrattaFermataDAO {
                 "    WHERE t2.IDTratta = t1.IDTratta" +
                 ") AND t1.IDTratta = ?;";
 
-        try (Connection con = new Database().getConnection();
+        try (Connection con = Database.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
 
             ps.setString(1, idTratta);
@@ -117,19 +117,19 @@ public class TrattaFermataDAOImpl implements TrattaFermataDAO {
         } catch (SQLException e) {
             // Loggare l'errore o gestirlo in modo appropriato
             e.printStackTrace();
-            throw e;
+
         }
 
         return tratta;
     }
 
     @Override
-    public TrattaFermata get(String id) throws SQLException {
+    public TrattaFermata get(String id)  {
         return null;
     }
 
     @Override
-    public List<TrattaFermata> getAll() throws SQLException {
+    public List<TrattaFermata> getAll()  {
         return List.of();
     }
 

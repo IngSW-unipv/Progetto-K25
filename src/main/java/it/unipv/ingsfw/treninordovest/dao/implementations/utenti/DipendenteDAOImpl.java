@@ -16,7 +16,7 @@ public class DipendenteDAOImpl implements DipendenteDAO {
     }
 
     @Override
-    public Dipendente get(String id) throws SQLException {
+    public Dipendente get(String id){
         //Dipendenti
         Dipendente dipendente = null;
         PreparedStatement ps;
@@ -60,7 +60,7 @@ public class DipendenteDAOImpl implements DipendenteDAO {
     }
 
     @Override
-    public List<Dipendente> getAll() throws SQLException {
+    public List<Dipendente> getAll()  {
 
         //Variabili
         List<Dipendente> clienti = new ArrayList<Dipendente>();
@@ -107,7 +107,7 @@ public class DipendenteDAOImpl implements DipendenteDAO {
     }
 
     @Override
-    public void delete(String id) throws SQLException {
+    public void delete(String id) {
         try(Connection con = new Database().getConnection()){
             PreparedStatement ps = con.prepareStatement("delete from utente where ID=?");
             ps.setString(1,id);
@@ -120,7 +120,7 @@ public class DipendenteDAOImpl implements DipendenteDAO {
     }
 
     @Override
-    public void update(Dipendente dipendente) throws SQLException {
+    public void update(Dipendente dipendente) {
         String sql1="UPDATE utente set password=?, nome=?, cognome=?, luogoNascita=?, sessoChar=?, dataNascita=?, cellulare=?, indirizzo=? where ID=?";
         String sql2="UPDATE dipendente set codTreno=?, stipendio=?, ruolo=? where IdDipendente=?";
 
@@ -157,7 +157,7 @@ public class DipendenteDAOImpl implements DipendenteDAO {
     }
 
     @Override
-    public void insert(Dipendente dipendente) throws SQLException {
+    public void insert(Dipendente dipendente) {
         Connection con = null;
         try {
             con = new Database().getConnection();
@@ -192,18 +192,15 @@ public class DipendenteDAOImpl implements DipendenteDAO {
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
-        } finally {
-            if (con != null && !con.isClosed()) {
-                con.close();
-            }
         }
 
 
 
     }
 
+    /*Metodi da valutare*/
     @Override
-    public Dipendente autenticate(String id, String password) throws SQLException {
+    public Dipendente autenticate(String id, String password)  {
        Dipendente dipendente = get(id);
        if (dipendente != null && dipendente.getUserPassword().equals(password)) {
                 return dipendente;
