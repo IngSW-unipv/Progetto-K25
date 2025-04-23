@@ -16,11 +16,10 @@ import java.util.List;
 
 
 public class FermataDAOImpl implements FermataDAO {
-    public Fermata get(String id) throws SQLException {
+    public Fermata get(String id) {
         Fermata fermata = null;
         PreparedStatement ps;
-        try (Connection con = new Database().getConnection()) {
-            fermata = null;
+        try (Connection con = Database.getConnection()) {
             //Query effettuata su una vista creata nel DB per semplificare l'estrazione dei dati
             String sql = "select idFermata, citta, numBinari from Fermata where idFermata=?";
 
@@ -45,13 +44,13 @@ public class FermataDAOImpl implements FermataDAO {
         }
         return fermata;
     }
-    public List<Fermata> getAll() throws SQLException {
+    public List<Fermata> getAll() {
         List<Fermata> fermate= new ArrayList<Fermata>();
 
         //Avvio della connessione col DB
         PreparedStatement ps;
         Fermata fermata = null;
-        try (Connection con = new Database().getConnection()) {
+        try (Connection con = Database.getConnection()) {
 
             //Query effettuata su una vista creata nel DB per semplificare l'estrazione dei dati
             String sql = "select idFermata, citta, numBinari from Fermata";
@@ -98,7 +97,7 @@ public class FermataDAOImpl implements FermataDAO {
     }
 
     @Override
-    public void update(Fermata fermata) throws SQLException {
+    public void update(Fermata fermata)  {
         String sql1="UPDATE fermata set citta=?, numBinari=? where idFermata=?";
 
         try(Connection con = Database.getConnection()){

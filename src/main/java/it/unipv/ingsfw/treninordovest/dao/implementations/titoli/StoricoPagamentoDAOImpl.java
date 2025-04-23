@@ -13,10 +13,10 @@ import java.util.List;
 
 public class StoricoPagamentoDAOImpl implements StoricoPagamentoDAO {
     @Override
-    public StoricoPagamento get(String id) throws SQLException {
+    public StoricoPagamento get(String id) {
         StoricoPagamento storicoPagamento = null;
         PreparedStatement ps;
-        try (Connection con = new Database().getConnection()) {
+        try (Connection con = Database.getConnection()) {
             storicoPagamento = null;
             //Query effettuata su una vista creata nel DB per semplificare l'estrazione dei dati
             String sql = "select idStorico,idPagamento,Stato from StoricoPagamento where idStorico=?";
@@ -45,13 +45,13 @@ public class StoricoPagamentoDAOImpl implements StoricoPagamentoDAO {
     }
 
     @Override
-    public List<StoricoPagamento> getAll() throws SQLException {
+    public List<StoricoPagamento> getAll() {
         List<StoricoPagamento> storicopaga= new ArrayList<StoricoPagamento>();
 
         //Avvio della connessione col DB
         PreparedStatement ps;
         StoricoPagamento storicoPagamento = null;
-        try (Connection con = new Database().getConnection()) {
+        try (Connection con = Database.getConnection()) {
 
             //Query effettuata su una vista creata nel DB per semplificare l'estrazione dei dati
             String sql = "select idStorico,idPagamento,Stato from StoricoPagamento from StoricoPagamento";
@@ -80,8 +80,8 @@ public class StoricoPagamentoDAOImpl implements StoricoPagamentoDAO {
 
 
     @Override
-    public void delete(String idStorico) throws SQLException {
-        try(Connection con = new Database().getConnection()){
+    public void delete(String idStorico) {
+        try(Connection con = Database.getConnection()){
             PreparedStatement ps = con.prepareStatement("delete from StoricoPagamento where idStorico=?");
             ps.setString(1,idStorico);
 
@@ -96,10 +96,10 @@ public class StoricoPagamentoDAOImpl implements StoricoPagamentoDAO {
 
 
     @Override
-    public void update(StoricoPagamento storicoPagamento) throws SQLException {
+    public void update(StoricoPagamento storicoPagamento) {
         String sql1="UPDATE StoricoPagamento set idPagamento=?, Stato=? where idStorico=?";
 
-        try(Connection con = new Database().getConnection()){
+        try(Connection con = Database.getConnection()){
             //Prima Query
             PreparedStatement ps1= con.prepareStatement(sql1);
             ps1.setString(3,storicoPagamento.getIdStorico());
@@ -122,7 +122,7 @@ public class StoricoPagamentoDAOImpl implements StoricoPagamentoDAO {
         Connection con = null;
 
         try {
-            con = new Database().getConnection();
+            con = Database.getConnection();
             String sql1 = "INSERT INTO storicoPagamento (idStorico,idPagamento,stato) VALUES (?, ?, ?)";
 
             try (PreparedStatement ps1 = con.prepareStatement(sql1)) {

@@ -15,10 +15,10 @@ import java.util.List;
 
 public class PagamentoDAOImpl implements PagamentoDAO {
     @Override
-    public Pagamento get(String id) throws SQLException {
+    public Pagamento get(String id) {
         Pagamento pagamento = null;
         PreparedStatement ps;
-        try (Connection con = new Database().getConnection()) {
+        try (Connection con = Database.getConnection()) {
             pagamento = null;
             //Query effettuata su una vista creata nel DB per semplificare l'estrazione dei dati
             String sql = "select idPagamento,totale,idCliente,Tipo,dataPagamento from Pagamento where idPagamento=?";
@@ -50,13 +50,13 @@ public class PagamentoDAOImpl implements PagamentoDAO {
     }
 
     @Override
-    public List<Pagamento> getAll() throws SQLException {
+    public List<Pagamento> getAll() {
         List<Pagamento> paga= new ArrayList<Pagamento>();
 
         //Avvio della connessione col DB
         PreparedStatement ps;
         Pagamento pagamento = null;
-        try (Connection con = new Database().getConnection()) {
+        try (Connection con = Database.getConnection()) {
 
             //Query effettuata su una vista creata nel DB per semplificare l'estrazione dei dati
             String sql = "select idPagamento,idCliente,totale, tipo, dataPagamento from Pagamento";
@@ -88,8 +88,8 @@ public class PagamentoDAOImpl implements PagamentoDAO {
     }
 
     @Override
-    public void delete(String idPagamento) throws SQLException {
-        try(Connection con = new Database().getConnection()){
+    public void delete(String idPagamento) {
+        try(Connection con = Database.getConnection()){
             PreparedStatement ps = con.prepareStatement("delete from Pagamento where idPagamento=?");
             ps.setString(1,idPagamento);
 
@@ -104,10 +104,10 @@ public class PagamentoDAOImpl implements PagamentoDAO {
 
 
     @Override
-    public void update(Pagamento pagamento) throws SQLException {
+    public void update(Pagamento pagamento) {
         String sql1="UPDATE pagamento set idCliente=?,totale=?, tipo=?, dataPagamento=? where idPagamento=?";
 
-        try(Connection con = new Database().getConnection()){
+        try(Connection con = Database.getConnection()){
             //Prima Query
             PreparedStatement ps1= con.prepareStatement(sql1);
             ps1.setString(1,pagamento.getIdCliente());
@@ -127,11 +127,11 @@ public class PagamentoDAOImpl implements PagamentoDAO {
     }
 
     @Override
-    public void insert(Pagamento pagamento) throws SQLException {
+    public void insert(Pagamento pagamento) {
 
         Connection con = null;
         try {
-            con = new Database().getConnection();
+            con = Database.getConnection();
             String sql1 = "INSERT INTO pagamento (idPagamento,idCliente,totale, tipo, dataPagamento) VALUES (?, ?, ?, ?, ?)";
 
             try (PreparedStatement ps1 = con.prepareStatement(sql1)) {
@@ -150,10 +150,6 @@ public class PagamentoDAOImpl implements PagamentoDAO {
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
-        } finally {
-            if (con != null && !con.isClosed()) {
-                con.close();
-            }
         }
     }
 }

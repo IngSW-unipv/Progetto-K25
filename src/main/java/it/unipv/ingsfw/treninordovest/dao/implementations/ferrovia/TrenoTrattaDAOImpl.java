@@ -18,10 +18,10 @@ import java.util.List;
 public class TrenoTrattaDAOImpl implements TrenoTrattaDAO{
 
     @Override
-    public TrenoTratta getTT(String id1, String id2) throws SQLException {
+    public TrenoTratta getTT(String id1, String id2) {
         TrenoTratta trenoTratta = null;
         PreparedStatement ps;
-        try (Connection con = new Database().getConnection()) {
+        try (Connection con = Database.getConnection()) {
             trenoTratta = null;
             //Query effettuata su una vista creata nel DB per semplificare l'estrazione dei dati
             String sql = "select idTreno, idTratta, numTreno from trenoTratta where idTreno=? AND idTratta=?";
@@ -48,7 +48,7 @@ public class TrenoTrattaDAOImpl implements TrenoTrattaDAO{
         return trenoTratta;
     }
     @Override
-    public TrenoTratta get(String id) throws SQLException {
+    public TrenoTratta get(String id) {
         return null;
     }
 

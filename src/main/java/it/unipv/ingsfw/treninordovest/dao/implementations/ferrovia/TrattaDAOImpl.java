@@ -15,7 +15,7 @@ import java.util.List;
 
 public class TrattaDAOImpl implements TrattaDAO {
     @Override
-    public Tratta get(String id) throws SQLException {
+    public Tratta get(String id) {
 
        Tratta tratta = null;
         PreparedStatement ps;
@@ -46,7 +46,7 @@ public class TrattaDAOImpl implements TrattaDAO {
     }
 
     @Override
-    public List<Tratta> getAll() throws SQLException {
+    public List<Tratta> getAll()  {
 
         Tratta tratta = null;
         List tratte = new ArrayList<Tratta>();
@@ -81,8 +81,8 @@ public class TrattaDAOImpl implements TrattaDAO {
     }
 
     @Override
-    public void delete(String id) throws SQLException {
-        try(Connection con = new Database().getConnection()){
+    public void delete(String id)  {
+        try(Connection con = Database.getConnection()){
             PreparedStatement ps = con.prepareStatement("delete from Tratta where idTratta=?");
             ps.setString(1,id);
 

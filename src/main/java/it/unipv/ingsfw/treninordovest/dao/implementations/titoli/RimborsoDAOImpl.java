@@ -14,11 +14,11 @@ import java.util.List;
 public class RimborsoDAOImpl implements RimborsoDAO {
 
     @Override
-    public Rimborso get(String id) throws SQLException {
+    public Rimborso get(String id) {
 
         Rimborso rimborso = null;
         PreparedStatement ps;
-        try (Connection con = new Database().getConnection()) {
+        try (Connection con = Database.getConnection()) {
             rimborso = null;
             //Query effettuata su una vista creata nel DB per semplificare l'estrazione dei dati
             String sql = "select * from rimborso where idRimborso=?";
@@ -52,7 +52,7 @@ public class RimborsoDAOImpl implements RimborsoDAO {
         List<Rimborso> rimborsi = null;
         Rimborso rimborso = null;
         PreparedStatement ps;
-        try (Connection con = new Database().getConnection()) {
+        try (Connection con = Database.getConnection()) {
             rimborso = null;
             //Query effettuata su una vista creata nel DB per semplificare l'estrazione dei dati
             String sql = "select * from rimborso ";
@@ -86,7 +86,7 @@ public class RimborsoDAOImpl implements RimborsoDAO {
     @Override
     public void delete(String id)  {
 
-        try(Connection con = new Database().getConnection()){
+        try(Connection con = Database.getConnection()){
             PreparedStatement ps = con.prepareStatement("delete from rimborso where idRimborso=?");
             ps.setString(1,id);
 
@@ -130,7 +130,7 @@ public class RimborsoDAOImpl implements RimborsoDAO {
         Connection con = null;
 
         try {
-            con = new Database().getConnection();
+            con = Database.getConnection();
             String sql1 = "INSERT INTO rimborso (idRimborso,Totale,idBiglietto,idRichiedente,DataRimborso) VALUES (?,?,?,?,?)";
 
             try (PreparedStatement ps1 = con.prepareStatement(sql1)) {
@@ -148,14 +148,7 @@ public class RimborsoDAOImpl implements RimborsoDAO {
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
-        } finally {
-            if (con != null && !con.isClosed()) {
-                con.close();
-            }
         }
-
-
-
 
 
 

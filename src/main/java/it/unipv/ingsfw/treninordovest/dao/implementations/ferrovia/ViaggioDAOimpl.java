@@ -16,10 +16,10 @@ import java.util.List;
 
 public class ViaggioDAOimpl implements ViaggioDAO {
     @Override
-    public Viaggio get(String id) throws SQLException {
+    public Viaggio get(String id) {
         Viaggio viaggio = null;
         PreparedStatement ps;
-        try (Connection con = new Database().getConnection()) {
+        try (Connection con = Database.getConnection()) {
             viaggio = null;
             //Query effettuata su una vista creata nel DB per semplificare l'estrazione dei dati
             String sql = "select idViaggio, idTratta, IDPartenza, IDArrivo, DataViaggio, OraPartenza, OraArrivo from Viaggio where idViaggio=?";
@@ -53,13 +53,13 @@ public class ViaggioDAOimpl implements ViaggioDAO {
     }
 
     @Override
-    public List<Viaggio> getAll() throws SQLException {
+    public List<Viaggio> getAll() {
         List<Viaggio> viaggi= new ArrayList<Viaggio>();
 
         //Avvio della connessione col DB
         PreparedStatement ps;
         Viaggio viaggio = null;
-        try (Connection con = new Database().getConnection()) {
+        try (Connection con = Database.getConnection()) {
 
             //Query effettuata su una vista creata nel DB per semplificare l'estrazione dei dati
             String sql = "select idViaggio, idTratta, idPartenza, idArrivo, dataViaggio, oraPartenza, oraArrivo, idbiglietto from Viaggio";
@@ -111,7 +111,7 @@ public class ViaggioDAOimpl implements ViaggioDAO {
     }
 
     @Override
-    public void update(Viaggio viaggio) throws SQLException {
+    public void update(Viaggio viaggio)  {
         String sql1="UPDATE Viaggio set idTratta=?, idPartenza=?, idArrivo=?, dataViaggio=?, oraPartenza=?, oraArrivo=?  where idViaggio=?";
 
         try(Connection con = new Database().getConnection()){

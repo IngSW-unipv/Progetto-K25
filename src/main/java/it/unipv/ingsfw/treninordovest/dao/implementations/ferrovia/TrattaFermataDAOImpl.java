@@ -15,7 +15,7 @@ public class TrattaFermataDAOImpl implements TrattaFermataDAO {
 
         TrattaFermata trattaFermata = new TrattaFermata();
         PreparedStatement ps;
-        try (Connection con = new Database().getConnection()) {
+        try (Connection con = Database.getConnection()) {
             //trattaFermata = null;
             //Query effettuata su una vista creata nel DB per semplificare l'estrazione dei dati
             String sql = "select * from trattafermata where IDTratta=? and idFermata=?";
@@ -134,16 +134,16 @@ public class TrattaFermataDAOImpl implements TrattaFermataDAO {
     }
 
     @Override
-    public void delete(String id) throws SQLException {
+    public void delete(String id) {
 
     }
 
     @Override
-    public void update(TrattaFermata trattaFermata) throws SQLException {
+    public void update(TrattaFermata trattaFermata) {
     }
 
     @Override
-    public void insert(TrattaFermata trattaFermata) throws SQLException {
+    public void insert(TrattaFermata trattaFermata) {
 
     }
 }

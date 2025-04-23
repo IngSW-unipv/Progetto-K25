@@ -13,13 +13,13 @@ import java.util.Locale;
 
 public class BigliettoDAOImpl implements BigliettoDAO {
     @Override
-    public Biglietto get(String id) throws SQLException {
+    public Biglietto get(String id) {
 
         /*Per semplificazione delle query di recupero dati si è scelto l'uso di Viste SQL basate su Join interne*/
 
         Biglietto biglietto = null;
         PreparedStatement ps;
-        try (Connection con = new Database().getConnection()) {
+        try (Connection con = Database.getConnection()) {
            biglietto= null;
             //Query effettuata su una vista creata nel DB per semplificare l'estrazione dei dati
             String sql = "select IDTitolo, IDPagamento, Emissione, Prezzo, Ritorno, Validato, DataRitorno,DataValidazione from titoliBiglietti where idTitolo=?";
@@ -61,11 +61,11 @@ public class BigliettoDAOImpl implements BigliettoDAO {
     }
 
     @Override
-    public List<Biglietto> getAll() throws SQLException {
+    public List<Biglietto> getAll() {
         List listaBiglietti =  null;
         Biglietto biglietto= null;
         PreparedStatement ps;
-        try (Connection con = new Database().getConnection()) {
+        try (Connection con = Database.getConnection()) {
             biglietto= null;
             listaBiglietti = new ArrayList<Abbonamento>();
             //Query effettuata su una vista creata nel DB per semplificare l'estrazione dei dati
@@ -99,9 +99,9 @@ public class BigliettoDAOImpl implements BigliettoDAO {
     }
 
     @Override
-    public void delete(String id) throws SQLException {
+    public void delete(String id) {
 
-        try(Connection con = new Database().getConnection()){
+        try(Connection con = Database.getConnection()){
             PreparedStatement ps = con.prepareStatement("delete from titoloviaggio where IDTitolo=?");
             ps.setString(1,id);
             ps.executeUpdate();
@@ -115,12 +115,12 @@ public class BigliettoDAOImpl implements BigliettoDAO {
     }
 
     @Override
-    public void update(Biglietto biglietto) throws SQLException {
+    public void update(Biglietto biglietto) {
 
         String sql1="UPDATE titoloviaggio set IDPagamento=?, Emissione=?, Prezzo=? where IDTitolo=?";
         String sql2="UPDATE biglietto set ritorno=?, validato=?, dataRitorno=?, dataValidazione=?  where IDBiglietto=?";
 
-        try(Connection con = new Database().getConnection()){
+        try(Connection con = Database.getConnection()){
             //Prima Query
             PreparedStatement ps1= con.prepareStatement(sql1);
             PreparedStatement ps2 = con.prepareStatement(sql2);
@@ -152,7 +152,7 @@ public class BigliettoDAOImpl implements BigliettoDAO {
     }
 
     @Override
-    public void insert(Biglietto biglietto) throws SQLException {
+    public void insert(Biglietto biglietto) {
 
         /*Poichè l'ereditarietà in SQL non esiste propriamente, si è deciso di aggiornare 2 tabella collegate con vincoli
         * di integrità referenziale in modo da avere una coerenza coi dati*/
@@ -160,7 +160,7 @@ public class BigliettoDAOImpl implements BigliettoDAO {
         String sql1 = "INSERT INTO titoloviaggio (IDTitolo, IDPagamento, Emissione, Prezzo) VALUES (?, ?, ?, ?)";
         String sql2 = "INSERT INTO biglietto (IDBiglietto, Ritorno, Validato, DataRitorno, DataValidazione) VALUES (?,?,?,?,?)";
 
-        try(Connection con = new Database().getConnection()){
+        try(Connection con = Database.getConnection()){
             //Prima Query
             PreparedStatement ps1= con.prepareStatement(sql1);
             PreparedStatement ps2 = con.prepareStatement(sql2);

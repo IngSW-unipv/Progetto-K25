@@ -16,10 +16,10 @@ import java.util.List;
 
 public class TesseraDAOImpl implements TesseraDAO {
     @Override
-    public Tessera get(String id) throws SQLException {
+    public Tessera get(String id) {
         Tessera tessera = null;
         PreparedStatement ps;
-        try (Connection con = new Database().getConnection()) {
+        try (Connection con = Database.getConnection()) {
             tessera = null;
             //Query effettuata su una vista creata nel DB per semplificare l'estrazione dei dati
             String sql = "select * from tessera where IDTessera=?";
@@ -50,7 +50,7 @@ public class TesseraDAOImpl implements TesseraDAO {
         List listaTessere =  null;
         Tessera tessera= null;
         PreparedStatement ps;
-        try (Connection con = new Database().getConnection()) {
+        try (Connection con = Database.getConnection()) {
 
             listaTessere = new ArrayList<>();
             String sql = "select * from tessera";
@@ -124,7 +124,7 @@ public class TesseraDAOImpl implements TesseraDAO {
     public void insert(Tessera tessera)  {
         Connection con = null;
         try {
-            con = new Database().getConnection();
+            con = Database.getConnection();
             String sql1 = "INSERT INTO tessera (IDTessera, emissione, scadenza, idcliente) VALUES (?, ?, ?, ?)";
             try (PreparedStatement ps1 = con.prepareStatement(sql1)) {
                 // Impostazione dei parametri per la query 1
@@ -140,10 +140,6 @@ public class TesseraDAOImpl implements TesseraDAO {
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
-        } finally {
-            if (con != null && !con.isClosed()) {
-                con.close();
-            }
         }
 
     }

@@ -114,10 +114,9 @@ public class ClienteDAOImpl implements ClienteDAO {
         String sql1="UPDATE utente set password=?, nome=?, cognome=?, luogoNascita=?, sessoChar=?, dataNascita=?, cellulare=?, indirizzo=? where ID=?";
         String sql2="UPDATE cliente set Bilancio=?, Email=? where IDCliente=?";
 
-        try(Connection con = new Database().getConnection()){
+        try(Connection con = Database.getConnection(); PreparedStatement ps1= con.prepareStatement(sql1); PreparedStatement ps2= con.prepareStatement(sql2)){
             //Prima Query
-            PreparedStatement ps1= con.prepareStatement(sql1);
-            PreparedStatement ps2= con.prepareStatement(sql2);
+
             //Impostazione degli attributi
 
             ps1.setString(1,cliente.getUserPassword());
