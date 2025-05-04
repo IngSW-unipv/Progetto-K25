@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class RimborsoDAOImpl implements RimborsoDAO {
@@ -17,19 +18,14 @@ public class RimborsoDAOImpl implements RimborsoDAO {
     public Rimborso get(String id) {
 
         Rimborso rimborso = null;
-        PreparedStatement ps;
-        try (Connection con = Database.getConnection()) {
-            rimborso = null;
-            //Query effettuata su una vista creata nel DB per semplificare l'estrazione dei dati
-            String sql = "select * from rimborso where idRimborso=?";
+        String sql = "select * from rimborso where idRimborso=?";
 
+        try (Connection con = Database.getConnection(); PreparedStatement ps= con.prepareStatement(sql);ResultSet rs=ps.executeQuery()) {
             //Estrazione dei dati dal DB
-            ps = con.prepareStatement(sql);
             ps.setString(1,id);
-            ResultSet rs=ps.executeQuery();
 
             if(rs.next()){
-                Double totale = rs.getDouble("totale");
+                double totale = rs.getDouble("totale");
                 String idBiglietto=rs.getString("idBiglietto");
                 String idRichiedente = rs.getString("idRichiedente");
                 LocalDate dataRimborso = (LocalDate)rs.getObject("DataRimborso");
@@ -37,10 +33,10 @@ public class RimborsoDAOImpl implements RimborsoDAO {
 
                 rimborso=new Rimborso(id,dataRimborso,totale,idBiglietto,idRichiedente);
             }
-            Database.closeConnection(con);
+           // Database.closeConnection(con);
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return rimborso;
 
@@ -49,22 +45,17 @@ public class RimborsoDAOImpl implements RimborsoDAO {
     @Override
     public List<Rimborso> getAll()  {
 
-        List<Rimborso> rimborsi = null;
-        Rimborso rimborso = null;
-        PreparedStatement ps;
-        try (Connection con = Database.getConnection()) {
-            rimborso = null;
-            //Query effettuata su una vista creata nel DB per semplificare l'estrazione dei dati
-            String sql = "select * from rimborso ";
+        List<Rimborso> rimborsi = new ArrayList<>();
+        Rimborso rimborso;
+        String sql = "select * from rimborso ";
 
+        try (Connection con = Database.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
             //Estrazione dei dati dal DB
-            ps = con.prepareStatement(sql);
-            //ps.setString(1,id);
             ResultSet rs=ps.executeQuery();
 
             while (rs.next()){
                 String idRimborso=rs.getString("idRimborso");
-                Double totale = rs.getDouble("totale");
+                double totale = rs.getDouble("totale");
                 String idBiglietto=rs.getString("idBiglietto");
                 String idRichiedente = rs.getString("idRichiedente");
                 LocalDate dataRimborso = (LocalDate)rs.getObject("DataRimborso");
@@ -74,10 +65,10 @@ public class RimborsoDAOImpl implements RimborsoDAO {
                 rimborsi.add(rimborso);
             }
 
-            Database.closeConnection(con);
+            //Database.closeConnection(con);
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Errore durante il recupero dei dati",e);
         }
 
         return rimborsi;
@@ -92,10 +83,10 @@ public class RimborsoDAOImpl implements RimborsoDAO {
 
             ps.executeUpdate();
 
-            Database.closeConnection(con);
+           // Database.closeConnection(con);
 
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Errore durante l'eliminazione dati",e);
         }
 
 
@@ -105,9 +96,8 @@ public class RimborsoDAOImpl implements RimborsoDAO {
     public void update(Rimborso rimborso)  {
         String sql1="UPDATE rimborso set Totale=?,IDBiglietto=?, IDRichiedente=?,DataRimborso=? where idRimborso=?";
 
-        try(Connection con = Database.getConnection()){
+        try(Connection con = Database.getConnection(); PreparedStatement ps1= con.prepareStatement(sql1)){
             //Prima Query
-            PreparedStatement ps1= con.prepareStatement(sql1);
             ps1.setDouble(1,rimborso.getTotale());
             ps1.setString(2,rimborso.getIdBiglietto());
             ps1.setString(3,rimborso.getIdRichiedente());
@@ -116,10 +106,10 @@ public class RimborsoDAOImpl implements RimborsoDAO {
 
             ps1.executeUpdate();
 
-            Database.closeConnection(con);
+           // Database.closeConnection(con);
 
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Errore durante l'aggiornamento dati",e);
         }
 
 
@@ -127,13 +117,10 @@ public class RimborsoDAOImpl implements RimborsoDAO {
 
     @Override
     public void insert(Rimborso rimborso)  {
-        Connection con = null;
-
-        try {
-            con = Database.getConnection();
             String sql1 = "INSERT INTO rimborso (idRimborso,Totale,idBiglietto,idRichiedente,DataRimborso) VALUES (?,?,?,?,?)";
 
-            try (PreparedStatement ps1 = con.prepareStatement(sql1)) {
+
+            try (Connection con = Database.getConnection() ;PreparedStatement ps1 = con.prepareStatement(sql1)) {
                 // Impostazione dei parametri per la query 1
                 ps1.setString(1,rimborso.getIdRimborso());
                 ps1.setDouble(2,rimborso.getTotale());
@@ -146,9 +133,9 @@ public class RimborsoDAOImpl implements RimborsoDAO {
 
                 //Database.closeConnection(con);
             }
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+            catch (Exception e) {
+                throw new RuntimeException("Errore durante l'inserimento dati",e);
+            }
 
 
 

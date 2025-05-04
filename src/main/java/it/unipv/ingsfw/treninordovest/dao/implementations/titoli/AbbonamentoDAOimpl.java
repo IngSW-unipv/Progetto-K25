@@ -48,12 +48,10 @@ public class AbbonamentoDAOimpl implements AbbonamentoDAO {
     public List<Abbonamento> getAll()  {
 
         List<Abbonamento> listaAbbonamenti =  new ArrayList<>();
-        Abbonamento abbonamento= null;
+        Abbonamento abbonamento;
         String sql = "select IDTitolo, IDPagamento, Emissione, Prezzo, Tipo, Scadenza, IDTessera from titoliAbbonamenti";
 
-        try (Connection con = Database.getConnection();PreparedStatement  ps = con.prepareStatement(sql); ResultSet rs=ps.executeQuery(); ) {
-
-            listaAbbonamenti = new ArrayList<>();
+        try (Connection con = Database.getConnection();PreparedStatement  ps = con.prepareStatement(sql); ResultSet rs=ps.executeQuery()) {
             //Query effettuata su una vista creata nel DB per semplificare l'estrazione dei dati
             //Estrazione dei dati dal DB
 
@@ -83,7 +81,7 @@ public class AbbonamentoDAOimpl implements AbbonamentoDAO {
 
         String sql1="DELETE FROM abbonamento where IDAbbonamento=?";
 
-        try(Connection con = Database.getConnection(); PreparedStatement ps = con.prepareStatement(sql1);){
+        try(Connection con = Database.getConnection(); PreparedStatement ps = con.prepareStatement(sql1)){
 
             ps.setString(1,id);
             ps.executeUpdate();
@@ -103,7 +101,7 @@ public class AbbonamentoDAOimpl implements AbbonamentoDAO {
         String sql1="UPDATE titoloviaggio set IDPagamento=?, Emissione=?, Prezzo=? where IDTitolo=? ";
         String sql2="UPDATE abbonamento set Tipo=?, Scadenza=?, IDTessera=? where IDAbbonamento=?";
 
-        try(Connection con = Database.getConnection();  PreparedStatement ps1= con.prepareStatement(sql1); PreparedStatement ps2 = con.prepareStatement(sql2);){
+        try(Connection con = Database.getConnection();  PreparedStatement ps1= con.prepareStatement(sql1); PreparedStatement ps2 = con.prepareStatement(sql2)){
 
             //Impostazione degli attributi
             ps1.setString(1, abbonamento.getIdPagamento());

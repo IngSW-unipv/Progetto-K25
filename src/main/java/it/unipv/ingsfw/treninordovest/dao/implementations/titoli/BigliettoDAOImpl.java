@@ -2,14 +2,12 @@ package it.unipv.ingsfw.treninordovest.dao.implementations.titoli;
 
 import it.unipv.ingsfw.treninordovest.dao.database.Database;
 import it.unipv.ingsfw.treninordovest.dao.interfaces.BigliettoDAO;
-import it.unipv.ingsfw.treninordovest.model.titoli.Abbonamento;
 import it.unipv.ingsfw.treninordovest.model.titoli.Biglietto;
 
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class BigliettoDAOImpl implements BigliettoDAO {
     @Override
@@ -21,7 +19,7 @@ public class BigliettoDAOImpl implements BigliettoDAO {
 
         Biglietto biglietto = null;
 
-        try (Connection con = Database.getConnection(); PreparedStatement ps = con.prepareStatement(sql); ResultSet rs=ps.executeQuery();) {
+        try (Connection con = Database.getConnection(); PreparedStatement ps = con.prepareStatement(sql); ResultSet rs=ps.executeQuery()) {
 
             //Estrazione dei dati dal DB
             ps.setString(1, id);
@@ -59,11 +57,11 @@ public class BigliettoDAOImpl implements BigliettoDAO {
 
     @Override
     public List<Biglietto> getAll() {
-        List<Biglietto> listaBiglietti= new ArrayList<Biglietto>();
-        Biglietto biglietto= null;
+        List<Biglietto> listaBiglietti= new ArrayList<>();
+        Biglietto biglietto;
         String sql = "select IDTitolo, IDPagamento, Emissione, Prezzo, Ritorno, Validato, DataRitorno,DataValidazione from titoliBiglietti where idTitolo=?";
 
-        try (Connection con = Database.getConnection();PreparedStatement ps = con.prepareStatement(sql);ResultSet rs=ps.executeQuery();) {
+        try (Connection con = Database.getConnection();PreparedStatement ps = con.prepareStatement(sql);ResultSet rs=ps.executeQuery()) {
 
             //Query effettuata su una vista creata nel DB per semplificare l'estrazione dei dati
 
@@ -95,7 +93,7 @@ public class BigliettoDAOImpl implements BigliettoDAO {
 
         String sql1="DELETE FROM biglietto where IDBiglietto=?";
 
-        try(Connection con = Database.getConnection();PreparedStatement ps = con.prepareStatement(sql1);){
+        try(Connection con = Database.getConnection();PreparedStatement ps = con.prepareStatement(sql1)){
             ps.setString(1,id);
             ps.executeUpdate();
             //Database.closeConnection(con);
@@ -114,7 +112,7 @@ public class BigliettoDAOImpl implements BigliettoDAO {
         String sql2="UPDATE biglietto set ritorno=?, validato=?, dataRitorno=?, dataValidazione=?  where IDBiglietto=?";
 
         try(Connection con = Database.getConnection();PreparedStatement ps1= con.prepareStatement(sql1);
-            PreparedStatement ps2 = con.prepareStatement(sql2);){
+            PreparedStatement ps2 = con.prepareStatement(sql2)){
 
             //Impostazione degli attributi
             ps1.setString(1,biglietto.getIdPagamento());
@@ -150,7 +148,7 @@ public class BigliettoDAOImpl implements BigliettoDAO {
         String sql1 = "INSERT INTO titoloviaggio (IDTitolo, IDPagamento, Emissione, Prezzo) VALUES (?, ?, ?, ?)";
         String sql2 = "INSERT INTO biglietto (IDBiglietto, Ritorno, Validato, DataRitorno, DataValidazione) VALUES (?,?,?,?,?)";
 
-        try(Connection con = Database.getConnection(); PreparedStatement ps1= con.prepareStatement(sql1); PreparedStatement ps2 = con.prepareStatement(sql2);){
+        try(Connection con = Database.getConnection(); PreparedStatement ps1= con.prepareStatement(sql1); PreparedStatement ps2 = con.prepareStatement(sql2)){
 
             //Impostazione degli attributi
             ps1.setString(1,biglietto.getId());

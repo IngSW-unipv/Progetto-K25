@@ -61,7 +61,7 @@ public class ClienteDAOImpl implements ClienteDAO {
 
         List<Cliente> clienti = new ArrayList<>();
         String sql = "select ID,nome,cognome,email,Userpassword,bilancio,luogoNascita,dataNascita,sesso,cellulare,indirizzo,sesso from utentiClienti";
-        Cliente cliente = null;
+        Cliente cliente ;
 
         try (Connection con = Database.getConnection();  PreparedStatement ps= con.prepareStatement(sql); ResultSet rs=ps.executeQuery()) {
 
@@ -94,7 +94,7 @@ public class ClienteDAOImpl implements ClienteDAO {
 
         String sql = "DELETE FROM utente where ID=?";
 
-        try(Connection con = Database.getConnection(); PreparedStatement ps = con.prepareStatement(sql);){
+        try(Connection con = Database.getConnection(); PreparedStatement ps = con.prepareStatement(sql)){
             ps.setString(1,id);
             ps.executeUpdate();
         } catch (Exception e) {
@@ -173,7 +173,6 @@ public class ClienteDAOImpl implements ClienteDAO {
 
     }
 
-
     /*Metodi da valutare*/
 
     @Override
@@ -189,7 +188,7 @@ public class ClienteDAOImpl implements ClienteDAO {
     public boolean updateBilancio(String IdCliente, double bilancio) {
 
         String sql = "UPDATE cliente set Bilancio=? where IDCliente=?";
-        Connection con = null;
+        Connection con ;
         try {
             con= Database.getConnection();
             if (con != null) {
@@ -210,7 +209,7 @@ public class ClienteDAOImpl implements ClienteDAO {
     public boolean updatePassword(String id, String password) {
 
         String sql = "UPDATE utente set UserPassword=? where ID=?";
-        Connection con = null;
+        Connection con ;
         try {
             con= Database.getConnection();
             if (con != null) {

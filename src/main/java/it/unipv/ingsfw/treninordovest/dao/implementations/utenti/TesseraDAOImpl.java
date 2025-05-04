@@ -23,7 +23,7 @@ public class TesseraDAOImpl implements TesseraDAO {
         Tessera tessera = null;
         String sql = "select * from tessera where IDTessera=?";
 
-        try (Connection con = Database.getConnection(); PreparedStatement ps = con.prepareStatement(sql);ResultSet rs=ps.executeQuery(); ) {
+        try (Connection con = Database.getConnection(); PreparedStatement ps = con.prepareStatement(sql);ResultSet rs=ps.executeQuery() ) {
 
             //Estrazione dei dati dal DB
             ps.setString(1,id);
@@ -47,11 +47,11 @@ public class TesseraDAOImpl implements TesseraDAO {
     public List<Tessera> getAll()  {
 
         List<Tessera> listaTessere =  new ArrayList<>();
-        Tessera tessera= null;
+        Tessera tessera;
 
         String sql = "select * from tessera";
 
-        try (Connection con = Database.getConnection(); PreparedStatement ps = con.prepareStatement(sql);ResultSet rs=ps.executeQuery();) {
+        try (Connection con = Database.getConnection(); PreparedStatement ps = con.prepareStatement(sql);ResultSet rs=ps.executeQuery()) {
 
             while (rs.next()){
                 String idTessera = rs.getString("IDTessera");
@@ -77,7 +77,7 @@ public class TesseraDAOImpl implements TesseraDAO {
 
         String sql = "delete from tessera where IDTessera=?";
 
-        try(Connection con = Database.getConnection();PreparedStatement ps = con.prepareStatement(sql);){
+        try(Connection con = Database.getConnection();PreparedStatement ps = con.prepareStatement(sql)){
             ps.setString(1,id);
             ps.executeUpdate();
             //Database.closeConnection(con);
@@ -92,7 +92,7 @@ public class TesseraDAOImpl implements TesseraDAO {
 
         String sql1="UPDATE tessera set emissione=?, scadenza=?, idcliente=? where IDTessera=?";
 
-        try(Connection con = Database.getConnection(); PreparedStatement ps1= con.prepareStatement(sql1);){
+        try(Connection con = Database.getConnection(); PreparedStatement ps1= con.prepareStatement(sql1)){
 
             //Impostazione degli attributi
             ps1.setObject(1,(LocalDate)tessera.getEmissione());
@@ -114,7 +114,7 @@ public class TesseraDAOImpl implements TesseraDAO {
     public void insert(Tessera tessera)  {
 
             String sql1 = "INSERT INTO tessera (IDTessera, emissione, scadenza, idcliente) VALUES (?, ?, ?, ?)";
-            try (Connection con = Database.getConnection();PreparedStatement ps1 = con.prepareStatement(sql1);) {
+            try (Connection con = Database.getConnection();PreparedStatement ps1 = con.prepareStatement(sql1)) {
                 // Impostazione dei parametri per la query 1
                 ps1.setString(1, tessera.getIdTessera());
                 ps1.setObject(2, tessera.getEmissione());
@@ -134,12 +134,14 @@ public class TesseraDAOImpl implements TesseraDAO {
 
 
 
+    /*Metodi da valutare*/
+
     @Override
     public boolean exists(String idCliente)  {
         Tessera tessera = null;
         String sql = "select idTessera, idCliente from tessera where IDCliente=?";
 
-        try (Connection con = Database.getConnection(); PreparedStatement ps = con.prepareStatement(sql);ResultSet rs=ps.executeQuery(); ) {
+        try (Connection con = Database.getConnection(); PreparedStatement ps = con.prepareStatement(sql);ResultSet rs=ps.executeQuery() ) {
             //Query effettuata su una vista creata nel DB per semplificare l'estrazione dei dati
             //Estrazione dei dati dal DB
             ps.setString(1,idCliente);

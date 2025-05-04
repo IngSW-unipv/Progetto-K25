@@ -2,7 +2,6 @@ package it.unipv.ingsfw.treninordovest.dao.implementations.utenti;
 
 import it.unipv.ingsfw.treninordovest.dao.database.Database;
 import it.unipv.ingsfw.treninordovest.dao.interfaces.DipendenteDAO;
-import it.unipv.ingsfw.treninordovest.model.utenti.Cliente;
 import it.unipv.ingsfw.treninordovest.model.utenti.Dipendente;
 
 import java.sql.*;
@@ -21,7 +20,7 @@ public class DipendenteDAOImpl implements DipendenteDAO {
         String sql = "select ID,Userpassword,Nome,Cognome,Sesso,LuogoNascita,DataNascita, Cellulare,Indirizzo,Stipendio,Ruolo,CodTreno from utentiDipendenti where id=?";
         Dipendente dipendente = null;
 
-        try (Connection con = Database.getConnection(); PreparedStatement ps= con.prepareStatement(sql);ResultSet rs=ps.executeQuery(); ) {
+        try (Connection con = Database.getConnection(); PreparedStatement ps= con.prepareStatement(sql);ResultSet rs=ps.executeQuery() ) {
             //Preparazione della Query
             ps.setString(1,id);
             //Impostazione di estrapolazione query
@@ -59,10 +58,10 @@ public class DipendenteDAOImpl implements DipendenteDAO {
 
         String sql = "select ID,nome,cognome,Userpassword,luogoNascita,dataNascita,sesso,cellulare,indirizzo,sesso,stipendio,ruolo,codTreno from utentiDipendenti";
         //Variabili
-        List<Dipendente> dipendenti = new ArrayList<Dipendente>();
+        List<Dipendente> dipendenti = new ArrayList<>();
 
         //Avvio della connessione col DB
-        Dipendente dipendente = null;
+        Dipendente dipendente ;
         try (Connection con = Database.getConnection(); PreparedStatement ps= con.prepareStatement(sql)) {
 
             //Query effettuata su una vista creata nel DB per semplificare l'estrazione dei dati
@@ -101,7 +100,7 @@ public class DipendenteDAOImpl implements DipendenteDAO {
     @Override
     public void delete(String id) {
         String sql = "DELETE FROM utente where ID=?";
-        try(Connection con =Database.getConnection();PreparedStatement ps = con.prepareStatement(sql);){
+        try(Connection con =Database.getConnection();PreparedStatement ps = con.prepareStatement(sql)){
 
             ps.setString(1,id);
             ps.executeUpdate();
@@ -117,7 +116,7 @@ public class DipendenteDAOImpl implements DipendenteDAO {
         String sql1="UPDATE utente set UserPassword=?, nome=?, cognome=?, luogoNascita=?, sesso=?, dataNascita=?, cellulare=?, indirizzo=? where ID=?";
         String sql2="UPDATE dipendente set codTreno=?, stipendio=?, ruolo=? where IdDipendente=?";
 
-        try(Connection con = Database.getConnection();PreparedStatement ps1= con.prepareStatement(sql1); PreparedStatement ps2= con.prepareStatement(sql2);){
+        try(Connection con = Database.getConnection();PreparedStatement ps1= con.prepareStatement(sql1); PreparedStatement ps2= con.prepareStatement(sql2)){
             //Prima Query
             ps1.setString(1,dipendente.getUserPassword());
             ps1.setString(2,dipendente.getNome());
@@ -199,7 +198,7 @@ public class DipendenteDAOImpl implements DipendenteDAO {
     @Override
     public boolean updatePassword(String id, String password) {
         String sql = "UPDATE utente set UserPassword=? where ID=?";
-        Connection con = null;
+        Connection con ;
         try {
             con= Database.getConnection();
             if (con != null) {

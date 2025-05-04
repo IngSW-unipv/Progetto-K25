@@ -15,18 +15,11 @@ public class StoricoPagamentoDAOImpl implements StoricoPagamentoDAO {
     @Override
     public StoricoPagamento get(String id) {
         StoricoPagamento storicoPagamento = null;
-        PreparedStatement ps;
-        try (Connection con = Database.getConnection()) {
-            storicoPagamento = null;
-            //Query effettuata su una vista creata nel DB per semplificare l'estrazione dei dati
-            String sql = "select idStorico,idPagamento,Stato from StoricoPagamento where idStorico=?";
+        String sql = "select idStorico,idPagamento,Stato from StoricoPagamento where idStorico=?";
+        try (Connection con = Database.getConnection();PreparedStatement ps= con.prepareStatement(sql); ResultSet rs=ps.executeQuery()) {
 
-            //Estrazione dei dati dal DB
-            ps = con.prepareStatement(sql);
+
             ps.setString(1,id);
-            ResultSet rs=ps.executeQuery();
-
-
             if(rs.next()){
                 String idStorico=rs.getString("idStorico");
                 String idPagamento=rs.getString("idPagamento");
@@ -39,28 +32,19 @@ public class StoricoPagamentoDAOImpl implements StoricoPagamentoDAO {
 
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Errore durante l'acquisizione dati",e);
         }
         return storicoPagamento;
     }
 
     @Override
     public List<StoricoPagamento> getAll() {
-        List<StoricoPagamento> storicopaga= new ArrayList<StoricoPagamento>();
+        List<StoricoPagamento> storicopaga= new ArrayList<>();
+        String sql = "select idStorico,idPagamento,Stato from StoricoPagamento ";
 
         //Avvio della connessione col DB
-        PreparedStatement ps;
-        StoricoPagamento storicoPagamento = null;
-        try (Connection con = Database.getConnection()) {
-
-            //Query effettuata su una vista creata nel DB per semplificare l'estrazione dei dati
-            String sql = "select idStorico,idPagamento,Stato from StoricoPagamento from StoricoPagamento";
-
-            //Estrazione dei dati dal DB
-            ps = con.prepareStatement(sql);
-
-            //ps.setString(1,id);
-            ResultSet rs=ps.executeQuery();
+        StoricoPagamento storicoPagamento ;
+        try (Connection con = Database.getConnection(); PreparedStatement ps= con.prepareStatement(sql);  ResultSet rs=ps.executeQuery() ) {
 
             while(rs.next()){
                 String idStorico=rs.getString("idStorico");
@@ -73,7 +57,7 @@ public class StoricoPagamentoDAOImpl implements StoricoPagamentoDAO {
             Database.closeConnection(con);
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return storicopaga;
     }
@@ -81,16 +65,19 @@ public class StoricoPagamentoDAOImpl implements StoricoPagamentoDAO {
 
     @Override
     public void delete(String idStorico) {
-        try(Connection con = Database.getConnection()){
-            PreparedStatement ps = con.prepareStatement("delete from StoricoPagamento where idStorico=?");
+
+        String sql="DELETE FROM StoricoPagamento where idStorico=?";
+
+        try(Connection con = Database.getConnection();PreparedStatement ps = con.prepareStatement(sql)){
+
             ps.setString(1,idStorico);
 
             ps.executeUpdate();
 
-            Database.closeConnection(con);
+            //Database.closeConnection(con);
 
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+        } catch (SQLException e) {
+            throw new RuntimeException("Errore durante l'eliminazione dati",e);
         }
     }
 
@@ -99,18 +86,18 @@ public class StoricoPagamentoDAOImpl implements StoricoPagamentoDAO {
     public void update(StoricoPagamento storicoPagamento) {
         String sql1="UPDATE StoricoPagamento set idPagamento=?, Stato=? where idStorico=?";
 
-        try(Connection con = Database.getConnection()){
+        try(Connection con = Database.getConnection(); PreparedStatement ps1= con.prepareStatement(sql1)){
             //Prima Query
-            PreparedStatement ps1= con.prepareStatement(sql1);
+
             ps1.setString(3,storicoPagamento.getIdStorico());
             ps1.setString(1,storicoPagamento.getIdPagamento());
             ps1.setString(2,storicoPagamento.getStatoPagamento());
 
             ps1.executeUpdate();
 
-            Database.closeConnection(con);
+            //Database.closeConnection(con);
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
@@ -118,27 +105,21 @@ public class StoricoPagamentoDAOImpl implements StoricoPagamentoDAO {
 
     @Override
     public void insert(StoricoPagamento storicoPagamento)  {
-        
-        Connection con = null;
 
-        try {
-            con = Database.getConnection();
             String sql1 = "INSERT INTO storicoPagamento (idStorico,idPagamento,stato) VALUES (?, ?, ?)";
 
-            try (PreparedStatement ps1 = con.prepareStatement(sql1)) {
+            try (Connection con = Database.getConnection();PreparedStatement ps1 = con.prepareStatement(sql1)) {
 
                 // Impostazione dei parametri per la query 1
                 ps1.setString(1,storicoPagamento.getIdStorico());
                 ps1.setString(2,storicoPagamento.getIdPagamento());
                 ps1.setString(3,storicoPagamento.getStatoPagamento());
 
-
                 // Esecuzione delle query
                 ps1.executeUpdate();
-
                 //Database.closeConnection(con);
             }
-        } catch (Exception e) {
+         catch (Exception e) {
             throw new RuntimeException(e);
         }
     }

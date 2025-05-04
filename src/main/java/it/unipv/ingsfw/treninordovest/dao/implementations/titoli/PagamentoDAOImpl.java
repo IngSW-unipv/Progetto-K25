@@ -19,7 +19,7 @@ public class PagamentoDAOImpl implements PagamentoDAO {
         Pagamento pagamento = null;
         String sql = "select idPagamento,totale,idCliente,Tipo,dataPagamento from Pagamento where idPagamento=?";
 
-        try (Connection con = Database.getConnection(); PreparedStatement ps= con.prepareStatement(sql);) {
+        try (Connection con = Database.getConnection(); PreparedStatement ps= con.prepareStatement(sql)) {
 
             //Estrazione dei dati dal DB
             ps.setString(1,id);
@@ -49,10 +49,10 @@ public class PagamentoDAOImpl implements PagamentoDAO {
 
         List<Pagamento> paga= new ArrayList<>();
         String sql = "select idPagamento,idCliente,totale, tipo, dataPagamento from Pagamento";
-        Pagamento pagamento = null;
+        Pagamento pagamento ;
 
 
-        try (Connection con = Database.getConnection(); PreparedStatement ps= con.prepareStatement(sql); ResultSet rs=ps.executeQuery();) {
+        try (Connection con = Database.getConnection(); PreparedStatement ps= con.prepareStatement(sql); ResultSet rs=ps.executeQuery()) {
 
             //Query effettuata su una vista creata nel DB per semplificare l'estrazione dei dati
             while(rs.next()){
@@ -79,7 +79,7 @@ public class PagamentoDAOImpl implements PagamentoDAO {
 
         String sql1="DELETE FROM pagamento WHERE idPagamento=?";
 
-        try(Connection con = Database.getConnection();PreparedStatement ps = con.prepareStatement(sql1);){
+        try(Connection con = Database.getConnection();PreparedStatement ps = con.prepareStatement(sql1)){
 
             ps.setString(1,idPagamento);
 
@@ -97,7 +97,7 @@ public class PagamentoDAOImpl implements PagamentoDAO {
     public void update(Pagamento pagamento) {
         String sql1="UPDATE pagamento set idCliente=?,totale=?, tipo=?, dataPagamento=? where idPagamento=?";
 
-        try(Connection con = Database.getConnection();PreparedStatement ps1= con.prepareStatement(sql1);){
+        try(Connection con = Database.getConnection();PreparedStatement ps1= con.prepareStatement(sql1)){
             //Prima Query
             ps1.setString(1,pagamento.getIdCliente());
             ps1.setDouble(2,pagamento.getTotale());
@@ -109,7 +109,7 @@ public class PagamentoDAOImpl implements PagamentoDAO {
 
             //Database.closeConnection(con);
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
             throw new RuntimeException("Errore durante l'aggiornamento dati",e);
         }
 
@@ -133,7 +133,7 @@ public class PagamentoDAOImpl implements PagamentoDAO {
 
                 //Database.closeConnection(con);
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
