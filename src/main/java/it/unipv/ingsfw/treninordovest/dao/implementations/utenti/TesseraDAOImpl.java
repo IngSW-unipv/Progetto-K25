@@ -15,20 +15,18 @@ import java.util.List;
 //idTessera emissione scadenza Idcliente
 
 public class TesseraDAOImpl implements TesseraDAO {
+
+    public TesseraDAOImpl()  {}
+
     @Override
     public Tessera get(String id) {
         Tessera tessera = null;
-        PreparedStatement ps;
-        try (Connection con = Database.getConnection()) {
-            tessera = null;
-            //Query effettuata su una vista creata nel DB per semplificare l'estrazione dei dati
-            String sql = "select * from tessera where IDTessera=?";
+        String sql = "select * from tessera where IDTessera=?";
+
+        try (Connection con = Database.getConnection(); PreparedStatement ps = con.prepareStatement(sql);ResultSet rs=ps.executeQuery(); ) {
 
             //Estrazione dei dati dal DB
-            ps = con.prepareStatement(sql);
             ps.setString(1,id);
-            ResultSet rs=ps.executeQuery();
-
             if(rs.next()){
              String idTessera = rs.getString("IDTessera");
              LocalDate Emissione = (LocalDate) rs.getObject("Emissione");
@@ -37,28 +35,23 @@ public class TesseraDAOImpl implements TesseraDAO {
 
              tessera=new Tessera(idTessera, Emissione, Scadenza, idCliente);
             }
-            Database.closeConnection(con);
+            //Database.closeConnection(con);
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException( "Errore durante il recupero dei dati: ",e);
         }
         return tessera;
     }
 
     @Override
     public List<Tessera> getAll()  {
-        List listaTessere =  null;
+
+        List<Tessera> listaTessere =  new ArrayList<>();
         Tessera tessera= null;
-        PreparedStatement ps;
-        try (Connection con = Database.getConnection()) {
 
-            listaTessere = new ArrayList<>();
-            String sql = "select * from tessera";
-            ps=null;
+        String sql = "select * from tessera";
 
-            //Prepared Statement
-            ps = con.prepareStatement(sql);
-            ResultSet rs=ps.executeQuery();
+        try (Connection con = Database.getConnection(); PreparedStatement ps = con.prepareStatement(sql);ResultSet rs=ps.executeQuery();) {
 
             while (rs.next()){
                 String idTessera = rs.getString("IDTessera");
@@ -69,10 +62,10 @@ public class TesseraDAOImpl implements TesseraDAO {
                 tessera=new Tessera(idTessera, Emissione, Scadenza, idCliente);
                 listaTessere.add(tessera);
             }
-            Database.closeConnection(con);
+            //Database.closeConnection(con);
 
         } catch (SQLException e) {
-            e.printStackTrace();
+           throw new RuntimeException( "Errore durante il recupero dei dati: ",e);
         }
 
 
@@ -81,11 +74,13 @@ public class TesseraDAOImpl implements TesseraDAO {
 
     @Override
     public void delete(String id)  {
-        try(Connection con = Database.getConnection()){
-            PreparedStatement ps = con.prepareStatement("delete from tessera where IDTessera=?");
+
+        String sql = "delete from tessera where IDTessera=?";
+
+        try(Connection con = Database.getConnection();PreparedStatement ps = con.prepareStatement(sql);){
             ps.setString(1,id);
             ps.executeUpdate();
-            Database.closeConnection(con);
+            //Database.closeConnection(con);
 
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -97,9 +92,7 @@ public class TesseraDAOImpl implements TesseraDAO {
 
         String sql1="UPDATE tessera set emissione=?, scadenza=?, idcliente=? where IDTessera=?";
 
-        try(Connection con = Database.getConnection()){
-            //Prima Query
-            PreparedStatement ps1= con.prepareStatement(sql1);
+        try(Connection con = Database.getConnection(); PreparedStatement ps1= con.prepareStatement(sql1);){
 
             //Impostazione degli attributi
             ps1.setObject(1,(LocalDate)tessera.getEmissione());
@@ -108,25 +101,20 @@ public class TesseraDAOImpl implements TesseraDAO {
             ps1.setString(4,tessera.getIdTessera());
 
             ps1.executeUpdate();
-
             //Chiusura della connessione col Database
-            Database.closeConnection(con);
+            //Database.closeConnection(con);
 
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
-
-
     }
 
     @Override
     public void insert(Tessera tessera)  {
-        Connection con = null;
-        try {
-            con = Database.getConnection();
+
             String sql1 = "INSERT INTO tessera (IDTessera, emissione, scadenza, idcliente) VALUES (?, ?, ?, ?)";
-            try (PreparedStatement ps1 = con.prepareStatement(sql1)) {
+            try (Connection con = Database.getConnection();PreparedStatement ps1 = con.prepareStatement(sql1);) {
                 // Impostazione dei parametri per la query 1
                 ps1.setString(1, tessera.getIdTessera());
                 ps1.setObject(2, tessera.getEmissione());
@@ -138,49 +126,45 @@ public class TesseraDAOImpl implements TesseraDAO {
                // Database.closeConnection(con);
 
             }
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+         catch (Exception e) {
+             throw new RuntimeException("Errore durante l'inserimento dati",e);
         }
 
     }
 
+
+
     @Override
-    public boolean exists(String idCliente) throws SQLException {
+    public boolean exists(String idCliente)  {
         Tessera tessera = null;
-        PreparedStatement ps;
-        try (Connection con = new Database().getConnection()) {
-            tessera = null;
+        String sql = "select idTessera, idCliente from tessera where IDCliente=?";
+
+        try (Connection con = Database.getConnection(); PreparedStatement ps = con.prepareStatement(sql);ResultSet rs=ps.executeQuery(); ) {
             //Query effettuata su una vista creata nel DB per semplificare l'estrazione dei dati
-            String sql = "select idTessera, idCliente from tessera where IDCliente=?";
-
             //Estrazione dei dati dal DB
-            ps = con.prepareStatement(sql);
             ps.setString(1,idCliente);
-            ResultSet rs=ps.executeQuery();
-
             if(rs.next()){
                 String idTessera = rs.getString("IDTessera");
                 String idCLiente = rs.getString("IDCliente");
                 return true;
             }
-            Database.closeConnection(con);
+            //Database.closeConnection(con);
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException( "Errore durante il recupero dei dati: ",e);
         }
         return false;
     }
 
     @Override
-    public String getIdTessera(String idCliente) throws SQLException {
+    public String getIdTessera(String idCliente)  {
 
         String idTessera = null;
         Tessera tessera = null;
-        PreparedStatement ps;
-        try (Connection con = new Database().getConnection()) {
-            tessera = null;
-            String sql = "select idTessera, idCliente from tessera where IDCliente=?";
-            ps = con.prepareStatement(sql);
+
+        String sql = "select idTessera, idCliente from tessera where IDCliente=?";
+
+        try (Connection con = Database.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setString(1,idCliente);
             ResultSet rs=ps.executeQuery();
             if(rs.next()){
@@ -191,7 +175,7 @@ public class TesseraDAOImpl implements TesseraDAO {
             Database.closeConnection(con);
 
         }catch (SQLException e) {
-            e.printStackTrace();
+           throw new RuntimeException( "Errore durante il recupero dei dati: ",e);
         }
 
 

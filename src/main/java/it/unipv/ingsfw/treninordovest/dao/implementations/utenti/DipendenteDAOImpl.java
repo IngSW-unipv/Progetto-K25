@@ -57,7 +57,7 @@ public class DipendenteDAOImpl implements DipendenteDAO {
     @Override
     public List<Dipendente> getAll()  {
 
-        String sql = "select ID,nome,cognome,email,Userpassword,luogoNascita,dataNascita,sesso,cellulare,indirizzo,sesso,stipendio,ruolo,codTreno from utentiDipendenti";
+        String sql = "select ID,nome,cognome,Userpassword,luogoNascita,dataNascita,sesso,cellulare,indirizzo,sesso,stipendio,ruolo,codTreno from utentiDipendenti";
         //Variabili
         List<Dipendente> dipendenti = new ArrayList<Dipendente>();
 
@@ -100,27 +100,25 @@ public class DipendenteDAOImpl implements DipendenteDAO {
 
     @Override
     public void delete(String id) {
-        try(Connection con = new Database().getConnection()){
-            PreparedStatement ps = con.prepareStatement("delete from utente where ID=?");
+        String sql = "DELETE FROM utente where ID=?";
+        try(Connection con =Database.getConnection();PreparedStatement ps = con.prepareStatement(sql);){
+
             ps.setString(1,id);
             ps.executeUpdate();
-            Database.closeConnection(con);
+            //Database.closeConnection(con);
 
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Errore durante l'eliminazione dati: ",e);
         }
     }
 
     @Override
     public void update(Dipendente dipendente) {
-        String sql1="UPDATE utente set password=?, nome=?, cognome=?, luogoNascita=?, sessoChar=?, dataNascita=?, cellulare=?, indirizzo=? where ID=?";
+        String sql1="UPDATE utente set UserPassword=?, nome=?, cognome=?, luogoNascita=?, sesso=?, dataNascita=?, cellulare=?, indirizzo=? where ID=?";
         String sql2="UPDATE dipendente set codTreno=?, stipendio=?, ruolo=? where IdDipendente=?";
 
-        try(Connection con = new Database().getConnection()){
+        try(Connection con = Database.getConnection();PreparedStatement ps1= con.prepareStatement(sql1); PreparedStatement ps2= con.prepareStatement(sql2);){
             //Prima Query
-            PreparedStatement ps1= con.prepareStatement(sql1);
-            PreparedStatement ps2= con.prepareStatement(sql2);
-
             ps1.setString(1,dipendente.getUserPassword());
             ps1.setString(2,dipendente.getNome());
             ps1.setString(3,dipendente.getCognome());
@@ -130,8 +128,8 @@ public class DipendenteDAOImpl implements DipendenteDAO {
             ps1.setString(7,dipendente.getCellulare());
             ps1.setString(8,dipendente.getIndirizzo());
             ps1.setString(9,dipendente.getId());
-            //Seconda Query
 
+            //Seconda Query
             ps2.setString(1,dipendente.getCodTreno());
             ps2.setDouble(2,dipendente.getStipendio());
             ps2.setString(3,dipendente.getRuolo());
@@ -140,24 +138,20 @@ public class DipendenteDAOImpl implements DipendenteDAO {
             ps1.executeUpdate();
             ps2.executeUpdate();
 
-            Database.closeConnection(con);
+            //Database.closeConnection(con);
 
         } catch (Exception e) {
-            throw new RuntimeException(e);
+           throw new RuntimeException("Errore durante l'aggiornamento dati: ",e);
         }
 
     }
 
     @Override
     public void insert(Dipendente dipendente) {
-        Connection con = null;
-        try {
-            con = new Database().getConnection();
-            String sql1 = "INSERT INTO utente (ID, UserPassword, Nome, Cognome, Sesso, LuogoNascita, DataNascita, Cellulare, Indirizzo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            String sql2 = "INSERT INTO dipendente (IDDipendente, Stipendio,Ruolo,CodTreno) VALUES (?, ?, ?,?)";
+        String sql1 = "INSERT INTO utente (ID, UserPassword, Nome, Cognome, Sesso, LuogoNascita, DataNascita, Cellulare, Indirizzo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql2 = "INSERT INTO dipendente (IDDipendente, Stipendio,Ruolo,CodTreno) VALUES (?, ?, ?,?)";
 
-            try (PreparedStatement ps1 = con.prepareStatement(sql1);
-                 PreparedStatement ps2 = con.prepareStatement(sql2)) {
+            try (Connection con = Database.getConnection() ;PreparedStatement ps1 = con.prepareStatement(sql1); PreparedStatement ps2 = con.prepareStatement(sql2)) {
 
                 // Impostazione dei parametri per la query 1
                 ps1.setString(1, dipendente.getId());
@@ -182,13 +176,15 @@ public class DipendenteDAOImpl implements DipendenteDAO {
 
                 //Database.closeConnection(con);
             }
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+        catch (Exception e) {
+            throw new RuntimeException("Errore durante l'inserimento dati: ",e);
         }
 
 
 
     }
+
+
 
     /*Metodi da valutare*/
     @Override
