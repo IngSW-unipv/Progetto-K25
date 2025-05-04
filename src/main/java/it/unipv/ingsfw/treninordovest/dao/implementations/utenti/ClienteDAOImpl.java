@@ -27,10 +27,9 @@ public class ClienteDAOImpl implements ClienteDAO {
         String sql = "select ID,nome,cognome,email,Userpassword,bilancio,luogoNascita,dataNascita,sesso,cellulare,indirizzo,sesso from utentiClienti where id=?";
         Cliente cliente = null;
 
-        try (Connection con = Database.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
+        try (Connection con = Database.getConnection(); PreparedStatement ps = con.prepareStatement(sql);ResultSet rs=ps.executeQuery()) {
             ps.setString(1,id);
 
-            try (ResultSet rs=ps.executeQuery()) {
                 if(rs.next()){
                     String nome=rs.getString("nome");
                     String cognome=rs.getString("cognome");
@@ -49,8 +48,6 @@ public class ClienteDAOImpl implements ClienteDAO {
 
                    cliente =new Cliente(id,password,nome,cognome,luogoNascita, sesso, dataNascitaLocal ,cellulare,indirizzo,bilancio,email);
                 }
-
-            }
 
         } catch (SQLException e) {
             throw new RuntimeException( "Errore durante il recupero dei dati: ",e);
@@ -86,7 +83,7 @@ public class ClienteDAOImpl implements ClienteDAO {
             cliente=new Cliente(id,password,nome,cognome,luogoNascita, sesso, dataNascita,cellulare,indirizzo,bilancio,email);
             clienti.add(cliente);
         }
-            Database.closeConnection(con);
+            //Database.closeConnection(con);
         } catch (SQLException e) {
            throw new RuntimeException( "Errore durante il recupero dei dati: ",e);
         }
@@ -98,14 +95,11 @@ public class ClienteDAOImpl implements ClienteDAO {
         String sql = "DELETE FROM utente where ID=?";
 
         try(Connection con = Database.getConnection(); PreparedStatement ps = con.prepareStatement(sql);){
-
-                     ps.setString(1,id);
-                     ps.executeUpdate();
-
-
-                 } catch (Exception e) {
-                     throw new RuntimeException("Errore durante l'eliminazione dati: ",e);
-                 }
+            ps.setString(1,id);
+            ps.executeUpdate();
+        } catch (Exception e) {
+            throw new RuntimeException("Errore durante l'eliminazione dati: ",e);
+        }
 
     }
 
@@ -137,7 +131,7 @@ public class ClienteDAOImpl implements ClienteDAO {
             ps1.executeUpdate();
             ps2.executeUpdate();
 
-            Database.closeConnection(con);
+            //Database.closeConnection(con);
 
         } catch (Exception e) {
             throw new RuntimeException("Errore durante l'aggiornamento  dati: ",e);
@@ -147,15 +141,9 @@ public class ClienteDAOImpl implements ClienteDAO {
 
     @Override
     public void insert(Cliente cliente)  {
-        Connection con = null;
-        try {
-            con = new Database().getConnection();
-            String sql1 = "INSERT INTO utente (ID, UserPassword, Nome, Cognome, Sesso, LuogoNascita, DataNascita, Cellulare, Indirizzo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            String sql2 = "INSERT INTO cliente (IDCliente, Bilancio, Email) VALUES (?, ?, ?)";
-
-            try (PreparedStatement ps1 = con.prepareStatement(sql1);
-                 PreparedStatement ps2 = con.prepareStatement(sql2)) {
-
+        String sql1 = "INSERT INTO utente (ID, UserPassword, Nome, Cognome, Sesso, LuogoNascita, DataNascita, Cellulare, Indirizzo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql2 = "INSERT INTO cliente (IDCliente, Bilancio, Email) VALUES (?, ?, ?)";
+        try (Connection con = Database.getConnection();PreparedStatement ps1 = con.prepareStatement(sql1); PreparedStatement ps2 = con.prepareStatement(sql2)){
                 // Impostazione dei parametri per la query 1
                 ps1.setString(1, cliente.getId());
                 ps1.setString(2, cliente.getUserPassword());
@@ -176,8 +164,8 @@ public class ClienteDAOImpl implements ClienteDAO {
                 ps1.executeUpdate();
                 ps2.executeUpdate();
 
-                Database.closeConnection(con);
-            }
+                //Database.closeConnection(con);
+
         } catch (Exception e) {
             throw new RuntimeException("Errore durante l'inserimento dati",e);
         }
@@ -193,7 +181,6 @@ public class ClienteDAOImpl implements ClienteDAO {
         Cliente cliente = get(id);
         if(cliente != null && cliente.getUserPassword().equals(password)){
                 return cliente;
-
         } else return null;
 
     }

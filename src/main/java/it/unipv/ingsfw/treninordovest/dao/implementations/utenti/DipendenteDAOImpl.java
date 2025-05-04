@@ -18,16 +18,12 @@ public class DipendenteDAOImpl implements DipendenteDAO {
     @Override
     public Dipendente get(String id){
         //Dipendenti
+        String sql = "select ID,Userpassword,Nome,Cognome,Sesso,LuogoNascita,DataNascita, Cellulare,Indirizzo,Stipendio,Ruolo,CodTreno from utentiDipendenti where id=?";
         Dipendente dipendente = null;
-        PreparedStatement ps;
-        try (Connection con = new Database().getConnection()) {
-            String sql = "select ID,Userpassword,Nome,Cognome,Sesso,LuogoNascita,DataNascita, Cellulare,Indirizzo,Stipendio,Ruolo,CodTreno from utentiDipendenti where id=?";
 
+        try (Connection con = Database.getConnection(); PreparedStatement ps= con.prepareStatement(sql);ResultSet rs=ps.executeQuery(); ) {
             //Preparazione della Query
-            ps = null;
-            ps = con.prepareStatement(sql);
             ps.setString(1,id);
-            ResultSet rs=ps.executeQuery();
             //Impostazione di estrapolazione query
             if(rs.next()){
                 String nome=rs.getString("nome");
@@ -36,7 +32,6 @@ public class DipendenteDAOImpl implements DipendenteDAO {
                 String password=rs.getString("UserPassword");
                 double stipendio=rs.getDouble("stipendio");
                 String luogoNascita=rs.getString("luogoNascita");
-
 
                 Date dataNascita= rs.getDate("dataNascita");
                 LocalDate dataNascitaLocal = dataNascita.toLocalDate();
@@ -51,9 +46,9 @@ public class DipendenteDAOImpl implements DipendenteDAO {
             }
 
             //Chiusura connesione
-            Database.closeConnection(con);
+            //Database.closeConnection(con);
         }catch(SQLException e){
-            e.printStackTrace();
+            throw new RuntimeException("Errore durante l'estrazione dei dati: ",e);
         }
 
         return dipendente;
@@ -62,20 +57,17 @@ public class DipendenteDAOImpl implements DipendenteDAO {
     @Override
     public List<Dipendente> getAll()  {
 
+        String sql = "select ID,nome,cognome,email,Userpassword,luogoNascita,dataNascita,sesso,cellulare,indirizzo,sesso,stipendio,ruolo,codTreno from utentiDipendenti";
         //Variabili
-        List<Dipendente> clienti = new ArrayList<Dipendente>();
+        List<Dipendente> dipendenti = new ArrayList<Dipendente>();
 
         //Avvio della connessione col DB
-        PreparedStatement ps;
         Dipendente dipendente = null;
-        try (Connection con = new Database().getConnection()) {
+        try (Connection con = Database.getConnection(); PreparedStatement ps= con.prepareStatement(sql)) {
 
             //Query effettuata su una vista creata nel DB per semplificare l'estrazione dei dati
-            String sql = "select ID,nome,cognome,email,Userpassword,luogoNascita,dataNascita,sesso,cellulare,indirizzo,sesso,stipendio,ruolo,codTreno from utentiDipendenti";
 
             //Estrazione dei dati dal DB
-            ps = null;
-            ps = con.prepareStatement(sql);
 
             //ps.setString(1,id);
             ResultSet rs=ps.executeQuery();
@@ -95,15 +87,15 @@ public class DipendenteDAOImpl implements DipendenteDAO {
                 String codTreno=rs.getString("codTreno");
 
                 dipendente=new Dipendente(id,password,nome,cognome,luogoNascita, sesso, dataNascita,cellulare,indirizzo,codTreno,stipendio,ruolo);
-                clienti.add(dipendente);
+                dipendenti.add(dipendente);
             }
 
-            Database.closeConnection(con);
+            //Database.closeConnection(con);
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Errore durante l'estrazione dei dati: ",e);
         }
-        return clienti;
+        return dipendenti;
     }
 
     @Override
