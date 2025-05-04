@@ -17,17 +17,14 @@ public class BigliettoDAOImpl implements BigliettoDAO {
 
         /*Per semplificazione delle query di recupero dati si è scelto l'uso di Viste SQL basate su Join interne*/
 
+        String sql = "select IDTitolo, IDPagamento, Emissione, Prezzo, Ritorno, Validato, DataRitorno,DataValidazione from titoliBiglietti where idTitolo=?";
+
         Biglietto biglietto = null;
-        PreparedStatement ps;
-        try (Connection con = Database.getConnection()) {
-           biglietto= null;
-            //Query effettuata su una vista creata nel DB per semplificare l'estrazione dei dati
-            String sql = "select IDTitolo, IDPagamento, Emissione, Prezzo, Ritorno, Validato, DataRitorno,DataValidazione from titoliBiglietti where idTitolo=?";
+
+        try (Connection con = Database.getConnection(); PreparedStatement ps = con.prepareStatement(sql); ResultSet rs=ps.executeQuery();) {
 
             //Estrazione dei dati dal DB
-            ps = con.prepareStatement(sql);
             ps.setString(1, id);
-            ResultSet rs=ps.executeQuery();
 
             if(rs.next()){
                 String idTitolo = rs.getString("IDTitolo");
@@ -51,10 +48,10 @@ public class BigliettoDAOImpl implements BigliettoDAO {
 
                biglietto=new Biglietto(idTitolo,idPagamento,emissioneLocal,prezzo,ritorno,validato,dataRitornoLocal,dataValLocal);
             }
-            Database.closeConnection(con);
+            //Database.closeConnection(con);
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Errore nel recupero dei biglietti",e);
         }
         return biglietto;
 
@@ -62,18 +59,13 @@ public class BigliettoDAOImpl implements BigliettoDAO {
 
     @Override
     public List<Biglietto> getAll() {
-        List listaBiglietti =  null;
+        List<Biglietto> listaBiglietti= new ArrayList<Biglietto>();
         Biglietto biglietto= null;
-        PreparedStatement ps;
-        try (Connection con = Database.getConnection()) {
-            biglietto= null;
-            listaBiglietti = new ArrayList<Abbonamento>();
-            //Query effettuata su una vista creata nel DB per semplificare l'estrazione dei dati
-            String sql = "select IDTitolo, IDPagamento, Emissione, Prezzo, Ritorno, Validato, DataRitorno,DataValidazione from titoliBiglietti where idTitolo=?";
+        String sql = "select IDTitolo, IDPagamento, Emissione, Prezzo, Ritorno, Validato, DataRitorno,DataValidazione from titoliBiglietti where idTitolo=?";
 
-            //Estrazione dei dati dal DB
-            ps = con.prepareStatement(sql);
-            ResultSet rs=ps.executeQuery();
+        try (Connection con = Database.getConnection();PreparedStatement ps = con.prepareStatement(sql);ResultSet rs=ps.executeQuery();) {
+
+            //Query effettuata su una vista creata nel DB per semplificare l'estrazione dei dati
 
             while (rs.next()){
                 String idTitolo = rs.getString("IDTitolo");
@@ -90,10 +82,10 @@ public class BigliettoDAOImpl implements BigliettoDAO {
             }
 
 
-            Database.closeConnection(con);
+            //Database.closeConnection(con);
 
         } catch (SQLException e) {
-            e.printStackTrace();
+           throw new RuntimeException("Errore nel recupero dei biglietti",e);
         }
         return listaBiglietti;
     }
@@ -101,14 +93,15 @@ public class BigliettoDAOImpl implements BigliettoDAO {
     @Override
     public void delete(String id) {
 
-        try(Connection con = Database.getConnection()){
-            PreparedStatement ps = con.prepareStatement("delete from titoloviaggio where IDTitolo=?");
+        String sql1="DELETE FROM biglietto where IDBiglietto=?";
+
+        try(Connection con = Database.getConnection();PreparedStatement ps = con.prepareStatement(sql1);){
             ps.setString(1,id);
             ps.executeUpdate();
-            Database.closeConnection(con);
+            //Database.closeConnection(con);
 
         } catch (Exception e) {
-            throw new RuntimeException(e);
+           throw new RuntimeException("Errore durante l'eliminazione dati",e);
         }
 
 
@@ -120,10 +113,8 @@ public class BigliettoDAOImpl implements BigliettoDAO {
         String sql1="UPDATE titoloviaggio set IDPagamento=?, Emissione=?, Prezzo=? where IDTitolo=?";
         String sql2="UPDATE biglietto set ritorno=?, validato=?, dataRitorno=?, dataValidazione=?  where IDBiglietto=?";
 
-        try(Connection con = Database.getConnection()){
-            //Prima Query
-            PreparedStatement ps1= con.prepareStatement(sql1);
-            PreparedStatement ps2 = con.prepareStatement(sql2);
+        try(Connection con = Database.getConnection();PreparedStatement ps1= con.prepareStatement(sql1);
+            PreparedStatement ps2 = con.prepareStatement(sql2);){
 
             //Impostazione degli attributi
             ps1.setString(1,biglietto.getIdPagamento());
@@ -137,15 +128,14 @@ public class BigliettoDAOImpl implements BigliettoDAO {
             ps2.setObject(2,biglietto.getDataValidazione());
             ps2.setString(3,biglietto.getId());
 
-
             ps1.executeUpdate();
             ps2.executeUpdate();
 
             //Chiusura della connessione col Database
-            Database.closeConnection(con);
+            //Database.closeConnection(con);
 
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Errore durante l'aggiornamento dati",e);
         }
 
 
@@ -160,10 +150,7 @@ public class BigliettoDAOImpl implements BigliettoDAO {
         String sql1 = "INSERT INTO titoloviaggio (IDTitolo, IDPagamento, Emissione, Prezzo) VALUES (?, ?, ?, ?)";
         String sql2 = "INSERT INTO biglietto (IDBiglietto, Ritorno, Validato, DataRitorno, DataValidazione) VALUES (?,?,?,?,?)";
 
-        try(Connection con = Database.getConnection()){
-            //Prima Query
-            PreparedStatement ps1= con.prepareStatement(sql1);
-            PreparedStatement ps2 = con.prepareStatement(sql2);
+        try(Connection con = Database.getConnection(); PreparedStatement ps1= con.prepareStatement(sql1); PreparedStatement ps2 = con.prepareStatement(sql2);){
 
             //Impostazione degli attributi
             ps1.setString(1,biglietto.getId());
@@ -180,10 +167,10 @@ public class BigliettoDAOImpl implements BigliettoDAO {
             ps1.executeUpdate();
             ps2.executeUpdate();
             //Chiusura della connessione col Database
-            Database.closeConnection(con);
+           // Database.closeConnection(con);
 
         } catch (Exception e) {
-            throw new RuntimeException(e);
+           throw new RuntimeException("Errore durante l'inserimento",e);
         }
     }
 }

@@ -17,18 +17,13 @@ public class PagamentoDAOImpl implements PagamentoDAO {
     @Override
     public Pagamento get(String id) {
         Pagamento pagamento = null;
-        PreparedStatement ps;
-        try (Connection con = Database.getConnection()) {
-            pagamento = null;
-            //Query effettuata su una vista creata nel DB per semplificare l'estrazione dei dati
-            String sql = "select idPagamento,totale,idCliente,Tipo,dataPagamento from Pagamento where idPagamento=?";
+        String sql = "select idPagamento,totale,idCliente,Tipo,dataPagamento from Pagamento where idPagamento=?";
+
+        try (Connection con = Database.getConnection(); PreparedStatement ps= con.prepareStatement(sql);) {
 
             //Estrazione dei dati dal DB
-            ps = null;
-            ps = con.prepareStatement(sql);
             ps.setString(1,id);
             ResultSet rs=ps.executeQuery();
-
 
             if(rs.next()){
                 String idPagamento=rs.getString("idPagamento");
@@ -44,30 +39,22 @@ public class PagamentoDAOImpl implements PagamentoDAO {
 
 
         } catch (SQLException e) {
-            e.printStackTrace();
+           throw new RuntimeException("Errore durante l'acquisizione dati",e);
         }
         return pagamento;
     }
 
     @Override
     public List<Pagamento> getAll() {
-        List<Pagamento> paga= new ArrayList<Pagamento>();
 
-        //Avvio della connessione col DB
-        PreparedStatement ps;
+        List<Pagamento> paga= new ArrayList<>();
+        String sql = "select idPagamento,idCliente,totale, tipo, dataPagamento from Pagamento";
         Pagamento pagamento = null;
-        try (Connection con = Database.getConnection()) {
+
+
+        try (Connection con = Database.getConnection(); PreparedStatement ps= con.prepareStatement(sql); ResultSet rs=ps.executeQuery();) {
 
             //Query effettuata su una vista creata nel DB per semplificare l'estrazione dei dati
-            String sql = "select idPagamento,idCliente,totale, tipo, dataPagamento from Pagamento";
-
-            //Estrazione dei dati dal DB
-            ps = null;
-            ps = con.prepareStatement(sql);
-
-            //ps.setString(1,id);
-            ResultSet rs=ps.executeQuery();
-
             while(rs.next()){
                 String idPagamento=rs.getString("idPagamento");
                 String idCliente=rs.getString("idCliente");
@@ -82,23 +69,26 @@ public class PagamentoDAOImpl implements PagamentoDAO {
             Database.closeConnection(con);
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Errore durante l'acquisizione dati",e);
         }
         return paga;
     }
 
     @Override
     public void delete(String idPagamento) {
-        try(Connection con = Database.getConnection()){
-            PreparedStatement ps = con.prepareStatement("delete from Pagamento where idPagamento=?");
+
+        String sql1="DELETE FROM pagamento WHERE idPagamento=?";
+
+        try(Connection con = Database.getConnection();PreparedStatement ps = con.prepareStatement(sql1);){
+
             ps.setString(1,idPagamento);
 
             ps.executeUpdate();
 
-            Database.closeConnection(con);
+            //Database.closeConnection(con);
 
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Errore durante l'eliminazione dati",e);
         }
     }
 
@@ -107,9 +97,8 @@ public class PagamentoDAOImpl implements PagamentoDAO {
     public void update(Pagamento pagamento) {
         String sql1="UPDATE pagamento set idCliente=?,totale=?, tipo=?, dataPagamento=? where idPagamento=?";
 
-        try(Connection con = Database.getConnection()){
+        try(Connection con = Database.getConnection();PreparedStatement ps1= con.prepareStatement(sql1);){
             //Prima Query
-            PreparedStatement ps1= con.prepareStatement(sql1);
             ps1.setString(1,pagamento.getIdCliente());
             ps1.setDouble(2,pagamento.getTotale());
             ps1.setString(3,pagamento.getTipo());
@@ -118,23 +107,19 @@ public class PagamentoDAOImpl implements PagamentoDAO {
 
             ps1.executeUpdate();
 
-            Database.closeConnection(con);
+            //Database.closeConnection(con);
 
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Errore durante l'aggiornamento dati",e);
         }
 
     }
 
     @Override
     public void insert(Pagamento pagamento) {
+        String sql1 = "INSERT INTO pagamento (idPagamento,idCliente,totale, tipo, dataPagamento) VALUES (?, ?, ?, ?, ?)";
 
-        Connection con = null;
-        try {
-            con = Database.getConnection();
-            String sql1 = "INSERT INTO pagamento (idPagamento,idCliente,totale, tipo, dataPagamento) VALUES (?, ?, ?, ?, ?)";
-
-            try (PreparedStatement ps1 = con.prepareStatement(sql1)) {
+        try ( Connection con = Database.getConnection();PreparedStatement ps1 = con.prepareStatement(sql1)) {
 
                 // Impostazione dei parametri per la query 1
                 ps1.setString(1,pagamento.getIdPagamento());
@@ -147,7 +132,7 @@ public class PagamentoDAOImpl implements PagamentoDAO {
                 ps1.executeUpdate();
 
                 //Database.closeConnection(con);
-            }
+
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
