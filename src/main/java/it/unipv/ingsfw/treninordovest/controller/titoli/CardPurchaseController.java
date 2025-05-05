@@ -12,7 +12,7 @@ import javax.swing.*;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
-public class CardPurchasController {
+public class CardPurchaseController {
 
     private CardPurchasePanel view;
     private JCustomerMainFrame customerRegFrame;
@@ -21,7 +21,7 @@ public class CardPurchasController {
     private LocalDate dataEmissione;
     private LocalDate dataScadenza;
 
-    public CardPurchasController(CardPurchasePanel view, JCustomerMainFrame customerRegFrame) {
+    public CardPurchaseController(CardPurchasePanel view, JCustomerMainFrame customerRegFrame) {
         this.view = view;
         this.customerRegFrame = customerRegFrame;
         initComponents();
@@ -29,16 +29,12 @@ public class CardPurchasController {
 
     private void initComponents() {
         view.getButtonAcquistaTessera().addActionListener(e -> {
-            try {
-                acquistaTessera();
-            } catch (SQLException ex) {
-                throw new RuntimeException(ex);
-            }
+            acquistaTessera();
         });
 
     }
 
-    private void acquistaTessera() throws SQLException {
+    private void acquistaTessera()  {
         try
         {
             String idCliente = view.getTextIDCliente().getText();

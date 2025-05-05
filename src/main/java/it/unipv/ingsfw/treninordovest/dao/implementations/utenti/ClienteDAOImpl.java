@@ -27,8 +27,12 @@ public class ClienteDAOImpl implements ClienteDAO {
         String sql = "select ID,nome,cognome,email,Userpassword,bilancio,luogoNascita,dataNascita,sesso,cellulare,indirizzo,sesso from utentiClienti where id=?";
         Cliente cliente = null;
 
-        try (Connection con = Database.getConnection(); PreparedStatement ps = con.prepareStatement(sql);ResultSet rs=ps.executeQuery()) {
+        try (Connection con = Database.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
+
             ps.setString(1,id);
+
+            try (ResultSet rs=ps.executeQuery()){
+
 
                 if(rs.next()){
                     String nome=rs.getString("nome");
@@ -46,8 +50,12 @@ public class ClienteDAOImpl implements ClienteDAO {
                     String indirizzo=rs.getString("indirizzo");
 
 
-                   cliente =new Cliente(id,password,nome,cognome,luogoNascita, sesso, dataNascitaLocal ,cellulare,indirizzo,bilancio,email);
+                    cliente =new Cliente(id,password,nome,cognome,luogoNascita, sesso, dataNascitaLocal ,cellulare,indirizzo,bilancio,email);
                 }
+
+            }
+
+
 
         } catch (SQLException e) {
             throw new RuntimeException( "Errore durante il recupero dei dati: ",e);
@@ -105,7 +113,7 @@ public class ClienteDAOImpl implements ClienteDAO {
 
     @Override
     public void update(Cliente cliente)  {
-        String sql1="UPDATE utente set password=?, nome=?, cognome=?, luogoNascita=?, sessoChar=?, dataNascita=?, cellulare=?, indirizzo=? where ID=?";
+        String sql1="UPDATE utente set UserPassword=?, nome=?, cognome=?, luogoNascita=?, sesso=?, dataNascita=?, cellulare=?, indirizzo=? where ID=?";
         String sql2="UPDATE cliente set Bilancio=?, Email=? where IDCliente=?";
 
         try(Connection con = Database.getConnection(); PreparedStatement ps1= con.prepareStatement(sql1); PreparedStatement ps2= con.prepareStatement(sql2)){

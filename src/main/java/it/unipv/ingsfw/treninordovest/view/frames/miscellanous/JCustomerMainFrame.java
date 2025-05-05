@@ -1,6 +1,6 @@
 package it.unipv.ingsfw.treninordovest.view.frames.miscellanous;
 
-import it.unipv.ingsfw.treninordovest.controller.titoli.CardPurchasController;
+import it.unipv.ingsfw.treninordovest.controller.titoli.CardPurchaseController;
 import it.unipv.ingsfw.treninordovest.controller.titoli.TicketRefundController;
 import it.unipv.ingsfw.treninordovest.controller.users.CustomerProfileController;
 import it.unipv.ingsfw.treninordovest.controller.users.CustomerTicketController;
@@ -30,7 +30,7 @@ public class JCustomerMainFrame extends JFrame {
     private CustomerTicketController customerTicketController;
     private TicketRefundController ticketRefundController;
 
-    private CardPurchasController cardPurchasController;
+    private CardPurchaseController cardPurchasController;
     private SubscriptionController subscriptionController;
     private CustomerProfileController customerProfileController;
 
@@ -71,7 +71,7 @@ public class JCustomerMainFrame extends JFrame {
 
 
         /*Aggiunta dei controller*/
-        cardPurchasController = new CardPurchasController(cardPurchasePanel,this);
+        cardPurchasController = new CardPurchaseController(cardPurchasePanel,this);
         subscriptionController = new SubscriptionController(subscriptionPanel,this);
         customerProfileController = new CustomerProfileController(profilePanel,this);
         customerTicketController = new CustomerTicketController(this,tratteTablePanel,ticketPurchasePanel);

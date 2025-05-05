@@ -20,28 +20,34 @@ public class DipendenteDAOImpl implements DipendenteDAO {
         String sql = "select ID,Userpassword,Nome,Cognome,Sesso,LuogoNascita,DataNascita, Cellulare,Indirizzo,Stipendio,Ruolo,CodTreno from utentiDipendenti where id=?";
         Dipendente dipendente = null;
 
-        try (Connection con = Database.getConnection(); PreparedStatement ps= con.prepareStatement(sql);ResultSet rs=ps.executeQuery() ) {
+        try (Connection con = Database.getConnection(); PreparedStatement ps= con.prepareStatement(sql); ) {
             //Preparazione della Query
             ps.setString(1,id);
             //Impostazione di estrapolazione query
-            if(rs.next()){
-                String nome=rs.getString("nome");
-                String cognome=rs.getString("cognome");
-                //String email=rs.getString("email");
-                String password=rs.getString("UserPassword");
-                double stipendio=rs.getDouble("stipendio");
-                String luogoNascita=rs.getString("luogoNascita");
 
-                Date dataNascita= rs.getDate("dataNascita");
-                LocalDate dataNascitaLocal = dataNascita.toLocalDate();
+            try (ResultSet rs=ps.executeQuery()) {
+                if(rs.next()){
+                    String nome=rs.getString("nome");
+                    String cognome=rs.getString("cognome");
+                    //String email=rs.getString("email");
+                    String password=rs.getString("UserPassword");
+                    double stipendio=rs.getDouble("stipendio");
+                    String luogoNascita=rs.getString("luogoNascita");
 
-                String sesso=rs.getString("sesso");
-                String cellulare=rs.getString("cellulare");
-                String indirizzo=rs.getString("indirizzo");
-                String codTreno=rs.getString("codTreno");
-                String ruolo =rs.getString("ruolo");
+                    Date dataNascita= rs.getDate("dataNascita");
+                    LocalDate dataNascitaLocal = dataNascita.toLocalDate();
 
-               dipendente=new Dipendente(id,password,nome,cognome,luogoNascita, sesso, dataNascitaLocal,cellulare,indirizzo,codTreno,stipendio,ruolo);
+                    String sesso=rs.getString("sesso");
+                    String cellulare=rs.getString("cellulare");
+                    String indirizzo=rs.getString("indirizzo");
+                    String codTreno=rs.getString("codTreno");
+                    String ruolo =rs.getString("ruolo");
+
+                    dipendente=new Dipendente(id,password,nome,cognome,luogoNascita, sesso, dataNascitaLocal,cellulare,indirizzo,codTreno,stipendio,ruolo);
+
+            }
+
+
             }
 
             //Chiusura connesione
@@ -77,7 +83,10 @@ public class DipendenteDAOImpl implements DipendenteDAO {
                 String cognome=rs.getString("cognome");
                 String password=rs.getString("UserPassword");
                 String luogoNascita=rs.getString("luogoNascita");
-                LocalDate dataNascita= (LocalDate) rs.getObject("dataNascita");
+
+                Date dataNascita= rs.getDate("dataNascita");
+                LocalDate dataNascitaLocal = dataNascita.toLocalDate();
+
                 String sesso=rs.getString("sesso");
                 String cellulare=rs.getString("cellulare");
                 String indirizzo=rs.getString("indirizzo");
@@ -85,7 +94,7 @@ public class DipendenteDAOImpl implements DipendenteDAO {
                 String ruolo=rs.getString("ruolo");
                 String codTreno=rs.getString("codTreno");
 
-                dipendente=new Dipendente(id,password,nome,cognome,luogoNascita, sesso, dataNascita,cellulare,indirizzo,codTreno,stipendio,ruolo);
+                dipendente=new Dipendente(id,password,nome,cognome,luogoNascita, sesso, dataNascitaLocal,cellulare,indirizzo,codTreno,stipendio,ruolo);
                 dipendenti.add(dipendente);
             }
 
