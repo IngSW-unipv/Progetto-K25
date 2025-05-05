@@ -20,7 +20,7 @@ public class Database {
     private static String password;
     private static String dbDriver;
     private static String dbURL;
-    private static String filePath="properties/properties";
+    private static final String filePath="properties/properties";
 
 
     private static void init() {

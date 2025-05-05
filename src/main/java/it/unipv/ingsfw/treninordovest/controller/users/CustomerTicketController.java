@@ -2,12 +2,10 @@ package it.unipv.ingsfw.treninordovest.controller.users;
 
 import it.unipv.ingsfw.treninordovest.dao.implementations.ferrovia.TrattaDAOImpl;
 import it.unipv.ingsfw.treninordovest.dao.implementations.ferrovia.TrattaFermataDAOImpl;
-import it.unipv.ingsfw.treninordovest.dao.implementations.ferrovia.ViaggioDAOimpl;
+import it.unipv.ingsfw.treninordovest.dao.implementations.ferrovia.ViaggioDAOImpl;
 import it.unipv.ingsfw.treninordovest.dao.implementations.titoli.BigliettoDAOImpl;
 import it.unipv.ingsfw.treninordovest.dao.implementations.titoli.PagamentoDAOImpl;
 import it.unipv.ingsfw.treninordovest.dao.implementations.utenti.ClienteDAOImpl;
-import it.unipv.ingsfw.treninordovest.dao.interfaces.BigliettoDAO;
-import it.unipv.ingsfw.treninordovest.dao.interfaces.TrattaFermataDAO;
 import it.unipv.ingsfw.treninordovest.model.ferrovia.Tratta;
 import it.unipv.ingsfw.treninordovest.model.ferrovia.TrattaFermata;
 import it.unipv.ingsfw.treninordovest.model.ferrovia.Viaggio;
@@ -17,20 +15,14 @@ import it.unipv.ingsfw.treninordovest.model.utenti.Cliente;
 import it.unipv.ingsfw.treninordovest.model.varie.GeneraID;
 import it.unipv.ingsfw.treninordovest.model.varie.SessionManager;
 import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JCustomerMainFrame;
-import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JMainMenuFrame;
 import it.unipv.ingsfw.treninordovest.view.panels.finance.TicketPurchasePanel;
 import it.unipv.ingsfw.treninordovest.view.panels.miscellanous.TratteTablePanel;
 
-import javax.persistence.Id;
 import javax.swing.*;
-import java.sql.Date;
 import java.sql.SQLException;
-import java.text.ParseException;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
-import java.util.ArrayList;
 import java.util.List;
 
 public class CustomerTicketController {
@@ -79,7 +71,7 @@ public class CustomerTicketController {
 
         PagamentoDAOImpl pagamentoDAO = new PagamentoDAOImpl();
         BigliettoDAOImpl bigliettoDAO = new BigliettoDAOImpl();
-        ViaggioDAOimpl viaggioDAO = new ViaggioDAOimpl();
+        ViaggioDAOImpl viaggioDAO = new ViaggioDAOImpl();
         TrattaFermataDAOImpl trattaDAO = new TrattaFermataDAOImpl();
 
         Pagamento pagamento = creaPagamento(2);
