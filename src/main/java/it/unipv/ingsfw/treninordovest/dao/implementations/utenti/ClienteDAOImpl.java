@@ -126,7 +126,7 @@ public class ClienteDAOImpl implements ClienteDAO {
             ps1.setString(3,cliente.getCognome());
             ps1.setString(4,cliente.getLuogoNascita());
             ps1.setString(5,cliente.getSesso());
-            ps1.setObject(6, cliente.getDataNascita());
+            ps1.setObject(6,cliente.getDataNascita());
             ps1.setString(7,cliente.getCellulare());
             ps1.setString(8,cliente.getIndirizzo());
             ps1.setString(9,cliente.getId());
