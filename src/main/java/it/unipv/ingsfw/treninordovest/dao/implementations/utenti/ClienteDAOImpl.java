@@ -3,6 +3,7 @@ package it.unipv.ingsfw.treninordovest.dao.implementations.utenti;
 import it.unipv.ingsfw.treninordovest.dao.database.Database;
 import it.unipv.ingsfw.treninordovest.dao.interfaces.ClienteDAO;
 import it.unipv.ingsfw.treninordovest.model.utenti.Cliente;
+import it.unipv.ingsfw.treninordovest.utils.PasswordUtils;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -185,9 +186,8 @@ public class ClienteDAOImpl implements ClienteDAO {
 
     @Override
     public Cliente autenticate(String id, String password) {
-
         Cliente cliente = get(id);
-        if(cliente != null && cliente.getUserPassword().equals(password)){
+        if(PasswordUtils.verifyPassword(password,cliente.getUserPassword()) && cliente.getId().equals(id)){
             return cliente;
         } else return null;
 
@@ -218,21 +218,15 @@ public class ClienteDAOImpl implements ClienteDAO {
     @Override
     public boolean updatePassword(String id, String password) {
 
+        String hashedPassword = PasswordUtils.hashPassword(password);
         String sql = "UPDATE utente set UserPassword=? where ID=?";
-        Connection con ;
-        try {
-            con= Database.getConnection();
-            if (con != null) {
-                PreparedStatement ps = con.prepareStatement(sql);
-                ps.setString(1, password);
+        try (Connection con = Database.getConnection();PreparedStatement ps = con.prepareStatement(sql);){
+                ps.setString(1, hashedPassword);
                 ps.setString(2, id);
-                ps.executeUpdate();
-                Database.closeConnection(con);
-                return true;
-            }
-            return false;
+                //Database.closeConnection(con);
+            return ps.executeUpdate() > 0;
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Errore durante l'aggiornamento della password",e);
         }
 
 

@@ -61,7 +61,7 @@ public class SubscriptionController {
 
     }
 
-    private void acquistoAbbonamento() /*throws SQLException*/ {
+    private void acquistoAbbonamento() {
         /*Dichiarazioni varianili*/
 
         try {
@@ -174,7 +174,7 @@ public class SubscriptionController {
 
     }
 
-    protected Abbonamento creaAbbonamento (LocalDate scadenza,String idPagamento,double prezzoAbbonamento,String tipoAbbonamento) throws SQLException {
+    protected Abbonamento creaAbbonamento (LocalDate scadenza,String idPagamento,double prezzoAbbonamento,String tipoAbbonamento) {
 
         IdClienteLoggato = (String) SessionManager.getInstance().getCurrentUser().getId();
 

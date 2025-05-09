@@ -26,18 +26,12 @@ public class TicketRefundController {
     }
 
     private void initComponents() {
-        view.getButtonRimborso().addActionListener(e -> {
-            try {
-                creaRimborso();
-            } catch (SQLException ex) {
-                throw new RuntimeException(ex);
-            }
-        });
+        view.getButtonRimborso().addActionListener(e -> {creaRimborso();});
 
     }
 
 
-    private void creaRimborso () throws SQLException {
+    private void creaRimborso ()  {
 
         BigliettoDAOImpl bigliettoDAO = new BigliettoDAOImpl();
         String idBiglietto=view.getTextIDBiglietto().getText();

@@ -21,17 +21,11 @@ public class TicketCheckController {
 
     }
     private void initComponents() {
-        view.getVerificaButton().addActionListener(e -> {
-            try {
-                verficaTitolo();
-            } catch (SQLException ex) {
-                throw new RuntimeException(ex);
-            }
-        });
+        view.getVerificaButton().addActionListener(e -> {verficaTitolo();});
 
     }
 
-    private void verficaTitolo () throws SQLException {
+    private void verficaTitolo () {
         BigliettoDAOImpl bigliettoDAO = new BigliettoDAOImpl();
         AbbonamentoDAOimpl abbonamentoDAOimpl  = new AbbonamentoDAOimpl();
 

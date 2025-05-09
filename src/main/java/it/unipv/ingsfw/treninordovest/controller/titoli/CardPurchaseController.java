@@ -28,9 +28,7 @@ public class CardPurchaseController {
     }
 
     private void initComponents() {
-        view.getButtonAcquistaTessera().addActionListener(e -> {
-            acquistaTessera();
-        });
+        view.getButtonAcquistaTessera().addActionListener(e -> {acquistaTessera();});
 
     }
 

@@ -21,18 +21,19 @@ public class LoginFactoryProducer {
         try {
             Properties pr = new Properties(System.getProperties());
             pr.load(new FileInputStream("properties/properties"));
-            
-            String factoryClassName;
-            if ("Cliente".equals(tipoUtente)) {
-                factoryClassName = pr.getProperty(CLIENTE_FACTORY_PROP, 
-                                              "it.unipv.ingsfw.treninordovest.factory.implementations.ClienteLoginFactoryImpl");
-            } else if ("Dipendente".equals(tipoUtente)) {
-                factoryClassName = pr.getProperty(DIPENDENTE_FACTORY_PROP, 
-                                              "it.unipv.ingsfw.treninordovest.factory.implementations.DipendenteLoginFactoryImpl");
-            } else {
+        
+            // Converte il tipo di utente in minuscolo per la costruzione della chiave
+            String tipoUtenteLowerCase = tipoUtente.toLowerCase();
+            // Costruisce la chiave dinamicamente
+            String propertyKey = tipoUtenteLowerCase + ".factory.class.name";
+        
+            // Ottiene il nome della classe dalla proprietà
+            String factoryClassName = pr.getProperty(propertyKey);
+        
+            if (factoryClassName == null) {
                 throw new IllegalArgumentException("Tipo di utente non supportato: " + tipoUtente);
             }
-            
+        
             return (LoginAbstractFactory) Class.forName(factoryClassName).getDeclaredConstructor().newInstance();
         } catch (Exception e) {
             throw new RuntimeException("Errore nella creazione della factory: " + e.getMessage(), e);
