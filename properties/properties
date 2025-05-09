@@ -6,6 +6,11 @@ db_psw=Andrea@2003
 
 cliente.class.name= it.unipv.ingsfw.treninordovest.model.utenti.Cliente
 dipendente.class.name= it.unipv.ingsfw.treninordovest.model.utenti.Dipendente
+cliente.factory.class.name=it.unipv.ingsfw.treninordovest.factory.implementations.ClienteLoginFactoryImpl
+dipendente.factory.class.name=it.unipv.ingsfw.treninordovest.factory.implementations.DipendenteLoginFactoryImpl
+
+
+
 
 
 

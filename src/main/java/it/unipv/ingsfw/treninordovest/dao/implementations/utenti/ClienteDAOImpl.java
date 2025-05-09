@@ -185,10 +185,12 @@ public class ClienteDAOImpl implements ClienteDAO {
 
     @Override
     public Cliente autenticate(String id, String password) {
+
         Cliente cliente = get(id);
         if(cliente != null && cliente.getUserPassword().equals(password)){
-                return cliente;
+            return cliente;
         } else return null;
+
 
     }
 

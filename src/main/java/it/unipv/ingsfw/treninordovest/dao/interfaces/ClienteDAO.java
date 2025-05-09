@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public interface ClienteDAO extends DAO<Cliente> {
 
-    Cliente autenticate(String id, String password) throws SQLException;
+    Cliente autenticate(String id, String password) ;
 
     boolean updateBilancio(String IdCliente, double prezzo);
 

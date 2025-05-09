@@ -35,7 +35,7 @@ public class JCustomerMainFrame extends JFrame {
     private CustomerProfileController customerProfileController;
 
 
-    public JCustomerMainFrame() throws SQLException {
+    public JCustomerMainFrame() {
         setTitle("Treninordovest - Area Cliente");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1120, 500);
@@ -43,7 +43,7 @@ public class JCustomerMainFrame extends JFrame {
         initComponents();
     }
 
-    private void initComponents() throws SQLException {
+    private void initComponents()  {
 
 
         // Crea i pannelli per ogni funzionalità
