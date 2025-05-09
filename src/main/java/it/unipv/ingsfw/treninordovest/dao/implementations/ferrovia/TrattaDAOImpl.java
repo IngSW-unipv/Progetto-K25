@@ -18,27 +18,26 @@ public class TrattaDAOImpl implements TrattaDAO {
     public Tratta get(String id) {
 
        Tratta tratta = null;
-        PreparedStatement ps;
-        try (Connection con =Database.getConnection()) {
-            tratta = null;
+       String sql = "select * from tratta where IDTratta=?";
+
+        try (Connection con =Database.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
+
             //Query effettuata su una vista creata nel DB per semplificare l'estrazione dei dati
-            String sql = "select * from tratta where IDTratta=?";
-
-            //Estrazione dei dati dal DB
-            ps = con.prepareStatement(sql);
             ps.setString(1,id);
-            ResultSet rs=ps.executeQuery();
+            try (ResultSet rs=ps.executeQuery()){
+                if(rs.next()){
+                    String nome = rs.getString("Nome");
+                    int lunghezza = rs.getInt("Lunghezza");
 
-            if(rs.next()){
-                String nome = rs.getString("Nome");
-                int lunghezza = rs.getInt("Lunghezza");
-
-                tratta=new Tratta(id,nome,lunghezza );
+                    tratta=new Tratta(id,nome,lunghezza );
+                }
             }
-            Database.closeConnection(con);
+
+
+            //Database.closeConnection(con);
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Errore nell'acquisizione dati",e);
         }
         return tratta;
 
@@ -49,17 +48,10 @@ public class TrattaDAOImpl implements TrattaDAO {
     public List<Tratta> getAll()  {
 
         Tratta tratta = null;
-        List tratte = new ArrayList<Tratta>();
-        PreparedStatement ps;
-        try (Connection con = Database.getConnection()) {
-            tratta = null;
-            //Query effettuata su una vista creata nel DB per semplificare l'estrazione dei dati
-            String sql = "select IDTratta,Nome,Lunghezza from tratta";
+        List<Tratta> tratte = new ArrayList<>();
+        String sql = "select IDTratta,Nome,Lunghezza from tratta";
 
-            //Estrazione dei dati dal DB
-            ps = con.prepareStatement(sql);
-            //ps.setString(1,id);
-            ResultSet rs=ps.executeQuery();
+        try (Connection con = Database.getConnection();PreparedStatement ps = con.prepareStatement(sql); ResultSet rs=ps.executeQuery()) {
 
             while (rs.next()){
                 String idTratta = rs.getString("IDTratta");
@@ -70,10 +62,10 @@ public class TrattaDAOImpl implements TrattaDAO {
                 tratta=new Tratta (idTratta,nome,lunghezza );
                 tratte.add(tratta);
             }
-            Database.closeConnection(con);
+            //Database.closeConnection(con);
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Errore nell'acquisizione dati",e);
         }
 
         return tratte;
@@ -82,13 +74,13 @@ public class TrattaDAOImpl implements TrattaDAO {
 
     @Override
     public void delete(String id)  {
-        try(Connection con = Database.getConnection()){
-            PreparedStatement ps = con.prepareStatement("delete from Tratta where idTratta=?");
+
+        String sql1="DELETE FROM tratta WHERE IDTratta=?";
+
+        try(Connection con = Database.getConnection(); PreparedStatement ps = con.prepareStatement(sql1)){
             ps.setString(1,id);
-
             ps.executeUpdate();
-
-            Database.closeConnection(con);
+            //Database.closeConnection(con);
 
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -99,16 +91,15 @@ public class TrattaDAOImpl implements TrattaDAO {
     public void update(Tratta tratta) {
         String sql1="UPDATE Tratta set nome=?, lunghezza=? where idTratta=?=?";
 
-        try(Connection con = Database.getConnection()){
-            //Prima Query
-            PreparedStatement ps1= con.prepareStatement(sql1);
+        try(Connection con = Database.getConnection();PreparedStatement ps1= con.prepareStatement(sql1)){
+
             ps1.setString(1,tratta.getNome());
             ps1.setInt(2,tratta.getLunghezza());
             ps1.setString(3,tratta.getIdTratta());
 
             ps1.executeUpdate();
 
-            Database.closeConnection(con);
+            //Database.closeConnection(con);
 
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -117,9 +108,9 @@ public class TrattaDAOImpl implements TrattaDAO {
 
     @Override
     public void insert(Tratta tratta) {
-        Connection con = null;
-        try {
-            con = Database.getConnection();
+
+        try (Connection con =Database.getConnection() ){
+
             String sql1 = "INSERT INTO tratta (idTratta, nome, lunghezza) VALUES (?, ?, ?)";
 
             try (PreparedStatement ps1 = con.prepareStatement(sql1)) {
@@ -132,7 +123,7 @@ public class TrattaDAOImpl implements TrattaDAO {
                 // Esecuzione delle query
                 ps1.executeUpdate();
 
-                Database.closeConnection(con);
+               // Database.closeConnection(con);
             }
         } catch (Exception e) {
             throw new RuntimeException(e);

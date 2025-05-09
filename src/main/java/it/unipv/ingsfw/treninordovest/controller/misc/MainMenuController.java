@@ -1,4 +1,4 @@
-package it.unipv.ingsfw.treninordovest.controller;
+package it.unipv.ingsfw.treninordovest.controller.misc;
 
 import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JCustomerRegFrame;
 import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JEmployeeRegFrame;
@@ -8,8 +8,9 @@ import it.unipv.ingsfw.treninordovest.view.panels.miscellanous.MainMenuPanel;
 
 public class MainMenuController {
 
-    private MainMenuPanel view;
-    private JMainMenuFrame mainMenuFrame;
+    private final MainMenuPanel view;
+    private final JMainMenuFrame mainMenuFrame;
+
 
     public MainMenuController(MainMenuPanel view, JMainMenuFrame mainMenuFrame) {
         this.view = view;

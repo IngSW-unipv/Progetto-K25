@@ -6,9 +6,9 @@ import java.awt.*;
 public class MainMenuPanel extends JPanel {
 
     //private JButton accessoCliente;
-    private JButton registrazioneCliente;
-    private JButton registrazioneDipendente;
-    private JButton accesso;
+    private final JButton registrazioneCliente;
+    private final JButton registrazioneDipendente;
+    private final JButton accesso;
     private Color coloreSfondo;
 
     public MainMenuPanel() {

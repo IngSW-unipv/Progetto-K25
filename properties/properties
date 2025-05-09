@@ -4,4 +4,9 @@ db_usn=root
 db_psw=Andrea@2003
 
 
+cliente.class.name= it.unipv.ingsfw.treninordovest.model.utenti.Cliente
+dipendente.class.name= it.unipv.ingsfw.treninordovest.model.utenti.Dipendente
+
+
+
 

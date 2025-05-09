@@ -39,13 +39,5 @@ public class Tratta {
         this.lunghezza = lunghezza;
     }
 
-    /*
-    @Override
-    public String toString() {
-        return "Tratta{" +
-                "idTratta='" + idTratta + '\'' +
-                ", nome='" + nome + '\'' +
-                ", lunghezza=" + lunghezza +
-                '}';
-    }*/
+
 }

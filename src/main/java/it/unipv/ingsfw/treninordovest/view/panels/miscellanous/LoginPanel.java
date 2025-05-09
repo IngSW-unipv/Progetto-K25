@@ -5,14 +5,14 @@ import java.awt.*;
 
 public class LoginPanel extends JPanel {
     //Dichiarazione dei componenti
-    private JTextField campoUtente;
-    private JPasswordField campoPassword;
-    private JButton bottoneAccesso;
-    private JButton bottoneIndietro;
+    private final JTextField campoUtente;
+    private final JPasswordField campoPassword;
+    private final JButton bottoneAccesso;
+    private final JButton bottoneIndietro;
    // private ImageIcon logoIcon = new ImageIcon("/logo.png");
     //private JLabel logoLabel;
     private Color coloreSfondo;
-    private JComboBox<String> comboRuolo;
+    private final JComboBox<String> comboRuolo;
 
     public LoginPanel() {
         //Definizione degli oggetti

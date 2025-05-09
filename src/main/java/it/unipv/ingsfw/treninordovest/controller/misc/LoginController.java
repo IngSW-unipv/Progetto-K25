@@ -1,4 +1,4 @@
-package it.unipv.ingsfw.treninordovest.controller;
+package it.unipv.ingsfw.treninordovest.controller.misc;
 
 import it.unipv.ingsfw.treninordovest.dao.implementations.utenti.ClienteDAOImpl;
 import it.unipv.ingsfw.treninordovest.dao.implementations.utenti.DipendenteDAOImpl;
@@ -17,8 +17,8 @@ import javax.swing.*;
 /*Controller del Login, effettua verifiche sulle credenziali e crea i frame dei rispettivi utenti. Con ciò si unifica e si semplifica l'accesso al sistema */
 
 public class LoginController {
-    private LoginPanel view;
-    private JLoginFrame frame;
+    private final LoginPanel view;
+    private final JLoginFrame frame;
     //private Ruolo ruolo; // CLIENTE o DIPENDENTE
 
     public LoginController(LoginPanel view, JLoginFrame loginFrame) {

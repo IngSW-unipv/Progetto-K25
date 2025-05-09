@@ -1,6 +1,6 @@
 package it.unipv.ingsfw.treninordovest.view.frames.miscellanous;
 
-import it.unipv.ingsfw.treninordovest.controller.MainMenuController;
+import it.unipv.ingsfw.treninordovest.controller.misc.MainMenuController;
 import it.unipv.ingsfw.treninordovest.view.panels.miscellanous.MainMenuPanel;
 
 import javax.swing.*;

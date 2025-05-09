@@ -3,13 +3,12 @@ package it.unipv.ingsfw.treninordovest.view.panels.miscellanous;
 import it.unipv.ingsfw.treninordovest.model.ferrovia.Tratta;
 
 import javax.swing.table.AbstractTableModel;
-import java.util.ArrayList;
 import java.util.List;
 
 public class TableModelTratte extends AbstractTableModel {
 
     private List<Tratta> listaTratte;//=new ArrayList<Tratta>();
-    private String[] columnNames = {"ID", "Nome tratta","Lunghezza"};
+    private final String[] columnNames = {"ID", "Nome tratta","Lunghezza"};
 
     public TableModelTratte() {
 
@@ -23,8 +22,6 @@ public class TableModelTratte extends AbstractTableModel {
     public String getColumnName(int column) {
         return columnNames[column];
     }
-
-
 
     @Override
     public int getRowCount() {

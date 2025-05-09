@@ -4,9 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public class TravelDocCheckPanel extends JPanel {
-    private JLabel labelIDTitolo ;
-    private JTextField textFieldIdTitolo;
-    private JButton verificaButton;
+    private final JTextField textFieldIdTitolo;
+    private final JButton verificaButton;
 
     public TravelDocCheckPanel() {
         this.setBackground(Color.getHSBColor(205,(float) 0.33, (float)0.76));
@@ -15,7 +14,7 @@ public class TravelDocCheckPanel extends JPanel {
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 5, 5);
 
-        labelIDTitolo = new JLabel("ID Titolo:");
+        JLabel labelIDTitolo = new JLabel("ID Titolo:");
         textFieldIdTitolo = new JTextField(15);
         verificaButton = new JButton("Verifica titolo");
 

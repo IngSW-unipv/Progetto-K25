@@ -11,7 +11,7 @@ import java.util.List;
 
 public class TratteTablePanel extends JPanel {
 
-    private JTable table;
+    private  JTable table;
     private TableModelTratte tableModelTratte;
 
     public TratteTablePanel() {

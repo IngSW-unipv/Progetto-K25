@@ -1,6 +1,7 @@
 package it.unipv.ingsfw.treninordovest.dao.implementations;
 
 import it.unipv.ingsfw.treninordovest.dao.database.Database;
+import it.unipv.ingsfw.treninordovest.dao.implementations.titoli.RimborsoDAOImpl;
 import it.unipv.ingsfw.treninordovest.model.titoli.Rimborso;
 import org.junit.jupiter.api.Test;
 
@@ -9,47 +10,34 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class RimborsoDAOImplTest {
 
+    private RimborsoDAOImpl dao = new RimborsoDAOImpl();
+    private final String TEST_ID = "RIMB_TEST";
+
     @Test
     void get() {
-        String id="XCER3";
-        Rimborso rimborso = null;
-        PreparedStatement ps;
-        try (Connection con = new Database().getConnection()) {
-            rimborso = null;
-            //Query effettuata su una vista creata nel DB per semplificare l'estrazione dei dati
-            String sql = "select * from rimborso where idRimborso=?";
+        Rimborso rimborso = new Rimborso(TEST_ID, LocalDate.now(), 100.0, "BIG123", "USR123");
+        dao.insert(rimborso);
 
-            //Estrazione dei dati dal DB
-            ps = con.prepareStatement(sql);
-            ps.setString(1,id);
-            ResultSet rs=ps.executeQuery();
+        Rimborso result = dao.get(TEST_ID);
+        assertNotNull(result);
+        assertEquals(TEST_ID, result.getIdRimborso());
 
-            if(rs.next()){
-                Double totale = rs.getDouble("totale");
-                String idBiglietto=rs.getString("idBiglietto");
-                String idRichiedente = rs.getString("idRichiedente");
-                LocalDate dataRimborso = (LocalDate)rs.getObject("DataRimborso");
-
-
-                rimborso=new Rimborso(id,dataRimborso,totale,idBiglietto,idRichiedente);
-            }
-            System.out.println(rimborso);
-
-            Database.closeConnection(con);
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
 
     }
 
     @Test
     void getAll() {
+        // Supponendo che tu abbia una classe RimborsoDAOImpl con metodo getAll()
+        List<Rimborso> rimborsi = dao.getAll();
+        assertNotNull(rimborsi); // La lista non deve essere nulla
+        // Puoi aggiungere altre asserzioni, ad esempio assertFalse(rimborsi.isEmpty());
+
     }
 
     @Test

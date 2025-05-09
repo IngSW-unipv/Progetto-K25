@@ -4,24 +4,21 @@ import javax.swing.*;
 import java.awt.*;
 
 public class TravelSearchPanel extends JPanel {
-    private JLabel labelPartenza;
-    private JTextField textPartenza;
-    private JLabel labelArrivo;
-    private JTextField textArrivo;
-    private JLabel labelDataViaggio;
-    private JTextField textDataViaggio;
-    private JButton buttonCerca;
+    private final JTextField textPartenza;
+    private final JTextField textArrivo;
+    private final JTextField textDataViaggio;
+    private final JButton buttonCerca;
 
     public TravelSearchPanel() {
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 5, 5);
 
-        labelPartenza = new JLabel("Partenza:");
+        JLabel labelPartenza = new JLabel("Partenza:");
         textPartenza = new JTextField(15);
-        labelArrivo = new JLabel("Arrivo:");
+        JLabel labelArrivo = new JLabel("Arrivo:");
         textArrivo = new JTextField(15);
-        labelDataViaggio = new JLabel("Data Viaggio (yyyy-MM-dd):");
+        JLabel labelDataViaggio = new JLabel("Data Viaggio (yyyy-MM-dd):");
         textDataViaggio = new JTextField(10);
         buttonCerca = new JButton("Cerca Viaggio");
 

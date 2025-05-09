@@ -1,6 +1,6 @@
 package it.unipv.ingsfw.treninordovest.view.frames.login;
 
-import it.unipv.ingsfw.treninordovest.controller.LoginController;
+import it.unipv.ingsfw.treninordovest.controller.misc.LoginController;
 import it.unipv.ingsfw.treninordovest.view.panels.miscellanous.LoginPanel;
 
 import javax.swing.*;
