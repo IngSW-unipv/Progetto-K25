@@ -5,6 +5,8 @@ import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JEmployeeRegFrame
 import it.unipv.ingsfw.treninordovest.view.frames.login.JLoginFrame;
 import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JMainMenuFrame;
 import it.unipv.ingsfw.treninordovest.view.panels.miscellanous.MainMenuPanel;
+import it.unipv.ingsfw.treninordovest.view.panels.miscellanous.LoginPanel;
+import it.unipv.ingsfw.treninordovest.facade.LoginFacade;
 
 public class MainMenuController {
 
@@ -25,6 +27,7 @@ public class MainMenuController {
     }
 
     private void apriLogin() {
+        // Ora utilizziamo il costruttore standard che incorpora le nuove funzionalità
         JLoginFrame loginFrame = new JLoginFrame();
         loginFrame.setVisible(true);
         this.mainMenuFrame.setVisible(false);
@@ -40,7 +43,5 @@ public class MainMenuController {
         JEmployeeRegFrame employeeRegFrame = new JEmployeeRegFrame();
         employeeRegFrame.setVisible(true);
         this.mainMenuFrame.setVisible(false);
-
     }
-
 }

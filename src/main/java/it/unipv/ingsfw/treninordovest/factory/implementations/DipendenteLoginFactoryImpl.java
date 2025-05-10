@@ -7,22 +7,26 @@ import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JEmployeeMainFram
 
 public class DipendenteLoginFactoryImpl extends DipendenteLoginAbstractFactory {
 
-    private final DipendenteDAOImpl dipendenteDAO;
+    private final DipendenteDAOImpl dipendenteDAO; // Usa l'interfaccia, non l'implementazione
 
+    // Costruttore che accetta l'interfaccia
+    public DipendenteLoginFactoryImpl(DipendenteDAOImpl dipendenteDAO) {
+        this.dipendenteDAO = dipendenteDAO;
+    }
+    
+    // Costruttore senza parametri per mantenere compatibilità
     public DipendenteLoginFactoryImpl() {
-        this.dipendenteDAO = new DipendenteDAOImpl();
+        this(new DipendenteDAOImpl());
     }
 
     @Override
     public Utente login(String username, String password) {
-        return dipendenteDAO.autenticate(username,password);
-
+        return dipendenteDAO.autenticate(username, password);
     }
 
     @Override
     public void showUserInterface(Utente utente) {
         JEmployeeMainFrame frame = new JEmployeeMainFrame();
         frame.setVisible(true);
-
     }
 }

@@ -1,4 +1,4 @@
-package it.unipv.ingsfw.treninordovest.factory;
+package it.unipv.ingsfw.treninordovest.factory.implementations;
 
 import it.unipv.ingsfw.treninordovest.factory.abstracts.LoginAbstractFactory;
 
@@ -9,10 +9,6 @@ import java.io.FileInputStream;
  * Factory per creare le istanze appropriate di LoginAbstractFactory
  */
 public class LoginFactoryProducer {
-    
-    private static final String CLIENTE_FACTORY_PROP = "cliente.factory.class.name";
-    private static final String DIPENDENTE_FACTORY_PROP = "dipendente.factory.class.name";
-
 
     /**
      * Versione che usa reflection e properties come nell'UtenteDAOFactory esistente

@@ -1,6 +1,6 @@
 package it.unipv.ingsfw.treninordovest.facade;
 
-import it.unipv.ingsfw.treninordovest.factory.LoginFactoryProducer;
+import it.unipv.ingsfw.treninordovest.factory.implementations.LoginFactoryProducer;
 import it.unipv.ingsfw.treninordovest.model.utenti.Utente;
 import it.unipv.ingsfw.treninordovest.model.varie.SessionManager;
 import it.unipv.ingsfw.treninordovest.factory.abstracts.LoginAbstractFactory;
@@ -11,7 +11,7 @@ import javax.swing.*;
 /**
  * Facade che semplifica il processo di login
  */
-public class LoginFacade {
+public class LoginFacade implements ILoginFacade{
     
     /**
      * Effettua il login di un utente
