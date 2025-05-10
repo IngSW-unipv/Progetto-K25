@@ -6,12 +6,11 @@ import it.unipv.ingsfw.treninordovest.dao.implementations.utenti.DipendenteDAOIm
 import it.unipv.ingsfw.treninordovest.model.ferrovia.Treno;
 import it.unipv.ingsfw.treninordovest.model.utenti.Dipendente;
 import it.unipv.ingsfw.treninordovest.model.varie.GeneraID;
-import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JEmployeeRegFrame;
+import it.unipv.ingsfw.treninordovest.view.frames.registration.JEmployeeRegFrame;
 import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JMainMenuFrame;
 import it.unipv.ingsfw.treninordovest.view.panels.users.EmployeeRegistrationPanel;
 
 import javax.swing.*;
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;

@@ -88,17 +88,5 @@ public class JCustomerMainFrame extends JFrame {
 
 
     }
-/*
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            JCustomerMainFrame frame = null;
-            try {
-                frame = new JCustomerMainFrame();
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
-            frame.setVisible(true);
-        });
-    }
-*/
+
 }

@@ -3,12 +3,11 @@ package it.unipv.ingsfw.treninordovest.controller.users;
 import it.unipv.ingsfw.treninordovest.dao.implementations.utenti.ClienteDAOImpl;
 import it.unipv.ingsfw.treninordovest.model.utenti.Cliente;
 import it.unipv.ingsfw.treninordovest.model.varie.GeneraID;
-import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JCustomerRegFrame;
+import it.unipv.ingsfw.treninordovest.view.frames.registration.JCustomerRegFrame;
 import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JMainMenuFrame;
 import it.unipv.ingsfw.treninordovest.view.panels.users.CustomerRegistrationPanel;
 
 import javax.swing.*;
-import java.sql.SQLException;
 import java.time.ZoneId;
 import java.util.Date;
 import java.time.LocalDate;

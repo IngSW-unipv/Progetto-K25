@@ -3,6 +3,7 @@ package it.unipv.ingsfw.treninordovest.dao.implementations.utenti;
 import it.unipv.ingsfw.treninordovest.dao.database.Database;
 import it.unipv.ingsfw.treninordovest.dao.interfaces.DipendenteDAO;
 import it.unipv.ingsfw.treninordovest.model.utenti.Dipendente;
+import it.unipv.ingsfw.treninordovest.utils.PasswordUtils;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -161,9 +162,10 @@ public class DipendenteDAOImpl implements DipendenteDAO {
 
             try (Connection con = Database.getConnection() ;PreparedStatement ps1 = con.prepareStatement(sql1); PreparedStatement ps2 = con.prepareStatement(sql2)) {
 
+                String hashedPassword = PasswordUtils.hashPassword(dipendente.getUserPassword());
                 // Impostazione dei parametri per la query 1
                 ps1.setString(1, dipendente.getId());
-                ps1.setString(2, dipendente.getUserPassword());
+                ps1.setString(2, hashedPassword);
                 ps1.setString(3, dipendente.getNome());
                 ps1.setString(4,dipendente.getCognome());
                 ps1.setString(5, (dipendente.getSesso()));

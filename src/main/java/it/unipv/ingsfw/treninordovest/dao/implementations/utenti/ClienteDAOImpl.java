@@ -153,9 +153,12 @@ public class ClienteDAOImpl implements ClienteDAO {
         String sql1 = "INSERT INTO utente (ID, UserPassword, Nome, Cognome, Sesso, LuogoNascita, DataNascita, Cellulare, Indirizzo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         String sql2 = "INSERT INTO cliente (IDCliente, Bilancio, Email) VALUES (?, ?, ?)";
         try (Connection con = Database.getConnection();PreparedStatement ps1 = con.prepareStatement(sql1); PreparedStatement ps2 = con.prepareStatement(sql2)){
-                // Impostazione dei parametri per la query 1
+
+            String hashedPassword = PasswordUtils.hashPassword(cliente.getUserPassword());
+
+            // Impostazione dei parametri per la query 1
                 ps1.setString(1, cliente.getId());
-                ps1.setString(2, cliente.getUserPassword());
+                ps1.setString(2, hashedPassword);
                 ps1.setString(3, cliente.getNome());
                 ps1.setString(4, cliente.getCognome());
                 ps1.setString(5, String.valueOf(cliente.getSesso()));
