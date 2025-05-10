@@ -2,13 +2,13 @@ package it.unipv.ingsfw.treninordovest.controller.misc;
 
 import it.unipv.ingsfw.treninordovest.facade.LoginFacade;
 import it.unipv.ingsfw.treninordovest.view.frames.login.JLoginFrame;
-import it.unipv.ingsfw.treninordovest.view.panels.miscellanous.ILoginPanel;
+import it.unipv.ingsfw.treninordovest.view.panels.miscellanous.LoginPanel;
 
 /**
  * Controller che gestisce le interazioni dell'utente con la schermata di login
  */
 public class LoginController implements ILoginController {
-    private final ILoginPanel view;
+    private final LoginPanel view;
     private final JLoginFrame frame;
     private final LoginFacade loginFacade;
 
@@ -17,7 +17,7 @@ public class LoginController implements ILoginController {
      * @param view il pannello di login
      * @param loginFrame il frame contenitore
      */
-    public LoginController(ILoginPanel view, JLoginFrame loginFrame) {
+    public LoginController(LoginPanel view, JLoginFrame loginFrame) {
         this.view = view;
         this.frame = loginFrame;
         this.loginFacade = new LoginFacade();
@@ -30,7 +30,7 @@ public class LoginController implements ILoginController {
      * @param loginFrame il frame contenitore
      * @param loginFacade la facade per gestire il login
      */
-    public LoginController(ILoginPanel view, JLoginFrame loginFrame, LoginFacade loginFacade) {
+    public LoginController(LoginPanel view, JLoginFrame loginFrame, LoginFacade loginFacade) {
         this.view = view;
         this.frame = loginFrame;
         this.loginFacade = loginFacade;
