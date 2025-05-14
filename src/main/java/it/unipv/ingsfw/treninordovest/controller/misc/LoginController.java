@@ -56,7 +56,7 @@ public class LoginController implements ILoginController {
 
     private void tornaAlMenu() {
         // Logica per tornare al menu principale
-        frame.dispose();
+        loginFacade.tornaAlMenu(frame);
         // Codice per aprire il menu principale
     }
 }

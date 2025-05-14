@@ -1,73 +1,72 @@
 package it.unipv.ingsfw.treninordovest.controller.users;
 
-import it.unipv.ingsfw.treninordovest.dao.implementations.utenti.ClienteDAOImpl;
-import it.unipv.ingsfw.treninordovest.model.utenti.Cliente;
-import it.unipv.ingsfw.treninordovest.model.varie.GeneraID;
+import it.unipv.ingsfw.treninordovest.facade.UserRegistrationFacade;
 import it.unipv.ingsfw.treninordovest.view.frames.registration.JCustomerRegFrame;
 import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JMainMenuFrame;
 import it.unipv.ingsfw.treninordovest.view.panels.users.CustomerRegistrationPanel;
 
 import javax.swing.*;
-import java.time.ZoneId;
-import java.util.Date;
-import java.time.LocalDate;
+import java.util.logging.Logger;
+import java.util.logging.Level;
 
+/**
+ * Controller per la registrazione dei clienti
+ */
 public class CustomerRegController {
-    private CustomerRegistrationPanel view;
-    private ClienteDAOImpl clienteDAO;
-    private JCustomerRegFrame customerRegFrame;
+    private static final Logger LOGGER = Logger.getLogger(CustomerRegController.class.getName());
+    
+    private final CustomerRegistrationPanel view;
+    private final JCustomerRegFrame customerRegFrame;
+    private final UserRegistrationFacade facade;
 
-    public CustomerRegController (CustomerRegistrationPanel view, JCustomerRegFrame customerRegFrame) {
+    /**
+     * Costruttore che inizializza il controller
+     * 
+     * @param view Pannello di registrazione cliente
+     * @param customerRegFrame Frame contenitore
+     * @param facade Facade per la registrazione
+     */
+    public CustomerRegController(CustomerRegistrationPanel view, JCustomerRegFrame customerRegFrame, UserRegistrationFacade facade) {
         this.view = view;
         this.customerRegFrame = customerRegFrame;
+        this.facade = facade;
         initController();
     }
 
+    /**
+     * Inizializza i listener per i pulsanti
+     */
     private void initController() {
         view.getBtnRegister().addActionListener(e -> createCustomer());
         view.getBtnMenuPrincipal().addActionListener(e -> tornaAlMenuPrincipale());
     }
-/*Funzione che crea inserisce*/
+
+    /**
+     * Registra un nuovo cliente utilizzando la facade
+     */
     private void createCustomer() {
-        GeneraID idGen = new GeneraID("CL");
-        String id = idGen.getID();
-        String password = view.getTxtPassword().getText();  /*Appunto : Mettere la crittazione della password */
-        String nome = view.getTxtNome().getText();
-        String cognome = view.getTxtCognome().getText();
-        String email = view.getTxtEmail().getText();
-        String sesso = view.getComboSesso();
-        String luogoNascita = view.getTxtLuogoNascita().getText();
+        
+            // La facade gestisce tutti gli aspetti della registrazione,
+            // inclusa la validazione e la visualizzazione di messaggi
+            String id = facade.registraCliente(view, view);
+            // Se la registrazione è avvenuta con successo (id non null),
+            // possiamo fare ulteriori operazioni
+            if (id != null) {
+                LOGGER.info("Cliente registrato con successo: " + id);
+                // Opzionalmente, potremmo resettare i campi del form o fare altre operazioni
+            }
+    }
 
-        Date dataNascita = view.getDataNascita().getDate();
-        LocalDate dataNascitaLocal =dataNascita.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-
-        String cellulare = view.getTxtCellulare().getText();
-
-        String indirizzo = view.getTxtIndirizzo().getText();
-        double bilancio = 0;
-
-        if (password.isEmpty() || nome.isEmpty() || cognome.isEmpty() || email.isEmpty() || sesso.isEmpty() || luogoNascita.isEmpty() || cellulare.isEmpty() || indirizzo.isEmpty() || dataNascita.equals(null) ) {
-            JOptionPane.showMessageDialog(view, "Compilazione di tutti i campi obbligatoria", "Errore", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        Cliente clienteinserito = new Cliente(id,password,nome,cognome,luogoNascita,sesso,dataNascitaLocal,cellulare,indirizzo,0,email);
-        clienteDAO = new ClienteDAOImpl();
-        try  {
-            clienteDAO.insert(clienteinserito);
-            JOptionPane.showMessageDialog(view,"Registrazione avvenuta con successo !!"+"\nSalvati il tuo ID cliente:   "+id);
+    /**
+     * Torna al menu principale
+     */
+    private void tornaAlMenuPrincipale() {
+        try {
+            JMainMenuFrame mainMenuFrame = new JMainMenuFrame();
+            customerRegFrame.setVisible(false);
+            mainMenuFrame.setVisible(true);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(view, "Errore riprovare...", "Errore", JOptionPane.ERROR_MESSAGE);
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE, "Errore durante il ritorno al menu principale", e);
         }
     }
-
-    private void tornaAlMenuPrincipale(){
-        JMainMenuFrame mainMenuFrame = new JMainMenuFrame();
-        customerRegFrame.setVisible(false);
-        mainMenuFrame.setVisible(true);
-    }
-
-
-
 }

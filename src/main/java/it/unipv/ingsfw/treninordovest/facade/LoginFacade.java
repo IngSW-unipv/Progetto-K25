@@ -5,13 +5,14 @@ import it.unipv.ingsfw.treninordovest.model.utenti.Utente;
 import it.unipv.ingsfw.treninordovest.model.varie.SessionManager;
 import it.unipv.ingsfw.treninordovest.factory.abstracts.LoginAbstractFactory;
 import it.unipv.ingsfw.treninordovest.view.frames.login.JLoginFrame;
+import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JMainMenuFrame;
 
 import javax.swing.*;
 
 /**
  * Facade che semplifica il processo di login
  */
-public class LoginFacade implements ILoginFacade{
+public class LoginFacade {
     
     /**
      * Effettua il login di un utente
@@ -38,7 +39,7 @@ public class LoginFacade implements ILoginFacade{
             } else {
                 JOptionPane.showMessageDialog(componenteParent, "Credenziali errate!!!");
             }
-        } catch (Exception ex) {
+        } catch (NullPointerException ex) {
             gestisciErroreLogin(ex, componenteParent);
         }
     }
@@ -51,5 +52,14 @@ public class LoginFacade implements ILoginFacade{
         JOptionPane.showMessageDialog(componenteParent, 
                 "Si è verificato un errore durante il login", 
                 "Errore", JOptionPane.ERROR_MESSAGE);
+    }
+
+    public void tornaAlMenu(JFrame currentFrame){
+        if (currentFrame != null) {
+            currentFrame.dispose();
+        }
+        JMainMenuFrame mainmenu = new JMainMenuFrame();
+        mainmenu.setVisible(true);
+
     }
 }

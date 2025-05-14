@@ -1,5 +1,6 @@
 package it.unipv.ingsfw.treninordovest.controller.misc;
 
+import it.unipv.ingsfw.treninordovest.application.UserRegistrationApplication;
 import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JMainMenuFrame;
 import it.unipv.ingsfw.treninordovest.view.frames.registration.JCustomerRegFrame;
 import it.unipv.ingsfw.treninordovest.view.frames.registration.JEmployeeRegFrame;
@@ -40,9 +41,9 @@ public class MainMenuController implements IMenuController {
     }
 
     private void apriRegistrazioneCliente() {
-        JCustomerRegFrame customerRegFrame = new JCustomerRegFrame();
-        customerRegFrame.setVisible(true);
+
         this.mainMenuFrame.setVisible(false);
+        UserRegistrationApplication.startCustomerReg();
     }
 
     private void apriRegistrazioneDipendente() {

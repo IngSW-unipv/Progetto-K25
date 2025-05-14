@@ -31,5 +31,9 @@ public class JEmployeeRegFrame extends JFrame {
 
     }
 
+    public void showFrame() {
+        setVisible(true);
+    }
+
 
 }
