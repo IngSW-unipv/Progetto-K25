@@ -1,114 +1,95 @@
 package it.unipv.ingsfw.treninordovest.controller.users;
 
-
-import it.unipv.ingsfw.treninordovest.dao.implementations.ferrovia.TrenoDAOImpl;
-import it.unipv.ingsfw.treninordovest.dao.implementations.utenti.DipendenteDAOImpl;
-import it.unipv.ingsfw.treninordovest.model.ferrovia.Treno;
-import it.unipv.ingsfw.treninordovest.model.utenti.Dipendente;
-import it.unipv.ingsfw.treninordovest.model.varie.GeneraID;
-import it.unipv.ingsfw.treninordovest.view.frames.registration.JEmployeeRegFrame;
+import it.unipv.ingsfw.treninordovest.facade.UserRegistrationFacade;
 import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JMainMenuFrame;
+import it.unipv.ingsfw.treninordovest.view.frames.registration.JEmployeeRegFrame;
 import it.unipv.ingsfw.treninordovest.view.panels.users.EmployeeRegistrationPanel;
 
 import javax.swing.*;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class EmployeeRegController {
+    private static final Logger LOGGER = Logger.getLogger(EmployeeRegController.class.getName());
+    
+    private final EmployeeRegistrationPanel view;
+    private final JEmployeeRegFrame employeeRegFrame;
+    private final UserRegistrationFacade facade;
 
-    private EmployeeRegistrationPanel view;
-    private DipendenteDAOImpl dipendenteDAO;
-    private JEmployeeRegFrame employeeRegFrame;
-
-    public EmployeeRegController (EmployeeRegistrationPanel view, JEmployeeRegFrame employeeRegFrame) {
+    /**
+     * Costruttore che inizializza il controller
+     */
+    public EmployeeRegController(
+            EmployeeRegistrationPanel view,
+            JEmployeeRegFrame employeeRegFrame,
+            UserRegistrationFacade facade) {
         this.view = view;
         this.employeeRegFrame = employeeRegFrame;
+        this.facade = facade;
         initController();
     }
 
+    /**
+     * Inizializza i listener per i pulsanti
+     */
     private void initController() {
         view.getBtnRegister().addActionListener(e -> createEmployee());
         view.getBtnMenuPrincipal().addActionListener(e -> tornaAlMenuPrincipale());
     }
+
+    /**
+     * Registra un nuovo dipendente utilizzando la facade
+     */
     private void createEmployee() {
-        GeneraID idGen = new GeneraID("DP");
-        String id = idGen.getID();
-        String password = view.getTxtPassword().getText();  /*Appunto : Mettere la crittazione della password */
-        String nome = view.getTxtNome().getText();
-        String cognome = view.getTxtCognome().getText();
-        String sesso = view.getComboSesso();
-        String luogoNascita = view.getTxtLuogoNascita().getText();
-
-        Date dataNascita = view.getDataNascita().getDate();
-        LocalDate dataNascitaLocal =dataNascita.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        String cellulare = view.getTxtCellulare().getText();
-        String indirizzo = view.getTxtIndirizzo().getText();
-        double stipendio = 0;
-
-        if (view.getComboRuolo().equals("Capotreno")) {
-            stipendio= 2000;
-        }else if (view.getComboRuolo().equals("Macchinista")) {
-            stipendio= 1800;
-        }else if (view.getComboRuolo().equals("Controllore")) {
-            stipendio= 1500;
-        }else if (view.getComboRuolo().equals("Impiegato")) {
-            stipendio= 1300;
-        }
-
-
-        String codTreno= randTreno();
-        //String codTreno= "FS1127";
-        String ruolo = view.getComboRuolo();
-
-
         try {
-            if (password.isEmpty() || nome.isEmpty() || cognome.isEmpty()|| sesso.isEmpty() || luogoNascita.isEmpty() || cellulare.isEmpty() || indirizzo.isEmpty() || (dataNascitaLocal.isAfter(LocalDate.now()) || dataNascitaLocal==null)) {
-                JOptionPane.showMessageDialog(view, "Compilazione di tutti i campi obbligatoria", "Errore", JOptionPane.ERROR_MESSAGE);
-                return;
+            LOGGER.info("Avvio registrazione dipendente");
+            String id = facade.registraDipendente(view, employeeRegFrame);
+            
+            if (id != null) {
+                LOGGER.info("Dipendente registrato con successo: " + id);
+                JOptionPane.showMessageDialog(
+                    employeeRegFrame,
+                    "Registrazione completata con successo",
+                    "Successo",
+                    JOptionPane.INFORMATION_MESSAGE
+                );
+                tornaAlMenuPrincipale();
+            } else {
+                LOGGER.warning("Registrazione fallita: ID nullo");
+                JOptionPane.showMessageDialog(
+                    employeeRegFrame,
+                    "Registrazione fallita. Verifica i dati inseriti.",
+                    "Avviso",
+                    JOptionPane.WARNING_MESSAGE
+                );
             }
-        }catch (NullPointerException e) {
-            e.printStackTrace();
-            e.getMessage();
-        }
-
-
-
-        Dipendente dipendenteinserito = new Dipendente(id,password,nome,cognome,luogoNascita,sesso,dataNascitaLocal,cellulare,indirizzo,codTreno,stipendio,ruolo);
-        dipendenteDAO = new DipendenteDAOImpl();
-
-        dipendenteDAO.insert(dipendenteinserito);
-        JOptionPane.showMessageDialog(view,"Registrazione avvenuta con successo !!"+"\nSalvati il tuo ID dipendente:    "+id);
-
-
-    }
-
-    private void tornaAlMenuPrincipale(){
-        JMainMenuFrame mainMenuFrame = new JMainMenuFrame();
-        employeeRegFrame.setVisible(false);
-        mainMenuFrame.setVisible(true);
-    }
-
-    private String randTreno(){
-        String codTreno;
-        TrenoDAOImpl trenoDAO = new TrenoDAOImpl();
-        List<Treno> treni = new ArrayList<>();
-
-        try {
-            treni=trenoDAO.getAll();
-
-            Random random = new Random();
-            int indiceCasuale = random.nextInt(treni.size());
-            codTreno=treni.get(indiceCasuale).getIdTreno();
-
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            LOGGER.log(Level.SEVERE, "Errore durante la registrazione del dipendente", e);
+            JOptionPane.showMessageDialog(
+                employeeRegFrame,
+                "Si è verificato un errore durante la registrazione: " + e.getMessage(),
+                "Errore",
+                JOptionPane.ERROR_MESSAGE
+            );
         }
-
-        return codTreno;
     }
 
+    /**
+     * Torna al menu principale
+     */
+    private void tornaAlMenuPrincipale() {
+        try {
+            JMainMenuFrame mainMenuFrame = new JMainMenuFrame();
+            mainMenuFrame.setVisible(true);
+            employeeRegFrame.setVisible(false);
+        } catch (Exception e) {
+            LOGGER.log(Level.SEVERE, "Errore durante la navigazione al menu principale", e);
+            JOptionPane.showMessageDialog(
+                employeeRegFrame,
+                "Errore durante il ritorno al menu principale: " + e.getMessage(),
+                "Errore",
+                JOptionPane.ERROR_MESSAGE
+            );
+        }
+    }
 }

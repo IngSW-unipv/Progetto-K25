@@ -47,8 +47,8 @@ public class MainMenuController implements IMenuController {
     }
 
     private void apriRegistrazioneDipendente() {
-        JEmployeeRegFrame employeeRegFrame = new JEmployeeRegFrame();
-        employeeRegFrame.setVisible(true);
+
         this.mainMenuFrame.setVisible(false);
+        UserRegistrationApplication.startEmployeeReg();
     }
 }

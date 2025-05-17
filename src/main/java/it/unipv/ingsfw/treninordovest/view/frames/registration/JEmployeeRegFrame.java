@@ -1,19 +1,22 @@
 package it.unipv.ingsfw.treninordovest.view.frames.registration;
 
-import it.unipv.ingsfw.treninordovest.controller.users.EmployeeRegController;
 import it.unipv.ingsfw.treninordovest.view.panels.users.EmployeeRegistrationPanel;
 
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Frame per la registrazione dei dipendenti
+ */
 public class JEmployeeRegFrame extends JFrame {
 
     private static final long serialVersionUID = 1L;
     private Color coloreSfondo;
     private EmployeeRegistrationPanel employeeRegistrationPanel;
-    private EmployeeRegController employeeRegController;
 
-
+    /**
+     * Costruttore predefinito che crea un nuovo pannello di registrazione
+     */
     public JEmployeeRegFrame() {
         setTitle("Treninordovest - Registrazione dipendente");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -25,15 +28,23 @@ public class JEmployeeRegFrame extends JFrame {
     }
 
     private void inizializzaComponenti() {
-       employeeRegistrationPanel = new EmployeeRegistrationPanel();
+        employeeRegistrationPanel = new EmployeeRegistrationPanel();
         add(employeeRegistrationPanel, BorderLayout.CENTER);
-       employeeRegController = new EmployeeRegController(employeeRegistrationPanel,this);
-
     }
 
+    /**
+     * Mostra il frame
+     */
     public void showFrame() {
         setVisible(true);
     }
 
-
+    /**
+     * Ottiene il pannello di registrazione
+     * 
+     * @return Il pannello di registrazione dipendente
+     */
+    public EmployeeRegistrationPanel getEmployeeRegistrationPanel() {
+        return employeeRegistrationPanel;
+    }
 }
