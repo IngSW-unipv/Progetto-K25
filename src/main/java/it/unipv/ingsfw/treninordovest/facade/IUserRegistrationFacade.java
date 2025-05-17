@@ -2,7 +2,8 @@ package it.unipv.ingsfw.treninordovest.facade;
 
 import it.unipv.ingsfw.treninordovest.view.panels.users.CustomerRegistrationPanel;
 import it.unipv.ingsfw.treninordovest.view.panels.users.EmployeeRegistrationPanel;
-import javax.swing.JComponent;
+
+import javax.swing.*;
 
 /**
  * Interfaccia per la facade di registrazione utenti
@@ -15,7 +16,7 @@ public interface IUserRegistrationFacade {
      * @param componenteParent Componente genitore per mostrare messaggi
      * @return L'ID generato per il cliente registrato
      */
-    String registraCliente(CustomerRegistrationPanel view, JComponent componenteParent);
+    String registraCliente(CustomerRegistrationPanel view, JFrame componenteParent);
     
     /**
      * Registra un nuovo dipendente
@@ -24,5 +25,5 @@ public interface IUserRegistrationFacade {
      * @param componenteParent Componente genitore per mostrare messaggi
      * @return L'ID generato per il dipendente registrato
      */
-    String registraDipendente(EmployeeRegistrationPanel view, JComponent componenteParent);
+    String registraDipendente(EmployeeRegistrationPanel view, JFrame componenteParent);
 }

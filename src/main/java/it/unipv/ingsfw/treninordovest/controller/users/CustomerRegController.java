@@ -1,17 +1,14 @@
 package it.unipv.ingsfw.treninordovest.controller.users;
 
 import it.unipv.ingsfw.treninordovest.facade.UserRegistrationFacade;
-import it.unipv.ingsfw.treninordovest.view.frames.registration.JCustomerRegFrame;
 import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JMainMenuFrame;
+import it.unipv.ingsfw.treninordovest.view.frames.registration.JCustomerRegFrame;
 import it.unipv.ingsfw.treninordovest.view.panels.users.CustomerRegistrationPanel;
 
 import javax.swing.*;
 import java.util.logging.Logger;
 import java.util.logging.Level;
 
-/**
- * Controller per la registrazione dei clienti
- */
 public class CustomerRegController {
     private static final Logger LOGGER = Logger.getLogger(CustomerRegController.class.getName());
     
@@ -21,12 +18,11 @@ public class CustomerRegController {
 
     /**
      * Costruttore che inizializza il controller
-     * 
-     * @param view Pannello di registrazione cliente
-     * @param customerRegFrame Frame contenitore
-     * @param facade Facade per la registrazione
      */
-    public CustomerRegController(CustomerRegistrationPanel view, JCustomerRegFrame customerRegFrame, UserRegistrationFacade facade) {
+    public CustomerRegController(
+            CustomerRegistrationPanel view, 
+            JCustomerRegFrame customerRegFrame, 
+            UserRegistrationFacade facade) {
         this.view = view;
         this.customerRegFrame = customerRegFrame;
         this.facade = facade;
@@ -45,16 +41,37 @@ public class CustomerRegController {
      * Registra un nuovo cliente utilizzando la facade
      */
     private void createCustomer() {
-        
-            // La facade gestisce tutti gli aspetti della registrazione,
-            // inclusa la validazione e la visualizzazione di messaggi
-            String id = facade.registraCliente(view, view);
-            // Se la registrazione è avvenuta con successo (id non null),
-            // possiamo fare ulteriori operazioni
+        try {
+            LOGGER.info("Avvio registrazione cliente");
+            String id = facade.registraCliente(view, customerRegFrame);
+            
             if (id != null) {
                 LOGGER.info("Cliente registrato con successo: " + id);
-                // Opzionalmente, potremmo resettare i campi del form o fare altre operazioni
+                JOptionPane.showMessageDialog(
+                    customerRegFrame,
+                    "Registrazione completata con successo", 
+                    "Successo", 
+                    JOptionPane.INFORMATION_MESSAGE
+                );
+                tornaAlMenuPrincipale();
+            } else {
+                LOGGER.warning("Registrazione fallita: ID nullo");
+                JOptionPane.showMessageDialog(
+                    customerRegFrame,
+                    "Registrazione fallita. Verifica i dati inseriti.", 
+                    "Avviso", 
+                    JOptionPane.WARNING_MESSAGE
+                );
             }
+        } catch (Exception e) {
+            LOGGER.log(Level.SEVERE, "Errore durante la registrazione del cliente", e);
+            JOptionPane.showMessageDialog(
+                customerRegFrame,
+                "Si è verificato un errore durante la registrazione: " + e.getMessage(), 
+                "Errore", 
+                JOptionPane.ERROR_MESSAGE
+            );
+        }
     }
 
     /**
@@ -63,10 +80,16 @@ public class CustomerRegController {
     private void tornaAlMenuPrincipale() {
         try {
             JMainMenuFrame mainMenuFrame = new JMainMenuFrame();
-            customerRegFrame.setVisible(false);
             mainMenuFrame.setVisible(true);
+            customerRegFrame.setVisible(false);
         } catch (Exception e) {
-            LOGGER.log(Level.SEVERE, "Errore durante il ritorno al menu principale", e);
+            LOGGER.log(Level.SEVERE, "Errore durante la navigazione al menu principale", e);
+            JOptionPane.showMessageDialog(
+                customerRegFrame,
+                "Errore durante il ritorno al menu principale: " + e.getMessage(),
+                "Errore",
+                JOptionPane.ERROR_MESSAGE
+            );
         }
     }
 }

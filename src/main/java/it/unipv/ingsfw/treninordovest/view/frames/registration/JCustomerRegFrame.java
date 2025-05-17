@@ -1,7 +1,5 @@
 package it.unipv.ingsfw.treninordovest.view.frames.registration;
 
-import it.unipv.ingsfw.treninordovest.controller.users.CustomerRegController;
-import it.unipv.ingsfw.treninordovest.facade.UserRegistrationFacade;
 import it.unipv.ingsfw.treninordovest.view.panels.users.CustomerRegistrationPanel;
 
 import javax.swing.*;
@@ -13,7 +11,6 @@ import java.awt.*;
 public class JCustomerRegFrame extends JFrame {
     private static final long serialVersionUID = 1L;
     private final CustomerRegistrationPanel customerRegistrationPanel;
-    private CustomerRegController customerRegController;
 
     /**
      * Costruttore predefinito che crea un nuovo pannello di registrazione
@@ -52,20 +49,12 @@ public class JCustomerRegFrame extends JFrame {
     }
     
     /**
-     * Inizializza il controller con la facade
-     * 
-     * @param facade Facade per la registrazione
+     * Mostra il frame
      */
-    public void initController(UserRegistrationFacade facade) {
-        this.customerRegController = new CustomerRegController(
-                customerRegistrationPanel, 
-                this, 
-                facade
-        );
-    }
     public void showFrame() {
         setVisible(true);
     }
+    
     /**
      * Ottiene il pannello di registrazione
      * 
