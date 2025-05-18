@@ -189,12 +189,28 @@ public class ClienteDAOImpl implements ClienteDAO {
 
     @Override
     public Cliente autenticate(String id, String password) {
+        System.out.println("Tentativo di autenticazione per id: " + id);
+        
         Cliente cliente = get(id);
-        if(PasswordUtils.verifyPassword(password,cliente.getUserPassword()) && cliente.getId().equals(id)){
+        if (cliente == null) {
+            System.out.println("Cliente non trovato nel database");
+            return null;
+        }
+        
+        System.out.println("Cliente trovato. Verifica password...");
+        System.out.println("Password inserita: [lunghezza: " + password.length() + "]");
+        System.out.println("Password hash nel DB: " + cliente.getUserPassword());
+        
+        boolean passwordValida = PasswordUtils.verifyPassword(password, cliente.getUserPassword());
+        System.out.println("Risultato verifica password: " + passwordValida);
+        
+        if (passwordValida) {
+            System.out.println("Autenticazione riuscita");
             return cliente;
-        } else return null;
-
-
+        } else {
+            System.out.println("Password non valida");
+            return null;
+        }
     }
 
     @Override

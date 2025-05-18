@@ -2,6 +2,7 @@ package it.unipv.ingsfw.treninordovest.controller.users;
 
 
 import it.unipv.ingsfw.treninordovest.dao.implementations.utenti.ClienteDAOImpl;
+import it.unipv.ingsfw.treninordovest.facade.LoginFacade;
 import it.unipv.ingsfw.treninordovest.model.utenti.Cliente;
 import it.unipv.ingsfw.treninordovest.model.varie.SessionManager;
 import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JCustomerMainFrame;
@@ -14,12 +15,14 @@ public class CustomerProfileController {
     private CustomerProfilePanel view;
     private JCustomerMainFrame mainFrame;
     private ClienteDAOImpl clienteDAO;
+    private final LoginFacade loginFacade;
     private javax.swing.JOptionPane JOptionPane;
     private String idUtenteLog;
 
-    public CustomerProfileController(CustomerProfilePanel view, JCustomerMainFrame mainFrame) {
+    public CustomerProfileController(CustomerProfilePanel view, JCustomerMainFrame mainFrame, LoginFacade loginFacade) {
         this.view = view;
         this.mainFrame = mainFrame;
+        this.loginFacade = loginFacade;
         initController();
     }
 

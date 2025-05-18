@@ -47,30 +47,16 @@ public class CustomerRegController {
             
             if (id != null) {
                 LOGGER.info("Cliente registrato con successo: " + id);
-                JOptionPane.showMessageDialog(
-                    customerRegFrame,
-                    "Registrazione completata con successo", 
-                    "Successo", 
-                    JOptionPane.INFORMATION_MESSAGE
+                JOptionPane.showMessageDialog(customerRegFrame, "Registrazione completata con successo", "Successo", JOptionPane.INFORMATION_MESSAGE
                 );
                 tornaAlMenuPrincipale();
             } else {
                 LOGGER.warning("Registrazione fallita: ID nullo");
-                JOptionPane.showMessageDialog(
-                    customerRegFrame,
-                    "Registrazione fallita. Verifica i dati inseriti.", 
-                    "Avviso", 
-                    JOptionPane.WARNING_MESSAGE
-                );
+                JOptionPane.showMessageDialog(customerRegFrame, "Registrazione fallita. Verifica i dati inseriti.", "Avviso", JOptionPane.WARNING_MESSAGE);
             }
         } catch (Exception e) {
             LOGGER.log(Level.SEVERE, "Errore durante la registrazione del cliente", e);
-            JOptionPane.showMessageDialog(
-                customerRegFrame,
-                "Si è verificato un errore durante la registrazione: " + e.getMessage(), 
-                "Errore", 
-                JOptionPane.ERROR_MESSAGE
-            );
+            JOptionPane.showMessageDialog(customerRegFrame, "Si è verificato un errore durante la registrazione: " + e.getMessage(), "Errore", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -84,12 +70,7 @@ public class CustomerRegController {
             customerRegFrame.setVisible(false);
         } catch (Exception e) {
             LOGGER.log(Level.SEVERE, "Errore durante la navigazione al menu principale", e);
-            JOptionPane.showMessageDialog(
-                customerRegFrame,
-                "Errore durante il ritorno al menu principale: " + e.getMessage(),
-                "Errore",
-                JOptionPane.ERROR_MESSAGE
-            );
+            JOptionPane.showMessageDialog(customerRegFrame, "Errore durante il ritorno al menu principale: " + e.getMessage(), "Errore", JOptionPane.ERROR_MESSAGE);
         }
     }
 }

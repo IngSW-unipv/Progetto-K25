@@ -21,7 +21,7 @@ public class DipendenteDAOImpl implements DipendenteDAO {
         String sql = "select ID,Userpassword,Nome,Cognome,Sesso,LuogoNascita,DataNascita, Cellulare,Indirizzo,Stipendio,Ruolo,CodTreno from utentiDipendenti where id=?";
         Dipendente dipendente = null;
 
-        try (Connection con = Database.getConnection(); PreparedStatement ps= con.prepareStatement(sql); ) {
+        try (Connection con = Database.getConnection(); PreparedStatement ps= con.prepareStatement(sql)) {
             //Preparazione della Query
             ps.setString(1,id);
             //Impostazione di estrapolazione query
@@ -194,35 +194,47 @@ public class DipendenteDAOImpl implements DipendenteDAO {
 
     }
 
-
-
-    /*Metodi da valutare*/
     @Override
     public Dipendente autenticate(String id, String password)  {
-       Dipendente dipendente = get(id);
-       if (dipendente != null && dipendente.getUserPassword().equals(password)) {
-                return dipendente;
-        } else return null;
+        System.out.println("Tentativo di autenticazione per id: " + id);
 
+       Dipendente dipendente = get(id);
+        if (dipendente == null) {
+            System.out.println("Dipendente non trovato nel database");
+            return null;
+        }
+
+        System.out.println("Dipendente trovato. Verifica password...");
+        System.out.println("Password inserita: [lunghezza: " + password.length() + "]");
+        System.out.println("Password hash nel DB: " + dipendente.getUserPassword());
+
+        boolean passwordValida = PasswordUtils.verifyPassword(password, dipendente.getUserPassword());
+        System.out.println("Risultato verifica password: " + passwordValida);
+
+        if (passwordValida) {
+            System.out.println("Autenticazione riuscita");
+            return dipendente;
+        } else {
+            System.out.println("Password non valida");
+            return null;
+        }
     }
 
     @Override
     public boolean updatePassword(String id, String password) {
         String sql = "UPDATE utente set UserPassword=? where ID=?";
-        Connection con ;
-        try {
-            con= Database.getConnection();
-            if (con != null) {
-                PreparedStatement ps = con.prepareStatement(sql);
-                ps.setString(1, password);
+        String hashedPassword = PasswordUtils.hashPassword(password);
+
+        try (Connection con= Database.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
+                ps.setString(1, hashedPassword);
                 ps.setString(2, id);
                 ps.executeUpdate();
-                Database.closeConnection(con);
-                return true;
-            }
-            return false;
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+               // Database.closeConnection(con);
+                System.out.println("Password aggiornata con successo");
+                return ps.executeUpdate() > 0;
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Errore durante l'aggiornamento della password",e);
         }
     }
 }

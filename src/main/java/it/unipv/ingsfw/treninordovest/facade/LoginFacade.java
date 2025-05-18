@@ -62,4 +62,13 @@ public class LoginFacade {
         mainmenu.setVisible(true);
 
     }
+
+    public void effettuaLogout(JFrame currentFrame) {
+        // Rimuovi l'utente dalla sessione
+        SessionManager.getInstance().setCurrentUser(null);
+
+        // Torna al menu principale
+        tornaAlMenu(currentFrame);
+    }
+
 }

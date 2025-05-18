@@ -71,11 +71,12 @@ public class JCustomerMainFrame extends JFrame {
 
 
         /*Aggiunta dei controller*/
-        cardPurchasController = new CardPurchaseController(cardPurchasePanel,this);
-        subscriptionController = new SubscriptionController(subscriptionPanel,this);
-        customerProfileController = new CustomerProfileController(profilePanel,this);
-        customerTicketController = new CustomerTicketController(this,tratteTablePanel,ticketPurchasePanel);
+        //cardPurchasController = new CardPurchaseController(cardPurchasePanel,this);
+       // subscriptionController = new SubscriptionController(subscriptionPanel,this);
+        //customerProfileController = new CustomerProfileController(profilePanel,this);
+        //customerTicketController = new CustomerTicketController(this,tratteTablePanel,ticketPurchasePanel);
 
+        /*
         try {
             tratteTablePanel.setData(customerTicketController.getTratte());
         } catch (SQLException e) {
@@ -83,7 +84,7 @@ public class JCustomerMainFrame extends JFrame {
           e.printStackTrace();
         }
 
-        ticketRefundController = new TicketRefundController(this,refundPanel);
+        ticketRefundController = new TicketRefundController(this,refundPanel);*/
 
 
 
