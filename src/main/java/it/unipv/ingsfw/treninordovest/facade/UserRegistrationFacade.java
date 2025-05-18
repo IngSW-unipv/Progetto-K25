@@ -5,6 +5,7 @@ import it.unipv.ingsfw.treninordovest.dao.implementations.utenti.DipendenteDAOIm
 import it.unipv.ingsfw.treninordovest.dao.implementations.ferrovia.TrenoDAOImpl;
 import it.unipv.ingsfw.treninordovest.dao.interfaces.ClienteDAO;
 import it.unipv.ingsfw.treninordovest.dao.interfaces.DipendenteDAO;
+import it.unipv.ingsfw.treninordovest.factory.implementations.StipendioStrategyFactory;
 import it.unipv.ingsfw.treninordovest.model.ferrovia.Treno;
 import it.unipv.ingsfw.treninordovest.model.utenti.Cliente;
 import it.unipv.ingsfw.treninordovest.model.utenti.Dipendente;
@@ -132,17 +133,8 @@ public class UserRegistrationFacade implements IUserRegistrationFacade {
         String ruolo = view.getComboRuolo();
         
         // Calcola lo stipendio in base al ruolo
-        double stipendio = 0;
-        if (ruolo.equals("Capotreno")) {
-            stipendio = 2000;
-        } else if (ruolo.equals("Macchinista")) {
-            stipendio = 1800;
-        } else if (ruolo.equals("Controllore")) {
-            stipendio = 1500;
-        } else if (ruolo.equals("Impiegato")) {
-            stipendio = 1300;
-        }
-        
+        double stipendio = StipendioStrategyFactory.getStrategy(ruolo).calcolaStipendio();
+
         // Assegna un treno casuale al dipendente
         String codTreno = getRandomTreno();
         
@@ -170,20 +162,7 @@ public class UserRegistrationFacade implements IUserRegistrationFacade {
         }
         
         // Creazione dipendente
-        Dipendente dipendenteInserito = new Dipendente(
-                id, 
-                password, 
-                nome, 
-                cognome, 
-                luogoNascita, 
-                sesso, 
-                dataNascitaLocal, 
-                cellulare, 
-                indirizzo, 
-                codTreno, 
-                stipendio, 
-                ruolo
-        );
+        Dipendente dipendenteInserito = new Dipendente(id, password, nome, cognome, luogoNascita, sesso, dataNascitaLocal, cellulare, indirizzo, codTreno, stipendio, ruolo);
         
         // Inserimento nel DB
         dipendenteDAO.insert(dipendenteInserito);

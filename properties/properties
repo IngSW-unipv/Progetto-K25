@@ -11,6 +11,11 @@ cliente.dao.class.name=it.unipv.ingsfw.treninordovest.dao.implementations.utenti
 dipendente.factory.class.name=it.unipv.ingsfw.treninordovest.factory.implementations.DipendenteLoginFactoryImpl
 dipendente.dao.class.name=it.unipv.ingsfw.treninordovest.dao.implementations.utenti.DipendenteDAOImpl
 
+# Configurazione per le strategie di calcolo stipendio
+stipendio.capotreno.strategy.class.name=it.unipv.ingsfw.treninordovest.model.stipendio.StipendioCapotreno
+stipendio.macchinista.strategy.class.name=it.unipv.ingsfw.treninordovest.model.stipendio.StipendioMacchinista
+stipendio.controllore.strategy.class.name=it.unipv.ingsfw.treninordovest.model.stipendio.StipendioControllore
+stipendio.impiegato.strategy.class.name=it.unipv.ingsfw.treninordovest.model.stipendio.StipendioImpiegato
 
 
 
