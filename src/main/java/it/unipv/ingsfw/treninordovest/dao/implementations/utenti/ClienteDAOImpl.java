@@ -214,23 +214,34 @@ public class ClienteDAOImpl implements ClienteDAO {
     }
 
     @Override
-    public boolean updateBilancio(String IdCliente, double bilancio) {
+    public boolean updateBilancio(String IdCliente, double importo) {
 
+        String sql0= "SELECT Bilancio FROM cliente where IDCliente=?";
         String sql = "UPDATE cliente set Bilancio=? where IDCliente=?";
-        Connection con ;
-        try {
-            con= Database.getConnection();
-            if (con != null) {
-                PreparedStatement ps = con.prepareStatement(sql);
-                ps.setDouble(1, bilancio);
+
+        try (Connection con2 = Database.getConnection() ; PreparedStatement ps = con2.prepareStatement(sql0)){
+            ps.setString(1,IdCliente);
+
+            ResultSet rs=ps.executeQuery();
+
+            if(rs.next()){
+                double bilancio=rs.getDouble("Bilancio");
+                importo += bilancio;
+            }
+
+
+        } catch (SQLException e){
+            throw new RuntimeException("Errore durante l'estrazione dei dati: ",e);
+        }
+
+        try (Connection con =Database.getConnection() ; PreparedStatement ps = con.prepareStatement(sql)){
+                ps.setDouble(1, importo);
                 ps.setString(2, IdCliente);
                 ps.executeUpdate();
-                Database.closeConnection(con);
+                //Database.closeConnection(con);
                 return true;
-            }
-            return false;
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+        } catch (SQLException e) {
+            throw new RuntimeException("Errore durante l'aggiornamento password",e);
         }
     }
 

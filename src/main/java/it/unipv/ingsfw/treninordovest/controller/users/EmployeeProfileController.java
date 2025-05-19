@@ -30,11 +30,7 @@ public class EmployeeProfileController {
 
        view.getBtnAggiornaPassword().addActionListener(e -> aggiornaPassword());
         view.getBtnAggionaProfilo().addActionListener(e -> {
-            try {
-                mostraDatiProfilo();
-            } catch (SQLException ex) {
-                throw new RuntimeException(ex);
-            }
+            mostraDatiProfilo();
         });
 
         view.getBtnEsci().addActionListener(e -> { esci();});
@@ -44,7 +40,7 @@ public class EmployeeProfileController {
     }
 
 
-    private void mostraDatiProfilo() throws SQLException {
+    private void mostraDatiProfilo() {
         dipendenteDAO = new DipendenteDAOImpl();
 
         idUtenteLog = SessionManager.getInstance().getCurrentUser().getId();

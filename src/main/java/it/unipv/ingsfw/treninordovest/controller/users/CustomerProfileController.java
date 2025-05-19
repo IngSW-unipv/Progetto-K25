@@ -2,27 +2,33 @@ package it.unipv.ingsfw.treninordovest.controller.users;
 
 
 import it.unipv.ingsfw.treninordovest.dao.implementations.utenti.ClienteDAOImpl;
+import it.unipv.ingsfw.treninordovest.facade.CustomerManagementFacade;
 import it.unipv.ingsfw.treninordovest.facade.LoginFacade;
 import it.unipv.ingsfw.treninordovest.model.utenti.Cliente;
 import it.unipv.ingsfw.treninordovest.model.varie.SessionManager;
 import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JCustomerMainFrame;
-import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JMainMenuFrame;
 import it.unipv.ingsfw.treninordovest.view.panels.users.CustomerProfilePanel;
 
-import java.sql.SQLException;
+import javax.swing.*;
+
+import static javax.swing.JOptionPane.*;
 
 public class CustomerProfileController {
     private CustomerProfilePanel view;
     private JCustomerMainFrame mainFrame;
-    private ClienteDAOImpl clienteDAO;
-    private javax.swing.JOptionPane JOptionPane;
-    private String idUtenteLog;
+    private JOptionPane JOptionPane;
+    private LoginFacade loginFacade;
+    private final CustomerManagementFacade customerManagementFacade ;
 
     public CustomerProfileController(CustomerProfilePanel view, JCustomerMainFrame mainFrame) {
         this.view = view;
         this.mainFrame = mainFrame;
-        LoginFacade loginFacade = LoginFacade.getInstance();
+        this.loginFacade = LoginFacade.getInstance();
+        this.customerManagementFacade = CustomerManagementFacade.getInstance();
         initController();
+        
+        // Carica i dati del profilo all'avvio
+        mostraDatiProfilo();
     }
 
     private void initController() {
@@ -36,39 +42,61 @@ public class CustomerProfileController {
 
     }
 
-    private void aggiornaPassword (){
-        clienteDAO = new ClienteDAOImpl();
-        idUtenteLog = SessionManager.getInstance().getCurrentUser().getId();
-        String nuovapassword = view.getTxtPassword().getText();
-
-        try {
-            if (clienteDAO.updatePassword(idUtenteLog, nuovapassword)) {
-                JOptionPane.showMessageDialog(view, "Password Aggiornata: ", "Aggiornamento password", JOptionPane.INFORMATION_MESSAGE);
-            }
-            else {
-                JOptionPane.showMessageDialog(view, "Errore durante l'aggiornamento della password: ", "Errore", JOptionPane.ERROR_MESSAGE);
-            }
-
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+    private void aggiornaPassword() {
+        String nuovaPass = view.getTxtPassword().getText();
+        
+        // Validazione della password
+        if (nuovaPass == null || nuovaPass.isEmpty()) {
+            showMessageDialog(view,
+                "La password non può essere vuota", 
+                "Errore validazione", 
+                ERROR_MESSAGE);
+            return;
         }
-
+        
+        // Verifica lunghezza minima
+        if (nuovaPass.length() < 8) {
+            showMessageDialog(view,
+                "La password deve essere di almeno 8 caratteri", 
+                "Password troppo corta", 
+                WARNING_MESSAGE);
+            return;
+        }
+        
+        try {
+            if (customerManagementFacade.aggiornaPassword(nuovaPass)) {
+                showMessageDialog(view,
+                    "La password è stata aggiornata con successo", 
+                    "Aggiornamento password", 
+                    INFORMATION_MESSAGE);
+            } else {
+                showMessageDialog(view,
+                    "Non è stato possibile aggiornare la password", 
+                    "Errore", 
+                    ERROR_MESSAGE);
+            }
+        } catch (RuntimeException e) {
+            showMessageDialog(view,
+                "Si è verificato un errore: " + e.getMessage(), 
+                "Errore", 
+                ERROR_MESSAGE);
+        }
     }
 
-    private void esci(){
-        SessionManager.getInstance().setCurrentUser(null);
-        this.mainFrame.dispose();
-        this.mainFrame.setVisible(false);
-        JMainMenuFrame mainMenuFrame = new JMainMenuFrame();
-        mainMenuFrame.setVisible(true);
+    private void esci() {
+        try {
+            loginFacade = LoginFacade.getInstance();
+            loginFacade.effettuaLogout(mainFrame);
 
+        } catch (Exception e) {
+            // Gestione dell'eccezione
+            showMessageDialog(mainFrame, "Si è verificato un errore durante il logout", "Errore", ERROR_MESSAGE);
+        }
     }
 
     private void mostraDatiProfilo()  {
-        clienteDAO = new ClienteDAOImpl();
 
-        idUtenteLog = SessionManager.getInstance().getCurrentUser().getId();
-        Cliente clienteEstratto = clienteDAO.get(idUtenteLog);
+        Cliente clienteEstratto = customerManagementFacade.mostraDati();
 
         view.setTxtNome(clienteEstratto.getNome());
         view.setTxtCognome(clienteEstratto.getCognome());
@@ -87,24 +115,18 @@ public class CustomerProfileController {
     }
 
     private void caricaDenaro (){
-        clienteDAO = new ClienteDAOImpl();
-        idUtenteLog = SessionManager.getInstance().getCurrentUser().getId();
-        Cliente clienteAttuale = clienteDAO.get(idUtenteLog);
-        double nuovoBilancio;
 
         try {
             if (view.getTxtDenaro() == 0.0 || view.getTxtDenaro() < 0.0) {
-                JOptionPane.showMessageDialog(view, "Accredito fallito ", "Errore", JOptionPane.ERROR_MESSAGE);
+                showMessageDialog(view, "Accredito fallito ", "Errore", ERROR_MESSAGE);
                 return;
             }
-
-            nuovoBilancio = clienteAttuale.getBilancio() +  view.getTxtDenaro();
-
-            if (clienteDAO.updateBilancio(idUtenteLog,nuovoBilancio)){
-                JOptionPane.showMessageDialog(view, "Dennaro accreditato: "+ nuovoBilancio, "Aggiornamento bilancio", JOptionPane.INFORMATION_MESSAGE);
+            if (view.getTxtDenaro() > 0.0) {
+                customerManagementFacade.caricaDenaro(view.getTxtDenaro());
+                showMessageDialog(view, "Dennaro accreditato: "+ view.getTxtDenaro(), "Aggiornamento bilancio", INFORMATION_MESSAGE);
                 return;
             }else
-                JOptionPane.showMessageDialog(view, "Accredito fallito ", "Errore", JOptionPane.ERROR_MESSAGE);
+                showMessageDialog(view, "Accredito fallito ", "Errore", ERROR_MESSAGE);
 
         }catch (Exception e) {
            System.out.println(e.getMessage());
@@ -114,9 +136,6 @@ public class CustomerProfileController {
 
 
 
-
-
     }
 
 }
-
