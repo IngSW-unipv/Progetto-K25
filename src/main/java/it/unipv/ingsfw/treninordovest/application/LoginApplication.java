@@ -27,7 +27,7 @@ public class LoginApplication {
      */
     public LoginApplication() {
         loginFrame = new JLoginFrame();
-        loginFacade = new LoginFacade();
+        loginFacade = LoginFacade.getInstance();
     }
 
     /**
@@ -38,7 +38,7 @@ public class LoginApplication {
         if (loginFrame == null || loginFacade == null) {
             // Inizializza le dipendenze se non sono già state create
             loginFrame = new JLoginFrame();
-            loginFacade = new LoginFacade();
+            loginFacade = LoginFacade.getInstance();
         }
         
         // Configurazione delle dipendenze

@@ -15,14 +15,13 @@ public class CustomerProfileController {
     private CustomerProfilePanel view;
     private JCustomerMainFrame mainFrame;
     private ClienteDAOImpl clienteDAO;
-    private final LoginFacade loginFacade;
     private javax.swing.JOptionPane JOptionPane;
     private String idUtenteLog;
 
-    public CustomerProfileController(CustomerProfilePanel view, JCustomerMainFrame mainFrame, LoginFacade loginFacade) {
+    public CustomerProfileController(CustomerProfilePanel view, JCustomerMainFrame mainFrame) {
         this.view = view;
         this.mainFrame = mainFrame;
-        this.loginFacade = loginFacade;
+        LoginFacade loginFacade = LoginFacade.getInstance();
         initController();
     }
 
@@ -30,28 +29,12 @@ public class CustomerProfileController {
         // Carica i dati dell'utente dalla sessione
 
         view.getBtnAggiornaPassword().addActionListener(e -> aggiornaPassword());
-        view.getBtnAggionaProfilo().addActionListener(e -> {
-            try {
-                mostraDatiProfilo();
-            } catch (SQLException ex) {
-                throw new RuntimeException(ex);
-            }
-        });
-
-        view.getBtnEsci().addActionListener(e -> { esci();});
-
-        view.getBtnConfermaDenaro().addActionListener(e -> {
-            try {
-                caricaDenaro();
-            } catch (SQLException ex) {
-                throw new RuntimeException(ex);
-            }
-        });
+        view.getBtnAggionaProfilo().addActionListener(e -> mostraDatiProfilo());
+        view.getBtnEsci().addActionListener(e ->  esci());
+        view.getBtnConfermaDenaro().addActionListener(e -> caricaDenaro());
 
 
     }
-
-
 
     private void aggiornaPassword (){
         clienteDAO = new ClienteDAOImpl();
@@ -81,7 +64,7 @@ public class CustomerProfileController {
 
     }
 
-    private void mostraDatiProfilo() throws SQLException {
+    private void mostraDatiProfilo()  {
         clienteDAO = new ClienteDAOImpl();
 
         idUtenteLog = SessionManager.getInstance().getCurrentUser().getId();
@@ -103,7 +86,7 @@ public class CustomerProfileController {
 
     }
 
-    private void caricaDenaro () throws SQLException {
+    private void caricaDenaro (){
         clienteDAO = new ClienteDAOImpl();
         idUtenteLog = SessionManager.getInstance().getCurrentUser().getId();
         Cliente clienteAttuale = clienteDAO.get(idUtenteLog);

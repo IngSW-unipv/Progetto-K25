@@ -1,6 +1,7 @@
 package it.unipv.ingsfw.treninordovest.controller.misc;
 
 import it.unipv.ingsfw.treninordovest.application.UserRegistrationApplication;
+import it.unipv.ingsfw.treninordovest.facade.LoginFacade;
 import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JMainMenuFrame;
 import it.unipv.ingsfw.treninordovest.view.frames.registration.JCustomerRegFrame;
 import it.unipv.ingsfw.treninordovest.view.frames.registration.JEmployeeRegFrame;

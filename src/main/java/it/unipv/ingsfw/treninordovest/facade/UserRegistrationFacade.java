@@ -1,18 +1,17 @@
 package it.unipv.ingsfw.treninordovest.facade;
 
+import it.unipv.ingsfw.treninordovest.dao.interfaces.ClienteDAO;
+import it.unipv.ingsfw.treninordovest.dao.interfaces.DipendenteDAO;
 import it.unipv.ingsfw.treninordovest.dao.implementations.utenti.ClienteDAOImpl;
 import it.unipv.ingsfw.treninordovest.dao.implementations.utenti.DipendenteDAOImpl;
 import it.unipv.ingsfw.treninordovest.dao.implementations.ferrovia.TrenoDAOImpl;
-import it.unipv.ingsfw.treninordovest.dao.interfaces.ClienteDAO;
-import it.unipv.ingsfw.treninordovest.dao.interfaces.DipendenteDAO;
-import it.unipv.ingsfw.treninordovest.factory.implementations.StipendioStrategyFactory;
-import it.unipv.ingsfw.treninordovest.model.ferrovia.Treno;
 import it.unipv.ingsfw.treninordovest.model.utenti.Cliente;
 import it.unipv.ingsfw.treninordovest.model.utenti.Dipendente;
-import it.unipv.ingsfw.treninordovest.model.varie.GeneraID;
-import it.unipv.ingsfw.treninordovest.utils.PasswordUtils;
+import it.unipv.ingsfw.treninordovest.model.ferrovia.Treno;
 import it.unipv.ingsfw.treninordovest.view.panels.users.CustomerRegistrationPanel;
 import it.unipv.ingsfw.treninordovest.view.panels.users.EmployeeRegistrationPanel;
+import it.unipv.ingsfw.treninordovest.model.varie.GeneraID;
+import it.unipv.ingsfw.treninordovest.factory.implementations.StipendioStrategyFactory;
 
 import javax.swing.*;
 import java.time.LocalDate;
@@ -27,25 +26,59 @@ public class UserRegistrationFacade implements IUserRegistrationFacade {
     
     private static final Logger LOGGER = Logger.getLogger(UserRegistrationFacade.class.getName());
     
+    // Istanza singleton
+    private static UserRegistrationFacade instance;
+    
     private final ClienteDAO clienteDAO;
     private final DipendenteDAO dipendenteDAO;
     private final TrenoDAOImpl trenoDAO;
     
-    public UserRegistrationFacade() {
+    /**
+     * Costruttore privato per implementare il Singleton
+     */
+    private UserRegistrationFacade() {
         this.clienteDAO = new ClienteDAOImpl();
         this.dipendenteDAO = new DipendenteDAOImpl();
         this.trenoDAO = new TrenoDAOImpl();
     }
     
-    // Costruttore per iniezione dipendenze nei test
-    public UserRegistrationFacade(ClienteDAO clienteDAO, DipendenteDAO dipendenteDAO, TrenoDAOImpl trenoDAO) {
+    /**
+     * Costruttore privato per iniezione dipendenze nei test
+     */
+    private UserRegistrationFacade(ClienteDAO clienteDAO, DipendenteDAO dipendenteDAO, TrenoDAOImpl trenoDAO) {
         this.clienteDAO = clienteDAO;
         this.dipendenteDAO = dipendenteDAO;
         this.trenoDAO = trenoDAO;
     }
     
-
-
+    /**
+     * Restituisce l'istanza singleton della UserRegistrationFacade
+     * @return l'istanza singleton
+     */
+    public static UserRegistrationFacade getInstance() {
+        if (instance == null) {
+            instance = new UserRegistrationFacade();
+        }
+        return instance;
+    }
+    
+    /**
+     * Metodo per i test che consente di creare un'istanza con dipendenze iniettate
+     * @param clienteDAO il DAO per i clienti
+     * @param dipendenteDAO il DAO per i dipendenti
+     * @param trenoDAO il DAO per i treni
+     * @return un'istanza di UserRegistrationFacade con le dipendenze specificate
+     */
+    public static UserRegistrationFacade createTestInstance(ClienteDAO clienteDAO, DipendenteDAO dipendenteDAO, TrenoDAOImpl trenoDAO) {
+        return new UserRegistrationFacade(clienteDAO, dipendenteDAO, trenoDAO);
+    }
+    
+    /**
+     * Resetta l'istanza singleton (utile per i test)
+     */
+    public static void resetInstance() {
+        instance = null;
+    }
 
     @Override
     public String registraCliente(CustomerRegistrationPanel view, JFrame componenteParent) {
@@ -88,8 +121,6 @@ public class UserRegistrationFacade implements IUserRegistrationFacade {
                 return null;
             }
 
-
-
             // Creazione cliente
             Cliente clienteInserito = new Cliente(id, password, nome, cognome, luogoNascita, sesso, dataNascitaLocal, cellulare, indirizzo, 0, email);
 
@@ -114,101 +145,97 @@ public class UserRegistrationFacade implements IUserRegistrationFacade {
 
     @Override
     public String registraDipendente(EmployeeRegistrationPanel view, JFrame componenteParent) {
-    try {
-        LOGGER.info("Avvio registrazione dipendente");
-        
-        // Genera ID per il dipendente
-        GeneraID idGen = new GeneraID("DP");
-        String id = idGen.getID();
-        
-        // Raccogli i dati dal form
-        String password = view.getTxtPassword().getText();
-        String nome = view.getTxtNome().getText();
-        String cognome = view.getTxtCognome().getText();
-        String sesso = view.getComboSesso();
-        String luogoNascita = view.getTxtLuogoNascita().getText();
-        Date dataNascita = view.getDataNascita().getDate();
-        String cellulare = view.getTxtCellulare().getText();
-        String indirizzo = view.getTxtIndirizzo().getText();
-        String ruolo = view.getComboRuolo();
-        
-        // Calcola lo stipendio in base al ruolo
-        double stipendio = StipendioStrategyFactory.getStrategy(ruolo).calcolaStipendio();
-
-        // Assegna un treno casuale al dipendente
-        String codTreno = getRandomTreno();
-        
-        // Validazione dei dati
-        if (password.isEmpty() || nome.isEmpty() || cognome.isEmpty() || 
-            sesso.isEmpty() || luogoNascita.isEmpty() || cellulare.isEmpty() || 
-            indirizzo.isEmpty() || dataNascita == null) {
+        try {
+            LOGGER.info("Avvio registrazione dipendente");
             
-            JOptionPane.showMessageDialog(componenteParent,
-                    "Compilazione di tutti i campi obbligatoria",
-                    "Errore", JOptionPane.ERROR_MESSAGE);
-            return null;
-        }
-        
-        // Converti la data
-        LocalDate dataNascitaLocal = dataNascita.toInstant()
-                .atZone(ZoneId.systemDefault()).toLocalDate();
-        
-        // Verifica data di nascita valida
-        if (dataNascitaLocal.isAfter(LocalDate.now())) {
-            JOptionPane.showMessageDialog(componenteParent,
-                    "La data di nascita non può essere nel futuro",
-                    "Errore", JOptionPane.ERROR_MESSAGE);
-            return null;
-        }
-        
-        // Creazione dipendente
-        Dipendente dipendenteInserito = new Dipendente(id, password, nome, cognome, luogoNascita, sesso, dataNascitaLocal, cellulare, indirizzo, codTreno, stipendio, ruolo);
-        
-        // Inserimento nel DB
-        dipendenteDAO.insert(dipendenteInserito);
-        
-        // Messaggio di successo
-        JOptionPane.showMessageDialog(componenteParent,
-                "Registrazione avvenuta con successo!!\nSalvati il tuo ID dipendente: " + id,
-                "Successo", JOptionPane.INFORMATION_MESSAGE);
-        
-        LOGGER.info("Dipendente registrato con successo: " + id);
-        return id;
-        
-    } catch (Exception e) {
-        LOGGER.log(Level.SEVERE, "Errore durante la registrazione del dipendente", e);
-        JOptionPane.showMessageDialog(componenteParent,
-                "Errore durante la registrazione: " + e.getMessage(),
-                "Errore", JOptionPane.ERROR_MESSAGE);
-        e.printStackTrace();
-        return null;
-    }
-}
+            // Genera ID per il dipendente
+            GeneraID idGen = new GeneraID("DP");
+            String id = idGen.getID();
+            
+            // Raccogli i dati dal form
+            String password = view.getTxtPassword().getText();
+            String nome = view.getTxtNome().getText();
+            String cognome = view.getTxtCognome().getText();
+            String sesso = view.getComboSesso();
+            String luogoNascita = view.getTxtLuogoNascita().getText();
+            Date dataNascita = view.getDataNascita().getDate();
+            String cellulare = view.getTxtCellulare().getText();
+            String indirizzo = view.getTxtIndirizzo().getText();
+            String ruolo = view.getComboRuolo();
+            
+            // Calcola lo stipendio in base al ruolo
+            double stipendio = StipendioStrategyFactory.getStrategy(ruolo).calcolaStipendio();
 
-/**
- * Restituisce l'ID di un treno casuale dal database
- * 
- * @return ID del treno selezionato casualmente
- */
-private String getRandomTreno() {
-    try {
-        List<Treno> treni = trenoDAO.getAll();
-        if (treni.isEmpty()) {
-            LOGGER.warning("Nessun treno trovato nel database");
+            // Assegna un treno casuale al dipendente
+            String codTreno = getRandomTreno();
+            
+            // Validazione dei dati
+            if (password.isEmpty() || nome.isEmpty() || cognome.isEmpty() || 
+                sesso.isEmpty() || luogoNascita.isEmpty() || cellulare.isEmpty() || 
+                indirizzo.isEmpty() || dataNascita == null) {
+                
+                JOptionPane.showMessageDialog(componenteParent,
+                        "Compilazione di tutti i campi obbligatoria",
+                        "Errore", JOptionPane.ERROR_MESSAGE);
+                return null;
+            }
+            
+            // Converti la data
+            LocalDate dataNascitaLocal = dataNascita.toInstant()
+                    .atZone(ZoneId.systemDefault()).toLocalDate();
+            
+            // Verifica data di nascita valida
+            if (dataNascitaLocal.isAfter(LocalDate.now())) {
+                JOptionPane.showMessageDialog(componenteParent,
+                        "La data di nascita non può essere nel futuro",
+                        "Errore", JOptionPane.ERROR_MESSAGE);
+                return null;
+            }
+            
+            // Creazione dipendente
+            Dipendente dipendenteInserito = new Dipendente(id, password, nome, cognome, luogoNascita, sesso, dataNascitaLocal, cellulare, indirizzo, codTreno, stipendio, ruolo);
+            
+            // Inserimento nel DB
+            dipendenteDAO.insert(dipendenteInserito);
+            
+            // Messaggio di successo
+            JOptionPane.showMessageDialog(componenteParent,
+                    "Registrazione avvenuta con successo!!\nSalvati il tuo ID dipendente: " + id,
+                    "Successo", JOptionPane.INFORMATION_MESSAGE);
+            
+            LOGGER.info("Dipendente registrato con successo: " + id);
+            return id;
+            
+        } catch (Exception e) {
+            LOGGER.log(Level.SEVERE, "Errore durante la registrazione del dipendente", e);
+            JOptionPane.showMessageDialog(componenteParent,
+                    "Errore durante la registrazione: " + e.getMessage(),
+                    "Errore", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * Restituisce l'ID di un treno casuale dal database
+     * 
+     * @return ID del treno selezionato casualmente
+     */
+    private String getRandomTreno() {
+        try {
+            List<Treno> treni = trenoDAO.getAll();
+            if (treni.isEmpty()) {
+                LOGGER.warning("Nessun treno trovato nel database");
+                return "";
+            }
+            
+            Random random = new Random();
+            int indiceCasuale = random.nextInt(treni.size());
+            return treni.get(indiceCasuale).getIdTreno();
+            
+        } catch (Exception e) {
+            LOGGER.log(Level.SEVERE, "Errore durante il recupero dei treni", e);
             return "";
         }
-        
-        Random random = new Random();
-        int indiceCasuale = random.nextInt(treni.size());
-        return treni.get(indiceCasuale).getIdTreno();
-        
-    } catch (Exception e) {
-        LOGGER.log(Level.SEVERE, "Errore durante il recupero dei treni", e);
-        return "";
     }
-}
-
-
-
-
 }

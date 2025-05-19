@@ -17,7 +17,7 @@ public class UserRegistrationApplication {
     public static void startCustomerReg(){
         if (frameCus == null || facade == null) {
             frameCus = new JCustomerRegFrame();
-            facade = new UserRegistrationFacade();
+            facade = UserRegistrationFacade.getInstance();
             
             // Creiamo il controller qui invece che nel frame
             customerRegController = new CustomerRegController(
@@ -32,7 +32,7 @@ public class UserRegistrationApplication {
     public static void startEmployeeReg(){
         if (frameEmp == null || facade == null) {
             frameEmp = new JEmployeeRegFrame();
-            facade = new UserRegistrationFacade();
+            facade = UserRegistrationFacade.getInstance();
             
             // Creiamo il controller qui invece che nel frame
             employeeRegController = new EmployeeRegController(

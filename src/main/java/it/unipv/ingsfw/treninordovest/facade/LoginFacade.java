@@ -10,9 +10,30 @@ import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JMainMenuFrame;
 import javax.swing.*;
 
 /**
- * Facade che semplifica il processo di login
+ * Facade che semplifica il processo di login implementata come Singleton
  */
 public class LoginFacade {
+    
+    // Istanza singleton
+    private static LoginFacade instance;
+    
+    /**
+     * Costruttore privato per impedire l'istanziazione diretta
+     */
+    public LoginFacade() {
+        // Inizializzazione privata
+    }
+    
+    /**
+     * Metodo per ottenere l'istanza singleton
+     * @return l'unica istanza di LoginFacade
+     */
+    public static LoginFacade getInstance() {
+        if (instance == null) {
+            instance = new LoginFacade();
+        }
+        return instance;
+    }
     
     /**
      * Effettua il login di un utente
@@ -43,6 +64,9 @@ public class LoginFacade {
             gestisciErroreLogin(ex, componenteParent);
         }
     }
+
+
+
     
     /**
      * Gestisce gli errori durante il login
@@ -60,7 +84,6 @@ public class LoginFacade {
         }
         JMainMenuFrame mainmenu = new JMainMenuFrame();
         mainmenu.setVisible(true);
-
     }
 
     public void effettuaLogout(JFrame currentFrame) {
@@ -70,5 +93,4 @@ public class LoginFacade {
         // Torna al menu principale
         tornaAlMenu(currentFrame);
     }
-
 }

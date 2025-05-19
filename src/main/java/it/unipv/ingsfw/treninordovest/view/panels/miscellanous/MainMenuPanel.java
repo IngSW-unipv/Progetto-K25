@@ -53,9 +53,6 @@ public class MainMenuPanel extends JPanel {
         return registrazioneDipendente;
     }
 
-    public JButton getAccessoDipendente() {
-        return accesso;
-    }
 
 
 }
