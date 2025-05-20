@@ -7,10 +7,12 @@ import it.unipv.ingsfw.treninordovest.view.frames.customer.JCustomerRegFrame;
 import it.unipv.ingsfw.treninordovest.view.panels.users.CustomerRegistrationPanel;
 
 import javax.swing.*;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.logging.Logger;
 import java.util.logging.Level;
 
-public class CustomerRegController implements IController {
+public class CustomerRegController extends Observable implements IController {
     private static final Logger LOGGER = Logger.getLogger(CustomerRegController.class.getName());
     
     private final CustomerRegistrationPanel view;
@@ -78,5 +80,20 @@ public class CustomerRegController implements IController {
             LOGGER.log(Level.SEVERE, "Errore durante la navigazione al menu principale", e);
             JOptionPane.showMessageDialog(customerRegFrame, "Errore durante il ritorno al menu principale: " + e.getMessage(), "Errore", JOptionPane.ERROR_MESSAGE);
         }
+    }
+
+    @Override
+    public synchronized void addObserver(Observer o) {
+        super.addObserver(o);
+    }
+
+    @Override
+    public void notifyObservers() {
+        super.notifyObservers();
+    }
+
+    @Override
+    protected synchronized void setChanged() {
+        super.setChanged();
     }
 }

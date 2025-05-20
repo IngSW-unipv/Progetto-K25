@@ -44,6 +44,9 @@ public class EmployeeManagementFacade implements IUserManagementFacade<Dipendent
         }
     }
 
-    
+    public void controllaTitolo(){}
+
+
+
 
 }

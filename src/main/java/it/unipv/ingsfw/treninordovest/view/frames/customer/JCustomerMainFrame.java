@@ -6,8 +6,10 @@ import it.unipv.ingsfw.treninordovest.view.panels.users.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Observable;
+import java.util.Observer;
 
-public class JCustomerMainFrame extends JFrame {
+public class JCustomerMainFrame extends JFrame implements Observer {
     private final JTabbedPane tabbedPane = new JTabbedPane();
     private final TicketPurchasePanel ticketPurchasePanel = new TicketPurchasePanel();
     private final SubscriptionPanel subscriptionPanel = new SubscriptionPanel();
@@ -70,5 +72,19 @@ public class JCustomerMainFrame extends JFrame {
 
     public TratteTablePanel getTratteTablePanel() {
         return tratteTablePanel;
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        if (arg.equals("acquistoBiglietto")) {
+            tabbedPane.setSelectedIndex(0);
+        } else if (arg.equals("acquistoTessera")) {
+            tabbedPane.setSelectedIndex(2);
+        } else if (arg.equals("abbonamento")) {
+            tabbedPane.setSelectedIndex(1);
+        } else if (arg.equals("rimborso")) {
+            tabbedPane.setSelectedIndex(3);
+        } else if (arg.equals("profilo")) {}
+
     }
 }

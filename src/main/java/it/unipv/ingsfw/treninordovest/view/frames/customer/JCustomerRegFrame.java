@@ -4,11 +4,15 @@ import it.unipv.ingsfw.treninordovest.view.panels.users.CustomerRegistrationPane
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Observable;
+import java.util.Observer;
 
 /**
  * Frame per la registrazione dei clienti
  */
-public class JCustomerRegFrame extends JFrame {
+public class JCustomerRegFrame extends JFrame implements Observer {
+
+
     private static final long serialVersionUID = 1L;
     private final CustomerRegistrationPanel customerRegistrationPanel;
 
@@ -62,5 +66,11 @@ public class JCustomerRegFrame extends JFrame {
      */
     public CustomerRegistrationPanel getCustomerRegistrationPanel() {
         return customerRegistrationPanel;
+    }
+
+
+    @Override
+    public void update(Observable o, Object arg) {
+
     }
 }

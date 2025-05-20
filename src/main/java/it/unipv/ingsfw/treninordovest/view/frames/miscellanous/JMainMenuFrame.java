@@ -5,8 +5,11 @@ import it.unipv.ingsfw.treninordovest.view.panels.miscellanous.MainMenuPanel;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Observable;
+import java.util.Observer;
 
-public class JMainMenuFrame extends JFrame {
+public class JMainMenuFrame extends JFrame implements Observer {
+
 
     private MainMenuPanel mainMenuPanel = new MainMenuPanel();
     private MainMenuController mainMenuController;
@@ -27,6 +30,20 @@ public class JMainMenuFrame extends JFrame {
 
     }
 
+    @Override
+    public void update(Observable o, Object arg) {
+       SwingUtilities.updateComponentTreeUI(this);
+       this.pack();
+       this.setVisible(true);
+       this.setLocationRelativeTo(null);
+       this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+       this.setResizable(false);
+       this.setTitle("Treninordovest - Benvenuti");
+       this.getContentPane().setBackground(new Color(131, 168, 195));
+       this.getContentPane().setLayout(new BorderLayout());
+       this.getContentPane().add(mainMenuPanel, BorderLayout.CENTER);
+
+    }
 
 
 

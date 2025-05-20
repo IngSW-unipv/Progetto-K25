@@ -2,6 +2,7 @@ package it.unipv.ingsfw.treninordovest.controller.customer;
 
 import it.unipv.ingsfw.treninordovest.controller.misc.IController;
 import it.unipv.ingsfw.treninordovest.dao.implementations.utenti.TesseraDAOImpl;
+import it.unipv.ingsfw.treninordovest.facade.implementations.CustomerManagementFacade;
 import it.unipv.ingsfw.treninordovest.model.utenti.Cliente;
 import it.unipv.ingsfw.treninordovest.model.utenti.Tessera;
 import it.unipv.ingsfw.treninordovest.model.varie.GeneraID;
@@ -20,6 +21,7 @@ public class CardPurchaseController implements IController {
     private Tessera tessera;
     private LocalDate dataEmissione;
     private LocalDate dataScadenza;
+    private CustomerManagementFacade facade;
 
     public CardPurchaseController(CardPurchasePanel view, JCustomerMainFrame customerRegFrame) {
         this.view = view;
@@ -39,38 +41,13 @@ public class CardPurchaseController implements IController {
     private void acquistaTessera()  {
         try
         {
-            String idCliente = view.getTextIDCliente().getText();
-            Cliente clienteLoggato = (Cliente) SessionManager.getInstance().getCurrentUser();
-            //Impostazioni delle date
-            dataEmissione = LocalDate.now();
-            dataScadenza = LocalDate.now().plusYears(5);
-            //Generazione dell'ID
-            GeneraID idGen = new GeneraID("TS");
-            String idTessera = idGen.getID();
-
-            tDAO = new TesseraDAOImpl();
-            tessera = new Tessera(idTessera,dataEmissione,dataScadenza,idCliente);
-
-            if (tDAO.exists(clienteLoggato.getId())){
-                JOptionPane.showMessageDialog(view, "Hai già una tessera", "Errore", JOptionPane.ERROR_MESSAGE);
-            } else if (!tDAO.exists(idTessera)){
-                if (clienteLoggato != null && clienteLoggato.getId().equals(idCliente)) {
-                    tDAO.insert(tessera);
-                    JOptionPane.showMessageDialog(view, "Tessera acquistata", "Conferma",JOptionPane.INFORMATION_MESSAGE);
-                    view.setTextIDCliente("");
-                } else {
-                    JOptionPane.showMessageDialog(view, "ID non valido riprovare", "Errore", JOptionPane.ERROR_MESSAGE);
-                    view.setTextIDCliente("");
-                }
-
-            }
-
-            System.out.println(clienteLoggato);
+            facade.acquistaTessera();
+            JOptionPane.showMessageDialog(view,"Tessera acquistata con successo");
 
 
 
         }catch (Exception e){
-            e.printStackTrace();
+            throw new RuntimeException("Errore durante l'acquisto",e);
         }
 
 

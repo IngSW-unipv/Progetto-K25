@@ -1,10 +1,15 @@
 package it.unipv.ingsfw.treninordovest.facade.implementations;
 
 import it.unipv.ingsfw.treninordovest.dao.implementations.utenti.ClienteDAOImpl;
+import it.unipv.ingsfw.treninordovest.dao.implementations.utenti.TesseraDAOImpl;
 import it.unipv.ingsfw.treninordovest.facade.interfaces.IUserManagementFacade;
 import it.unipv.ingsfw.treninordovest.model.utenti.Cliente;
+import it.unipv.ingsfw.treninordovest.model.utenti.Tessera;
+import it.unipv.ingsfw.treninordovest.model.varie.GeneraID;
 import it.unipv.ingsfw.treninordovest.model.varie.SessionManager;
 import it.unipv.ingsfw.treninordovest.model.varie.wallet.EUWallet;
+
+import java.time.LocalDate;
 
 
 public class CustomerManagementFacade implements IUserManagementFacade<Cliente> {
@@ -47,7 +52,7 @@ public class CustomerManagementFacade implements IUserManagementFacade<Cliente> 
 
     }
 
-    public boolean caricaDenaro(double importo){
+    public void caricaDenaro(double importo){
 
         ClienteDAOImpl clienteDAO = new ClienteDAOImpl();
         String idUtenteLog = SessionManager.getInstance().getCurrentUser().getId();
@@ -57,12 +62,53 @@ public class CustomerManagementFacade implements IUserManagementFacade<Cliente> 
            try {
                System.out.println("Carico denaro");
                clienteDAO.updateBilancio(idUtenteLog,importo);
-               return true;
            } catch (Exception e) {
                throw new RuntimeException(e);
            }
        }
 
-        return false;
     }
+
+    public void acquistaTessera(){
+
+        TesseraDAOImpl tDAO = new TesseraDAOImpl();
+        Cliente clienteLoggato = (Cliente) SessionManager.getInstance().getCurrentUser();
+
+        if(SessionManager.getInstance().getCurrentUser() !=null){
+            clienteLoggato = (Cliente) SessionManager.getInstance().getCurrentUser();
+        }
+
+        try {
+            if (!tDAO.exists(clienteLoggato.getId())){
+
+                    LocalDate dataEmissione = LocalDate.now();
+                    LocalDate dataScadenza = LocalDate.now().plusYears(5);
+                    //Generazione dell'ID
+                    GeneraID idGen = new GeneraID("TS");
+                    String idTessera = idGen.getID();
+
+                    Tessera tessera = new Tessera(idTessera,dataEmissione,dataScadenza,clienteLoggato.getId());
+
+                    tDAO.insert(tessera);
+
+
+            }
+
+
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+
+    }
+
+    public void acquistaBiglietto(){}
+
+    public void acquistaAbbonamento(){}
+
+    public void richiestaRimborso(){}
+
+
+
 }
