@@ -24,7 +24,7 @@ public class CustomerProfileController implements IController {
         this.mainFrame = mainFrame;
         this.loginFacade = LoginFacade.getInstance();
         this.customerManagementFacade = CustomerManagementFacade.getInstance();
-        initController();
+        init();
         
         // Carica i dati del profilo all'avvio
         mostraDatiProfilo();
@@ -33,12 +33,15 @@ public class CustomerProfileController implements IController {
     @Override
     public void init() {     //Cambiare di nuovo in privato
         // Carica i dati dell'utente dalla sessione
+        initView();
+    }
+
+    private void initView() {
 
         view.getBtnAggiornaPassword().addActionListener(e -> aggiornaPassword());
         view.getBtnAggionaProfilo().addActionListener(e -> mostraDatiProfilo());
         view.getBtnEsci().addActionListener(e ->  esci());
         view.getBtnConfermaDenaro().addActionListener(e -> caricaDenaro());
-
 
     }
 

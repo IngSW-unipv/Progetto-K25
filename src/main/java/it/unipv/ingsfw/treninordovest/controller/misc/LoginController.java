@@ -21,7 +21,7 @@ public class LoginController implements IController {
         this.view = view;
         this.frame = loginFrame;
         this.loginFacade = new LoginFacade();
-        initController();
+        init();
     }
 
     /**
@@ -34,7 +34,7 @@ public class LoginController implements IController {
         this.view = view;
         this.frame = loginFrame;
         this.loginFacade = loginFacade;
-        initController();
+        init();
     }
 
     @Override

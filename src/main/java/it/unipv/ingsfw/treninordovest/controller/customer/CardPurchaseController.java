@@ -24,12 +24,16 @@ public class CardPurchaseController implements IController {
     public CardPurchaseController(CardPurchasePanel view, JCustomerMainFrame customerRegFrame) {
         this.view = view;
         this.customerRegFrame = customerRegFrame;
+        init();
+    }
+
+    @Override
+    public void init() {
         initComponents();
     }
 
     private void initComponents() {
         view.getButtonAcquistaTessera().addActionListener(e -> {acquistaTessera();});
-
     }
 
     private void acquistaTessera()  {
