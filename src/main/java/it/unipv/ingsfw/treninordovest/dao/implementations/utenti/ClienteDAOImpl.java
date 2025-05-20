@@ -255,7 +255,7 @@ public class ClienteDAOImpl implements ClienteDAO {
                 ps.setString(2, id);
                 //Database.closeConnection(con);
             return ps.executeUpdate() > 0;
-        } catch (Exception e) {
+        } catch (SQLException e) {
             throw new RuntimeException("Errore durante l'aggiornamento della password",e);
         }
 

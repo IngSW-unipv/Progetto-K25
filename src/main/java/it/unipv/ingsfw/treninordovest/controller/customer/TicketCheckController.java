@@ -1,15 +1,14 @@
-package it.unipv.ingsfw.treninordovest.controller.titoli;
+package it.unipv.ingsfw.treninordovest.controller.customer;
 
+import it.unipv.ingsfw.treninordovest.controller.misc.IController;
 import it.unipv.ingsfw.treninordovest.dao.implementations.titoli.AbbonamentoDAOimpl;
 import it.unipv.ingsfw.treninordovest.dao.implementations.titoli.BigliettoDAOImpl;
-import it.unipv.ingsfw.treninordovest.model.titoli.Biglietto;
 import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JEmployeeMainFrame;
 import it.unipv.ingsfw.treninordovest.view.panels.miscellanous.TravelDocCheckPanel;
 
 import javax.swing.*;
-import java.sql.SQLException;
 
-public class TicketCheckController {
+public class TicketCheckController implements IController {
     private JEmployeeMainFrame frame;
     private TravelDocCheckPanel view;
 
@@ -17,9 +16,15 @@ public class TicketCheckController {
     public TicketCheckController(JEmployeeMainFrame frame, TravelDocCheckPanel view) {
         this.frame = frame;
         this.view = view;
-        initComponents();
+        init();
 
     }
+
+    @Override
+    public void init() {
+        initComponents();
+    }
+
     private void initComponents() {
         view.getVerificaButton().addActionListener(e -> {verficaTitolo();});
 

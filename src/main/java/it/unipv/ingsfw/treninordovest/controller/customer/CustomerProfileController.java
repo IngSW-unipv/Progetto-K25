@@ -1,11 +1,10 @@
-package it.unipv.ingsfw.treninordovest.controller.users;
+package it.unipv.ingsfw.treninordovest.controller.customer;
 
 
-import it.unipv.ingsfw.treninordovest.dao.implementations.utenti.ClienteDAOImpl;
+import it.unipv.ingsfw.treninordovest.controller.misc.IController;
 import it.unipv.ingsfw.treninordovest.facade.CustomerManagementFacade;
 import it.unipv.ingsfw.treninordovest.facade.LoginFacade;
 import it.unipv.ingsfw.treninordovest.model.utenti.Cliente;
-import it.unipv.ingsfw.treninordovest.model.varie.SessionManager;
 import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JCustomerMainFrame;
 import it.unipv.ingsfw.treninordovest.view.panels.users.CustomerProfilePanel;
 
@@ -13,7 +12,7 @@ import javax.swing.*;
 
 import static javax.swing.JOptionPane.*;
 
-public class CustomerProfileController {
+public class CustomerProfileController implements IController {
     private CustomerProfilePanel view;
     private JCustomerMainFrame mainFrame;
     private JOptionPane JOptionPane;
@@ -31,7 +30,8 @@ public class CustomerProfileController {
         mostraDatiProfilo();
     }
 
-    private void initController() {
+    @Override
+    public void init() {     //Cambiare di nuovo in privato
         // Carica i dati dell'utente dalla sessione
 
         view.getBtnAggiornaPassword().addActionListener(e -> aggiornaPassword());

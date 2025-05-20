@@ -1,5 +1,6 @@
-package it.unipv.ingsfw.treninordovest.controller.titoli;
+package it.unipv.ingsfw.treninordovest.controller.customer;
 
+import it.unipv.ingsfw.treninordovest.controller.misc.IController;
 import it.unipv.ingsfw.treninordovest.dao.implementations.titoli.AbbonamentoDAOimpl;
 import it.unipv.ingsfw.treninordovest.dao.implementations.titoli.PagamentoDAOImpl;
 import it.unipv.ingsfw.treninordovest.dao.implementations.utenti.ClienteDAOImpl;
@@ -14,11 +15,10 @@ import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JCustomerMainFram
 import it.unipv.ingsfw.treninordovest.view.panels.finance.SubscriptionPanel;
 
 import javax.swing.*;
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.ZoneId;
 
-public class SubscriptionController {
+public class SubscriptionController implements IController {
 
     private SubscriptionPanel view;
     private JCustomerMainFrame frame;
@@ -31,6 +31,11 @@ public class SubscriptionController {
     public SubscriptionController(SubscriptionPanel view, JCustomerMainFrame frame) {
         this.view = view;
         this.frame = frame;
+        init();
+    }
+
+    @Override
+    public void init(){
         initComponents();
     }
 

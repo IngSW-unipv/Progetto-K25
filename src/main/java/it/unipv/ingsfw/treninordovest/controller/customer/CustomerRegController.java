@@ -1,5 +1,6 @@
-package it.unipv.ingsfw.treninordovest.controller.users;
+package it.unipv.ingsfw.treninordovest.controller.customer;
 
+import it.unipv.ingsfw.treninordovest.controller.misc.IController;
 import it.unipv.ingsfw.treninordovest.facade.UserRegistrationFacade;
 import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JMainMenuFrame;
 import it.unipv.ingsfw.treninordovest.view.frames.registration.JCustomerRegFrame;
@@ -9,7 +10,7 @@ import javax.swing.*;
 import java.util.logging.Logger;
 import java.util.logging.Level;
 
-public class CustomerRegController {
+public class CustomerRegController implements IController {
     private static final Logger LOGGER = Logger.getLogger(CustomerRegController.class.getName());
     
     private final CustomerRegistrationPanel view;
@@ -26,13 +27,18 @@ public class CustomerRegController {
         this.view = view;
         this.customerRegFrame = customerRegFrame;
         this.facade = facade;
-        initController();
+        init();
     }
 
     /**
      * Inizializza i listener per i pulsanti
      */
-    private void initController() {
+    @Override
+    public void init() {
+      initView();
+    }
+
+    private void initView() {
         view.getBtnRegister().addActionListener(e -> createCustomer());
         view.getBtnMenuPrincipal().addActionListener(e -> tornaAlMenuPrincipale());
     }

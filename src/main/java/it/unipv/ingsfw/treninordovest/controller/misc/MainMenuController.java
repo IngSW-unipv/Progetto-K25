@@ -1,17 +1,14 @@
 package it.unipv.ingsfw.treninordovest.controller.misc;
 
 import it.unipv.ingsfw.treninordovest.application.UserRegistrationApplication;
-import it.unipv.ingsfw.treninordovest.facade.LoginFacade;
 import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JMainMenuFrame;
-import it.unipv.ingsfw.treninordovest.view.frames.registration.JCustomerRegFrame;
-import it.unipv.ingsfw.treninordovest.view.frames.registration.JEmployeeRegFrame;
 import it.unipv.ingsfw.treninordovest.view.panels.miscellanous.MainMenuPanel;
 import it.unipv.ingsfw.treninordovest.application.LoginApplication;
 
 /**
  * Controller che gestisce le interazioni dell'utente con il menu principale
  */
-public class MainMenuController implements IMenuController {
+public class MainMenuController implements IController {
 
     private final MainMenuPanel view;
     private final JMainMenuFrame mainMenuFrame;
@@ -24,11 +21,11 @@ public class MainMenuController implements IMenuController {
     public MainMenuController(MainMenuPanel view, JMainMenuFrame mainMenuFrame) {
         this.view = view;
         this.mainMenuFrame = mainMenuFrame;
-        initController();
+        init();
     }
 
     @Override
-    public void initController() {
+    public void init() {
        view.getAccesso().addActionListener(e -> apriLogin());
        view.getRegistrazioneCliente().addActionListener(e -> apriRegistrazioneCliente());
        view.getRegistrazioneDipendente().addActionListener(e -> apriRegistrazioneDipendente());

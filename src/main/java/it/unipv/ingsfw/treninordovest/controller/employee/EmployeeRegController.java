@@ -1,5 +1,6 @@
-package it.unipv.ingsfw.treninordovest.controller.users;
+package it.unipv.ingsfw.treninordovest.controller.employee;
 
+import it.unipv.ingsfw.treninordovest.controller.misc.IController;
 import it.unipv.ingsfw.treninordovest.facade.UserRegistrationFacade;
 import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JMainMenuFrame;
 import it.unipv.ingsfw.treninordovest.view.frames.registration.JEmployeeRegFrame;
@@ -9,7 +10,7 @@ import javax.swing.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class EmployeeRegController {
+public class EmployeeRegController implements IController {
     private static final Logger LOGGER = Logger.getLogger(EmployeeRegController.class.getName());
     
     private final EmployeeRegistrationPanel view;
@@ -26,16 +27,21 @@ public class EmployeeRegController {
         this.view = view;
         this.employeeRegFrame = employeeRegFrame;
         this.facade = facade;
-        initController();
+        init();
     }
 
     /**
      * Inizializza i listener per i pulsanti
      */
-    private void initController() {
+    public void init() {
+      initView();
+    }
+
+    private void initView() {
         view.getBtnRegister().addActionListener(e -> createEmployee());
         view.getBtnMenuPrincipal().addActionListener(e -> tornaAlMenuPrincipale());
     }
+
 
     /**
      * Registra un nuovo dipendente utilizzando la facade

@@ -6,7 +6,7 @@ import it.unipv.ingsfw.treninordovest.model.varie.SessionManager;
 import it.unipv.ingsfw.treninordovest.model.varie.wallet.EUWallet;
 
 
-public class CustomerManagementFacade implements IUserManagementFacade {
+public class CustomerManagementFacade implements IUserManagementFacade<Cliente> {
 
     private static CustomerManagementFacade instance;
 
@@ -51,8 +51,6 @@ public class CustomerManagementFacade implements IUserManagementFacade {
         ClienteDAOImpl clienteDAO = new ClienteDAOImpl();
         String idUtenteLog = SessionManager.getInstance().getCurrentUser().getId();
         EUWallet portafoglio = new EUWallet();
-
-
 
        if (portafoglio.deposita(importo)){
            try {

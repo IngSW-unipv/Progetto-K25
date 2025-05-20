@@ -1,7 +1,7 @@
 package it.unipv.ingsfw.treninordovest.view.frames.miscellanous;
 
-import it.unipv.ingsfw.treninordovest.controller.titoli.TicketCheckController;
-import it.unipv.ingsfw.treninordovest.controller.users.EmployeeProfileController;
+import it.unipv.ingsfw.treninordovest.controller.customer.TicketCheckController;
+import it.unipv.ingsfw.treninordovest.controller.employee.EmployeeProfileController;
 import it.unipv.ingsfw.treninordovest.view.panels.miscellanous.TravelDocCheckPanel;
 import it.unipv.ingsfw.treninordovest.view.panels.users.EmployeeProfilePanel;
 

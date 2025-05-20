@@ -7,7 +7,7 @@ import it.unipv.ingsfw.treninordovest.view.panels.miscellanous.LoginPanel;
 /**
  * Controller che gestisce le interazioni dell'utente con la schermata di login
  */
-public class LoginController implements ILoginController {
+public class LoginController implements IController {
     private final LoginPanel view;
     private final JLoginFrame frame;
     private final LoginFacade loginFacade;
@@ -38,7 +38,7 @@ public class LoginController implements ILoginController {
     }
 
     @Override
-    public void initController() {
+    public void init() {
         view.getBottoneAccesso().addActionListener(e -> doLogin());
         view.getBottoneIndietro().addActionListener(e -> tornaAlMenu());
     }

@@ -1,5 +1,6 @@
-package it.unipv.ingsfw.treninordovest.controller.titoli;
+package it.unipv.ingsfw.treninordovest.controller.customer;
 
+import it.unipv.ingsfw.treninordovest.controller.misc.IController;
 import it.unipv.ingsfw.treninordovest.dao.implementations.utenti.TesseraDAOImpl;
 import it.unipv.ingsfw.treninordovest.model.utenti.Cliente;
 import it.unipv.ingsfw.treninordovest.model.utenti.Tessera;
@@ -9,10 +10,9 @@ import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JCustomerMainFram
 import it.unipv.ingsfw.treninordovest.view.panels.finance.CardPurchasePanel;
 
 import javax.swing.*;
-import java.sql.SQLException;
 import java.time.LocalDate;
 
-public class CardPurchaseController {
+public class CardPurchaseController implements IController {
 
     private CardPurchasePanel view;
     private JCustomerMainFrame customerRegFrame;

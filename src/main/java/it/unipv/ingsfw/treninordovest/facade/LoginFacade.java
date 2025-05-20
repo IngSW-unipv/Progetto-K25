@@ -65,9 +65,6 @@ public class LoginFacade {
         }
     }
 
-
-
-    
     /**
      * Gestisce gli errori durante il login
      */

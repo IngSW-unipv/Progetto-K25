@@ -1,5 +1,6 @@
-package it.unipv.ingsfw.treninordovest.controller.users;
+package it.unipv.ingsfw.treninordovest.controller.customer;
 
+import it.unipv.ingsfw.treninordovest.controller.misc.IController;
 import it.unipv.ingsfw.treninordovest.dao.implementations.ferrovia.TrattaDAOImpl;
 import it.unipv.ingsfw.treninordovest.dao.implementations.ferrovia.TrattaFermataDAOImpl;
 import it.unipv.ingsfw.treninordovest.dao.implementations.ferrovia.ViaggioDAOImpl;
@@ -25,7 +26,7 @@ import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.List;
 
-public class CustomerTicketController {
+public class CustomerTicketController implements IController {
 
     private TratteTablePanel tratteTablePanel;
     private JCustomerMainFrame customerMainFrame;
@@ -39,23 +40,20 @@ public class CustomerTicketController {
         this.customerMainFrame = frame;
         this.tratteTablePanel = tratteTablePanel;
         this.ticketPurchasePanel = ticketPurchasePanel;
-        initController();
+        init();
 
     }
 
-    private void initController() {
-
-        ticketPurchasePanel.getButtonAcquista().addActionListener(e -> {
-            try {
-                acquistoBiglietto();
-            } catch (SQLException ex) {
-                throw new RuntimeException(ex);
-            }
-        });
-
+    @Override
+    public void init() {
+        initView();
     }
 
-    public List<Tratta> getTratte() throws SQLException {
+    private void initView() {
+        ticketPurchasePanel.getButtonAcquista().addActionListener(e -> {acquistoBiglietto();});
+    }
+
+    public List<Tratta> getTratte() {
         trattaDAO = new TrattaDAOImpl();
         List<Tratta> tratte;
         try {
@@ -67,7 +65,7 @@ public class CustomerTicketController {
         return tratte;
     }
 
-    protected void acquistoBiglietto () throws SQLException {
+    private void acquistoBiglietto ()  {
 
         PagamentoDAOImpl pagamentoDAO = new PagamentoDAOImpl();
         BigliettoDAOImpl bigliettoDAO = new BigliettoDAOImpl();
@@ -137,7 +135,7 @@ public class CustomerTicketController {
     return bigliettoCreato;
     }
 
-    private Viaggio creaViaggio (String idBiglietto,String idPartenza,String idArrivo,String idTratta) throws SQLException {
+    private Viaggio creaViaggio (String idBiglietto,String idPartenza,String idArrivo,String idTratta)  {
         generaID = new GeneraID("VG");
         LocalDate dataViaggio = LocalDate.now();
         Viaggio viaggioCreato;
@@ -162,7 +160,7 @@ public class CustomerTicketController {
         return viaggioCreato;
     }
 
-    protected Pagamento creaPagamento(double totale) {
+   private Pagamento creaPagamento(double totale) {
         //Dichiarazione classi
         Pagamento pagamento;
         String tipoPagamento;

@@ -1,5 +1,6 @@
-package it.unipv.ingsfw.treninordovest.controller.users;
+package it.unipv.ingsfw.treninordovest.controller.employee;
 
+import it.unipv.ingsfw.treninordovest.controller.misc.IController;
 import it.unipv.ingsfw.treninordovest.dao.implementations.utenti.DipendenteDAOImpl;
 import it.unipv.ingsfw.treninordovest.model.utenti.Dipendente;
 import it.unipv.ingsfw.treninordovest.model.varie.SessionManager;
@@ -7,9 +8,9 @@ import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JEmployeeMainFram
 import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JMainMenuFrame;
 import it.unipv.ingsfw.treninordovest.view.panels.users.EmployeeProfilePanel;
 
-import java.sql.SQLException;
+import static javax.swing.JOptionPane.*;
 
-public class EmployeeProfileController {
+public class EmployeeProfileController implements IController {
 
     private EmployeeProfilePanel view;
     private JEmployeeMainFrame mainFrame;
@@ -21,22 +22,20 @@ public class EmployeeProfileController {
     public EmployeeProfileController(EmployeeProfilePanel view, JEmployeeMainFrame mainFrame) {
         this.view = view;
         this.mainFrame= mainFrame;
-        initController();
+        init();
     }
 
 
-    private void initController() {
+    @Override
+    public void init() {
+        initView();
+    }
+
+    private void initView() {
         // Carica i dati dell'utente dalla sessione
-
        view.getBtnAggiornaPassword().addActionListener(e -> aggiornaPassword());
-        view.getBtnAggionaProfilo().addActionListener(e -> {
-            mostraDatiProfilo();
-        });
-
+        view.getBtnAggionaProfilo().addActionListener(e -> {mostraDatiProfilo();});
         view.getBtnEsci().addActionListener(e -> { esci();});
-
-
-
     }
 
 
@@ -78,10 +77,10 @@ public class EmployeeProfileController {
 
         try {
             if (dipendenteDAO.updatePassword(idUtenteLog, nuovapassword)) {
-                JOptionPane.showMessageDialog(view, "Password Aggiornata: ", "Aggiornamento password", JOptionPane.INFORMATION_MESSAGE);
+                showMessageDialog(view, "Password Aggiornata: ", "Aggiornamento password", INFORMATION_MESSAGE);
             }
             else {
-                JOptionPane.showMessageDialog(view, "Errore durante l'aggiornamento della password: ", "Errore", JOptionPane.ERROR_MESSAGE);
+                showMessageDialog(view, "Errore durante l'aggiornamento della password: ", "Errore",ERROR_MESSAGE);
             }
 
         } catch (Exception e) {
