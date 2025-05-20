@@ -1,10 +1,11 @@
-package it.unipv.ingsfw.treninordovest.facade;
+package it.unipv.ingsfw.treninordovest.facade.implementations;
 
 import it.unipv.ingsfw.treninordovest.dao.interfaces.ClienteDAO;
 import it.unipv.ingsfw.treninordovest.dao.interfaces.DipendenteDAO;
 import it.unipv.ingsfw.treninordovest.dao.implementations.utenti.ClienteDAOImpl;
 import it.unipv.ingsfw.treninordovest.dao.implementations.utenti.DipendenteDAOImpl;
 import it.unipv.ingsfw.treninordovest.dao.implementations.ferrovia.TrenoDAOImpl;
+import it.unipv.ingsfw.treninordovest.facade.interfaces.IUserRegistrationFacade;
 import it.unipv.ingsfw.treninordovest.model.utenti.Cliente;
 import it.unipv.ingsfw.treninordovest.model.utenti.Dipendente;
 import it.unipv.ingsfw.treninordovest.model.ferrovia.Treno;

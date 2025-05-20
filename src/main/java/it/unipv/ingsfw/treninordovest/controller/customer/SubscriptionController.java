@@ -11,7 +11,7 @@ import it.unipv.ingsfw.treninordovest.model.titoli.Pagamento;
 import it.unipv.ingsfw.treninordovest.model.utenti.Cliente;
 import it.unipv.ingsfw.treninordovest.model.varie.GeneraID;
 import it.unipv.ingsfw.treninordovest.model.varie.SessionManager;
-import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JCustomerMainFrame;
+import it.unipv.ingsfw.treninordovest.view.frames.customer.JCustomerMainFrame;
 import it.unipv.ingsfw.treninordovest.view.panels.finance.SubscriptionPanel;
 
 import javax.swing.*;

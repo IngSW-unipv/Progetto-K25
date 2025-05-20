@@ -3,7 +3,7 @@ package it.unipv.ingsfw.treninordovest.controller.customer;
 import it.unipv.ingsfw.treninordovest.controller.misc.IController;
 import it.unipv.ingsfw.treninordovest.dao.implementations.titoli.AbbonamentoDAOimpl;
 import it.unipv.ingsfw.treninordovest.dao.implementations.titoli.BigliettoDAOImpl;
-import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JEmployeeMainFrame;
+import it.unipv.ingsfw.treninordovest.view.frames.employee.JEmployeeMainFrame;
 import it.unipv.ingsfw.treninordovest.view.panels.miscellanous.TravelDocCheckPanel;
 
 import javax.swing.*;

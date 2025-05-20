@@ -7,7 +7,7 @@ import it.unipv.ingsfw.treninordovest.model.titoli.Biglietto;
 import it.unipv.ingsfw.treninordovest.model.titoli.Rimborso;
 import it.unipv.ingsfw.treninordovest.model.varie.GeneraID;
 import it.unipv.ingsfw.treninordovest.model.varie.SessionManager;
-import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JCustomerMainFrame;
+import it.unipv.ingsfw.treninordovest.view.frames.customer.JCustomerMainFrame;
 import it.unipv.ingsfw.treninordovest.view.panels.finance.RefundPanel;
 
 import javax.swing.*;

@@ -1,9 +1,9 @@
 package it.unipv.ingsfw.treninordovest.controller.customer;
 
 import it.unipv.ingsfw.treninordovest.controller.misc.IController;
-import it.unipv.ingsfw.treninordovest.facade.UserRegistrationFacade;
+import it.unipv.ingsfw.treninordovest.facade.implementations.UserRegistrationFacade;
 import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JMainMenuFrame;
-import it.unipv.ingsfw.treninordovest.view.frames.registration.JCustomerRegFrame;
+import it.unipv.ingsfw.treninordovest.view.frames.customer.JCustomerRegFrame;
 import it.unipv.ingsfw.treninordovest.view.panels.users.CustomerRegistrationPanel;
 
 import javax.swing.*;

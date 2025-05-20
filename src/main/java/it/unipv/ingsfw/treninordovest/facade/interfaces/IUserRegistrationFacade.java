@@ -1,4 +1,4 @@
-package it.unipv.ingsfw.treninordovest.facade;
+package it.unipv.ingsfw.treninordovest.facade.interfaces;
 
 import it.unipv.ingsfw.treninordovest.view.panels.users.CustomerRegistrationPanel;
 import it.unipv.ingsfw.treninordovest.view.panels.users.EmployeeRegistrationPanel;

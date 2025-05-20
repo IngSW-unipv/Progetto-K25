@@ -1,4 +1,4 @@
-package it.unipv.ingsfw.treninordovest.view.frames.login;
+package it.unipv.ingsfw.treninordovest.view.frames.miscellanous;
 
 import it.unipv.ingsfw.treninordovest.view.panels.miscellanous.LoginPanel;
 

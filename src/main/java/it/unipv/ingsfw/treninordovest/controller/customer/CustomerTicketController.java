@@ -15,12 +15,11 @@ import it.unipv.ingsfw.treninordovest.model.titoli.Pagamento;
 import it.unipv.ingsfw.treninordovest.model.utenti.Cliente;
 import it.unipv.ingsfw.treninordovest.model.varie.GeneraID;
 import it.unipv.ingsfw.treninordovest.model.varie.SessionManager;
-import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JCustomerMainFrame;
+import it.unipv.ingsfw.treninordovest.view.frames.customer.JCustomerMainFrame;
 import it.unipv.ingsfw.treninordovest.view.panels.finance.TicketPurchasePanel;
 import it.unipv.ingsfw.treninordovest.view.panels.miscellanous.TratteTablePanel;
 
 import javax.swing.*;
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.ZoneId;

@@ -1,7 +1,7 @@
 package it.unipv.ingsfw.treninordovest.controller.misc;
 
-import it.unipv.ingsfw.treninordovest.facade.LoginFacade;
-import it.unipv.ingsfw.treninordovest.view.frames.login.JLoginFrame;
+import it.unipv.ingsfw.treninordovest.facade.implementations.LoginFacade;
+import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JLoginFrame;
 import it.unipv.ingsfw.treninordovest.view.panels.miscellanous.LoginPanel;
 
 /**

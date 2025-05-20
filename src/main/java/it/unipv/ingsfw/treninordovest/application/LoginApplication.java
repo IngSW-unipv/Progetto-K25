@@ -1,8 +1,8 @@
 package it.unipv.ingsfw.treninordovest.application;
 
 import it.unipv.ingsfw.treninordovest.controller.misc.LoginController;
-import it.unipv.ingsfw.treninordovest.facade.LoginFacade;
-import it.unipv.ingsfw.treninordovest.view.frames.login.JLoginFrame;
+import it.unipv.ingsfw.treninordovest.facade.implementations.LoginFacade;
+import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JLoginFrame;
 
 /**
  * Classe che configura e inizializza l'applicazione di login

@@ -1,4 +1,4 @@
-package it.unipv.ingsfw.treninordovest.view.frames.registration;
+package it.unipv.ingsfw.treninordovest.view.frames.customer;
 
 import it.unipv.ingsfw.treninordovest.view.panels.users.CustomerRegistrationPanel;
 

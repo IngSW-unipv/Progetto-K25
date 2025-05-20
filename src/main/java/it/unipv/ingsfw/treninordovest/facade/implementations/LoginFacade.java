@@ -1,10 +1,10 @@
-package it.unipv.ingsfw.treninordovest.facade;
+package it.unipv.ingsfw.treninordovest.facade.implementations;
 
 import it.unipv.ingsfw.treninordovest.factory.implementations.LoginFactoryProducer;
 import it.unipv.ingsfw.treninordovest.model.utenti.Utente;
 import it.unipv.ingsfw.treninordovest.model.varie.SessionManager;
 import it.unipv.ingsfw.treninordovest.factory.abstracts.LoginAbstractFactory;
-import it.unipv.ingsfw.treninordovest.view.frames.login.JLoginFrame;
+import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JLoginFrame;
 import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JMainMenuFrame;
 
 import javax.swing.*;

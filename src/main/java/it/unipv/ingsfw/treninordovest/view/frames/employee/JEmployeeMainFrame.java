@@ -1,4 +1,4 @@
-package it.unipv.ingsfw.treninordovest.view.frames.miscellanous;
+package it.unipv.ingsfw.treninordovest.view.frames.employee;
 
 import it.unipv.ingsfw.treninordovest.controller.customer.TicketCheckController;
 import it.unipv.ingsfw.treninordovest.controller.employee.EmployeeProfileController;

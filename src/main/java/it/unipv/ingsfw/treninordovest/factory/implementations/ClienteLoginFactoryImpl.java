@@ -4,7 +4,7 @@ package it.unipv.ingsfw.treninordovest.factory.implementations;
 import it.unipv.ingsfw.treninordovest.dao.implementations.utenti.ClienteDAOImpl;
 import it.unipv.ingsfw.treninordovest.model.utenti.Utente;
 import it.unipv.ingsfw.treninordovest.factory.abstracts.ClienteLoginAbstractFactory;
-import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JCustomerMainFrame;
+import it.unipv.ingsfw.treninordovest.view.frames.customer.JCustomerMainFrame;
 
 public class ClienteLoginFactoryImpl extends ClienteLoginAbstractFactory {
 

@@ -1,7 +1,7 @@
-package it.unipv.ingsfw.treninordovest.facade;
+package it.unipv.ingsfw.treninordovest.facade.implementations;
 
-import it.unipv.ingsfw.treninordovest.dao.implementations.utenti.ClienteDAOImpl;
 import it.unipv.ingsfw.treninordovest.dao.implementations.utenti.DipendenteDAOImpl;
+import it.unipv.ingsfw.treninordovest.facade.interfaces.IUserManagementFacade;
 import it.unipv.ingsfw.treninordovest.model.utenti.Dipendente;
 import it.unipv.ingsfw.treninordovest.model.varie.SessionManager;
 

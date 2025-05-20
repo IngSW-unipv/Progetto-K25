@@ -1,6 +1,7 @@
-package it.unipv.ingsfw.treninordovest.facade;
+package it.unipv.ingsfw.treninordovest.facade.implementations;
 
 import it.unipv.ingsfw.treninordovest.dao.implementations.utenti.ClienteDAOImpl;
+import it.unipv.ingsfw.treninordovest.facade.interfaces.IUserManagementFacade;
 import it.unipv.ingsfw.treninordovest.model.utenti.Cliente;
 import it.unipv.ingsfw.treninordovest.model.varie.SessionManager;
 import it.unipv.ingsfw.treninordovest.model.varie.wallet.EUWallet;

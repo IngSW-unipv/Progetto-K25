@@ -2,10 +2,10 @@ package it.unipv.ingsfw.treninordovest.controller.customer;
 
 
 import it.unipv.ingsfw.treninordovest.controller.misc.IController;
-import it.unipv.ingsfw.treninordovest.facade.CustomerManagementFacade;
-import it.unipv.ingsfw.treninordovest.facade.LoginFacade;
+import it.unipv.ingsfw.treninordovest.facade.implementations.CustomerManagementFacade;
+import it.unipv.ingsfw.treninordovest.facade.implementations.LoginFacade;
 import it.unipv.ingsfw.treninordovest.model.utenti.Cliente;
-import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JCustomerMainFrame;
+import it.unipv.ingsfw.treninordovest.view.frames.customer.JCustomerMainFrame;
 import it.unipv.ingsfw.treninordovest.view.panels.users.CustomerProfilePanel;
 
 import javax.swing.*;

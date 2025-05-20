@@ -1,4 +1,4 @@
-package it.unipv.ingsfw.treninordovest.view.frames.miscellanous;
+package it.unipv.ingsfw.treninordovest.view.frames.customer;
 
 import it.unipv.ingsfw.treninordovest.view.panels.finance.*;
 import it.unipv.ingsfw.treninordovest.view.panels.miscellanous.*;

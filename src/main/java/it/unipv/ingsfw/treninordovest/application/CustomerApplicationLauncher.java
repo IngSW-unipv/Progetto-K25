@@ -6,7 +6,7 @@ import it.unipv.ingsfw.treninordovest.controller.customer.CardPurchaseController
 import it.unipv.ingsfw.treninordovest.controller.customer.CustomerProfileController;
 import it.unipv.ingsfw.treninordovest.controller.customer.SubscriptionController;
 import it.unipv.ingsfw.treninordovest.controller.customer.TicketRefundController;
-import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JCustomerMainFrame;
+import it.unipv.ingsfw.treninordovest.view.frames.customer.JCustomerMainFrame;
 
 import java.util.ArrayList;
 import java.util.List;

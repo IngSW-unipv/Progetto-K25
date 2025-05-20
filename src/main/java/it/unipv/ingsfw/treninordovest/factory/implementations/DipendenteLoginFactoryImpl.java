@@ -3,7 +3,7 @@ package it.unipv.ingsfw.treninordovest.factory.implementations;
 import it.unipv.ingsfw.treninordovest.dao.implementations.utenti.DipendenteDAOImpl;
 import it.unipv.ingsfw.treninordovest.model.utenti.Utente;
 import it.unipv.ingsfw.treninordovest.factory.abstracts.DipendenteLoginAbstractFactory;
-import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JEmployeeMainFrame;
+import it.unipv.ingsfw.treninordovest.view.frames.employee.JEmployeeMainFrame;
 
 public class DipendenteLoginFactoryImpl extends DipendenteLoginAbstractFactory {
 
