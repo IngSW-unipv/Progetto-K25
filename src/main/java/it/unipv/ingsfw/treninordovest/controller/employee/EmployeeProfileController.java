@@ -1,6 +1,5 @@
 package it.unipv.ingsfw.treninordovest.controller.employee;
 
-import it.unipv.ingsfw.treninordovest.controller.misc.IController;
 import it.unipv.ingsfw.treninordovest.dao.implementations.utenti.DipendenteDAOImpl;
 import it.unipv.ingsfw.treninordovest.model.utenti.Dipendente;
 import it.unipv.ingsfw.treninordovest.model.varie.SessionManager;
@@ -10,7 +9,7 @@ import it.unipv.ingsfw.treninordovest.view.panels.users.EmployeeProfilePanel;
 
 import static javax.swing.JOptionPane.*;
 
-public class EmployeeProfileController implements IController {
+public class EmployeeProfileController {
 
     private EmployeeProfilePanel view;
     private JEmployeeMainFrame mainFrame;
@@ -26,12 +25,7 @@ public class EmployeeProfileController implements IController {
     }
 
 
-    @Override
-    public void init() {
-        initView();
-    }
-
-    private void initView() {
+    private void init() {
         // Carica i dati dell'utente dalla sessione
        view.getBtnAggiornaPassword().addActionListener(e -> aggiornaPassword());
         view.getBtnAggionaProfilo().addActionListener(e -> {mostraDatiProfilo();});

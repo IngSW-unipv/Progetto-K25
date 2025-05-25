@@ -1,6 +1,5 @@
 package it.unipv.ingsfw.treninordovest.controller.customer;
 
-import it.unipv.ingsfw.treninordovest.controller.misc.IController;
 import it.unipv.ingsfw.treninordovest.dao.implementations.titoli.BigliettoDAOImpl;
 import it.unipv.ingsfw.treninordovest.dao.implementations.titoli.RimborsoDAOImpl;
 import it.unipv.ingsfw.treninordovest.model.titoli.Biglietto;
@@ -13,7 +12,7 @@ import it.unipv.ingsfw.treninordovest.view.panels.finance.RefundPanel;
 import javax.swing.*;
 import java.time.LocalDate;
 
-public class TicketRefundController implements IController {
+public class TicketRefundController  {
     private JCustomerMainFrame frame;
     private RefundPanel view;
 
@@ -24,12 +23,8 @@ public class TicketRefundController implements IController {
         init();
     }
 
-    @Override
-    public void init() {
-        initComponents();
-    }
 
-    private void initComponents() {
+    private void init() {
         view.getButtonRimborso().addActionListener(e -> {creaRimborso();});
     }
 

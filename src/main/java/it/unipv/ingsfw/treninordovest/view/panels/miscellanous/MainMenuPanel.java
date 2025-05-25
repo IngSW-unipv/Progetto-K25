@@ -1,10 +1,19 @@
 package it.unipv.ingsfw.treninordovest.view.panels.miscellanous;
 
+import it.unipv.ingsfw.treninordovest.controller.misc.MainMenuController;
+
+import javax.security.auth.Subject;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class MainMenuPanel extends JPanel {
 
+
+    public static final String CMD_LOGIN         = "login";
+    public static final String CMD_REG_CUSTOMER  = "customerRegistration";
+    public static final String CMD_REG_EMPLOYEE  = "employeeRegistration";
     //private JButton accessoCliente;
     private final JButton registrazioneCliente;
     private final JButton registrazioneDipendente;
@@ -20,6 +29,10 @@ public class MainMenuPanel extends JPanel {
         accesso = new JButton("Accesso");
         registrazioneCliente = new JButton("Registrazione Cliente");
         registrazioneDipendente = new JButton("Registrazione Dipendente");
+
+        accesso.setActionCommand(CMD_LOGIN);
+        registrazioneCliente.setActionCommand(CMD_REG_CUSTOMER);
+        registrazioneDipendente.setActionCommand(CMD_REG_EMPLOYEE);
 
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -39,20 +52,14 @@ public class MainMenuPanel extends JPanel {
         this.add(registrazioneDipendente, gbc);
 
 
-    }
 
-    public JButton getAccesso() {
-        return accesso;
-    }
-
-    public JButton getRegistrazioneCliente() {
-        return registrazioneCliente;
-    }
-
-    public JButton getRegistrazioneDipendente() {
-        return registrazioneDipendente;
     }
 
 
-
+    //Aggiunta dell'action listener per i bottoni
+    public void addActionListener(ActionListener listener) {
+       accesso.addActionListener(listener);
+       registrazioneCliente.addActionListener(listener);
+       registrazioneDipendente.addActionListener(listener);
+    }
 }

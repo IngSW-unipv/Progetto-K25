@@ -1,6 +1,6 @@
 package it.unipv.ingsfw.treninordovest.controller.customer;
 
-import it.unipv.ingsfw.treninordovest.controller.misc.IController;
+
 import it.unipv.ingsfw.treninordovest.dao.implementations.titoli.AbbonamentoDAOimpl;
 import it.unipv.ingsfw.treninordovest.dao.implementations.titoli.BigliettoDAOImpl;
 import it.unipv.ingsfw.treninordovest.view.frames.employee.JEmployeeMainFrame;
@@ -8,7 +8,7 @@ import it.unipv.ingsfw.treninordovest.view.panels.miscellanous.TravelDocCheckPan
 
 import javax.swing.*;
 
-public class TicketCheckController implements IController {
+public class TicketCheckController {
     private JEmployeeMainFrame frame;
     private TravelDocCheckPanel view;
 
@@ -20,12 +20,8 @@ public class TicketCheckController implements IController {
 
     }
 
-    @Override
-    public void init() {
-        initComponents();
-    }
 
-    private void initComponents() {
+    private void init() {
         view.getVerificaButton().addActionListener(e -> {verficaTitolo();});
 
     }

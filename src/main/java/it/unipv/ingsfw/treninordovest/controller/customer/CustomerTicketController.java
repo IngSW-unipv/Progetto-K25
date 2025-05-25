@@ -1,6 +1,5 @@
 package it.unipv.ingsfw.treninordovest.controller.customer;
 
-import it.unipv.ingsfw.treninordovest.controller.misc.IController;
 import it.unipv.ingsfw.treninordovest.dao.implementations.ferrovia.TrattaDAOImpl;
 import it.unipv.ingsfw.treninordovest.dao.implementations.ferrovia.TrattaFermataDAOImpl;
 import it.unipv.ingsfw.treninordovest.dao.implementations.ferrovia.ViaggioDAOImpl;
@@ -25,7 +24,7 @@ import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.List;
 
-public class CustomerTicketController implements IController {
+public class CustomerTicketController {
 
     private TratteTablePanel tratteTablePanel;
     private JCustomerMainFrame customerMainFrame;
@@ -43,12 +42,8 @@ public class CustomerTicketController implements IController {
 
     }
 
-    @Override
-    public void init() {
-        initView();
-    }
 
-    private void initView() {
+    private void init() {
         ticketPurchasePanel.getButtonAcquista().addActionListener(e -> {acquistoBiglietto();});
     }
 

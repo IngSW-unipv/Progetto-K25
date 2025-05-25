@@ -1,18 +1,15 @@
 package it.unipv.ingsfw.treninordovest.controller.customer;
 
-import it.unipv.ingsfw.treninordovest.controller.misc.IController;
 import it.unipv.ingsfw.treninordovest.facade.implementations.UserRegistrationFacade;
 import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JMainMenuFrame;
 import it.unipv.ingsfw.treninordovest.view.frames.customer.JCustomerRegFrame;
 import it.unipv.ingsfw.treninordovest.view.panels.users.CustomerRegistrationPanel;
 
 import javax.swing.*;
-import java.util.Observable;
-import java.util.Observer;
 import java.util.logging.Logger;
 import java.util.logging.Level;
 
-public class CustomerRegController extends Observable implements IController {
+public class CustomerRegController  {
     private static final Logger LOGGER = Logger.getLogger(CustomerRegController.class.getName());
     
     private final CustomerRegistrationPanel view;
@@ -35,12 +32,7 @@ public class CustomerRegController extends Observable implements IController {
     /**
      * Inizializza i listener per i pulsanti
      */
-    @Override
-    public void init() {
-      initView();
-    }
-
-    private void initView() {
+    private void init() {
         view.getBtnRegister().addActionListener(e -> createCustomer());
         view.getBtnMenuPrincipal().addActionListener(e -> tornaAlMenuPrincipale());
     }
@@ -82,18 +74,5 @@ public class CustomerRegController extends Observable implements IController {
         }
     }
 
-    @Override
-    public synchronized void addObserver(Observer o) {
-        super.addObserver(o);
-    }
 
-    @Override
-    public void notifyObservers() {
-        super.notifyObservers();
-    }
-
-    @Override
-    protected synchronized void setChanged() {
-        super.setChanged();
-    }
 }

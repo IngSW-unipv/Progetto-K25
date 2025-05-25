@@ -76,15 +76,7 @@ public class JCustomerMainFrame extends JFrame implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        if (arg.equals("acquistoBiglietto")) {
-            tabbedPane.setSelectedIndex(0);
-        } else if (arg.equals("acquistoTessera")) {
-            tabbedPane.setSelectedIndex(2);
-        } else if (arg.equals("abbonamento")) {
-            tabbedPane.setSelectedIndex(1);
-        } else if (arg.equals("rimborso")) {
-            tabbedPane.setSelectedIndex(3);
-        } else if (arg.equals("profilo")) {}
+
 
     }
 }

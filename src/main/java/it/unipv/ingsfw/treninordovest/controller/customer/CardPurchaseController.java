@@ -1,19 +1,16 @@
 package it.unipv.ingsfw.treninordovest.controller.customer;
 
-import it.unipv.ingsfw.treninordovest.controller.misc.IController;
+
 import it.unipv.ingsfw.treninordovest.dao.implementations.utenti.TesseraDAOImpl;
 import it.unipv.ingsfw.treninordovest.facade.implementations.CustomerManagementFacade;
-import it.unipv.ingsfw.treninordovest.model.utenti.Cliente;
 import it.unipv.ingsfw.treninordovest.model.utenti.Tessera;
-import it.unipv.ingsfw.treninordovest.model.varie.GeneraID;
-import it.unipv.ingsfw.treninordovest.model.varie.SessionManager;
 import it.unipv.ingsfw.treninordovest.view.frames.customer.JCustomerMainFrame;
 import it.unipv.ingsfw.treninordovest.view.panels.finance.CardPurchasePanel;
 
 import javax.swing.*;
 import java.time.LocalDate;
 
-public class CardPurchaseController implements IController {
+public class CardPurchaseController  {
 
     private CardPurchasePanel view;
     private JCustomerMainFrame customerRegFrame;
@@ -29,12 +26,9 @@ public class CardPurchaseController implements IController {
         init();
     }
 
-    @Override
-    public void init() {
-        initComponents();
-    }
 
-    private void initComponents() {
+
+    private void init() {
         view.getButtonAcquistaTessera().addActionListener(e -> {acquistaTessera();});
     }
 

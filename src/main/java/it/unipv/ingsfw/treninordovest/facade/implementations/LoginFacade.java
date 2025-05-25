@@ -79,8 +79,8 @@ public class LoginFacade {
         if (currentFrame != null) {
             currentFrame.dispose();
         }
-        JMainMenuFrame mainmenu = new JMainMenuFrame();
-        mainmenu.setVisible(true);
+        //JMainMenuFrame mainmenu = new JMainMenuFrame();
+       // mainmenu.setVisible(true);
     }
 
     public void effettuaLogout(JFrame currentFrame) {

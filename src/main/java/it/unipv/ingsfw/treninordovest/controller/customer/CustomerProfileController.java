@@ -1,7 +1,5 @@
 package it.unipv.ingsfw.treninordovest.controller.customer;
 
-
-import it.unipv.ingsfw.treninordovest.controller.misc.IController;
 import it.unipv.ingsfw.treninordovest.facade.implementations.CustomerManagementFacade;
 import it.unipv.ingsfw.treninordovest.facade.implementations.LoginFacade;
 import it.unipv.ingsfw.treninordovest.model.utenti.Cliente;
@@ -12,7 +10,7 @@ import javax.swing.*;
 
 import static javax.swing.JOptionPane.*;
 
-public class CustomerProfileController implements IController {
+public class CustomerProfileController  {
     private CustomerProfilePanel view;
     private JCustomerMainFrame mainFrame;
     private JOptionPane JOptionPane;
@@ -26,17 +24,11 @@ public class CustomerProfileController implements IController {
         this.customerManagementFacade = CustomerManagementFacade.getInstance();
         init();
         
-        // Carica i dati del profilo all'avvio
-        mostraDatiProfilo();
+
     }
 
-    @Override
-    public void init() {     //Cambiare di nuovo in privato
-        // Carica i dati dell'utente dalla sessione
-        initView();
-    }
 
-    private void initView() {
+    private void init() {
 
         view.getBtnAggiornaPassword().addActionListener(e -> aggiornaPassword());
         view.getBtnAggionaProfilo().addActionListener(e -> mostraDatiProfilo());

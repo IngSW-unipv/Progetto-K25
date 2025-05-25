@@ -1,6 +1,5 @@
 package it.unipv.ingsfw.treninordovest.controller.customer;
 
-import it.unipv.ingsfw.treninordovest.controller.misc.IController;
 import it.unipv.ingsfw.treninordovest.dao.implementations.titoli.AbbonamentoDAOimpl;
 import it.unipv.ingsfw.treninordovest.dao.implementations.titoli.PagamentoDAOImpl;
 import it.unipv.ingsfw.treninordovest.dao.implementations.utenti.ClienteDAOImpl;
@@ -18,7 +17,7 @@ import javax.swing.*;
 import java.time.LocalDate;
 import java.time.ZoneId;
 
-public class SubscriptionController implements IController {
+public class SubscriptionController  {
 
     private SubscriptionPanel view;
     private JCustomerMainFrame frame;
@@ -34,12 +33,9 @@ public class SubscriptionController implements IController {
         init();
     }
 
-    @Override
-    public void init(){
-        initComponents();
-    }
 
-    private void initComponents() {
+
+    private void init() {
         view.getButtonAbbonati().addActionListener(e -> {acquistoAbbonamento();});
     }
 
