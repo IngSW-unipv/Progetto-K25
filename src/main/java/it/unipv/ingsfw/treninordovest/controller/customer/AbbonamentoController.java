@@ -5,7 +5,7 @@ import it.unipv.ingsfw.treninordovest.dao.implementations.titoli.PagamentoDAOImp
 import it.unipv.ingsfw.treninordovest.dao.implementations.utenti.ClienteDAOImpl;
 import it.unipv.ingsfw.treninordovest.dao.implementations.utenti.TesseraDAOImpl;
 import it.unipv.ingsfw.treninordovest.dao.interfaces.ClienteDAO;
-import it.unipv.ingsfw.treninordovest.model.titoli.Abbonamento;
+import it.unipv.ingsfw.treninordovest.model.titoli.Abbonamenti.Abbonamento;
 import it.unipv.ingsfw.treninordovest.model.titoli.Pagamento;
 import it.unipv.ingsfw.treninordovest.model.utenti.Cliente;
 import it.unipv.ingsfw.treninordovest.model.varie.GeneraID;
@@ -17,7 +17,7 @@ import javax.swing.*;
 import java.time.LocalDate;
 import java.time.ZoneId;
 
-public class SubscriptionController  {
+public class AbbonamentoController {
 
     private SubscriptionPanel view;
     private JCustomerMainFrame frame;
@@ -27,7 +27,7 @@ public class SubscriptionController  {
     private AbbonamentoDAOimpl abbonamentoDAO;
     private TesseraDAOImpl tesseraDAO;
 
-    public SubscriptionController(SubscriptionPanel view, JCustomerMainFrame frame) {
+    public AbbonamentoController(SubscriptionPanel view, JCustomerMainFrame frame) {
         this.view = view;
         this.frame = frame;
         init();

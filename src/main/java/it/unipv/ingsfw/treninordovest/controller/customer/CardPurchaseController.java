@@ -1,9 +1,6 @@
 package it.unipv.ingsfw.treninordovest.controller.customer;
 
-
-import it.unipv.ingsfw.treninordovest.dao.implementations.utenti.TesseraDAOImpl;
 import it.unipv.ingsfw.treninordovest.facade.implementations.CustomerManagementFacade;
-import it.unipv.ingsfw.treninordovest.model.utenti.Tessera;
 import it.unipv.ingsfw.treninordovest.view.frames.customer.JCustomerMainFrame;
 import it.unipv.ingsfw.treninordovest.view.panels.finance.CardPurchasePanel;
 
@@ -14,10 +11,6 @@ public class CardPurchaseController  {
 
     private CardPurchasePanel view;
     private JCustomerMainFrame customerRegFrame;
-    private TesseraDAOImpl tDAO;
-    private Tessera tessera;
-    private LocalDate dataEmissione;
-    private LocalDate dataScadenza;
     private CustomerManagementFacade facade;
 
     public CardPurchaseController(CardPurchasePanel view, JCustomerMainFrame customerRegFrame) {

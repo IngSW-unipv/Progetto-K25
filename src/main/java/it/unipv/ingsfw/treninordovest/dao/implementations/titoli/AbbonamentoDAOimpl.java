@@ -2,7 +2,7 @@ package it.unipv.ingsfw.treninordovest.dao.implementations.titoli;
 
 import it.unipv.ingsfw.treninordovest.dao.database.Database;
 import it.unipv.ingsfw.treninordovest.dao.interfaces.AbbonamentoDAO;
-import it.unipv.ingsfw.treninordovest.model.titoli.Abbonamento;
+import it.unipv.ingsfw.treninordovest.model.titoli.Abbonamenti.Abbonamento;
 
 import java.sql.*;
 import java.time.LocalDate;

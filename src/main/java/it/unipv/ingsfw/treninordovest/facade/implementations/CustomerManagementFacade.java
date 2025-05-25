@@ -103,11 +103,7 @@ public class CustomerManagementFacade implements IUserManagementFacade<Cliente> 
 
     }
 
-    public void acquistaBiglietto(){}
 
-    public void acquistaAbbonamento(){}
-
-    public void richiestaRimborso(){}
 
 
 

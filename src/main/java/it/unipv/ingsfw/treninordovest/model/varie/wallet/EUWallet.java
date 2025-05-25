@@ -9,9 +9,9 @@ public class EUWallet implements IValuable {
         this.val = val;
     }
 
-    public EUWallet() {
+    public EUWallet() {}
 
-    }
+
 
     public void setVal(double val) {
         this.val = val;
