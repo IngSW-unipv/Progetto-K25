@@ -12,6 +12,7 @@ public class AbbonamentoMensile extends Abbonamento {
         this.setScadenza( LocalDate.now().plusMonths(1));
     }
 
+    @Override
     public void setEmissione(){
         this.setEmissione(LocalDate.now());
     }
