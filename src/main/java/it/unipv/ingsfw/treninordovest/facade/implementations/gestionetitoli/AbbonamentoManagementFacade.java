@@ -3,6 +3,7 @@ package it.unipv.ingsfw.treninordovest.facade.implementations.gestionetitoli;
 import it.unipv.ingsfw.treninordovest.facade.interfaces.ITitoloViaggioFacade;
 import it.unipv.ingsfw.treninordovest.model.titoli.Abbonamenti.Abbonamento;
 
+
 import java.util.List;
 
 public class AbbonamentoManagementFacade implements ITitoloViaggioFacade<Abbonamento> {
@@ -34,6 +35,8 @@ public class AbbonamentoManagementFacade implements ITitoloViaggioFacade<Abbonam
 
     @Override
     public void mostraTitolo() {
+
+
 
     }
 
