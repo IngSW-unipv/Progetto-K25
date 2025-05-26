@@ -2,7 +2,7 @@
 //
 //import it.unipv.ingsfw.treninordovest.controller.customer.CustomerRegController;
 //import it.unipv.ingsfw.treninordovest.controller.employee.EmployeeRegController;
-//import it.unipv.ingsfw.treninordovest.facade.implementations.UserRegistrationFacade;
+//import it.unipv.ingsfw.treninordovest.facade.implementations.gestioneutenti.UserRegistrationFacade;
 //import it.unipv.ingsfw.treninordovest.view.frames.customer.JCustomerRegFrame;
 //import it.unipv.ingsfw.treninordovest.view.frames.employee.JEmployeeRegFrame;
 //

@@ -1,7 +1,7 @@
 package it.unipv.ingsfw.treninordovest.controller.customer;
 
-import it.unipv.ingsfw.treninordovest.facade.implementations.CustomerManagementFacade;
-import it.unipv.ingsfw.treninordovest.facade.implementations.LoginFacade;
+import it.unipv.ingsfw.treninordovest.facade.implementations.gestioneutenti.CustomerManagementFacade;
+import it.unipv.ingsfw.treninordovest.facade.implementations.gestioneutenti.LoginFacade;
 import it.unipv.ingsfw.treninordovest.model.utenti.Cliente;
 import it.unipv.ingsfw.treninordovest.view.frames.customer.JCustomerMainFrame;
 import it.unipv.ingsfw.treninordovest.view.panels.users.CustomerProfilePanel;
@@ -81,7 +81,8 @@ public class CustomerProfileController  {
     private void esci() {
         try {
             loginFacade = LoginFacade.getInstance();
-            loginFacade.effettuaLogout(mainFrame);
+            loginFacade.effettuaLogout();
+            mainFrame.setVisible(false);
 
         } catch (Exception e) {
             // Gestione dell'eccezione

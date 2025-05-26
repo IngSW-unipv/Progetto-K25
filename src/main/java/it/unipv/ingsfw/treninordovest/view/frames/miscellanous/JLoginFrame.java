@@ -1,5 +1,6 @@
 package it.unipv.ingsfw.treninordovest.view.frames.miscellanous;
 
+import it.unipv.ingsfw.treninordovest.controller.misc.LoginController;
 import it.unipv.ingsfw.treninordovest.view.panels.miscellanous.LoginPanel;
 
 import javax.swing.*;
@@ -11,7 +12,7 @@ import java.util.Observer;
 /**
  * Frame per la schermata di login
  */
-public class JLoginFrame extends JFrame implements PropertyChangeListener {
+public class JLoginFrame extends JFrame  {
 
 
     private LoginPanel loginPanel;
@@ -27,6 +28,8 @@ public class JLoginFrame extends JFrame implements PropertyChangeListener {
     private void inizializzaComponenti() {
         loginPanel = new LoginPanel();
         add(loginPanel);
+
+        new LoginController(loginPanel, this);
     }
 
 
@@ -37,14 +40,18 @@ public class JLoginFrame extends JFrame implements PropertyChangeListener {
         setVisible(true);
     }
 
-
-    @Override
-    public void propertyChange(PropertyChangeEvent evt) {
-        if (!"command".equals(evt.getPropertyName())) return;
-        String cmd =(String) evt.getNewValue();
-
-        if ("login".equals(cmd)) {
-        }
-
+    public void hideFrame() {
+        setVisible(false);
     }
+
+//
+//    @Override
+//    public void propertyChange(PropertyChangeEvent evt) {
+//        if (!"command".equals(evt.getPropertyName())) return;
+//        String cmd =(String) evt.getNewValue();
+//
+//        if ("login".equals(cmd)) {
+//        }
+//
+//    }
 }

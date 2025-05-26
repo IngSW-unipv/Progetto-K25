@@ -2,6 +2,7 @@ package it.unipv.ingsfw.treninordovest.view.panels.miscellanous;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class LoginPanel extends JPanel {
     //Dichiarazione dei componenti
@@ -9,6 +10,10 @@ public class LoginPanel extends JPanel {
     private final JPasswordField campoPassword;
     private final JButton bottoneAccesso;
     private final JButton bottoneIndietro;
+
+    public static final String CMD_Login= "login";
+    public static final String CMD_Back= "indietro";
+
    // private ImageIcon logoIcon = new ImageIcon("/logo.png");
     //private JLabel logoLabel;
     private Color coloreSfondo;
@@ -62,6 +67,10 @@ public class LoginPanel extends JPanel {
         gbc.gridx = 2;
         add(comboRuolo, gbc);
 
+        //Impostazione delle azioni dei bottoni
+        bottoneAccesso.setActionCommand(CMD_Login);
+        bottoneIndietro.setActionCommand(CMD_Back);
+
     }
 
     public JPanel getPanel() {
@@ -87,4 +96,11 @@ public class LoginPanel extends JPanel {
     public String getComboRuolo() {
         return (String) comboRuolo.getSelectedItem();
     }
+
+    //Aggiunta dell'action listener per i bottoni'
+    public void addActionListener(ActionListener listener) {
+        bottoneAccesso.addActionListener(listener);
+        bottoneIndietro.addActionListener(listener);
+    }
+
 }

@@ -1,4 +1,4 @@
-package it.unipv.ingsfw.treninordovest.facade.implementations;
+package it.unipv.ingsfw.treninordovest.facade.implementations.gestioneutenti;
 
 import it.unipv.ingsfw.treninordovest.dao.implementations.utenti.DipendenteDAOImpl;
 import it.unipv.ingsfw.treninordovest.facade.interfaces.IUserManagementFacade;

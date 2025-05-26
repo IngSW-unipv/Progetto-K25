@@ -74,6 +74,10 @@ public class JCustomerMainFrame extends JFrame implements Observer {
         return tratteTablePanel;
     }
 
+    public void hideFrame() {
+        setVisible(false);
+    }
+
     @Override
     public void update(Observable o, Object arg) {
 

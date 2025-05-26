@@ -17,7 +17,10 @@ stipendio.macchinista.strategy.class.name=it.unipv.ingsfw.treninordovest.strateg
 stipendio.controllore.strategy.class.name=it.unipv.ingsfw.treninordovest.strategy.stipendio.ControlloreStipendioConcrete
 stipendio.impiegato.strategy.class.name=it.unipv.ingsfw.treninordovest.strategy.stipendio.ImpiegatoStipendioConcrete
 
-
+#Configurazione per abbonamenti
+abbonamento.settimanale.factory.class.name=it.unipv.ingsfw.treninordovest.model.titoli.Abbonamenti.AbbonamentoSettimanale
+abbonamento.annuale.factory.class.name=it.unipv.ingsfw.treninordovest.model.titoli.Abbonamenti.AbbonamentoAnnuale
+abbonamento.mensile.factory.class.name=it.unipv.ingsfw.treninordovest.model.titoli.Abbonamenti.AbbonamentoMensile
 
 
 

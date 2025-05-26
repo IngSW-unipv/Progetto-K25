@@ -1,11 +1,10 @@
 package it.unipv.ingsfw.treninordovest.controller.customer;
 
-import it.unipv.ingsfw.treninordovest.facade.implementations.CustomerManagementFacade;
+import it.unipv.ingsfw.treninordovest.facade.implementations.gestioneutenti.CustomerManagementFacade;
 import it.unipv.ingsfw.treninordovest.view.frames.customer.JCustomerMainFrame;
 import it.unipv.ingsfw.treninordovest.view.panels.finance.CardPurchasePanel;
 
 import javax.swing.*;
-import java.time.LocalDate;
 
 public class CardPurchaseController  {
 

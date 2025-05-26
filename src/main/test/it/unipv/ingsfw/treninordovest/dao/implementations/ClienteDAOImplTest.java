@@ -13,11 +13,11 @@ class ClienteDAOImplTest {
     @Test
     void testInsertAndGet() {
         ClienteDAOImpl dao = new ClienteDAOImpl();
-        Cliente cliente = new Cliente("CL9001", "QWERT", "Mario", "Rossi", "Milano", "M", LocalDate.now(), "3317139498", "Via Roma 84", 200, "mariorossi@gmail.com");
+        Cliente cliente = new Cliente("CL90901", "QWERT", "Mario", "Rossi", "Milano", "M", LocalDate.now(), "3317139498", "Via Roma 84", 200, "mariorossi@gmail.com");
 
         dao.insert(cliente);
 
-        Cliente risultato = dao.get("CL9001");
+        Cliente risultato = dao.get("CL90901");
         assertNotNull(risultato);
         assertEquals("Mario", risultato.getNome());
         assertEquals("Rossi", risultato.getCognome());

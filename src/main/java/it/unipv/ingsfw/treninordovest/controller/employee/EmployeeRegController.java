@@ -1,40 +1,43 @@
 package it.unipv.ingsfw.treninordovest.controller.employee;
 
-import it.unipv.ingsfw.treninordovest.facade.implementations.UserRegistrationFacade;
+import it.unipv.ingsfw.treninordovest.facade.implementations.gestioneutenti.UserRegistrationFacade;
 import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JMainMenuFrame;
 import it.unipv.ingsfw.treninordovest.view.frames.employee.JEmployeeRegFrame;
 import it.unipv.ingsfw.treninordovest.view.panels.users.EmployeeRegistrationPanel;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class EmployeeRegController  {
+public class EmployeeRegController implements ActionListener {
+
+
     private static final Logger LOGGER = Logger.getLogger(EmployeeRegController.class.getName());
     
     private final EmployeeRegistrationPanel view;
     private final JEmployeeRegFrame employeeRegFrame;
     private final UserRegistrationFacade facade;
 
+    private final Runnable onRegister;
+    private final Runnable onBack;
+
     /**
      * Costruttore che inizializza il controller
      */
-    public EmployeeRegController(
-            EmployeeRegistrationPanel view,
-            JEmployeeRegFrame employeeRegFrame,
-            UserRegistrationFacade facade) {
+    public EmployeeRegController(EmployeeRegistrationPanel view, JEmployeeRegFrame employeeRegFrame,Runnable onRegister,Runnable onBack){
         this.view = view;
         this.employeeRegFrame = employeeRegFrame;
-        this.facade = facade;
-        init();
-    }
+        this.facade = UserRegistrationFacade.getInstance();
 
-    /**
-     * Inizializza i listener per i pulsanti
-     */
-    private void init() {
-        view.getBtnRegister().addActionListener(e -> createEmployee());
-        view.getBtnMenuPrincipal().addActionListener(e -> tornaAlMenuPrincipale());
+        view.addActionListener(this);
+
+        this.onRegister = onRegister;
+        this.onBack = onBack;
+
+
+
     }
 
 
@@ -81,8 +84,8 @@ public class EmployeeRegController  {
     private void tornaAlMenuPrincipale() {
         try {
             JMainMenuFrame mainMenuFrame = new JMainMenuFrame();
-            mainMenuFrame.setVisible(true);
-            employeeRegFrame.setVisible(false);
+            mainMenuFrame.showFrame();
+            employeeRegFrame.hideFrame();
         } catch (Exception e) {
             LOGGER.log(Level.SEVERE, "Errore durante la navigazione al menu principale", e);
             JOptionPane.showMessageDialog(
@@ -92,5 +95,19 @@ public class EmployeeRegController  {
                 JOptionPane.ERROR_MESSAGE
             );
         }
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        switch (e.getActionCommand()){
+            case EmployeeRegistrationPanel.CMD_Register:
+                this.createEmployee();
+                break;
+            case EmployeeRegistrationPanel.CMD_Back:
+                this.tornaAlMenuPrincipale();
+                break;
+
+        }
+
     }
 }

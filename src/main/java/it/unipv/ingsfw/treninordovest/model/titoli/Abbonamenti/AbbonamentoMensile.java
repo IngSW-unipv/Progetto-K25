@@ -7,7 +7,8 @@ public class AbbonamentoMensile extends Abbonamento {
         super(id, idPagamento, emissione, prezzo, tipoAbbonamento, scadenza, idTessera);
     }
 
-    public void setAbbonamentoMensile(){
+    @Override
+    public void setScadenzaAbbonamento(){
         this.setScadenza( LocalDate.now().plusMonths(1));
     }
 

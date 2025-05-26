@@ -30,9 +30,9 @@ public class AppStart {
         SwingUtilities.invokeLater(() -> {
             try {
                 // Crea la finestra principale
-                //JMainMenuFrame mainFrame = new JMainMenuFrame();
+                JMainMenuFrame mainFrame = new JMainMenuFrame();
                 // Configura e mostra il frame principale
-              // mainFrame.setVisible(true);
+                mainFrame.showFrame();
                 // Il controller viene già creato all'interno del JMainMenuFrame
                 // in base alla tua struttura attuale
             } catch (Exception e) {

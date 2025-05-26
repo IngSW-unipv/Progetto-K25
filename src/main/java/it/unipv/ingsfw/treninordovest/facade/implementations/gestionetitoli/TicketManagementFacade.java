@@ -1,4 +1,4 @@
-package it.unipv.ingsfw.treninordovest.facade.implementations;
+package it.unipv.ingsfw.treninordovest.facade.implementations.gestionetitoli;
 
 import it.unipv.ingsfw.treninordovest.facade.interfaces.ITitoloViaggioFacade;
 import it.unipv.ingsfw.treninordovest.model.titoli.Biglietto;
@@ -34,9 +34,7 @@ public class TicketManagementFacade implements ITitoloViaggioFacade<Biglietto> {
     }
 
     @Override
-    public void mostraTitolo() {
-
-    }
+    public void mostraTitolo() {}
 
     @Override
     public List<Biglietto> getTitoloViaggio() {

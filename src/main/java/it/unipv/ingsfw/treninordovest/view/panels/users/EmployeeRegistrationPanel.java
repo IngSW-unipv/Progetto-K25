@@ -4,20 +4,24 @@ import com.toedter.calendar.JDateChooser;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class EmployeeRegistrationPanel extends JPanel  {
-    private JPasswordField txtPassword;
-    private JTextField txtNome;
-    private JTextField txtCognome;
-    private JTextField txtCellulare;
-    private JTextField txtIndirizzo;
-    private JButton btnRegister;
-    private JComboBox<String> comboSesso;
-    private JComboBox<String> comboRuolo;
-    private JDateChooser dateChooser;
-    private JTextField txtLuogoNascita;
+    private final JPasswordField txtPassword;
+    private final JTextField txtNome;
+    private final JTextField txtCognome;
+    private final JTextField txtCellulare;
+    private final JTextField txtIndirizzo;
+    private final JButton btnRegister;
+    private final JComboBox<String> comboSesso;
+    private final JComboBox<String> comboRuolo;
+    private final JDateChooser dateChooser;
+    private final JTextField txtLuogoNascita;
     private Color colorePannello;
-    private JButton btnMenuPrincipal;
+    private final JButton btnMenuPrincipal;
+
+    public static final String CMD_Register = "register";
+    public static final String CMD_Back = "back";
 
 
     public EmployeeRegistrationPanel() {
@@ -66,6 +70,9 @@ public class EmployeeRegistrationPanel extends JPanel  {
         JLabel lblLuogoNascita = new JLabel("Luogo di nascita:");
         txtLuogoNascita = new JTextField(15);
 
+        //Impostazione comandi per il Controller
+        btnRegister.setActionCommand(CMD_Register);
+        btnMenuPrincipal.setActionCommand(CMD_Back);
 
         //Password
         gbc.gridx = 0;
@@ -189,4 +196,11 @@ public class EmployeeRegistrationPanel extends JPanel  {
         return btnMenuPrincipal;
     }
 
+
+    public void addActionListener(ActionListener listener) {
+        btnRegister.addActionListener(listener);
+        btnMenuPrincipal.addActionListener(listener);
+    }
 }
+
+

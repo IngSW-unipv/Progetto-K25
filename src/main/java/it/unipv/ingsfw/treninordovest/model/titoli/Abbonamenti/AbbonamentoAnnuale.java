@@ -7,15 +7,12 @@ public class AbbonamentoAnnuale extends Abbonamento {
         super(id, idPagamento, emissione, prezzo, tipoAbbonamento, scadenza, idTessera);
     }
 
-    public AbbonamentoAnnuale() {
-        super();
-    }
-
-   public void setAbbonamento(){
+    @Override
+   public void setScadenzaAbbonamento(){
         this.setScadenza( LocalDate.now().plusYears(1));
    }
-
-   public void setEmissioneAnnuale(){
+    @Override
+   public void setEmissione(){
        this.setEmissione(LocalDate.now());
    }
 

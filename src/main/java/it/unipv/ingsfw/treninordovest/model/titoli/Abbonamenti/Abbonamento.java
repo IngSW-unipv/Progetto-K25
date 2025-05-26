@@ -49,6 +49,14 @@ public class Abbonamento extends TitoloViaggio {
         this.idTessera = idTessera;
     }
 
+    public void setScadenzaAbbonamento(){
+        this.setScadenza( LocalDate.now());
+    }
+
+    public void setEmissione(){
+        this.setEmissione(LocalDate.now());
+    }
+
 }
 //getters e setters
 

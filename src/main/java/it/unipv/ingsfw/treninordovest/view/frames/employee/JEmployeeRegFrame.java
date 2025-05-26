@@ -1,5 +1,6 @@
 package it.unipv.ingsfw.treninordovest.view.frames.employee;
 
+import it.unipv.ingsfw.treninordovest.controller.employee.EmployeeRegController;
 import it.unipv.ingsfw.treninordovest.view.panels.users.EmployeeRegistrationPanel;
 
 import javax.swing.*;
@@ -14,6 +15,8 @@ public class JEmployeeRegFrame extends JFrame {
     private Color coloreSfondo;
     private EmployeeRegistrationPanel employeeRegistrationPanel;
 
+
+
     /**
      * Costruttore predefinito che crea un nuovo pannello di registrazione
      */
@@ -24,27 +27,29 @@ public class JEmployeeRegFrame extends JFrame {
         setLocationRelativeTo(null);
         coloreSfondo = new Color(131,168,195);
         setBackground(coloreSfondo);
-        inizializzaComponenti();
-    }
 
-    private void inizializzaComponenti() {
+
         employeeRegistrationPanel = new EmployeeRegistrationPanel();
         add(employeeRegistrationPanel, BorderLayout.CENTER);
+
+        new EmployeeRegController(employeeRegistrationPanel,this,this::showSuccessMessage,this::hideFrame);
     }
 
     /**
-     * Mostra il frame
+     * Vista dei frame
      */
     public void showFrame() {
         setVisible(true);
     }
-
-    /**
-     * Ottiene il pannello di registrazione
-     * 
-     * @return Il pannello di registrazione dipendente
-     */
-    public EmployeeRegistrationPanel getEmployeeRegistrationPanel() {
-        return employeeRegistrationPanel;
+    public void hideFrame() {
+        setVisible(false);
     }
+
+    public void showSuccessMessage () {
+        JOptionPane.showMessageDialog(this, "Registrazione Dipendente avvenuta con successo!");
+
+    }
+
+
+
 }

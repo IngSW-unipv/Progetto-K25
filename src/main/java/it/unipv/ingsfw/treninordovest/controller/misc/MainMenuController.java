@@ -9,30 +9,33 @@ import java.awt.event.ActionListener;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-
 public class MainMenuController implements ActionListener {
+    private final Runnable onLogin;
+    private final Runnable onCustomerRegistration;
+    private final Runnable onEmployeeRegistration;
 
-    private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
+    public MainMenuController(MainMenuPanel panel, Runnable onLogin, Runnable onCustomerRegistration, Runnable onEmployeeRegistration) {
+        // registra se stesso ai click del panel
+        panel.addActionListener(this);
 
-    public MainMenuController(MainMenuPanel view) {
-       view.addActionListener(this);
-    }
-
-    public void addPropertyChangeListener(PropertyChangeListener listener) {
-        pcs.addPropertyChangeListener(listener);
-    }
-    public void removePropertyChangeListener(PropertyChangeListener listener) {
-        pcs.removePropertyChangeListener(listener);
+        // salva i callback
+        this.onLogin                = onLogin;
+        this.onCustomerRegistration = onCustomerRegistration;
+        this.onEmployeeRegistration = onEmployeeRegistration;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        String command = e.getActionCommand();
-        // notifica il cambiamento di 'command' con il nuovo valore
-        pcs.firePropertyChange("command", null, command);
+        switch (e.getActionCommand()) {
+            case MainMenuPanel.CMD_LOGIN:
+                onLogin.run();
+                break;
+            case MainMenuPanel.CMD_REG_CUSTOMER:
+                onCustomerRegistration.run();
+                break;
+            case MainMenuPanel.CMD_REG_EMPLOYEE:
+                onEmployeeRegistration.run();
+                break;
+        }
     }
-
-
-
 }
-
