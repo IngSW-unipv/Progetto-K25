@@ -1,7 +1,5 @@
 package it.unipv.ingsfw.treninordovest.facade.implementations.gestioneutenti;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import it.unipv.ingsfw.treninordovest.dao.implementations.utenti.TesseraDAOImpl;
 import it.unipv.ingsfw.treninordovest.model.utenti.Cliente;
 import it.unipv.ingsfw.treninordovest.model.utenti.Tessera;

@@ -137,7 +137,7 @@ public class TesseraDAOImpl implements TesseraDAO {
     /*Metodi da valutare*/
 
     @Override
-    public boolean exists(String idCliente)  {
+    public boolean exists(String idCliente) {
         Tessera tessera = null;
         String sql = "select idTessera, idCliente from tessera where IDCliente=?";
 
@@ -159,7 +159,7 @@ public class TesseraDAOImpl implements TesseraDAO {
     }
 
     @Override
-    public String getIdTessera(String idCliente)  {
+    public String getIdTesseraByCustomerID(String idCliente)  {
 
         String idTessera = null;
         Tessera tessera = null;

@@ -80,9 +80,8 @@ public class CustomerProfileController  {
 
     private void esci() {
         try {
-            loginFacade = LoginFacade.getInstance();
             loginFacade.effettuaLogout();
-            mainFrame.setVisible(false);
+            mainFrame.hideFrame();
 
         } catch (Exception e) {
             // Gestione dell'eccezione

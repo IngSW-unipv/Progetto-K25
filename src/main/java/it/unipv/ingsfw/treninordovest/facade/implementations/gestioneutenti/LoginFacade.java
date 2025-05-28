@@ -3,10 +3,7 @@ package it.unipv.ingsfw.treninordovest.facade.implementations.gestioneutenti;
 import it.unipv.ingsfw.treninordovest.factory.implementations.LoginFactoryProducer;
 import it.unipv.ingsfw.treninordovest.model.utenti.Utente;
 import it.unipv.ingsfw.treninordovest.model.varie.SessionManager;
-import it.unipv.ingsfw.treninordovest.factory.abstracts.LoginAbstractFactory;
-import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JLoginFrame;
-
-import javax.swing.*;
+import it.unipv.ingsfw.treninordovest.factory.abstracts.ILoginAbstractFactory;
 
 /**
  * Facade che semplifica il processo di login implementata come Singleton
@@ -32,7 +29,7 @@ public class LoginFacade {
      */
     public void effettuaLogin(String username, String password, String tipoUtente) {
         try {
-            LoginAbstractFactory factory = LoginFactoryProducer.getFactoryFromProperties(tipoUtente);
+            ILoginAbstractFactory factory = LoginFactoryProducer.getFactoryFromProperties(tipoUtente);
             Utente utente = factory.login(username, password);
             
             if (utente != null) {

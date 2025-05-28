@@ -73,24 +73,13 @@ public class LoginPanel extends JPanel {
 
     }
 
-    public JPanel getPanel() {
-        return this;
+
+    public String getCampoUtente() {
+        return campoUtente.getText();
     }
 
-    public JTextField getCampoUtente() {
-        return campoUtente;
-    }
-
-    public JPasswordField getCampoPassword() {
-        return campoPassword;
-    }
-
-    public JButton getBottoneAccesso() {
-        return bottoneAccesso;
-    }
-
-    public JButton getBottoneIndietro() {
-        return bottoneIndietro;
+    public char[] getCampoPassword() {
+        return campoPassword.getPassword();
     }
 
     public String getComboRuolo() {

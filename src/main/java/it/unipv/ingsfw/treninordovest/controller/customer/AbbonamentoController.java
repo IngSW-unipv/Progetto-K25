@@ -14,12 +14,14 @@ import it.unipv.ingsfw.treninordovest.view.frames.customer.JCustomerMainFrame;
 import it.unipv.ingsfw.treninordovest.view.panels.finance.SubscriptionPanel;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.ZoneId;
 
-public class AbbonamentoController {
+public class AbbonamentoController implements ActionListener {
 
-    private SubscriptionPanel view;
+    private final SubscriptionPanel view;
     private JCustomerMainFrame frame;
     private String IdClienteLoggato;
     private Cliente clienteLoggato;
@@ -189,7 +191,7 @@ public class AbbonamentoController {
         LocalDate dataInizio = view.getTextDataInizio().getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
         tesseraDAO = new TesseraDAOImpl();
-        String idTessera = tesseraDAO.getIdTessera(IdClienteLoggato);
+        String idTessera = tesseraDAO.getIdTesseraByCustomerID(IdClienteLoggato);
 
         System.out.println("Debug:  "+idTessera+" "+idAbbonamento +" "+dataEmissione +" "+dataInizio);
 
@@ -199,6 +201,8 @@ public class AbbonamentoController {
     }
 
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
 
-
+    }
 }

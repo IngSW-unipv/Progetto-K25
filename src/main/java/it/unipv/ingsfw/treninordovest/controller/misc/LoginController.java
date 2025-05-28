@@ -1,14 +1,13 @@
 package it.unipv.ingsfw.treninordovest.controller.misc;
 
 import it.unipv.ingsfw.treninordovest.facade.implementations.gestioneutenti.LoginFacade;
-import it.unipv.ingsfw.treninordovest.factory.abstracts.LoginAbstractFactory;
+import it.unipv.ingsfw.treninordovest.factory.abstracts.ILoginAbstractFactory;
 import it.unipv.ingsfw.treninordovest.factory.implementations.LoginFactoryProducer;
 import it.unipv.ingsfw.treninordovest.model.varie.SessionManager;
 import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JLoginFrame;
 import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JMainMenuFrame;
 import it.unipv.ingsfw.treninordovest.view.panels.miscellanous.LoginPanel;
 
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -39,13 +38,13 @@ public class LoginController  implements ActionListener {
 
     private void doLogin() {
         // Recupera username, password e ruolo dall'interfaccia
-        String username = view.getCampoUtente().getText();
-        char[] passwordChars = view.getCampoPassword().getPassword();
+        String username = view.getCampoUtente();
+        char[] passwordChars = view.getCampoPassword();
         String password = new String(passwordChars);
         String ruolo = view.getComboRuolo();
 
         try {
-            LoginAbstractFactory factory = LoginFactoryProducer.getFactoryFromProperties(ruolo);
+            ILoginAbstractFactory factory = LoginFactoryProducer.getFactoryFromProperties(ruolo);
             loginFacade.effettuaLogin(username, password, ruolo);
 
             factory.showUserInterface(SessionManager.getInstance().getCurrentUser());
