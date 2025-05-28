@@ -27,7 +27,9 @@ public class JMainMenuFrame extends JFrame  {
 
     private void initComponents() {
         view = new MainMenuPanel();
+
         new MainMenuController(view,this::openLogin,this::openCustomerRegistration,this::openEmployeeRegistration);
+
         add(view, BorderLayout.CENTER);
         setVisible(true);
 

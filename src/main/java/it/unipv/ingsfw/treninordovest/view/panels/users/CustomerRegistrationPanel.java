@@ -4,23 +4,27 @@ import javax.swing.*;
 import com.toedter.calendar.JDateChooser;
 
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.time.LocalDate;
 
 
 public class CustomerRegistrationPanel extends JPanel {
     //private JTextField txtUsername;
-    private JPasswordField txtPassword;
-    private JTextField txtNome;
-    private JTextField txtCognome;
-    private JTextField txtCellulare;
-    private JTextField txtEmail;
-    private JTextField txtIndirizzo;
-    private JButton btnRegister;
-    private JButton btnMenuPrincipal;
-    private JComboBox<String> comboSesso;
-    private JDateChooser dateChooser;
-    private JTextField txtLuogoNascita;
+    private final JPasswordField txtPassword;
+    private final JTextField txtNome;
+    private final JTextField txtCognome;
+    private final JTextField txtCellulare;
+    private final JTextField txtEmail;
+    private final JTextField txtIndirizzo;
+    private final JButton btnRegister;
+    private final JButton btnMenuPrincipal;
+    private final JComboBox<String> comboSesso;
+    private final JDateChooser dateChooser;
+    private final JTextField txtLuogoNascita;
     private Color colorePannello;
+
+    public static final String CMD_Register = "register";
+    public static final String CMD_Back = "back";
 
 
 
@@ -69,6 +73,10 @@ public class CustomerRegistrationPanel extends JPanel {
         JLabel lblLuogoNascita = new JLabel("Luogo di nascita:");
         txtLuogoNascita = new JTextField(15);
 
+
+        //Assegnazione dei comandi
+        btnRegister.setActionCommand(CMD_Register);
+        btnMenuPrincipal.setActionCommand(CMD_Back);
 
         //Username
         /*
@@ -154,6 +162,8 @@ public class CustomerRegistrationPanel extends JPanel {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         add(btnMenuPrincipal, gbc);
 
+
+
     }
 
     // Getters per il Controller
@@ -180,4 +190,8 @@ public class CustomerRegistrationPanel extends JPanel {
     }
     public JButton getBtnMenuPrincipal() {return btnMenuPrincipal; }
 
+    public void addActionListener(ActionListener listener) {
+        btnRegister.addActionListener(listener);
+        btnMenuPrincipal.addActionListener(listener);
+    }
 }

@@ -5,6 +5,7 @@ import it.unipv.ingsfw.treninordovest.factory.abstracts.LoginAbstractFactory;
 import it.unipv.ingsfw.treninordovest.factory.implementations.LoginFactoryProducer;
 import it.unipv.ingsfw.treninordovest.model.varie.SessionManager;
 import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JLoginFrame;
+import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JMainMenuFrame;
 import it.unipv.ingsfw.treninordovest.view.panels.miscellanous.LoginPanel;
 
 import javax.swing.*;
@@ -60,6 +61,9 @@ public class LoginController  implements ActionListener {
 
     private void tornaAlMenu() {
         this.frame.hideFrame();
+        JMainMenuFrame frame = new JMainMenuFrame();
+        frame.showFrame();
+
     }
 
     @Override

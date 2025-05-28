@@ -29,7 +29,7 @@ public class JEmployeeRegFrame extends JFrame {
         setBackground(coloreSfondo);
 
 
-        employeeRegistrationPanel = new EmployeeRegistrationPanel();
+        this.employeeRegistrationPanel = new EmployeeRegistrationPanel();
         add(employeeRegistrationPanel, BorderLayout.CENTER);
 
         new EmployeeRegController(employeeRegistrationPanel,this,this::showSuccessMessage,this::hideFrame);

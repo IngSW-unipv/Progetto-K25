@@ -1,5 +1,6 @@
 package it.unipv.ingsfw.treninordovest.view.frames.customer;
 
+import it.unipv.ingsfw.treninordovest.controller.customer.CustomerRegController;
 import it.unipv.ingsfw.treninordovest.view.panels.users.CustomerRegistrationPanel;
 
 import javax.swing.*;
@@ -10,7 +11,7 @@ import java.util.Observer;
 /**
  * Frame per la registrazione dei clienti
  */
-public class JCustomerRegFrame extends JFrame implements Observer {
+public class JCustomerRegFrame extends JFrame  {
 
 
     private static final long serialVersionUID = 1L;
@@ -24,16 +25,6 @@ public class JCustomerRegFrame extends JFrame implements Observer {
         configuraFrame();
     }
 
-    /**
-     * Costruttore che accetta un pannello di registrazione esistente
-     * 
-     * @param customerRegistrationPanel Pannello di registrazione cliente esistente
-     */
-    public JCustomerRegFrame(CustomerRegistrationPanel customerRegistrationPanel) {
-        this.customerRegistrationPanel = customerRegistrationPanel;
-        configuraFrame();
-    }
-    
     /**
      * Configura le proprietà del frame
      */
@@ -50,6 +41,7 @@ public class JCustomerRegFrame extends JFrame implements Observer {
      */
     private void inizializzaComponenti() {
         add(customerRegistrationPanel, BorderLayout.CENTER);
+        new CustomerRegController(customerRegistrationPanel,this,this::showSuccessMessage,this::hideFrame);
     }
     
     /**
@@ -58,19 +50,14 @@ public class JCustomerRegFrame extends JFrame implements Observer {
     public void showFrame() {
         setVisible(true);
     }
-    
-    /**
-     * Ottiene il pannello di registrazione
-     * 
-     * @return Il pannello di registrazione cliente
-     */
-    public CustomerRegistrationPanel getCustomerRegistrationPanel() {
-        return customerRegistrationPanel;
-    }
+    public void hideFrame() {setVisible(false);}
 
-
-    @Override
-    public void update(Observable o, Object arg) {
+    public void showSuccessMessage () {
+        JOptionPane.showMessageDialog(this, "Registrazione Dipendente avvenuta con successo!");
 
     }
+
+
+
+
 }

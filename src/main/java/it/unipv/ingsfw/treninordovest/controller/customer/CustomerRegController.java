@@ -6,35 +6,35 @@ import it.unipv.ingsfw.treninordovest.view.frames.customer.JCustomerRegFrame;
 import it.unipv.ingsfw.treninordovest.view.panels.users.CustomerRegistrationPanel;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.logging.Logger;
 import java.util.logging.Level;
 
-public class CustomerRegController  {
+public class CustomerRegController implements ActionListener {
     private static final Logger LOGGER = Logger.getLogger(CustomerRegController.class.getName());
     
     private final CustomerRegistrationPanel view;
     private final JCustomerRegFrame customerRegFrame;
     private final UserRegistrationFacade facade;
 
+    private final Runnable onRegister;
+    private final Runnable onBack;
+
     /**
      * Costruttore che inizializza il controller
      */
-    public CustomerRegController(
-            CustomerRegistrationPanel view, 
-            JCustomerRegFrame customerRegFrame, 
-            UserRegistrationFacade facade) {
+    public CustomerRegController(CustomerRegistrationPanel view, JCustomerRegFrame customerRegFrame, Runnable onRegister, Runnable onBack) {
         this.view = view;
         this.customerRegFrame = customerRegFrame;
-        this.facade = facade;
-        init();
-    }
+        this.facade = UserRegistrationFacade.getInstance();
 
-    /**
-     * Inizializza i listener per i pulsanti
-     */
-    private void init() {
-        view.getBtnRegister().addActionListener(e -> createCustomer());
-        view.getBtnMenuPrincipal().addActionListener(e -> tornaAlMenuPrincipale());
+        view.addActionListener(this);
+
+        this.onRegister = onRegister;
+        this.onBack = onBack;
+
+
     }
 
     /**
@@ -66,8 +66,8 @@ public class CustomerRegController  {
     private void tornaAlMenuPrincipale() {
         try {
             JMainMenuFrame mainMenuFrame = new JMainMenuFrame();
-            mainMenuFrame.setVisible(true);
-            customerRegFrame.setVisible(false);
+            mainMenuFrame.showFrame();
+            customerRegFrame.hideFrame();
         } catch (Exception e) {
             LOGGER.log(Level.SEVERE, "Errore durante la navigazione al menu principale", e);
             JOptionPane.showMessageDialog(customerRegFrame, "Errore durante il ritorno al menu principale: " + e.getMessage(), "Errore", JOptionPane.ERROR_MESSAGE);
@@ -75,4 +75,18 @@ public class CustomerRegController  {
     }
 
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        switch (e.getActionCommand()) {
+            case CustomerRegistrationPanel.CMD_Register:
+                this.createCustomer();
+                break;
+            case CustomerRegistrationPanel.CMD_Back:
+                this.tornaAlMenuPrincipale();
+                break;
+            default:
+                throw new IllegalArgumentException("Comando non supportato: " + e.getActionCommand());
+        }
+
+    }
 }

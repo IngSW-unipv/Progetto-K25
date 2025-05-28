@@ -59,6 +59,7 @@ public class EmployeeRegistrationPanel extends JPanel  {
         txtIndirizzo = new JTextField(15);
 
 
+
         btnRegister = new JButton("Registrati");
         btnMenuPrincipal = new JButton("Menu Principale");
 
