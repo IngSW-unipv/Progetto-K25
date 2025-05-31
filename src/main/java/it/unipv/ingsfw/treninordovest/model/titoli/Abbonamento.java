@@ -1,6 +1,4 @@
-package it.unipv.ingsfw.treninordovest.model.titoli.Abbonamenti;
-
-import it.unipv.ingsfw.treninordovest.model.titoli.TitoloViaggio;
+package it.unipv.ingsfw.treninordovest.model.titoli;
 
 import java.time.LocalDate;
 
@@ -49,13 +47,7 @@ public class Abbonamento extends TitoloViaggio {
         this.idTessera = idTessera;
     }
 
-    public void setScadenzaAbbonamento(){
-        this.setScadenza( LocalDate.now());
-    }
 
-    public void setEmissione(){
-        this.setEmissione(LocalDate.now());
-    }
 
 }
 //getters e setters

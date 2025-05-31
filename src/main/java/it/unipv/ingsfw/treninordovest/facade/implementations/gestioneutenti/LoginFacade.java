@@ -3,7 +3,7 @@ package it.unipv.ingsfw.treninordovest.facade.implementations.gestioneutenti;
 import it.unipv.ingsfw.treninordovest.factory.implementations.LoginFactoryProducer;
 import it.unipv.ingsfw.treninordovest.model.utenti.Utente;
 import it.unipv.ingsfw.treninordovest.model.varie.SessionManager;
-import it.unipv.ingsfw.treninordovest.factory.abstracts.ILoginAbstractFactory;
+import it.unipv.ingsfw.treninordovest.factory.interfaces.ILoginAbstractFactory;
 
 /**
  * Facade che semplifica il processo di login implementata come Singleton

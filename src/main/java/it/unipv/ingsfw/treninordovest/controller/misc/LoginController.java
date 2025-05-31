@@ -1,7 +1,7 @@
 package it.unipv.ingsfw.treninordovest.controller.misc;
 
 import it.unipv.ingsfw.treninordovest.facade.implementations.gestioneutenti.LoginFacade;
-import it.unipv.ingsfw.treninordovest.factory.abstracts.ILoginAbstractFactory;
+import it.unipv.ingsfw.treninordovest.factory.interfaces.ILoginAbstractFactory;
 import it.unipv.ingsfw.treninordovest.factory.implementations.LoginFactoryProducer;
 import it.unipv.ingsfw.treninordovest.model.varie.SessionManager;
 import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JLoginFrame;
@@ -47,6 +47,7 @@ public class LoginController  implements ActionListener {
             ILoginAbstractFactory factory = LoginFactoryProducer.getFactoryFromProperties(ruolo);
             loginFacade.effettuaLogin(username, password, ruolo);
 
+            //Modificare
             factory.showUserInterface(SessionManager.getInstance().getCurrentUser());
             frame.hideFrame();
         }catch (Exception e) {

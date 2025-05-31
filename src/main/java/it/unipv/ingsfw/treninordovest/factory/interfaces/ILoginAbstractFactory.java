@@ -1,4 +1,4 @@
-package it.unipv.ingsfw.treninordovest.factory.abstracts;
+package it.unipv.ingsfw.treninordovest.factory.interfaces;
 
 import it.unipv.ingsfw.treninordovest.model.utenti.Utente;
 

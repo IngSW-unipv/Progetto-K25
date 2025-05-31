@@ -1,8 +1,6 @@
 package it.unipv.ingsfw.treninordovest.factory.implementations;
 
-import it.unipv.ingsfw.treninordovest.factory.abstracts.IAbbonamentoAbstractFactory;
-
-import static org.junit.jupiter.api.Assertions.*;
+import it.unipv.ingsfw.treninordovest.factory.interfaces.IAbbonamentoFactory;
 
 class AbbonamentoFactoryTest {
 
@@ -11,7 +9,10 @@ class AbbonamentoFactoryTest {
 
         String tipoAbbonamento = "Mensile";
 
-        IAbbonamentoAbstractFactory factory = AbbonamentoFactory.getFactoryFromProperties(tipoAbbonamento);
+        IAbbonamentoFactory factory = AbbonamentoStrategyFactory.getFactoryFromProperties(tipoAbbonamento);
+
+
+
 
 
 

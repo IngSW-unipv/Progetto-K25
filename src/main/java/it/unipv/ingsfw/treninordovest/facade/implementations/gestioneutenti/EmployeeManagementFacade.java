@@ -22,7 +22,7 @@ public class EmployeeManagementFacade implements IUserManagementFacade<Dipendent
         DipendenteDAOImpl dipendenteDAO = new DipendenteDAOImpl();
         String idUtenteLog = SessionManager.getInstance().getCurrentUser().getId();
         try {
-            System.out.println("Mostrazione dati utente");
+            System.out.println("Stampa dati utente");
             return dipendenteDAO.get(idUtenteLog);
         }
         catch (Exception e) {

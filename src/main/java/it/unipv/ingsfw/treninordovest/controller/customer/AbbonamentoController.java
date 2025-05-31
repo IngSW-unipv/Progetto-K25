@@ -5,7 +5,7 @@ import it.unipv.ingsfw.treninordovest.dao.implementations.titoli.PagamentoDAOImp
 import it.unipv.ingsfw.treninordovest.dao.implementations.utenti.ClienteDAOImpl;
 import it.unipv.ingsfw.treninordovest.dao.implementations.utenti.TesseraDAOImpl;
 import it.unipv.ingsfw.treninordovest.dao.interfaces.ClienteDAO;
-import it.unipv.ingsfw.treninordovest.model.titoli.Abbonamenti.Abbonamento;
+import it.unipv.ingsfw.treninordovest.model.titoli.Abbonamento;
 import it.unipv.ingsfw.treninordovest.model.titoli.Pagamento;
 import it.unipv.ingsfw.treninordovest.model.utenti.Cliente;
 import it.unipv.ingsfw.treninordovest.model.varie.GeneraID;
@@ -195,9 +195,9 @@ public class AbbonamentoController implements ActionListener {
 
         System.out.println("Debug:  "+idTessera+" "+idAbbonamento +" "+dataEmissione +" "+dataInizio);
 
-        abbonamento = new Abbonamento(idAbbonamento,idPagamento,dataEmissione,prezzoAbbonamento,tipoAbbonamento,scadenza,idTessera);
+        //abbonamento = new Abbonamento(idAbbonamento,idPagamento,dataEmissione,prezzoAbbonamento,tipoAbbonamento,scadenza,idTessera);
 
-        return abbonamento;
+        return null ;//abbonamento;
     }
 
 

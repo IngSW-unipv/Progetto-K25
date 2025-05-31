@@ -1,13 +1,13 @@
 package it.unipv.ingsfw.treninordovest.factory.implementations;
 
-import it.unipv.ingsfw.treninordovest.factory.abstracts.IAbbonamentoAbstractFactory;
+import it.unipv.ingsfw.treninordovest.factory.interfaces.IAbbonamentoFactory;
 
 
 import java.io.FileInputStream;
 import java.util.Properties;
 
-public class AbbonamentoFactory {
-    public static IAbbonamentoAbstractFactory getFactoryFromProperties(String tipo) {
+public class AbbonamentoStrategyFactory {
+    public static IAbbonamentoFactory getFactoryFromProperties(String tipo) {
         try {
             Properties pr = new Properties(System.getProperties());
             pr.load(new FileInputStream("properties/properties"));
@@ -24,7 +24,7 @@ public class AbbonamentoFactory {
                 throw new IllegalArgumentException("Tipo di abbonamento non supportato: " + tipo);
             }
 
-            return (IAbbonamentoAbstractFactory) Class.forName(factoryClassName).getDeclaredConstructor().newInstance();
+            return (IAbbonamentoFactory) Class.forName(factoryClassName).getDeclaredConstructor().newInstance();
         } catch (Exception e) {
             throw new RuntimeException("Errore nella creazione della factory: " + e.getMessage(), e);
         }

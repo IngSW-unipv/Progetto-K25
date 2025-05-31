@@ -1,6 +1,6 @@
 package it.unipv.ingsfw.treninordovest.factory.implementations;
 
-import it.unipv.ingsfw.treninordovest.factory.abstracts.ILoginAbstractFactory;
+import it.unipv.ingsfw.treninordovest.factory.interfaces.ILoginAbstractFactory;
 
 import java.util.Properties;
 import java.io.FileInputStream;
