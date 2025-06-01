@@ -10,11 +10,16 @@ public class AbbonamentoAnnualeConcrete implements IAbbonamentoStrategy {
         return 100;
     }
     @Override
-    public Abbonamento creaAbbonamento(Abbonamento Abbonamento) {
-        Abbonamento.setTipoAbbonamento("annuale");
-        Abbonamento.setPrezzo(100);
-        Abbonamento.setScadenza(LocalDate.now().plusYears(1));
-
-        return Abbonamento;
+    public LocalDate getDataScadenza() {
+        return LocalDate.now().plusYears(1);
     }
+    @Override
+    public String getTipoAbbonamento() {
+        return "annuale";
+    }
+    @Override
+    public LocalDate getEmissioneAbbonamento() {
+        return LocalDate.now();
+    }
+
 }

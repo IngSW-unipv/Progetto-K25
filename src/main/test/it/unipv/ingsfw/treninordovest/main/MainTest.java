@@ -9,7 +9,7 @@ class MainTest {
     @Test
     void main() {
 
-        IAbbonamentoFactory abbonamentoFactory = AbbonamentoStrategyFactory.getFactoryFromProperties("Mensile");
+
 
 
     }

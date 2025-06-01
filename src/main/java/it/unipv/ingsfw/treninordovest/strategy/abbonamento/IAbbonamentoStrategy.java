@@ -2,7 +2,12 @@ package it.unipv.ingsfw.treninordovest.strategy.abbonamento;
 
 import it.unipv.ingsfw.treninordovest.model.titoli.Abbonamento;
 
+import java.time.LocalDate;
+
 public interface IAbbonamentoStrategy {
     double ottieniPrezzoAbbonamento();
-    Abbonamento creaAbbonamento(Abbonamento Abbonamento);
+    String getTipoAbbonamento();
+    LocalDate getDataScadenza();
+    LocalDate getEmissioneAbbonamento();
+   
 }

@@ -1,6 +1,7 @@
 package it.unipv.ingsfw.treninordovest.factory.implementations;
 
 import it.unipv.ingsfw.treninordovest.factory.interfaces.IAbbonamentoFactory;
+import it.unipv.ingsfw.treninordovest.strategy.abbonamento.IAbbonamentoStrategy;
 
 class AbbonamentoFactoryTest {
 
@@ -9,7 +10,12 @@ class AbbonamentoFactoryTest {
 
         String tipoAbbonamento = "Mensile";
 
-        IAbbonamentoFactory factory = AbbonamentoStrategyFactory.getFactoryFromProperties(tipoAbbonamento);
+        IAbbonamentoStrategy factory = AbbonamentoStrategyFactory.getFactoryFromProperties(tipoAbbonamento);
+
+        System.out.println(factory.getTipoAbbonamento());
+        System.out.println(factory.getEmissioneAbbonamento());
+        System.out.println(factory.getDataScadenza());
+        System.out.println(factory.ottieniPrezzoAbbonamento());
 
 
 
