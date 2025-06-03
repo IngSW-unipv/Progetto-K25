@@ -22,6 +22,10 @@ settimanale.factory.class.name=it.unipv.ingsfw.treninordovest.strategy.abbonamen
 annuale.factory.class.name=it.unipv.ingsfw.treninordovest.strategy.abbonamento.AbbonamentoAnnualeConcrete
 mensile.factory.class.name=it.unipv.ingsfw.treninordovest.strategy.abbonamento.AbbonamentoMensileConcrete
 
+#Metodi di pagamento
+carta.factory.class.name=it.unipv.ingsfw.treninordovest.utils.metodipagamento.CartaCredito;
+euwallet.factory.class.name=it.unipv.ingsfw.treninordovest.utils.metodipagamento.wallet.EUWallet;
+
 
 
 

@@ -1,6 +1,6 @@
 package it.unipv.ingsfw.treninordovest.factory.implementations;
 
-import it.unipv.ingsfw.treninordovest.factory.interfaces.IAbbonamentoFactory;
+
 import it.unipv.ingsfw.treninordovest.model.titoli.Abbonamento;
 import it.unipv.ingsfw.treninordovest.model.titoli.Pagamento;
 import it.unipv.ingsfw.treninordovest.model.varie.GeneraID;
@@ -40,6 +40,7 @@ class AbbonamentoFactoryTest {
         System.out.println(": " + abbonamento.getIdPagamento());
         System.out.println(": " + abbonamento.getEmissione());
         System.out.println(": " + abbonamento.getScadenza());
+        System.out.println(": " + abbonamento.getPrezzo());
 
 
     }

@@ -1,6 +1,8 @@
-package it.unipv.ingsfw.treninordovest.model.varie.wallet;
+package it.unipv.ingsfw.treninordovest.utils.metodipagamento.wallet;
 
-public class EUWallet implements IValuable {
+import it.unipv.ingsfw.treninordovest.utils.metodipagamento.IMetodoPagamento;
+
+public class EUWallet implements IValuable , IMetodoPagamento {
 
     private double val;
 
@@ -37,6 +39,16 @@ public class EUWallet implements IValuable {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public boolean valida() {
+        return false;
+    }
+
+    @Override
+    public boolean processaPagamento(double importo) {
+        return preleva(importo);
     }
 
 }

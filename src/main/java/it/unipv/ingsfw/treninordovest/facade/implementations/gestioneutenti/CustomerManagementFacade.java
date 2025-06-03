@@ -2,14 +2,12 @@ package it.unipv.ingsfw.treninordovest.facade.implementations.gestioneutenti;
 
 import it.unipv.ingsfw.treninordovest.dao.implementations.utenti.ClienteDAOImpl;
 import it.unipv.ingsfw.treninordovest.dao.implementations.utenti.TesseraDAOImpl;
-import it.unipv.ingsfw.treninordovest.dao.interfaces.ClienteDAO;
-import it.unipv.ingsfw.treninordovest.dao.interfaces.TesseraDAO;
 import it.unipv.ingsfw.treninordovest.facade.interfaces.IUserManagementFacade;
 import it.unipv.ingsfw.treninordovest.model.utenti.Cliente;
 import it.unipv.ingsfw.treninordovest.model.utenti.Tessera;
 import it.unipv.ingsfw.treninordovest.model.varie.GeneraID;
 import it.unipv.ingsfw.treninordovest.model.varie.SessionManager;
-import it.unipv.ingsfw.treninordovest.model.varie.wallet.EUWallet;
+import it.unipv.ingsfw.treninordovest.utils.metodipagamento.wallet.EUWallet;
 
 import java.time.LocalDate;
 

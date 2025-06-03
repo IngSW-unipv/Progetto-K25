@@ -2,7 +2,6 @@ package it.unipv.ingsfw.treninordovest.view.panels.users;
 
 import javax.swing.*;
 import com.toedter.calendar.JDateChooser;
-
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
@@ -21,7 +20,7 @@ public class CustomerRegistrationPanel extends JPanel {
     private final JComboBox<String> comboSesso;
     private final JDateChooser dateChooser;
     private final JTextField txtLuogoNascita;
-    private Color colorePannello;
+    private final Color colorePannello;
 
     public static final String CMD_Register = "register";
     public static final String CMD_Back = "back";
