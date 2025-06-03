@@ -26,10 +26,7 @@ import java.util.logging.Logger;
 public class UserRegistrationFacade implements IUserRegistrationFacade {
     
     private static final Logger LOGGER = Logger.getLogger(UserRegistrationFacade.class.getName());
-    
-    // Istanza singleton
-    private static UserRegistrationFacade instance;
-    
+
     private final ClienteDAO clienteDAO;
     private final DipendenteDAO dipendenteDAO;
     private final TrenoDAOImpl trenoDAO;
@@ -37,49 +34,14 @@ public class UserRegistrationFacade implements IUserRegistrationFacade {
     /**
      * Costruttore privato per implementare il Singleton
      */
-    private UserRegistrationFacade() {
+    public UserRegistrationFacade() {
         this.clienteDAO = new ClienteDAOImpl();
         this.dipendenteDAO = new DipendenteDAOImpl();
         this.trenoDAO = new TrenoDAOImpl();
     }
     
-    /**
-     * Costruttore privato per iniezione dipendenze nei test
-     */
-    private UserRegistrationFacade(ClienteDAO clienteDAO, DipendenteDAO dipendenteDAO, TrenoDAOImpl trenoDAO) {
-        this.clienteDAO = clienteDAO;
-        this.dipendenteDAO = dipendenteDAO;
-        this.trenoDAO = trenoDAO;
-    }
-    
-    /**
-     * Restituisce l'istanza singleton della UserRegistrationFacade
-     * @return l'istanza singleton
-     */
-    public static UserRegistrationFacade getInstance() {
-        if (instance == null) {
-            instance = new UserRegistrationFacade();
-        }
-        return instance;
-    }
-    
-    /**
-     * Metodo per i test che consente di creare un'istanza con dipendenze iniettate
-     * @param clienteDAO il DAO per i clienti
-     * @param dipendenteDAO il DAO per i dipendenti
-     * @param trenoDAO il DAO per i treni
-     * @return un'istanza di UserRegistrationFacade con le dipendenze specificate
-     */
-    public static UserRegistrationFacade createTestInstance(ClienteDAO clienteDAO, DipendenteDAO dipendenteDAO, TrenoDAOImpl trenoDAO) {
-        return new UserRegistrationFacade(clienteDAO, dipendenteDAO, trenoDAO);
-    }
-    
-    /**
-     * Resetta l'istanza singleton (utile per i test)
-     */
-    public static void resetInstance() {
-        instance = null;
-    }
+
+
 
     @Override
     public String registraCliente(CustomerRegistrationPanel view, JFrame componenteParent) {

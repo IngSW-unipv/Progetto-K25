@@ -9,5 +9,6 @@ public interface IAbbonamentoStrategy {
     String getTipoAbbonamento();
     LocalDate getDataScadenza();
     LocalDate getEmissioneAbbonamento();
+    Abbonamento createAbbonamento(String idCliente,String idPagamento,String idTessera);
    
 }

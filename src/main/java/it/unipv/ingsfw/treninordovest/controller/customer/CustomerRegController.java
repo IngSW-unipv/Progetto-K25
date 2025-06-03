@@ -27,7 +27,7 @@ public class CustomerRegController implements ActionListener {
     public CustomerRegController(CustomerRegistrationPanel view, JCustomerRegFrame customerRegFrame, Runnable onRegister, Runnable onBack) {
         this.view = view;
         this.customerRegFrame = customerRegFrame;
-        this.facade = UserRegistrationFacade.getInstance();
+        this.facade = new UserRegistrationFacade();
 
         view.addActionListener(this);
 

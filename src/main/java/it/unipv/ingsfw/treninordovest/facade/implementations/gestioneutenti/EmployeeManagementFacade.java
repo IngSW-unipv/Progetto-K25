@@ -1,25 +1,23 @@
 package it.unipv.ingsfw.treninordovest.facade.implementations.gestioneutenti;
 
 import it.unipv.ingsfw.treninordovest.dao.implementations.utenti.DipendenteDAOImpl;
+import it.unipv.ingsfw.treninordovest.dao.interfaces.DipendenteDAO;
 import it.unipv.ingsfw.treninordovest.facade.interfaces.IUserManagementFacade;
 import it.unipv.ingsfw.treninordovest.model.utenti.Dipendente;
 import it.unipv.ingsfw.treninordovest.model.varie.SessionManager;
 
 public class EmployeeManagementFacade implements IUserManagementFacade<Dipendente> {
 
-    private static EmployeeManagementFacade instance;
+        private final DipendenteDAO dipendenteDAO;
 
-    public static EmployeeManagementFacade getInstance() {
-        if (instance == null) {
-            instance = new EmployeeManagementFacade();
+        public EmployeeManagementFacade() {
+            this.dipendenteDAO = new DipendenteDAOImpl();
+
         }
-        return instance;
-    }
+
 
     @Override
     public Dipendente mostraDati() {
-
-        DipendenteDAOImpl dipendenteDAO = new DipendenteDAOImpl();
         String idUtenteLog = SessionManager.getInstance().getCurrentUser().getId();
         try {
             System.out.println("Stampa dati utente");
@@ -33,7 +31,6 @@ public class EmployeeManagementFacade implements IUserManagementFacade<Dipendent
     @Override
     public boolean aggiornaPassword(String password) {
 
-        DipendenteDAOImpl dipendenteDAO = new DipendenteDAOImpl();
         String idUtenteLog = SessionManager.getInstance().getCurrentUser().getId();
         try {
             System.out.println("Aggiornamento password");

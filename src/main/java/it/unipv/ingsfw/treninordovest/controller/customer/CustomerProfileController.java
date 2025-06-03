@@ -21,7 +21,7 @@ public class CustomerProfileController  {
         this.view = view;
         this.mainFrame = mainFrame;
         this.loginFacade = LoginFacade.getInstance();
-        this.customerManagementFacade = CustomerManagementFacade.getInstance();
+        this.customerManagementFacade = new CustomerManagementFacade();
         init();
         
 

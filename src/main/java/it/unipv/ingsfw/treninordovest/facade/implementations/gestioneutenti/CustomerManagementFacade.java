@@ -2,6 +2,8 @@ package it.unipv.ingsfw.treninordovest.facade.implementations.gestioneutenti;
 
 import it.unipv.ingsfw.treninordovest.dao.implementations.utenti.ClienteDAOImpl;
 import it.unipv.ingsfw.treninordovest.dao.implementations.utenti.TesseraDAOImpl;
+import it.unipv.ingsfw.treninordovest.dao.interfaces.ClienteDAO;
+import it.unipv.ingsfw.treninordovest.dao.interfaces.TesseraDAO;
 import it.unipv.ingsfw.treninordovest.facade.interfaces.IUserManagementFacade;
 import it.unipv.ingsfw.treninordovest.model.utenti.Cliente;
 import it.unipv.ingsfw.treninordovest.model.utenti.Tessera;
@@ -14,19 +16,17 @@ import java.time.LocalDate;
 
 public class CustomerManagementFacade implements IUserManagementFacade<Cliente> {
 
-    private static CustomerManagementFacade instance;
+    private final ClienteDAOImpl clienteDAO;
+    private final TesseraDAOImpl tesseraDAO;
 
-    public static CustomerManagementFacade getInstance() {
-        if (instance == null) {
-            instance = new CustomerManagementFacade();
-        }
-        return instance;
+
+    public CustomerManagementFacade() {
+        this.clienteDAO = new ClienteDAOImpl();
+        this.tesseraDAO = new TesseraDAOImpl();
     }
-
 
     @Override
     public Cliente mostraDati() {
-        ClienteDAOImpl clienteDAO = new ClienteDAOImpl();
         String idUtenteLog = SessionManager.getInstance().getCurrentUser().getId();
         try {
             System.out.println("Mostrazione dati utente");
@@ -40,7 +40,6 @@ public class CustomerManagementFacade implements IUserManagementFacade<Cliente> 
 
     @Override
     public boolean aggiornaPassword(String password) {
-       ClienteDAOImpl clienteDAO = new ClienteDAOImpl();
        String idUtenteLog = SessionManager.getInstance().getCurrentUser().getId();
         try {
             System.out.println("Aggiornamento password");
@@ -53,8 +52,6 @@ public class CustomerManagementFacade implements IUserManagementFacade<Cliente> 
     }
 
     public void caricaDenaro(double importo){
-
-        ClienteDAOImpl clienteDAO = new ClienteDAOImpl();
         String idUtenteLog = SessionManager.getInstance().getCurrentUser().getId();
         EUWallet portafoglio = new EUWallet();
 
@@ -72,7 +69,6 @@ public class CustomerManagementFacade implements IUserManagementFacade<Cliente> 
 
     public void acquistaTessera(){
 
-        TesseraDAOImpl tDAO = new TesseraDAOImpl();
         Cliente clienteLoggato = (Cliente) SessionManager.getInstance().getCurrentUser();
 
         if(SessionManager.getInstance().getCurrentUser() !=null){
@@ -80,7 +76,7 @@ public class CustomerManagementFacade implements IUserManagementFacade<Cliente> 
         }
 
         try {
-            if (!tDAO.exists(clienteLoggato.getId())){
+            if (!tesseraDAO.exists(clienteLoggato.getId())){
 
                     LocalDate dataEmissione = LocalDate.now();
                     LocalDate dataScadenza = LocalDate.now().plusYears(5);
@@ -90,7 +86,7 @@ public class CustomerManagementFacade implements IUserManagementFacade<Cliente> 
 
                     Tessera tessera = new Tessera(idTessera,dataEmissione,dataScadenza,clienteLoggato.getId());
 
-                    tDAO.insert(tessera);
+                    tesseraDAO.insert(tessera);
 
 
             }

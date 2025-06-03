@@ -29,7 +29,7 @@ public class EmployeeRegController implements ActionListener {
     public EmployeeRegController(EmployeeRegistrationPanel view, JEmployeeRegFrame employeeRegFrame,Runnable onRegister,Runnable onBack){
         this.view = view;
         this.employeeRegFrame = employeeRegFrame;
-        this.facade = UserRegistrationFacade.getInstance();
+        this.facade = new UserRegistrationFacade();
 
         view.addActionListener(this);
 
