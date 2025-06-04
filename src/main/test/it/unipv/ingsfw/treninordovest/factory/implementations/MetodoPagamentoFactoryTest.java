@@ -10,8 +10,13 @@ class MetodoPagamentoFactoryTest {
     @Test
     void name() {
 
+        //String metodo ="carta";
         String metodo ="euwallet";
 
         IMetodoPagamento metodoPagamento = MetodoPagamentoFactory.getFactoryFromProperties(metodo);
+
+
+        metodoPagamento.processaPagamento(30);
+
     }
 }

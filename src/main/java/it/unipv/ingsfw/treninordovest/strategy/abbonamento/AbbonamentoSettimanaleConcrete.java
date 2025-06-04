@@ -8,7 +8,7 @@ import java.time.LocalDate;
 public class AbbonamentoSettimanaleConcrete implements IAbbonamentoStrategy {
     @Override
     public double ottieniPrezzoAbbonamento() {
-        return 100;
+        return 10;
     }
 
     @Override

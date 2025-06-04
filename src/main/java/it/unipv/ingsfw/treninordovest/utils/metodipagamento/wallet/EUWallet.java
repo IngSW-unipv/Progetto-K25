@@ -6,6 +6,8 @@ public class EUWallet implements IValuable , IMetodoPagamento {
 
     private double val;
 
+
+
     public EUWallet(double val) {
         super();
         this.val = val;
@@ -27,9 +29,11 @@ public class EUWallet implements IValuable , IMetodoPagamento {
 
     public boolean preleva(double importo) {
         if (importo > val || importo <= 0) {
+            System.out.println("Credito insufficiente o importo non valido");
             return false;
         }
         val -= importo;
+        System.out.println("Denaro scalato val: " + val);
         return true;
     }
     

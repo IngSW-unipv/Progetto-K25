@@ -8,7 +8,7 @@ import java.time.LocalDate;
 public class AbbonamentoAnnualeConcrete implements IAbbonamentoStrategy {
     @Override
     public double ottieniPrezzoAbbonamento() {
-        return 100;
+        return 300;
     }
     @Override
     public LocalDate getDataScadenza() {

@@ -1,12 +1,13 @@
 package it.unipv.ingsfw.treninordovest.factory.implementations;
 
-import it.unipv.ingsfw.treninordovest.utils.metodipagamento.IMetodoPagamento;
+import it.unipv.ingsfw.treninordovest.strategy.abbonamento.IAbbonamentoStrategy;
+import it.unipv.ingsfw.treninordovest.strategy.biglietto.IBigliettoStrategy;
 
 import java.io.FileInputStream;
 import java.util.Properties;
 
-public class MetodoPagamentoFactory {
-    public static IMetodoPagamento getFactoryFromProperties(String tipo) {
+public class BigliettoStrategyFactory {
+    public static IBigliettoStrategy getFactoryFromProperties(String tipo) {
         try {
             Properties pr = new Properties(System.getProperties());
             pr.load(new FileInputStream("properties/properties"));
@@ -20,10 +21,10 @@ public class MetodoPagamentoFactory {
             String factoryClassName = pr.getProperty(propertyKey);
 
             if (factoryClassName == null) {
-                throw new IllegalArgumentException("Tipo non supportato: " + tipo);
+                throw new IllegalArgumentException("Tipo di biglietto non supportato: " + tipo);
             }
 
-            return (IMetodoPagamento) Class.forName(factoryClassName).getDeclaredConstructor().newInstance();
+            return (IBigliettoStrategy) Class.forName(factoryClassName).getDeclaredConstructor().newInstance();
         } catch (Exception e) {
             throw new RuntimeException("Errore nella creazione della factory: " + e.getMessage(), e);
         }

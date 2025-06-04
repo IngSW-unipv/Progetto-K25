@@ -25,8 +25,6 @@
 //    private JCustomerMainFrame frame;
 //    private String IdClienteLoggato;
 //    private Cliente clienteLoggato;
-//    private PagamentoDAOImpl pagamentoDAO;
-//
 //
 //    public AbbonamentoController(SubscriptionPanel view, JCustomerMainFrame frame) {
 //        this.view = view;
