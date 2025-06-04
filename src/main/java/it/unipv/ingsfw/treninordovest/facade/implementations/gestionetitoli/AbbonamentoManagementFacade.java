@@ -1,12 +1,19 @@
 package it.unipv.ingsfw.treninordovest.facade.implementations.gestionetitoli;
 
 import it.unipv.ingsfw.treninordovest.dao.implementations.titoli.AbbonamentoDAOimpl;
+import it.unipv.ingsfw.treninordovest.dao.implementations.titoli.PagamentoDAOImpl;
+import it.unipv.ingsfw.treninordovest.dao.implementations.titoli.StoricoPagamentoDAOImpl;
 import it.unipv.ingsfw.treninordovest.dao.implementations.utenti.TesseraDAOImpl;
 import it.unipv.ingsfw.treninordovest.facade.interfaces.ITitoloViaggioFacade;
 import it.unipv.ingsfw.treninordovest.factory.implementations.AbbonamentoStrategyFactory;
+import it.unipv.ingsfw.treninordovest.factory.implementations.MetodoPagamentoFactory;
+import it.unipv.ingsfw.treninordovest.factory.implementations.VenditaStrategyFactory;
 import it.unipv.ingsfw.treninordovest.model.titoli.Abbonamento;
+import it.unipv.ingsfw.treninordovest.model.titoli.Pagamento;
 import it.unipv.ingsfw.treninordovest.model.varie.SessionManager;
 import it.unipv.ingsfw.treninordovest.strategy.abbonamento.IAbbonamentoStrategy;
+import it.unipv.ingsfw.treninordovest.strategy.pagamento.IVenditaTitoliStrategy;
+import it.unipv.ingsfw.treninordovest.utils.metodipagamento.IMetodoPagamento;
 
 
 import java.util.List;
@@ -14,26 +21,40 @@ import java.util.List;
 public class AbbonamentoManagementFacade implements ITitoloViaggioFacade<Abbonamento> {
 
     private final TesseraDAOImpl tesseraDAO;
-    private AbbonamentoDAOimpl abbonamentoDAO;
-    private IAbbonamentoStrategy strategyFactoryAbbonamento;
+    private final AbbonamentoDAOimpl abbonamentoDAO;
+    private final PagamentoDAOImpl pagamentoDAO;
+    private final StoricoPagamentoDAOImpl storicoPagamentoDAO;
+    private final String tipoVendita="VenditaAbbonamento";
     private String idUtenteLog = SessionManager.getInstance().getCurrentUser().getId();
 
 
-    public AbbonamentoManagementFacade(String tipoAbbonamento) {
+    public AbbonamentoManagementFacade() {
         this.tesseraDAO = new TesseraDAOImpl();
         this.abbonamentoDAO = new AbbonamentoDAOimpl();
-        this.strategyFactoryAbbonamento = AbbonamentoStrategyFactory.getFactoryFromProperties(tipoAbbonamento);
+        this.pagamentoDAO = new PagamentoDAOImpl();
+        this.storicoPagamentoDAO = new StoricoPagamentoDAOImpl();
+
     }
 
     @Override
-    public Abbonamento acquistaTitoloViaggio() {
-        Abbonamento abbonamento = null;
+    public void acquistaTitoloViaggio(String tipo,String metodoPagamento,int numeroTitoli) {
+        Pagamento pagamento;
+        Abbonamento abbonamento;
+
+        IAbbonamentoStrategy abbonamentoStrategy = AbbonamentoStrategyFactory.getFactoryFromProperties(tipo);
+        IVenditaTitoliStrategy venditaStrategy = VenditaStrategyFactory.getFactoryFromProperties(tipoVendita);
+        IMetodoPagamento metododiPagamento = MetodoPagamentoFactory.getFactoryFromProperties(metodoPagamento);
+
         String idTessera = cercaIdTessera();
 
-       //abbonamento = strategyFactoryAbbonamento.createAbbonamento(idUtenteLog,,);
 
+        pagamento = venditaStrategy.generaPagamento(idUtenteLog,numeroTitoli,abbonamentoStrategy.ottieniPrezzoAbbonamento(),metodoPagamento);
+        abbonamento= abbonamentoStrategy.createAbbonamento(idUtenteLog,pagamento.getIdPagamento(),idTessera);
+        metododiPagamento.processaPagamento(numeroTitoli*abbonamentoStrategy.ottieniPrezzoAbbonamento());
 
-        return null;
+        pagamentoDAO.insert(pagamento);
+        abbonamentoDAO.insert(abbonamento);
+
     }
 
     @Override

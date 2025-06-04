@@ -55,4 +55,18 @@ public class EUWallet implements IValuable , IMetodoPagamento {
         return preleva(importo);
     }
 
+    @Override
+    public boolean verificaSufficienzaCredito() {
+        
+        if (val <= 0) {
+            System.out.println("DEBUG: Credito insufficiente");
+            return false;
+        }
+        if (val > 0) {
+            System.out.println("DEBUG: Credito positivo");
+            return true;
+        }
+
+        return false;
+    }
 }

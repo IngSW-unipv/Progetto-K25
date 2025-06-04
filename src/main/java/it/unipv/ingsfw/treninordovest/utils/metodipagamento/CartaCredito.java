@@ -41,4 +41,8 @@ public class CartaCredito implements IMetodoPagamento {
         return true; // Simulazione
     }
 
+    @Override
+    public boolean verificaSufficienzaCredito() {
+        return true;
+    }
 }

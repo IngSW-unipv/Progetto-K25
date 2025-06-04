@@ -7,20 +7,17 @@ import java.util.List;
 
 public class TicketManagementFacade implements ITitoloViaggioFacade<Biglietto> {
 
+    public TicketManagementFacade() {
+    }
+
     /***
      * Impostazione statica della facade
      */
-    private static TicketManagementFacade instance;
-    public static TicketManagementFacade getInstance() {
-        if (instance == null) {
-            instance = new TicketManagementFacade();
-        }
-        return instance;
-    }
+
 
     @Override
-    public Biglietto acquistaTitoloViaggio() {
-        return null;
+    public void acquistaTitoloViaggio(String tipo,String metodoPagamento,int numeroTitoli) {
+
     }
 
     @Override

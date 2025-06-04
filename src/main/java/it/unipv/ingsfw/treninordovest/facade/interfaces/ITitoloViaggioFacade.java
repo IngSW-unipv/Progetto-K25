@@ -11,7 +11,7 @@ public interface ITitoloViaggioFacade<T> {
     *
     * @return
     */
-   T acquistaTitoloViaggio();
+   void acquistaTitoloViaggio(String tipo,String metodoPagamento,int numeroTitoli);
    T rimuoviTitoloViaggio();
    boolean titoloDisponibile();
    void mostraTitolo();

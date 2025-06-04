@@ -4,4 +4,5 @@ public interface IMetodoPagamento {
     boolean valida();
 
     boolean processaPagamento(double importo);
+    boolean verificaSufficienzaCredito();
 }

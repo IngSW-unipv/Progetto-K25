@@ -30,6 +30,8 @@ biglietto.factory.class.name=it.unipv.ingsfw.treninordovest.strategy.biglietto.B
 carta.factory.class.name=it.unipv.ingsfw.treninordovest.utils.metodipagamento.CartaCredito
 euwallet.factory.class.name=it.unipv.ingsfw.treninordovest.utils.metodipagamento.wallet.EUWallet
 
-
+#Vendita
+venditaabbonamento.factory.class.name=it.unipv.ingsfw.treninordovest.strategy.pagamento.VenditaAbbonamentoStrategy
+venditabiglietto.factory.class.name=it.unipv.ingsfw.treninordovest.strategy.pagamento.VenditaBigliettoStrategy
 
 
