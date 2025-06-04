@@ -8,6 +8,7 @@ import it.unipv.ingsfw.treninordovest.model.titoli.TitoloViaggio;
 import it.unipv.ingsfw.treninordovest.model.varie.GeneraID;
 import it.unipv.ingsfw.treninordovest.strategy.abbonamento.IAbbonamentoStrategy;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class VenditaAbbonamentoStrategy implements IVenditaTitoliStrategy{
