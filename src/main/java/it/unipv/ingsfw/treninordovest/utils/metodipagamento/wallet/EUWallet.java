@@ -57,7 +57,7 @@ public class EUWallet implements IValuable , IMetodoPagamento {
 
     @Override
     public boolean verificaSufficienzaCredito() {
-        
+
         if (val <= 0) {
             System.out.println("DEBUG: Credito insufficiente");
             return false;

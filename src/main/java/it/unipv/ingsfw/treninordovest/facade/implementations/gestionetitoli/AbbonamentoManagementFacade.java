@@ -3,6 +3,7 @@ package it.unipv.ingsfw.treninordovest.facade.implementations.gestionetitoli;
 import it.unipv.ingsfw.treninordovest.dao.implementations.titoli.AbbonamentoDAOimpl;
 import it.unipv.ingsfw.treninordovest.dao.implementations.titoli.PagamentoDAOImpl;
 import it.unipv.ingsfw.treninordovest.dao.implementations.titoli.StoricoPagamentoDAOImpl;
+import it.unipv.ingsfw.treninordovest.dao.implementations.utenti.ClienteDAOImpl;
 import it.unipv.ingsfw.treninordovest.dao.implementations.utenti.TesseraDAOImpl;
 import it.unipv.ingsfw.treninordovest.facade.interfaces.ITitoloViaggioFacade;
 import it.unipv.ingsfw.treninordovest.factory.implementations.AbbonamentoStrategyFactory;
@@ -23,6 +24,7 @@ public class AbbonamentoManagementFacade implements ITitoloViaggioFacade<Abbonam
     private final TesseraDAOImpl tesseraDAO;
     private final AbbonamentoDAOimpl abbonamentoDAO;
     private final PagamentoDAOImpl pagamentoDAO;
+    private final ClienteDAOImpl clienteDAO;
     private final StoricoPagamentoDAOImpl storicoPagamentoDAO;
     private final String tipoVendita="VenditaAbbonamento";
     private String idUtenteLog = SessionManager.getInstance().getCurrentUser().getId();
@@ -33,6 +35,7 @@ public class AbbonamentoManagementFacade implements ITitoloViaggioFacade<Abbonam
         this.abbonamentoDAO = new AbbonamentoDAOimpl();
         this.pagamentoDAO = new PagamentoDAOImpl();
         this.storicoPagamentoDAO = new StoricoPagamentoDAOImpl();
+        this.clienteDAO = new ClienteDAOImpl();
 
     }
 
@@ -43,14 +46,12 @@ public class AbbonamentoManagementFacade implements ITitoloViaggioFacade<Abbonam
 
         IAbbonamentoStrategy abbonamentoStrategy = AbbonamentoStrategyFactory.getFactoryFromProperties(tipo);
         IVenditaTitoliStrategy venditaStrategy = VenditaStrategyFactory.getFactoryFromProperties(tipoVendita);
-        IMetodoPagamento metododiPagamento = MetodoPagamentoFactory.getFactoryFromProperties(metodoPagamento);
 
         String idTessera = cercaIdTessera();
 
 
         pagamento = venditaStrategy.generaPagamento(idUtenteLog,numeroTitoli,abbonamentoStrategy.ottieniPrezzoAbbonamento(),metodoPagamento);
         abbonamento= abbonamentoStrategy.createAbbonamento(idUtenteLog,pagamento.getIdPagamento(),idTessera);
-        metododiPagamento.processaPagamento(numeroTitoli*abbonamentoStrategy.ottieniPrezzoAbbonamento());
 
         pagamentoDAO.insert(pagamento);
         abbonamentoDAO.insert(abbonamento);
