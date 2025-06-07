@@ -14,21 +14,18 @@ public class DipendenteDAOImpl implements DipendenteDAO {
     }
 
 
-    public Dipendente get(String id){
+    public Dipendente get(Dipendente dipendente){
         //Dipendenti
-        String sql = "select ID,Userpassword,Nome,Cognome,Sesso,LuogoNascita,DataNascita, Cellulare,Indirizzo,Stipendio,Ruolo,CodTreno from utentiDipendenti where id=?";
-        Dipendente dipendente = null;
-
+        String sql = "select ID,Userpassword,Nome,Cognome,Sesso,LuogoNascita,DataNascita,Cellulare,Indirizzo,Stipendio,Ruolo from utentiDipendenti where id=?";
         try (Connection con = Database.getConnection(); PreparedStatement ps= con.prepareStatement(sql)) {
             //Preparazione della Query
-            ps.setString(1,id);
+            ps.setString(1,dipendente.getId());
             //Impostazione di estrapolazione query
 
             try (ResultSet rs=ps.executeQuery()) {
                 if(rs.next()){
                     String nome=rs.getString("nome");
                     String cognome=rs.getString("cognome");
-                    //String email=rs.getString("email");
                     String password=rs.getString("UserPassword");
                     double stipendio=rs.getDouble("stipendio");
                     String luogoNascita=rs.getString("luogoNascita");
@@ -39,10 +36,9 @@ public class DipendenteDAOImpl implements DipendenteDAO {
                     String sesso=rs.getString("sesso");
                     String cellulare=rs.getString("cellulare");
                     String indirizzo=rs.getString("indirizzo");
-                    String codTreno=rs.getString("codTreno");
                     String ruolo =rs.getString("ruolo");
 
-                    dipendente=new Dipendente(id,password,nome,cognome,luogoNascita, sesso, dataNascitaLocal,cellulare,indirizzo,codTreno,stipendio,ruolo);
+                    dipendente=new Dipendente(dipendente.getId(),password,nome,cognome,luogoNascita, sesso, dataNascitaLocal,cellulare,indirizzo,stipendio,ruolo);
 
             }
 

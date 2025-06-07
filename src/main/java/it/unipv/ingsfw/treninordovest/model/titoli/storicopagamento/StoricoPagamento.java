@@ -29,11 +29,5 @@ public class StoricoPagamento {
     public void setStatoPagamento(String statoPagamento) {
         this.statoPagamento = statoPagamento;
     }
-    public String getIdPagamento() {
-        return idPagamento;
-    }
-    public void setIdPagamento(String idPagamento) {
-        this.idPagamento = idPagamento;
-    }
 
 }

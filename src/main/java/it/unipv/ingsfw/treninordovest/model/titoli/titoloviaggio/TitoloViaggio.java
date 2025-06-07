@@ -4,7 +4,6 @@ import java.time.LocalDate;
 
 public abstract class TitoloViaggio {
     private String id;
-    private String idPagamento;
     private LocalDate emissione;
     private double prezzo;
 
@@ -12,9 +11,8 @@ public abstract class TitoloViaggio {
     public TitoloViaggio() {}
 
     //Costruttore completo
-    public TitoloViaggio(String id, String idPagamento, LocalDate emissione, double prezzo) {
+    public TitoloViaggio(String id, LocalDate emissione, double prezzo) {
         this.id = id;
-        this.idPagamento = idPagamento;
         this.emissione = emissione;
         this.prezzo = prezzo;
     }
@@ -26,14 +24,6 @@ public abstract class TitoloViaggio {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getIdPagamento() {
-        return idPagamento;
-    }
-
-    public void setIdPagamento(String idPagamento) {
-        this.idPagamento = idPagamento;
     }
 
     public LocalDate getEmissione() {

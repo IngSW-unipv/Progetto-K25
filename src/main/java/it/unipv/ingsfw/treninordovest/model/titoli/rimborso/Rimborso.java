@@ -8,13 +8,11 @@ public class Rimborso {
     private String idRimborso;
     private LocalDate dataRimborso;
     private double totale;
-    private String idBiglietto;
-    private String idRichiedente;
 
     //Costruttori
     public Rimborso() {}
 
-    public Rimborso(String idRimborso, LocalDate dataOra, double totale, String idBiglietto, String idRichiedente) {
+    public Rimborso(String idRimborso, LocalDate dataOra, double totale) {
         this.idRimborso = idRimborso;
         this.dataRimborso = dataOra;
         this.totale = totale;

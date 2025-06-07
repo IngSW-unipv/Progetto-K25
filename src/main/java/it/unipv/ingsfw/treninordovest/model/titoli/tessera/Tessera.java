@@ -7,17 +7,15 @@ public class Tessera {
     private String idTessera;
     private LocalDate emissione;
     private LocalDate Scadenza;
-    private String idCliente;
 
     //Costruttore vuoto
     public Tessera() {}
 
     //Costruttore completo
-    public Tessera(String idTessera, LocalDate emissione, LocalDate scadenza, String idCliente) {
+    public Tessera(String idTessera, LocalDate emissione, LocalDate scadenza) {
         this.idTessera = idTessera;
         this.emissione = emissione;
         Scadenza = scadenza;
-        this.idCliente = idCliente;
     }
 
     //Getters Setters
@@ -35,14 +33,6 @@ public class Tessera {
 
     public void setEmissione(LocalDate emissione) {
         this.emissione = emissione;
-    }
-
-    public String getIdCliente() {
-        return idCliente;
-    }
-
-    public void setIdCliente(String idCliente) {
-        this.idCliente = idCliente;
     }
 
     public LocalDate getScadenza() {

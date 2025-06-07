@@ -5,7 +5,6 @@ import java.time.LocalDate;
 public class Pagamento {
 
     private String idPagamento;
-    private String idCliente;
     private double totale;
     private String tipo;
     private LocalDate dataPagamento;

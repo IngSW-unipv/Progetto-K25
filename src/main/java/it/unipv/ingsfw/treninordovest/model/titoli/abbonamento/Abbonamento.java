@@ -10,18 +10,16 @@ public class Abbonamento extends TitoloViaggio {
     //Attributi
     private String tipoAbbonamento;
     private LocalDate scadenza;
-    private String idTessera;
 
     //Costruttore Vuoto
     public Abbonamento() {
         super();
     }
 
-    public Abbonamento(String id, String idPagamento, LocalDate emissione, double prezzo, String tipoAbbonamento, LocalDate scadenza, String idTessera) {
-        super(id, idPagamento, emissione, prezzo);
+    public Abbonamento(String id, LocalDate emissione, double prezzo, String tipoAbbonamento, LocalDate scadenza) {
+        super(id, emissione, prezzo);
         this.tipoAbbonamento = tipoAbbonamento;
         this.scadenza = scadenza;
-        this.idTessera = idTessera;
     }
 
 
@@ -41,13 +39,6 @@ public class Abbonamento extends TitoloViaggio {
         this.scadenza = scadenza;
     }
 
-    public String getIdTessera() {
-        return idTessera;
-    }
-
-    public void setIdTessera(String idTessera) {
-        this.idTessera = idTessera;
-    }
 
 
 
