@@ -18,8 +18,6 @@ public class Rimborso {
         this.idRimborso = idRimborso;
         this.dataRimborso = dataOra;
         this.totale = totale;
-        this.idBiglietto = idBiglietto;
-        this.idRichiedente = idRichiedente;
     }
 
     //Getters e Setters
@@ -47,30 +45,5 @@ public class Rimborso {
         this.totale = totale;
     }
 
-    public String getIdBiglietto() {
-        return idBiglietto;
-    }
 
-    public void setIdBiglietto(String idBiglietto) {
-        this.idBiglietto = idBiglietto;
-    }
-
-    public String getIdRichiedente() {
-        return idRichiedente;
-    }
-
-    public void setIdRichiedente(String idRichiedente) {
-        this.idRichiedente = idRichiedente;
-    }
-
-    @Override
-    public String toString() {
-        return "Rimborso{" +
-                "idRimborso='" + idRimborso + '\'' +
-                ", dataRimborso=" + dataRimborso +
-                ", totale=" + totale +
-                ", idBiglietto='" + idBiglietto + '\'' +
-                ", idRichiedente='" + idRichiedente + '\'' +
-                '}';
-    }
 }

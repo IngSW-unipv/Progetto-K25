@@ -13,24 +13,22 @@ import java.util.List;
 
 public class PagamentoDAOImpl implements PagamentoDAO {
     @Override
-    public Pagamento get(String id) {
-        Pagamento pagamento = null;
+    public Pagamento get(Pagamento pagamento) {
         String sql = "select idPagamento,totale,idCliente,Tipo,dataPagamento from Pagamento where idPagamento=?";
 
         try (Connection con = Database.getConnection(); PreparedStatement ps= con.prepareStatement(sql)) {
 
             //Estrazione dei dati dal DB
-            ps.setString(1,id);
+            ps.setString(1, pagamento.getIdPagamento());
             ResultSet rs=ps.executeQuery();
 
             if(rs.next()){
                 String idPagamento=rs.getString("idPagamento");
                 double totale=rs.getDouble("totale");
-                String idCliente=rs.getString("idCliente");
                 String tipo=rs.getString("tipo");
                 LocalDate dataPagamento= (LocalDate) rs.getObject("dataPagamento");
 
-                pagamento=new Pagamento(idPagamento,idCliente,totale, tipo, dataPagamento);
+                pagamento=new Pagamento(idPagamento,totale, tipo, dataPagamento);
             }
 
             Database.closeConnection(con);
@@ -40,11 +38,6 @@ public class PagamentoDAOImpl implements PagamentoDAO {
            throw new RuntimeException("Errore durante l'acquisizione dati",e);
         }
         return pagamento;
-    }
-
-    @Override
-    public Pagamento get(Pagamento oggetto) {
-        return null;
     }
 
     @Override
@@ -60,16 +53,15 @@ public class PagamentoDAOImpl implements PagamentoDAO {
             //Query effettuata su una vista creata nel DB per semplificare l'estrazione dei dati
             while(rs.next()){
                 String idPagamento=rs.getString("idPagamento");
-                String idCliente=rs.getString("idCliente");
                 double totale=rs.getDouble("totale");
                 String tipo=rs.getString("tipo");
                 LocalDate dataPagamento=(LocalDate) rs.getObject("dataPagamento");
 
 
-                pagamento=new Pagamento(idPagamento,idCliente,totale, tipo, dataPagamento);
+                pagamento=new Pagamento(idPagamento,totale, tipo, dataPagamento);
                 paga.add(pagamento);
             }
-            Database.closeConnection(con);
+            //Database.closeConnection(con);
 
         } catch (SQLException e) {
             throw new RuntimeException("Errore durante l'acquisizione dati",e);
@@ -77,19 +69,15 @@ public class PagamentoDAOImpl implements PagamentoDAO {
         return paga;
     }
 
+
     @Override
     public void delete(Pagamento pagamento) {
-
-    }
-
-    @Override
-    public void delete(String idPagamento) {
 
         String sql1="DELETE FROM pagamento WHERE idPagamento=?";
 
         try(Connection con = Database.getConnection();PreparedStatement ps = con.prepareStatement(sql1)){
 
-            ps.setString(1,idPagamento);
+            ps.setString(1,pagamento.getIdPagamento());
 
             ps.executeUpdate();
 
@@ -107,7 +95,7 @@ public class PagamentoDAOImpl implements PagamentoDAO {
 
         try(Connection con = Database.getConnection();PreparedStatement ps1= con.prepareStatement(sql1)){
             //Prima Query
-            ps1.setString(1,pagamento.getIdCliente());
+            //ps1.setString(1,pagamento.getIdCliente());
             ps1.setDouble(2,pagamento.getTotale());
             ps1.setString(3,pagamento.getTipo());
             ps1.setObject(4,pagamento.getDataPagamento());
@@ -131,7 +119,7 @@ public class PagamentoDAOImpl implements PagamentoDAO {
 
                 // Impostazione dei parametri per la query 1
                 ps1.setString(1,pagamento.getIdPagamento());
-                ps1.setString(2,pagamento.getIdCliente());
+                ps1.setString(2,null);
                 ps1.setDouble(3,pagamento.getTotale());
                 ps1.setString(4,pagamento.getTipo());
                 ps1.setObject(5,pagamento.getDataPagamento());

@@ -11,13 +11,14 @@ import java.util.List;
 
 public class StoricoPagamentoDAOImpl implements StoricoPagamentoDAO {
 
-    public StoricoPagamento get(String id) {
-        StoricoPagamento storicoPagamento = null;
+    @Override
+    public StoricoPagamento get(StoricoPagamento storicoPagamento) {
+
         String sql = "select idStorico,idPagamento,Stato from StoricoPagamento where idStorico=?";
         try (Connection con = Database.getConnection();PreparedStatement ps= con.prepareStatement(sql); ResultSet rs=ps.executeQuery()) {
 
 
-            ps.setString(1,id);
+            ps.setString(1,storicoPagamento.getIdStorico());
             if(rs.next()){
                 String idStorico=rs.getString("idStorico");
                 String idPagamento=rs.getString("idPagamento");
@@ -33,11 +34,6 @@ public class StoricoPagamentoDAOImpl implements StoricoPagamentoDAO {
             throw new RuntimeException("Errore durante l'acquisizione dati",e);
         }
         return storicoPagamento;
-    }
-
-    @Override
-    public StoricoPagamento get(StoricoPagamento oggetto) {
-        return null;
     }
 
     @Override

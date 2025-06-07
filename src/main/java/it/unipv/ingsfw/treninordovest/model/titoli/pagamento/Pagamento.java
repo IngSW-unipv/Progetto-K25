@@ -17,9 +17,8 @@ public class Pagamento {
 
     public Pagamento() {}
 
-    public Pagamento(String idPagamento, String idCliente, double totale, String tipo, LocalDate dataPagamento) {
+    public Pagamento(String idPagamento, double totale, String tipo, LocalDate dataPagamento) {
         this.idPagamento = idPagamento;
-        this.idCliente = idCliente;
         this.totale = totale;
         this.tipo = tipo;
         this.dataPagamento = dataPagamento;
@@ -31,14 +30,6 @@ public class Pagamento {
 
     public void setIdPagamento(String idPagamento) {
         this.idPagamento = idPagamento;
-    }
-
-    public String getIdCliente() {
-        return idCliente;
-    }
-
-    public void setIdCliente(String idCliente) {
-        this.idCliente = idCliente;
     }
 
     public double getTotale() {

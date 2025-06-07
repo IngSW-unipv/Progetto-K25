@@ -10,15 +10,15 @@ import java.util.List;
 public class AbbonamentoDAOimpl implements AbbonamentoDAO {
 
 
-    public Abbonamento get(String id)  {
+    @Override
+    public Abbonamento get(Abbonamento abbonamento)  {
 
-        Abbonamento abbonamento = null;
         String sql = "select IDTitolo, IDPagamento, Emissione, Prezzo, Tipo, Scadenza, IDTessera from titoliAbbonamenti where IDTitolo=?";
 
         try (Connection con =Database.getConnection();PreparedStatement ps = con.prepareStatement(sql);ResultSet rs=ps.executeQuery()) {
 
             //Estrazione dei dati dal DB
-            ps.setString(1, id);
+            ps.setString(1, abbonamento.getId());
 
             if(rs.next()){
                 String idTitolo = rs.getString("IDTitolo");
@@ -42,10 +42,6 @@ public class AbbonamentoDAOimpl implements AbbonamentoDAO {
 
     }
 
-    @Override
-    public Abbonamento get(Abbonamento oggetto) {
-        return null;
-    }
 
     @Override
     public List<Abbonamento> getAll()  {
@@ -79,19 +75,15 @@ public class AbbonamentoDAOimpl implements AbbonamentoDAO {
         return listaAbbonamenti;
     }
 
-    @Override
-    public void delete(Abbonamento abbonamento) {
-
-    }
 
     @Override
-    public void delete(String id)  {
+    public void delete(Abbonamento abbonamento)  {
 
         String sql1="DELETE FROM abbonamento where IDAbbonamento=?";
 
         try(Connection con = Database.getConnection(); PreparedStatement ps = con.prepareStatement(sql1)){
 
-            ps.setString(1,id);
+            ps.setString(1, abbonamento.getTipoAbbonamento());
             ps.executeUpdate();
 
             //Database.closeConnection(con);

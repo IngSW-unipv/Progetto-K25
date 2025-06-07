@@ -5,7 +5,6 @@ public class StoricoPagamento {
     //Attributi
     private String idStorico;
     private String statoPagamento;
-    private String idPagamento;
 
     //Costruttori
     public StoricoPagamento() {}
@@ -13,7 +12,6 @@ public class StoricoPagamento {
     public StoricoPagamento(String idStorico, String idPagamento, String statoPagamento) {
         this.idStorico=idStorico;
         this.statoPagamento=statoPagamento;
-        this.idPagamento=idPagamento;
 
     }
 
