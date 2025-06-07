@@ -8,24 +8,16 @@ public class Viaggio {
     }
 
     private String idViaggio;
-    private String IDTratta;
-    private String IDPartenza;
-    private String IDArrivo;
     private LocalDate DataViaggio;
     private LocalTime OraPartenza;
     private LocalTime OraArrivo;
-    private String idBiglietto;
 
 
-    public Viaggio(String idViaggio, String IDTratta, String IDPartenza, String IDArrivo, LocalDate DataViaggio, LocalTime OraPartenza, LocalTime OraArrivo,String idBiglietto) {
+    public Viaggio(String idViaggio, LocalDate DataViaggio, LocalTime OraPartenza, LocalTime OraArrivo) {
         this.idViaggio = idViaggio;
-        this.IDTratta = IDTratta;
-        this.IDPartenza = IDPartenza;
-        this.IDArrivo = IDArrivo;
         this.DataViaggio = DataViaggio;
         this.OraPartenza = OraPartenza;
         this.OraArrivo = OraArrivo;
-        this.idBiglietto = idBiglietto;
     }
 
     public String getIdViaggio() {
@@ -36,29 +28,6 @@ public class Viaggio {
         this.idViaggio = idViaggio;
     }
 
-    public String getIDTratta() {
-        return IDTratta;
-    }
-
-    public void setIDTratta(String IDTratta) {
-        this.IDTratta = IDTratta;
-    }
-
-    public String getIDPartenza() {
-        return IDPartenza;
-    }
-
-    public void setIDPartenza(String IDPartenza) {
-        this.IDPartenza = IDPartenza;
-    }
-
-    public String getIDArrivo() {
-        return IDArrivo;
-    }
-
-    public void setIDArrivo(String IDArrivo) {
-        this.IDArrivo = IDArrivo;
-    }
 
     public LocalDate getDataViaggio() {
         return DataViaggio;
@@ -84,12 +53,5 @@ public class Viaggio {
         OraArrivo = oraArrivo;
     }
 
-    public String getIdBiglietto() {
-        return idBiglietto;
-    }
-
-    public void setIdBiglietto(String idBiglietto) {
-        this.idBiglietto = idBiglietto;
-    }
 }
 

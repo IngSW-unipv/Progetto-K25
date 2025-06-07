@@ -13,13 +13,14 @@ import java.util.List;
 
 
 public class ViaggioDAOImpl implements ViaggioDAO {
+
     @Override
     public Viaggio get(String id) {
 
         Viaggio viaggio = null;
 
 
-        String sql = "select idViaggio, idTratta, IDPartenza, IDArrivo, DataViaggio, OrarioPartenza, OrarioArrivo from Viaggio where idViaggio=?";
+        String sql = "select idViaggio, IDPartenza,DataViaggio, OrarioPartenza, OrarioArrivo from Viaggio where idViaggio=?";
 
         try (Connection con = Database.getConnection(); PreparedStatement ps = con.prepareStatement(sql); ResultSet rs=ps.executeQuery()) {
 
@@ -27,15 +28,11 @@ public class ViaggioDAOImpl implements ViaggioDAO {
 
             if(rs.next()){
                 String idViaggio=rs.getString("idViaggio");
-                String idTratta=rs.getString("idTratta");
-                String idPartenza=rs.getString("idPartenza");
-                String idArrivo=rs.getString("idArrivo");
                 LocalDate dataViaggio= (LocalDate) rs.getObject("dataPagamento");
                 LocalTime oraPartenza=(LocalTime)rs.getObject("oraPartenza");
                 LocalTime oraArrivo=(LocalTime) rs.getObject("oraArrivo");
-                String idBiglietto=rs.getString("idBiglietto");
 
-                viaggio=new Viaggio(idViaggio, idTratta, idPartenza, idArrivo, dataViaggio, oraPartenza, oraArrivo,idBiglietto);
+                viaggio=new Viaggio(idViaggio, dataViaggio, oraPartenza, oraArrivo);
             }
 
             Database.closeConnection(con);
