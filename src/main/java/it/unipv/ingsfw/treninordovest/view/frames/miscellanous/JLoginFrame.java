@@ -1,6 +1,6 @@
 package it.unipv.ingsfw.treninordovest.view.frames.miscellanous;
 
-import it.unipv.ingsfw.treninordovest.controller.provvisorio.misc.LoginController;
+//import it.unipv.ingsfw.treninordovest.controller.provvisorio.misc.LoginController;
 import it.unipv.ingsfw.treninordovest.view.panels.miscellanous.LoginPanel;
 
 import javax.swing.*;
@@ -25,7 +25,7 @@ public class JLoginFrame extends JFrame  {
         loginPanel = new LoginPanel();
         add(loginPanel);
 
-        new LoginController(loginPanel, this);
+       // new LoginController(loginPanel, this);
     }
 
 

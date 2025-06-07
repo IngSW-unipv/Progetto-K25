@@ -12,16 +12,17 @@ import java.util.List;
 
 
 public class FermataDAOImpl implements FermataDAO {
-    public Fermata get(String id) {
-        Fermata fermata = null;
+
+    @Override
+    public Fermata get(Fermata fermata) {
+
+        String sql = "select idFermata, citta, numBinari from Fermata where idFermata=?";
         PreparedStatement ps;
         try (Connection con = Database.getConnection()) {
             //Query effettuata su una vista creata nel DB per semplificare l'estrazione dei dati
-            String sql = "select idFermata, citta, numBinari from Fermata where idFermata=?";
-
             //Estrazione dei dati dal DB
             ps = con.prepareStatement(sql);
-            ps.setString(1, id);
+            ps.setString(1, fermata.getIdFermata());
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
@@ -41,10 +42,6 @@ public class FermataDAOImpl implements FermataDAO {
         return fermata;
     }
 
-    @Override
-    public Fermata get(Fermata oggetto) {
-        return null;
-    }
 
     public List<Fermata> getAll() {
         List<Fermata> fermate= new ArrayList<Fermata>();
@@ -82,17 +79,12 @@ public class FermataDAOImpl implements FermataDAO {
         return fermate;
     }
 
-    @Override
-    public void delete(Fermata fermata) {
-
-    }
-
 
     @Override
-    public void delete(String id)  {
+    public void delete(Fermata fermata)  {
         try(Connection con = Database.getConnection()){
             PreparedStatement ps = con.prepareStatement("delete from Fermata where idFermata=?");
-            ps.setString(1,id);
+            ps.setString(1,fermata.getIdFermata());
 
             ps.executeUpdate();
 

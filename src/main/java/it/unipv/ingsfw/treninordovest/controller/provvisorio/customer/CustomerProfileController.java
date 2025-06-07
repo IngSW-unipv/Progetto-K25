@@ -1,7 +1,6 @@
 //package it.unipv.ingsfw.treninordovest.controller.provvisorio.customer;
 
-import it.unipv.ingsfw.treninordovest.facade.implementations.gestioneutenti.CustomerManagementFacade;
-import it.unipv.ingsfw.treninordovest.facade.implementations.gestioneutenti.LoginFacade;
+
 //
 //public class CustomerProfileController  {
 //    private CustomerProfilePanel view;
@@ -48,7 +47,7 @@ import it.unipv.ingsfw.treninordovest.facade.implementations.gestioneutenti.Logi
 //                "La password deve essere di almeno 8 caratteri",
 //                "Password troppo corta",
 //                WARNING_MESSAGE);
-            return;
+//            return;
 //        }
 //
 //        try {

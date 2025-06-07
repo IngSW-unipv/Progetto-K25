@@ -20,84 +20,78 @@ public class ClienteDAOImpl implements ClienteDAO {
     public ClienteDAOImpl() {
     }
 
-
-    public Cliente get(String id) {
+    @Override
+    public Cliente get(Cliente cliente) {
 
         String sql = "select ID,nome,cognome,email,Userpassword,bilancio,luogoNascita,dataNascita,sesso,cellulare,indirizzo,sesso from utentiClienti where id=?";
-        Cliente cliente = null;
 
         try (Connection con = Database.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
 
-            ps.setString(1,id);
+            ps.setString(1, cliente.getId());
 
-            try (ResultSet rs=ps.executeQuery()){
+            try (ResultSet rs = ps.executeQuery()) {
 
 
-                if(rs.next()){
-                    String nome=rs.getString("nome");
-                    String cognome=rs.getString("cognome");
-                    String email=rs.getString("email");
-                    String password=rs.getString("UserPassword");
-                    double bilancio=rs.getDouble("bilancio");
-                    String luogoNascita=rs.getString("luogoNascita");
+                if (rs.next()) {
+                    String nome = rs.getString("nome");
+                    String cognome = rs.getString("cognome");
+                    String email = rs.getString("email");
+                    String password = rs.getString("UserPassword");
+                    double bilancio = rs.getDouble("bilancio");
+                    String luogoNascita = rs.getString("luogoNascita");
 
-                    Date dataNascita= rs.getDate("dataNascita");
+                    Date dataNascita = rs.getDate("dataNascita");
                     LocalDate dataNascitaLocal = dataNascita.toLocalDate();
 
-                    String sesso=rs.getString("sesso");
-                    String cellulare=rs.getString("cellulare");
-                    String indirizzo=rs.getString("indirizzo");
+                    String sesso = rs.getString("sesso");
+                    String cellulare = rs.getString("cellulare");
+                    String indirizzo = rs.getString("indirizzo");
 
 
-                    cliente =new Cliente(id,password,nome,cognome,luogoNascita, sesso, dataNascitaLocal ,cellulare,indirizzo,bilancio,email);
+                    cliente = new Cliente(cliente.getId(), password, nome, cognome, luogoNascita, sesso, dataNascitaLocal, cellulare, indirizzo, bilancio, email);
                 }
 
             }
 
 
-
         } catch (SQLException e) {
-            throw new RuntimeException( "Errore durante il recupero dei dati: ",e);
+            throw new RuntimeException("Errore durante il recupero dei dati: ", e);
         }
 
         return cliente;
     }
 
-    @Override
-    public Cliente get(Cliente oggetto) {
-        return null;
-    }
 
     @Override
     public List<Cliente> getAll() {
 
         List<Cliente> clienti = new ArrayList<>();
         String sql = "select ID,nome,cognome,email,Userpassword,bilancio,luogoNascita,dataNascita,sesso,cellulare,indirizzo,sesso from utentiClienti";
-        Cliente cliente ;
+        Cliente cliente;
 
-        try (Connection con = Database.getConnection();  PreparedStatement ps= con.prepareStatement(sql); ResultSet rs=ps.executeQuery()) {
+        try (Connection con = Database.getConnection(); PreparedStatement ps = con.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
 
-         //Itera sui record degli oggetti cliente
-        while(rs.next()){
-            String id=rs.getString("ID");
-            String nome=rs.getString("nome");
-            String cognome=rs.getString("cognome");
-            String email=rs.getString("email");
-            String password=rs.getString("UserPassword");
-            double bilancio=rs.getDouble("bilancio");
-            String luogoNascita=rs.getString("luogoNascita");
-            LocalDate dataNascita= (LocalDate) rs.getObject("dataNascita");
-            String sesso=rs.getString("sesso");
-            String cellulare=rs.getString("cellulare");
-            String indirizzo=rs.getString("indirizzo");
+            //Itera sui record degli oggetti cliente
+            while (rs.next()) {
+                String id = rs.getString("ID");
+                String nome = rs.getString("nome");
+                String cognome = rs.getString("cognome");
+                String email = rs.getString("email");
+                String password = rs.getString("UserPassword");
+                double bilancio = rs.getDouble("bilancio");
+                String luogoNascita = rs.getString("luogoNascita");
+                LocalDate dataNascita = (LocalDate) rs.getObject("dataNascita");
+                String sesso = rs.getString("sesso");
+                String cellulare = rs.getString("cellulare");
+                String indirizzo = rs.getString("indirizzo");
 
 
-            cliente=new Cliente(id,password,nome,cognome,luogoNascita, sesso, dataNascita,cellulare,indirizzo,bilancio,email);
-            clienti.add(cliente);
-        }
+                cliente = new Cliente(id, password, nome, cognome, luogoNascita, sesso, dataNascita, cellulare, indirizzo, bilancio, email);
+                clienti.add(cliente);
+            }
             //Database.closeConnection(con);
         } catch (SQLException e) {
-           throw new RuntimeException( "Errore durante il recupero dei dati: ",e);
+            throw new RuntimeException("Errore durante il recupero dei dati: ", e);
         }
         return clienti;
     }
@@ -105,46 +99,41 @@ public class ClienteDAOImpl implements ClienteDAO {
     @Override
     public void delete(Cliente cliente) {
 
-    }
-
-
-    public void delete(String id)  {
-
         String sql = "DELETE FROM utente where ID=?";
 
-        try(Connection con = Database.getConnection(); PreparedStatement ps = con.prepareStatement(sql)){
-            ps.setString(1,id);
+        try (Connection con = Database.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, cliente.getId());
             ps.executeUpdate();
         } catch (Exception e) {
-            throw new RuntimeException("Errore durante l'eliminazione dati: ",e);
+            throw new RuntimeException("Errore durante l'eliminazione dati: ", e);
         }
 
     }
 
     @Override
-    public void update(Cliente cliente)  {
-        String sql1="UPDATE utente set UserPassword=?, nome=?, cognome=?, luogoNascita=?, sesso=?, dataNascita=?, cellulare=?, indirizzo=? where ID=?";
-        String sql2="UPDATE cliente set Bilancio=?, Email=? where IDCliente=?";
+    public void update(Cliente cliente) {
+        String sql1 = "UPDATE utente set UserPassword=?, nome=?, cognome=?, luogoNascita=?, sesso=?, dataNascita=?, cellulare=?, indirizzo=? where ID=?";
+        String sql2 = "UPDATE cliente set Bilancio=?, Email=? where IDCliente=?";
 
-        try(Connection con = Database.getConnection(); PreparedStatement ps1= con.prepareStatement(sql1); PreparedStatement ps2= con.prepareStatement(sql2)){
+        try (Connection con = Database.getConnection(); PreparedStatement ps1 = con.prepareStatement(sql1); PreparedStatement ps2 = con.prepareStatement(sql2)) {
             //Prima Query
 
             //Impostazione degli attributi
 
-            ps1.setString(1,cliente.getUserPassword());
-            ps1.setString(2,cliente.getNome());
-            ps1.setString(3,cliente.getCognome());
-            ps1.setString(4,cliente.getLuogoNascita());
-            ps1.setString(5,cliente.getSesso());
-            ps1.setObject(6,cliente.getDataNascita());
-            ps1.setString(7,cliente.getCellulare());
-            ps1.setString(8,cliente.getIndirizzo());
-            ps1.setString(9,cliente.getId());
+            ps1.setString(1, cliente.getUserPassword());
+            ps1.setString(2, cliente.getNome());
+            ps1.setString(3, cliente.getCognome());
+            ps1.setString(4, cliente.getLuogoNascita());
+            ps1.setString(5, cliente.getSesso());
+            ps1.setObject(6, cliente.getDataNascita());
+            ps1.setString(7, cliente.getCellulare());
+            ps1.setString(8, cliente.getIndirizzo());
+            ps1.setString(9, cliente.getId());
 
             //Seconda Query
-            ps2.setDouble(1,cliente.getBilancio());
-            ps2.setString(2,cliente.getEmail());
-            ps2.setString(3,cliente.getId());
+            ps2.setDouble(1, cliente.getBilancio());
+            ps2.setString(2, cliente.getEmail());
+            ps2.setString(3, cliente.getId());
 
             ps1.executeUpdate();
             ps2.executeUpdate();
@@ -152,43 +141,43 @@ public class ClienteDAOImpl implements ClienteDAO {
             //Database.closeConnection(con);
 
         } catch (Exception e) {
-            throw new RuntimeException("Errore durante l'aggiornamento  dati: ",e);
+            throw new RuntimeException("Errore durante l'aggiornamento  dati: ", e);
         }
 
     }
 
     @Override
-    public void insert(Cliente cliente)  {
+    public void insert(Cliente cliente) {
         String sql1 = "INSERT INTO utente (ID, UserPassword, Nome, Cognome, Sesso, LuogoNascita, DataNascita, Cellulare, Indirizzo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         String sql2 = "INSERT INTO cliente (IDCliente, Bilancio, Email) VALUES (?, ?, ?)";
-        try (Connection con = Database.getConnection();PreparedStatement ps1 = con.prepareStatement(sql1); PreparedStatement ps2 = con.prepareStatement(sql2)){
+        try (Connection con = Database.getConnection(); PreparedStatement ps1 = con.prepareStatement(sql1); PreparedStatement ps2 = con.prepareStatement(sql2)) {
 
             String hashedPassword = PasswordUtils.hashPassword(cliente.getUserPassword());
 
             // Impostazione dei parametri per la query 1
-                ps1.setString(1, cliente.getId());
-                ps1.setString(2, hashedPassword);
-                ps1.setString(3, cliente.getNome());
-                ps1.setString(4, cliente.getCognome());
-                ps1.setString(5, String.valueOf(cliente.getSesso()));
-                ps1.setString(6, cliente.getLuogoNascita());
-                ps1.setObject(7, cliente.getDataNascita()); // Assicurati che il driver JDBC supporti JDBC 4.2+
-                ps1.setString(8, cliente.getCellulare());
-                ps1.setString(9, cliente.getIndirizzo());
+            ps1.setString(1, cliente.getId());
+            ps1.setString(2, hashedPassword);
+            ps1.setString(3, cliente.getNome());
+            ps1.setString(4, cliente.getCognome());
+            ps1.setString(5, String.valueOf(cliente.getSesso()));
+            ps1.setString(6, cliente.getLuogoNascita());
+            ps1.setObject(7, cliente.getDataNascita()); // Assicurati che il driver JDBC supporti JDBC 4.2+
+            ps1.setString(8, cliente.getCellulare());
+            ps1.setString(9, cliente.getIndirizzo());
 
-                // Impostazione dei parametri per la query 2
-                ps2.setString(1, cliente.getId());
-                ps2.setDouble(2, cliente.getBilancio());
-                ps2.setString(3, cliente.getEmail());
+            // Impostazione dei parametri per la query 2
+            ps2.setString(1, cliente.getId());
+            ps2.setDouble(2, cliente.getBilancio());
+            ps2.setString(3, cliente.getEmail());
 
-                // Esecuzione delle query
-                ps1.executeUpdate();
-                ps2.executeUpdate();
+            // Esecuzione delle query
+            ps1.executeUpdate();
+            ps2.executeUpdate();
 
-                //Database.closeConnection(con);
+            //Database.closeConnection(con);
 
         } catch (Exception e) {
-            throw new RuntimeException("Errore durante l'inserimento dati",e);
+            throw new RuntimeException("Errore durante l'inserimento dati", e);
         }
 
 
@@ -197,77 +186,76 @@ public class ClienteDAOImpl implements ClienteDAO {
     /*Metodi da valutare*/
 
     @Override
-    public Cliente autenticate(String id, String password) {
-        System.out.println("Tentativo di autenticazione per id: " + id);
-        
-        Cliente cliente = get(id);
-        if (cliente == null) {
-            System.out.println("Cliente non trovato nel database");
-            return null;
-        }
-        
-        System.out.println("Cliente trovato. Verifica password...");
-        System.out.println("Password inserita: [lunghezza: " + password.length() + "]");
-        System.out.println("Password hash nel DB: " + cliente.getUserPassword());
-        
-        boolean passwordValida = PasswordUtils.verifyPassword(password, cliente.getUserPassword());
-        System.out.println("Risultato verifica password: " + passwordValida);
-        
-        if (passwordValida) {
-            System.out.println("Autenticazione riuscita");
-            return cliente;
-        } else {
-            System.out.println("Password non valida");
-            return null;
-        }
+    public Cliente autenticate(Cliente cliente) {
+
+//        //System.out.println("Tentativo di autenticazione per id: " + id);
+//
+//        //Cliente cliente = get(id);
+//        if (cliente == null) {
+//            System.out.println("Cliente non trovato nel database");
+//            return null;
+//        }
+//
+//
+//        //boolean passwordValida = PasswordUtils.verifyPassword(password, cliente.getUserPassword());
+//        System.out.println("Risultato verifica password: " + passwordValida);
+//
+//        if (passwordValida) {
+//            System.out.println("Autenticazione riuscita");
+//            return cliente;
+//        } else {
+//            System.out.println("Password non valida");
+//            return null;
+//
+//        }
+       return null;
+    }
+    @Override
+    public boolean updateBilancio (Cliente cliente) {
+
+//        String sql0 = "SELECT Bilancio FROM cliente where IDCliente=?";
+//        String sql = "UPDATE cliente set Bilancio=? where IDCliente=?";
+//
+//        try (Connection con2 = Database.getConnection(); PreparedStatement ps = con2.prepareStatement(sql0)) {
+//            ps.setString(1, cliente.getId());
+//
+//            ResultSet rs = ps.executeQuery();
+//
+//            if (rs.next()) {
+//                double bilancio = rs.getDouble("Bilancio");
+//                //importo += bilancio;
+//            }
+//
+//
+//        } catch (SQLException e) {
+//            throw new RuntimeException("Errore durante l'estrazione dei dati: ", e);
+//        }
+//
+//        try (Connection con = Database.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
+//          //  ps.setDouble(1, importo);
+//           // ps.setString(2, IdCliente);
+//            ps.executeUpdate();
+//            //Database.closeConnection(con);
+//            return true;
+//        } catch (SQLException e) {
+//            throw new RuntimeException("Errore durante l'aggiornamento password", e);
+//        }
+        return false;
     }
 
     @Override
-    public boolean updateBilancio(String IdCliente, double importo) {
+    public boolean updatePassword (Cliente cliente) {
 
-        String sql0= "SELECT Bilancio FROM cliente where IDCliente=?";
-        String sql = "UPDATE cliente set Bilancio=? where IDCliente=?";
-
-        try (Connection con2 = Database.getConnection() ; PreparedStatement ps = con2.prepareStatement(sql0)){
-            ps.setString(1,IdCliente);
-
-            ResultSet rs=ps.executeQuery();
-
-            if(rs.next()){
-                double bilancio=rs.getDouble("Bilancio");
-                importo += bilancio;
-            }
-
-
-        } catch (SQLException e){
-            throw new RuntimeException("Errore durante l'estrazione dei dati: ",e);
-        }
-
-        try (Connection con =Database.getConnection() ; PreparedStatement ps = con.prepareStatement(sql)){
-                ps.setDouble(1, importo);
-                ps.setString(2, IdCliente);
-                ps.executeUpdate();
-                //Database.closeConnection(con);
-                return true;
-        } catch (SQLException e) {
-            throw new RuntimeException("Errore durante l'aggiornamento password",e);
-        }
-    }
-
-    @Override
-    public boolean updatePassword(String id, String password) {
-
-        String hashedPassword = PasswordUtils.hashPassword(password);
-        String sql = "UPDATE utente set UserPassword=? where ID=?";
-        try (Connection con = Database.getConnection();PreparedStatement ps = con.prepareStatement(sql);){
-                ps.setString(1, hashedPassword);
-                ps.setString(2, id);
-                //Database.closeConnection(con);
-            return ps.executeUpdate() > 0;
-        } catch (SQLException e) {
-            throw new RuntimeException("Errore durante l'aggiornamento della password",e);
-        }
-
-
+//        String hashedPassword = PasswordUtils.hashPassword(cliente.getUserPassword());
+//        String sql = "UPDATE utente set UserPassword=? where ID=?";
+//        try (Connection con = Database.getConnection(); PreparedStatement ps = con.prepareStatement(sql);) {
+//            //ps.setString(1, hashedPassword);
+//            //ps.setString(2, id);
+//            //Database.closeConnection(con);
+//            return ps.executeUpdate() > 0;
+//        } catch (SQLException e) {
+//            throw new RuntimeException("Errore durante l'aggiornamento della password", e);
+//        }
+        return false;
     }
 }

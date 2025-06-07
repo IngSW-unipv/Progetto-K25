@@ -1,6 +1,6 @@
 package it.unipv.ingsfw.treninordovest.view.frames.customer;
 
-import it.unipv.ingsfw.treninordovest.controller.provvisorio.customer.CustomerRegController;
+
 import it.unipv.ingsfw.treninordovest.view.panels.users.CustomerRegistrationPanel;
 
 import javax.swing.*;
@@ -39,7 +39,7 @@ public class JCustomerRegFrame extends JFrame  {
      */
     private void inizializzaComponenti() {
         add(customerRegistrationPanel, BorderLayout.CENTER);
-        new CustomerRegController(customerRegistrationPanel,this,this::showSuccessMessage,this::hideFrame);
+       // new CustomerRegController(customerRegistrationPanel,this,this::showSuccessMessage,this::hideFrame);
     }
     
     /**

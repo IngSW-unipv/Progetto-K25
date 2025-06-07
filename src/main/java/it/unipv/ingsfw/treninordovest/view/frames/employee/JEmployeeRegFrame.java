@@ -1,6 +1,6 @@
 package it.unipv.ingsfw.treninordovest.view.frames.employee;
 
-import it.unipv.ingsfw.treninordovest.controller.provvisorio.employee.EmployeeRegController;
+//import it.unipv.ingsfw.treninordovest.controller.provvisorio.employee.EmployeeRegController;
 import it.unipv.ingsfw.treninordovest.view.panels.users.EmployeeRegistrationPanel;
 
 import javax.swing.*;

@@ -1,6 +1,6 @@
 package it.unipv.ingsfw.treninordovest.controller.provvisorio.employee;
 
-import it.unipv.ingsfw.treninordovest.facade.implementations.gestioneutenti.UserRegistrationFacade;
+
 import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JMainMenuFrame;
 import it.unipv.ingsfw.treninordovest.view.frames.employee.JEmployeeRegFrame;
 import it.unipv.ingsfw.treninordovest.view.panels.users.EmployeeRegistrationPanel;

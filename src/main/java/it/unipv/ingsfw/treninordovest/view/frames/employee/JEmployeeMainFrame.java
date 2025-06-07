@@ -1,7 +1,6 @@
 package it.unipv.ingsfw.treninordovest.view.frames.employee;
 
-import it.unipv.ingsfw.treninordovest.controller.provvisorio.customer.TicketCheckController;
-import it.unipv.ingsfw.treninordovest.controller.provvisorio.employee.EmployeeProfileController;
+
 import it.unipv.ingsfw.treninordovest.view.panels.miscellanous.TravelDocCheckPanel;
 import it.unipv.ingsfw.treninordovest.view.panels.users.EmployeeProfilePanel;
 
@@ -14,8 +13,7 @@ public class JEmployeeMainFrame extends JFrame {
     private final TravelDocCheckPanel travelDocCheck = new TravelDocCheckPanel();
     private final EmployeeProfilePanel profilePanel = new EmployeeProfilePanel();
 
-    private EmployeeProfileController employeeProfileController;
-    private TicketCheckController ticketCheckController;
+
 
     public JEmployeeMainFrame() {
         setTitle("Treninordovest - Area Dipendenti");
@@ -32,8 +30,7 @@ public class JEmployeeMainFrame extends JFrame {
         tabbedPane.addTab("Profilo", profilePanel);
 
         add(tabbedPane, BorderLayout.CENTER);
-        employeeProfileController= new EmployeeProfileController(profilePanel,this);
-        ticketCheckController = new TicketCheckController(this,travelDocCheck);
+
 
 
     }

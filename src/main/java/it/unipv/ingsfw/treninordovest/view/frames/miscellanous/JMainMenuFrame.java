@@ -1,6 +1,6 @@
 package it.unipv.ingsfw.treninordovest.view.frames.miscellanous;
 
-import it.unipv.ingsfw.treninordovest.controller.provvisorio.misc.MainMenuController;
+//import it.unipv.ingsfw.treninordovest.controller.provvisorio.misc.MainMenuController;
 import it.unipv.ingsfw.treninordovest.view.frames.customer.JCustomerRegFrame;
 import it.unipv.ingsfw.treninordovest.view.frames.employee.JEmployeeRegFrame;
 import it.unipv.ingsfw.treninordovest.view.panels.miscellanous.MainMenuPanel;
@@ -28,7 +28,7 @@ public class JMainMenuFrame extends JFrame  {
     private void initComponents() {
         view = new MainMenuPanel();
 
-        new MainMenuController(view,this::openLogin,this::openCustomerRegistration,this::openEmployeeRegistration);
+       // new MainMenuController(view,this::openLogin,this::openCustomerRegistration,this::openEmployeeRegistration);
 
         add(view, BorderLayout.CENTER);
         setVisible(true);

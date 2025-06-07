@@ -1,7 +1,6 @@
-package it.unipv.ingsfw.treninordovest.model.ferrovia.tratta;
+package it.unipv.ingsfw.treninordovest.model.ferrovia.fermata.tratta;
 
 import it.unipv.ingsfw.treninordovest.dao.interfaces.DAO;
-import it.unipv.ingsfw.treninordovest.model.ferrovia.fermata.tratta.TrattaFermata;
 
 import java.sql.SQLException;
 
