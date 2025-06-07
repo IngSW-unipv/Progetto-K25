@@ -1,8 +1,5 @@
 package it.unipv.ingsfw.treninordovest.facade.interfaces;
 
-import it.unipv.ingsfw.treninordovest.model.titoli.Biglietto;
-import it.unipv.ingsfw.treninordovest.model.titoli.TitoloViaggio;
-
 import java.util.List;
 
 public interface ITitoloViaggioFacade<T> {

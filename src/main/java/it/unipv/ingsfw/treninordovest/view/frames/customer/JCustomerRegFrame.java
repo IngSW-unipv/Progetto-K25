@@ -1,12 +1,10 @@
 package it.unipv.ingsfw.treninordovest.view.frames.customer;
 
-import it.unipv.ingsfw.treninordovest.controller.customer.CustomerRegController;
+import it.unipv.ingsfw.treninordovest.controller.provvisorio.customer.CustomerRegController;
 import it.unipv.ingsfw.treninordovest.view.panels.users.CustomerRegistrationPanel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Observable;
-import java.util.Observer;
 
 /**
  * Frame per la registrazione dei clienti

@@ -1,6 +1,6 @@
 package it.unipv.ingsfw.treninordovest.view.panels.miscellanous;
 
-import it.unipv.ingsfw.treninordovest.model.ferrovia.Tratta;
+import it.unipv.ingsfw.treninordovest.model.ferrovia.tratta.Tratta;
 
 import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;

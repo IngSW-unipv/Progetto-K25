@@ -1,8 +1,6 @@
 package it.unipv.ingsfw.treninordovest.strategy.biglietto;
 
-import it.unipv.ingsfw.treninordovest.model.titoli.Abbonamento;
-import it.unipv.ingsfw.treninordovest.model.titoli.Biglietto;
-import org.hibernate.query.criteria.internal.predicate.BooleanExpressionPredicate;
+import it.unipv.ingsfw.treninordovest.model.titoli.biglietto.Biglietto;
 
 import java.time.LocalDate;
 

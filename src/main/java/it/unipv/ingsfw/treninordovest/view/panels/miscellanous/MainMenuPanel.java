@@ -1,11 +1,7 @@
 package it.unipv.ingsfw.treninordovest.view.panels.miscellanous;
 
-import it.unipv.ingsfw.treninordovest.controller.misc.MainMenuController;
-
-import javax.security.auth.Subject;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class MainMenuPanel extends JPanel {

@@ -1,6 +1,6 @@
 package it.unipv.ingsfw.treninordovest.strategy.abbonamento;
 
-import it.unipv.ingsfw.treninordovest.model.titoli.Abbonamento;
+import it.unipv.ingsfw.treninordovest.model.titoli.abbonamento.Abbonamento;
 
 import java.time.LocalDate;
 

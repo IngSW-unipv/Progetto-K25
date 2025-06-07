@@ -1,6 +1,6 @@
 package it.unipv.ingsfw.treninordovest.factory.interfaces;
 
-import it.unipv.ingsfw.treninordovest.model.utenti.Utente;
+import it.unipv.ingsfw.treninordovest.model.utenti.utente.Utente;
 
 public interface ILoginAbstractFactory {
     Utente login(String username, String password);

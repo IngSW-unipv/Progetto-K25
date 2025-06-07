@@ -1,7 +1,6 @@
 package it.unipv.ingsfw.treninordovest.strategy.biglietto;
 
-import it.unipv.ingsfw.treninordovest.model.titoli.Abbonamento;
-import it.unipv.ingsfw.treninordovest.model.titoli.Biglietto;
+import it.unipv.ingsfw.treninordovest.model.titoli.biglietto.Biglietto;
 import it.unipv.ingsfw.treninordovest.model.varie.GeneraID;
 
 import java.time.LocalDate;

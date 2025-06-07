@@ -1,12 +1,5 @@
 package it.unipv.ingsfw.treninordovest.application;
 
-import it.unipv.ingsfw.treninordovest.controller.misc.MainMenuController;
-import it.unipv.ingsfw.treninordovest.view.frames.customer.JCustomerMainFrame;
-import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JMainMenuFrame;
-import it.unipv.ingsfw.treninordovest.view.panels.miscellanous.MainMenuPanel;
-
-import javax.swing.*;
-
 public class MainMenuApplication {
 
         public static void main(String[] args) {

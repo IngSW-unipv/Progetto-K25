@@ -1,5 +1,5 @@
 package it.unipv.ingsfw.treninordovest.model.varie;
-import it.unipv.ingsfw.treninordovest.model.utenti.Utente;
+import it.unipv.ingsfw.treninordovest.model.utenti.utente.Utente;
 
 
 /*Classe gestisce la sessione di login*/

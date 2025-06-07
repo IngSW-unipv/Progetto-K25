@@ -1,12 +1,9 @@
 package it.unipv.ingsfw.treninordovest.strategy.pagamento;
 
-import it.unipv.ingsfw.treninordovest.model.titoli.Biglietto;
-import it.unipv.ingsfw.treninordovest.model.titoli.Pagamento;
-import it.unipv.ingsfw.treninordovest.model.titoli.TitoloViaggio;
+import it.unipv.ingsfw.treninordovest.model.titoli.pagamento.Pagamento;
 import it.unipv.ingsfw.treninordovest.model.varie.GeneraID;
 
 import java.time.LocalDate;
-import java.util.List;
 
 public class VenditaBigliettoStrategy implements IVenditaTitoliStrategy{
     @Override

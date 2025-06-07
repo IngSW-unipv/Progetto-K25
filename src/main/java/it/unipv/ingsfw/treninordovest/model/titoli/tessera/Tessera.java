@@ -1,0 +1,55 @@
+package it.unipv.ingsfw.treninordovest.model.titoli.tessera;
+
+import java.time.LocalDate;
+
+public class Tessera {
+    //Attributi
+    private String idTessera;
+    private LocalDate emissione;
+    private LocalDate Scadenza;
+    private String idCliente;
+
+    //Costruttore vuoto
+    public Tessera() {}
+
+    //Costruttore completo
+    public Tessera(String idTessera, LocalDate emissione, LocalDate scadenza, String idCliente) {
+        this.idTessera = idTessera;
+        this.emissione = emissione;
+        Scadenza = scadenza;
+        this.idCliente = idCliente;
+    }
+
+    //Getters Setters
+    public String getIdTessera() {
+        return idTessera;
+    }
+
+    public void setIdTessera(String idTessera) {
+        this.idTessera = idTessera;
+    }
+
+    public LocalDate getEmissione() {
+        return emissione;
+    }
+
+    public void setEmissione(LocalDate emissione) {
+        this.emissione = emissione;
+    }
+
+    public String getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(String idCliente) {
+        this.idCliente = idCliente;
+    }
+
+    public LocalDate getScadenza() {
+        return Scadenza;
+    }
+
+    public void setScadenza(LocalDate scadenza) {
+        Scadenza = scadenza;
+    }
+}
