@@ -135,4 +135,27 @@ public class PagamentoDAOImpl implements PagamentoDAO {
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public void insertPagamento(Pagamento pagamento, String idCliente) {
+        String sql1 = "INSERT INTO pagamento (idPagamento,idCliente,totale, tipo, dataPagamento) VALUES (?, ?, ?, ?, ?)";
+
+        try ( Connection con = Database.getConnection();PreparedStatement ps1 = con.prepareStatement(sql1)) {
+
+            // Impostazione dei parametri per la query 1
+            ps1.setString(1,pagamento.getIdPagamento());
+            ps1.setString(2,idCliente);
+            ps1.setDouble(3,pagamento.getTotale());
+            ps1.setString(4,pagamento.getTipo());
+            ps1.setObject(5,pagamento.getDataPagamento());
+
+            // Esecuzione delle query
+            ps1.executeUpdate();
+
+            //Database.closeConnection(con);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
