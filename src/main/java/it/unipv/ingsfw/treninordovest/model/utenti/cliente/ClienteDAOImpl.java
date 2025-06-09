@@ -175,7 +175,7 @@ public class ClienteDAOImpl implements ClienteDAO {
 
             //Database.closeConnection(con);
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
             throw new RuntimeException("Errore durante l'inserimento dati", e);
         }
 

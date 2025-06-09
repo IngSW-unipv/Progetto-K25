@@ -56,7 +56,13 @@ public class JCustomerRegFrame extends JFrame  {
     }
 
     public static void main(String[] args) {
-        new JCustomerRegFrame().setVisible(true);
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                new JCustomerRegFrame().setVisible(true);
+
+            }
+        });
+
     }
 
 

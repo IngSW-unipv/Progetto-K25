@@ -113,7 +113,7 @@ public class PagamentoDAOImpl implements PagamentoDAO {
 
     }
 
-
+    @Override
     public void insert(Pagamento pagamento) {
         String sql1 = "INSERT INTO pagamento (idPagamento,idCliente,totale, tipo, dataPagamento) VALUES (?, ?, ?, ?, ?)";
 

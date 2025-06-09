@@ -1,6 +1,10 @@
 package it.unipv.ingsfw.treninordovest.model.utenti.cliente;
 
+import it.unipv.ingsfw.treninordovest.model.varie.GeneraID;
 import org.junit.jupiter.api.Test;
+
+import java.time.LocalDate;
+import java.util.Locale;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -8,15 +12,7 @@ class ClienteDAOImplTest {
 
     @Test
     void get() {
-        Cliente cliente = new Cliente();
 
-        cliente.setId("CL15908");
-
-        ClienteDAOImpl dao = new ClienteDAOImpl();
-
-        cliente=dao.get(cliente);
-
-        System.out.println(cliente);
 
 
     }
@@ -35,5 +31,20 @@ class ClienteDAOImplTest {
 
     @Test
     void insert() {
+        ClienteDAOImpl dao = new ClienteDAOImpl();
+
+        Cliente cliente = new Cliente();
+        cliente.setId(new GeneraID("CL").getID());
+        cliente.setNome("Test");
+        cliente.setCognome("Test");
+        cliente.setSesso("T");
+        cliente.setUserPassword("Test");
+        cliente.setLuogoNascita("Test");
+        cliente.setEmail("Test");
+        cliente.setIndirizzo("Test");
+        cliente.setDataNascita(LocalDate.now());
+        cliente.setCellulare("Test");
+        cliente.setBilancio(2);
+        dao.insert(cliente);
     }
 }
