@@ -39,12 +39,15 @@ public class TesseraDAOImpl implements TesseraDAO {
             throw new RuntimeException( "Errore durante il recupero dei dati: ",e);
         }
         return tessera;
+
+       */
+        return null;
     }
 
 
     @Override
     public List<Tessera> getAll()  {
-
+/*
         List<Tessera> listaTessere =  new ArrayList<>();
         Tessera tessera;
 
@@ -69,6 +72,9 @@ public class TesseraDAOImpl implements TesseraDAO {
 
 
         return listaTessere;
+
+ */
+        return null;
     }
 
 
@@ -86,6 +92,8 @@ public class TesseraDAOImpl implements TesseraDAO {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+
+ */
     }
 
     @Override
@@ -138,7 +146,7 @@ public class TesseraDAOImpl implements TesseraDAO {
 
     @Override
     public boolean exists(String idCliente) {
-        Tessera tessera = null;
+       /* Tessera tessera = null;
         String sql = "select idTessera, idCliente from tessera where IDCliente=?";
 
         try (Connection con = Database.getConnection(); PreparedStatement ps = con.prepareStatement(sql);ResultSet rs=ps.executeQuery() ) {
@@ -155,13 +163,15 @@ public class TesseraDAOImpl implements TesseraDAO {
         } catch (SQLException e) {
             throw new RuntimeException( "Errore durante il recupero dei dati: ",e);
         }
+
+        */
         return false;
     }
 
     @Override
     public String getIdTesseraByCustomerID(String idCliente)  {
 
-        String idTessera = null;
+       /* String idTessera = null;
         Tessera tessera = null;
 
         String sql = "select idTessera, idCliente from tessera where IDCliente=?";
@@ -183,5 +193,8 @@ public class TesseraDAOImpl implements TesseraDAO {
 
 
         return idTessera;
+
+        */
+       return null;
     }
 }

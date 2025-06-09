@@ -10,7 +10,7 @@ import java.time.LocalDate;
 public class VenditaAbbonamentoStrategy implements IVenditaTitoliStrategy{
     @Override
     public Pagamento generaPagamento(String idCliente, int numeroTitoli, double prezzoUnitario,String tipoPagamento) {
-        GeneraID generaID = new GeneraID("PG");
+      /*  GeneraID generaID = new GeneraID("PG");
 
        // IMetodoPagamento metodoPagamento = MetodoPagamentoFactory.getFactoryFromProperties(tipoPagamento);
         double importo = getTotalPagamento(numeroTitoli, prezzoUnitario);
@@ -18,13 +18,17 @@ public class VenditaAbbonamentoStrategy implements IVenditaTitoliStrategy{
        // metodoPagamento.processaPagamento(importo);
 
         return new Pagamento(generaID.getID(),idCliente,importo,tipoPagamento, LocalDate.now());
+    */
+        return null;
     }
 
 
+
     private double getTotalPagamento(int numeroTitoli,double prezzoUnitario) {
-        if (numeroTitoli == 0) {
+        /*if (numeroTitoli == 0) {
             return numeroTitoli=1;
         }
-        return numeroTitoli*prezzoUnitario;
+        return numeroTitoli*prezzoUnitario;*/
+        return 0;
     }
 }

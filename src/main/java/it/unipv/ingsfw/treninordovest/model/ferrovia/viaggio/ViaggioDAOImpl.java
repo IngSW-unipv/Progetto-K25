@@ -62,8 +62,8 @@ public class ViaggioDAOImpl implements ViaggioDAO {
                 String IdBiglietto=rs.getString("idbiglietto");
 
 
-                viaggio=new Viaggio(idViaggio, idTratta, idPartenza, idArrivo, dataViaggio, oraPartenza, oraArrivo,IdBiglietto);
-                viaggi.add(viaggio);
+               /* viaggio=new Viaggio(idViaggio, idTratta, idPartenza, idArrivo, dataViaggio, oraPartenza, oraArrivo,IdBiglietto);
+                viaggi.add(viaggio);*/
             }
            // Database.closeConnection(con);
 
@@ -87,12 +87,12 @@ public class ViaggioDAOImpl implements ViaggioDAO {
 
         } catch (Exception e) {
             throw new RuntimeException("Errore nell'eliminazione dati",e);
-        }
+        }*/
     }
 
     @Override
     public void update(Viaggio viaggio)  {
-        String sql1="UPDATE Viaggio set idTratta=?, idPartenza=?, idArrivo=?, dataViaggio=?, OrarioPartenza=?, OrarioArrivo=?  where idViaggio=?";
+/*        String sql1="UPDATE Viaggio set idTratta=?, idPartenza=?, idArrivo=?, dataViaggio=?, OrarioPartenza=?, OrarioArrivo=?  where idViaggio=?";
 
         try(Connection con = Database.getConnection(); PreparedStatement ps1= con.prepareStatement(sql1)){
             //Prima Query
@@ -112,12 +112,12 @@ public class ViaggioDAOImpl implements ViaggioDAO {
         } catch (Exception e) {
             throw new RuntimeException("Errore nell'aggiornamento dati",e);
         }
-
+*/
     }
 
     @Override
     public void insert(Viaggio viaggio)  {
-
+/*
         String sql1 = "INSERT INTO viaggio (IDViaggio,IDTratta,IDPartenza,IDArrivo,DataViaggio,OrarioPartenza,OrarioArrivo,IDBiglietto) VALUES (?,?,?,?,?,?,?,?)";
 
         try( Connection con1 = Database.getConnection(); PreparedStatement ps1 = con1.prepareStatement(sql1)) {
@@ -139,7 +139,7 @@ public class ViaggioDAOImpl implements ViaggioDAO {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
+            */
     }
 
 }

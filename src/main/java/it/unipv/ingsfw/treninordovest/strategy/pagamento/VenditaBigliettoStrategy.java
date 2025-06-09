@@ -8,11 +8,14 @@ import java.time.LocalDate;
 public class VenditaBigliettoStrategy implements IVenditaTitoliStrategy{
     @Override
     public Pagamento generaPagamento(String idCliente, int numeroTitoli, double prezzoUnitario ,String tipoPagamento) {
-        GeneraID generaID = new GeneraID("PG");
+        /*GeneraID generaID = new GeneraID("PG");
 
         double prezzo = getTotalPagamento(numeroTitoli,prezzoUnitario);
 
         return new Pagamento(generaID.getID(),idCliente,prezzo,tipoPagamento, LocalDate.now());
+
+         */
+        return null;
     }
 
 

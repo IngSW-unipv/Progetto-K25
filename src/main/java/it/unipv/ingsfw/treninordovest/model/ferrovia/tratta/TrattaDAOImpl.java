@@ -15,7 +15,7 @@ public class TrattaDAOImpl implements TrattaDAO {
     @Override
     public Tratta get(Tratta tratta) {
 
-       Tratta tratta = null;
+      /* Tratta tratta = null;
        String sql = "select * from tratta where IDTratta=?";
 
         try (Connection con =Database.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
@@ -40,6 +40,8 @@ public class TrattaDAOImpl implements TrattaDAO {
         return tratta;
 
 
+       */
+        return null;
     }
 
     @Override

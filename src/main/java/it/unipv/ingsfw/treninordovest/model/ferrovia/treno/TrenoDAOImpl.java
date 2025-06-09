@@ -91,11 +91,13 @@ public class TrenoDAOImpl implements TrenoDAO {
             throw new RuntimeException("Errore durante l'eliminazione dati",e);
         }
 
+ */
+
     }
 
     @Override
     public void update(Treno treno)  {
-
+/*
         String sql1="UPDATE treno set modello=?, kw=?, numposti=? where IDTreno=?";
 
         try(Connection con = Database.getConnection();PreparedStatement ps1= con.prepareStatement(sql1)){
@@ -117,11 +119,13 @@ public class TrenoDAOImpl implements TrenoDAO {
         }
 
 
+ */
+
     }
 
     @Override
     public void insert(Treno treno) {
-
+/*
         String sql1 = "INSERT INTO treno (IDTreno, modello, kw, numPosti) VALUES (?, ?, ?, ?)";
 
 
@@ -142,6 +146,8 @@ public class TrenoDAOImpl implements TrenoDAO {
             }
 
 
+
+ */
 
 
     }

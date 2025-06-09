@@ -87,7 +87,7 @@ public class AbbonamentoDAOimpl implements AbbonamentoDAO {
 
     @Override
     public void delete(Abbonamento abbonamento)  {
-
+/*
         String sql1="DELETE FROM abbonamento where IDAbbonamento=?";
 
         try(Connection con = Database.getConnection(); PreparedStatement ps = con.prepareStatement(sql1)){
@@ -102,6 +102,8 @@ public class AbbonamentoDAOimpl implements AbbonamentoDAO {
         }
 
 
+
+ */
     }
 
     @Override

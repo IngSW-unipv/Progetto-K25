@@ -98,7 +98,9 @@ public class RimborsoDAOImpl implements RimborsoDAO {
 
     @Override
     public void update(Rimborso rimborso)  {
+       /*
         String sql1="UPDATE rimborso set Totale=?,IDBiglietto=?, IDRichiedente=?,DataRimborso=? where idRimborso=?";
+
 
         try(Connection con = Database.getConnection(); PreparedStatement ps1= con.prepareStatement(sql1)){
             //Prima Query
@@ -117,11 +119,13 @@ public class RimborsoDAOImpl implements RimborsoDAO {
         }
 
 
+        */
+
     }
 
     @Override
     public void insert(Rimborso rimborso)  {
-            String sql1 = "INSERT INTO rimborso (idRimborso,Totale,idBiglietto,idRichiedente,DataRimborso) VALUES (?,?,?,?,?)";
+         /*   String sql1 = "INSERT INTO rimborso (idRimborso,Totale,idBiglietto,idRichiedente,DataRimborso) VALUES (?,?,?,?,?)";
 
 
             try (Connection con = Database.getConnection() ;PreparedStatement ps1 = con.prepareStatement(sql1)) {
@@ -143,5 +147,7 @@ public class RimborsoDAOImpl implements RimborsoDAO {
 
 
 
+
+          */
     }
 }

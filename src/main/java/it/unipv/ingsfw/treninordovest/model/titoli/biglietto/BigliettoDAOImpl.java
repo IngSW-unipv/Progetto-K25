@@ -141,13 +141,15 @@ public class BigliettoDAOImpl implements BigliettoDAO {
         }
 
 
+
+         */
     }
 
     @Override
     public void insert(Biglietto biglietto) {
 
         /*Poichè l'ereditarietà in SQL non esiste propriamente, si è deciso di aggiornare 2 tabella collegate con vincoli
-        * di integrità referenziale in modo da avere una coerenza coi dati*/
+        * di integrità referenziale in modo da avere una coerenza coi dati
 
         String sql1 = "INSERT INTO titoloviaggio (IDTitolo, IDPagamento, Emissione, Prezzo) VALUES (?, ?, ?, ?)";
         String sql2 = "INSERT INTO biglietto (IDBiglietto, Ritorno, Validato, DataRitorno, DataValidazione) VALUES (?,?,?,?,?)";
@@ -174,5 +176,7 @@ public class BigliettoDAOImpl implements BigliettoDAO {
         } catch (Exception e) {
            throw new RuntimeException("Errore durante l'inserimento",e);
         }
+
+         */
     }
 }

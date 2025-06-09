@@ -104,8 +104,8 @@ public class DipendenteDAOImpl implements DipendenteDAO {
 
 
     @Override
-    public void delete(String id) {
-        String sql = "DELETE FROM utente where ID=?";
+    public void delete(Dipendente dipendente) {
+       /* String sql = "DELETE FROM utente where ID=?";
         try(Connection con =Database.getConnection();PreparedStatement ps = con.prepareStatement(sql)){
 
             ps.setString(1,id);
@@ -115,11 +115,13 @@ public class DipendenteDAOImpl implements DipendenteDAO {
         } catch (Exception e) {
             throw new RuntimeException("Errore durante l'eliminazione dati: ",e);
         }
+        */
+
     }
 
     @Override
     public void update(Dipendente dipendente) {
-        String sql1="UPDATE utente set UserPassword=?, nome=?, cognome=?, luogoNascita=?, sesso=?, dataNascita=?, cellulare=?, indirizzo=? where ID=?";
+/*        String sql1="UPDATE utente set UserPassword=?, nome=?, cognome=?, luogoNascita=?, sesso=?, dataNascita=?, cellulare=?, indirizzo=? where ID=?";
         String sql2="UPDATE dipendente set codTreno=?, stipendio=?, ruolo=? where IdDipendente=?";
 
         try(Connection con = Database.getConnection();PreparedStatement ps1= con.prepareStatement(sql1); PreparedStatement ps2= con.prepareStatement(sql2)){
@@ -148,12 +150,12 @@ public class DipendenteDAOImpl implements DipendenteDAO {
         } catch (Exception e) {
            throw new RuntimeException("Errore durante l'aggiornamento dati: ",e);
         }
-
+*/
     }
 
     @Override
     public void insert(Dipendente dipendente) {
-        String sql1 = "INSERT INTO utente (ID, UserPassword, Nome, Cognome, Sesso, LuogoNascita, DataNascita, Cellulare, Indirizzo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+       /* String sql1 = "INSERT INTO utente (ID, UserPassword, Nome, Cognome, Sesso, LuogoNascita, DataNascita, Cellulare, Indirizzo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         String sql2 = "INSERT INTO dipendente (IDDipendente, Stipendio,Ruolo,CodTreno) VALUES (?, ?, ?,?)";
 
             try (Connection con = Database.getConnection() ;PreparedStatement ps1 = con.prepareStatement(sql1); PreparedStatement ps2 = con.prepareStatement(sql2)) {
@@ -196,7 +198,7 @@ public class DipendenteDAOImpl implements DipendenteDAO {
 
     @Override
     public Dipendente autenticate(String id, String password)  {
-        System.out.println("Tentativo di autenticazione per id: " + id);
+       /* System.out.println("Tentativo di autenticazione per id: " + id);
 
        Dipendente dipendente = get(id);
         if (dipendente == null) {
@@ -217,7 +219,8 @@ public class DipendenteDAOImpl implements DipendenteDAO {
         } else {
             System.out.println("Password non valida");
             return null;
-        }
+        }*/
+        return null;
     }
 
     @Override
