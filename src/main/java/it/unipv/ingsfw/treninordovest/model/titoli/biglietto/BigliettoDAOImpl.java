@@ -42,7 +42,7 @@ public class BigliettoDAOImpl implements BigliettoDAO {
 
                 LocalDate dataValLocal= dataValidazione.toLocalDate();
 
-               biglietto=new Biglietto(idTitolo,idPagamento,emissioneLocal,prezzo,ritorno,validato,dataRitornoLocal,dataValLocal);
+               biglietto=new Biglietto(idTitolo,emissioneLocal,prezzo,ritorno,validato,dataRitornoLocal,dataValLocal);
             }
             //Database.closeConnection(con);
 
@@ -78,7 +78,7 @@ public class BigliettoDAOImpl implements BigliettoDAO {
                 LocalDate dataRitorno = (LocalDate) rs.getObject("DataRitorno");
                 LocalDate dataValidazione = (LocalDate) rs.getObject("DataValidazione");
 
-                biglietto=new Biglietto(idTitolo,idPagamento,emissione,prezzo,ritorno,validato,dataRitorno,dataValidazione);
+                biglietto=new Biglietto(idTitolo,emissione,prezzo,ritorno,validato,dataRitorno,dataValidazione);
                 listaBiglietti.add(biglietto);
             }
 
@@ -91,18 +91,14 @@ public class BigliettoDAOImpl implements BigliettoDAO {
         return listaBiglietti;
     }
 
+
     @Override
     public void delete(Biglietto biglietto) {
-
-    }
-
-    @Override
-    public void delete(String id) {
 
         String sql1="DELETE FROM biglietto where IDBiglietto=?";
 
         try(Connection con = Database.getConnection();PreparedStatement ps = con.prepareStatement(sql1)){
-            ps.setString(1,id);
+            ps.setString(1, biglietto.getId());
             ps.executeUpdate();
             //Database.closeConnection(con);
 
@@ -115,7 +111,7 @@ public class BigliettoDAOImpl implements BigliettoDAO {
 
     @Override
     public void update(Biglietto biglietto) {
-
+        /*
         String sql1="UPDATE titoloviaggio set IDPagamento=?, Emissione=?, Prezzo=? where IDTitolo=?";
         String sql2="UPDATE biglietto set ritorno=?, validato=?, dataRitorno=?, dataValidazione=?  where IDBiglietto=?";
 

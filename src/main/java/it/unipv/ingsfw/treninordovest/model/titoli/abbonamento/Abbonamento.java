@@ -16,6 +16,7 @@ public class Abbonamento extends TitoloViaggio {
         super();
     }
 
+
     public Abbonamento(String id, LocalDate emissione, double prezzo, String tipoAbbonamento, LocalDate scadenza) {
         super(id, emissione, prezzo);
         this.tipoAbbonamento = tipoAbbonamento;

@@ -13,8 +13,9 @@ import java.util.List;
 public class RimborsoDAOImpl implements RimborsoDAO {
 
     @Override
-    public Rimborso get(String id) {
+    public Rimborso get(Rimborso rimborso) {
 
+        /*
         Rimborso rimborso = null;
         String sql = "select * from rimborso where idRimborso=?";
 
@@ -38,12 +39,10 @@ public class RimborsoDAOImpl implements RimborsoDAO {
         }
         return rimborso;
 
-    }
-
-    @Override
-    public Rimborso get(Rimborso oggetto) {
+         */
         return null;
     }
+
 
     @Override
     public List<Rimborso> getAll()  {
@@ -64,7 +63,7 @@ public class RimborsoDAOImpl implements RimborsoDAO {
                 LocalDate dataRimborso = (LocalDate)rs.getObject("DataRimborso");
 
 
-                rimborso=new Rimborso(idRimborso,dataRimborso,totale,idBiglietto,idRichiedente);
+                rimborso=new Rimborso(idRimborso,dataRimborso,totale);
                 rimborsi.add(rimborso);
             }
 
@@ -77,13 +76,10 @@ public class RimborsoDAOImpl implements RimborsoDAO {
         return rimborsi;
     }
 
-    @Override
-    public void delete(Rimborso rimborso) {
-
-    }
 
     @Override
-    public void delete(String id)  {
+    public void delete(Rimborso rimborso)  {
+        /*
 
         try(Connection con = Database.getConnection()){
             PreparedStatement ps = con.prepareStatement("delete from rimborso where idRimborso=?");
@@ -96,7 +92,7 @@ public class RimborsoDAOImpl implements RimborsoDAO {
         } catch (Exception e) {
             throw new RuntimeException("Errore durante l'eliminazione dati",e);
         }
-
+*/
 
     }
 

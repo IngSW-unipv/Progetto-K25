@@ -11,18 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TrattaDAOImpl implements TrattaDAO {
-    @Override
-    public Tratta get(Tratta oggetto) {
-        return null;
-    }
 
     @Override
-    public void delete(Tratta tratta) {
-
-    }
-
-    @Override
-    public Tratta get(String id) {
+    public Tratta get(Tratta tratta) {
 
        Tratta tratta = null;
        String sql = "select * from tratta where IDTratta=?";
@@ -80,7 +71,8 @@ public class TrattaDAOImpl implements TrattaDAO {
     }
 
     @Override
-    public void delete(String id)  {
+    public void delete(Tratta tratta)  {
+        /*
 
         String sql1="DELETE FROM tratta WHERE IDTratta=?";
 
@@ -91,11 +83,12 @@ public class TrattaDAOImpl implements TrattaDAO {
 
         } catch (Exception e) {
             throw new RuntimeException(e);
-        }
+        }*/
     }
 
     @Override
     public void update(Tratta tratta) {
+        /*
         String sql1="UPDATE Tratta set nome=?, lunghezza=? where idTratta=?=?";
 
         try(Connection con = Database.getConnection();PreparedStatement ps1= con.prepareStatement(sql1)){
@@ -111,6 +104,8 @@ public class TrattaDAOImpl implements TrattaDAO {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+
+         */
     }
 
     @Override

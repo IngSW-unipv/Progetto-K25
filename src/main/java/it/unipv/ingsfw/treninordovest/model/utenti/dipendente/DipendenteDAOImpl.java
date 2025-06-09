@@ -14,6 +14,7 @@ public class DipendenteDAOImpl implements DipendenteDAO {
     }
 
 
+    @Override
     public Dipendente get(Dipendente dipendente){
         //Dipendenti
         String sql = "select ID,Userpassword,Nome,Cognome,Sesso,LuogoNascita,DataNascita,Cellulare,Indirizzo,Stipendio,Ruolo from utentiDipendenti where id=?";
@@ -55,11 +56,6 @@ public class DipendenteDAOImpl implements DipendenteDAO {
     }
 
     @Override
-    public Dipendente get(Dipendente oggetto) {
-        return null;
-    }
-
-    @Override
     public List<Dipendente> getAll()  {
 
         String sql = "select ID,nome,cognome,Userpassword,luogoNascita,dataNascita,sesso,cellulare,indirizzo,sesso,stipendio,ruolo,codTreno from utentiDipendenti";
@@ -94,7 +90,7 @@ public class DipendenteDAOImpl implements DipendenteDAO {
                 String ruolo=rs.getString("ruolo");
                 String codTreno=rs.getString("codTreno");
 
-                dipendente=new Dipendente(id,password,nome,cognome,luogoNascita, sesso, dataNascitaLocal,cellulare,indirizzo,codTreno,stipendio,ruolo);
+                dipendente=new Dipendente(id,password,nome,cognome,luogoNascita, sesso, dataNascitaLocal,cellulare,indirizzo,stipendio,ruolo);
                 dipendenti.add(dipendente);
             }
 
@@ -106,10 +102,6 @@ public class DipendenteDAOImpl implements DipendenteDAO {
         return dipendenti;
     }
 
-    @Override
-    public void delete(Dipendente dipendente) {
-
-    }
 
     @Override
     public void delete(String id) {
@@ -192,7 +184,11 @@ public class DipendenteDAOImpl implements DipendenteDAO {
             }
         catch (Exception e) {
             throw new RuntimeException("Errore durante l'inserimento dati: ",e);
+
+
         }
+
+       */
 
 
 
@@ -226,6 +222,7 @@ public class DipendenteDAOImpl implements DipendenteDAO {
 
     @Override
     public boolean updatePassword(String id, String password) {
+        /*
         String sql = "UPDATE utente set UserPassword=? where ID=?";
         String hashedPassword = PasswordUtils.hashPassword(password);
 
@@ -240,5 +237,8 @@ public class DipendenteDAOImpl implements DipendenteDAO {
         } catch (SQLException e) {
             throw new RuntimeException("Errore durante l'aggiornamento della password",e);
         }
+
+         */
+        return false;
     }
 }

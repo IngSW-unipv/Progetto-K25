@@ -63,31 +63,13 @@ public class StoricoPagamentoDAOImpl implements StoricoPagamentoDAO {
 
     @Override
     public void delete(StoricoPagamento storicoPagamento) {
-
-    }
-
-
-    @Override
-    public void delete(String idStorico) {
-
-        String sql="DELETE FROM StoricoPagamento where idStorico=?";
-
-        try(Connection con = Database.getConnection();PreparedStatement ps = con.prepareStatement(sql)){
-
-            ps.setString(1,idStorico);
-
-            ps.executeUpdate();
-
-            //Database.closeConnection(con);
-
-        } catch (SQLException e) {
-            throw new RuntimeException("Errore durante l'eliminazione dati",e);
-        }
+        return;
     }
 
 
     @Override
     public void update(StoricoPagamento storicoPagamento) {
+        /*
         String sql1="UPDATE StoricoPagamento set idPagamento=?, Stato=? where idStorico=?";
 
         try(Connection con = Database.getConnection(); PreparedStatement ps1= con.prepareStatement(sql1)){
@@ -103,12 +85,13 @@ public class StoricoPagamentoDAOImpl implements StoricoPagamentoDAO {
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        }
+        }*/return;
 
     }
 
     @Override
     public void insert(StoricoPagamento storicoPagamento)  {
+       /*
 
             String sql1 = "INSERT INTO storicoPagamento (idStorico,idPagamento,stato) VALUES (?, ?, ?)";
 
@@ -126,5 +109,7 @@ public class StoricoPagamentoDAOImpl implements StoricoPagamentoDAO {
          catch (Exception e) {
             throw new RuntimeException(e);
         }
+
+      */
     }
 }

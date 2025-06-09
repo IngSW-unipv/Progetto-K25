@@ -3,6 +3,8 @@ package it.unipv.ingsfw.treninordovest.model.utenti.cliente;
 
 import it.unipv.ingsfw.treninordovest.model.utenti.utente.Utente;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.time.LocalDate;
 
 public class Cliente extends Utente {
@@ -43,12 +45,4 @@ public class Cliente extends Utente {
 
     //Metodi di verifica
 
-
-    @Override
-    public String toString() {
-        return "Cliente{" +
-                "bilancio=" + bilancio +
-                ", email='" + email + '\'' +
-                '}';
-    }
 }

@@ -17,21 +17,21 @@ public class TesseraDAOImpl implements TesseraDAO {
     public TesseraDAOImpl()  {}
 
 
-    public Tessera get(String id) {
-        Tessera tessera = null;
-        String sql = "select * from tessera where IDTessera=?";
+    @Override
+    public Tessera get(Tessera tessera) {
+      /*  String sql = "select * from tessera where IDTessera=?";
 
         try (Connection con = Database.getConnection(); PreparedStatement ps = con.prepareStatement(sql);ResultSet rs=ps.executeQuery() ) {
 
             //Estrazione dei dati dal DB
-            ps.setString(1,id);
+            ps.setString(1,tessera.getIdTessera());
             if(rs.next()){
              String idTessera = rs.getString("IDTessera");
              LocalDate Emissione = (LocalDate) rs.getObject("Emissione");
              LocalDate Scadenza = (LocalDate) rs.getObject("Scadenza");
              String idCliente = rs.getString("IDCliente");
 
-             tessera=new Tessera(idTessera, Emissione, Scadenza, idCliente);
+             tessera=new Tessera(tessera.getIdTessera(), Emissione, Scadenza);
             }
             //Database.closeConnection(con);
 
@@ -41,10 +41,6 @@ public class TesseraDAOImpl implements TesseraDAO {
         return tessera;
     }
 
-    @Override
-    public Tessera get(Tessera oggetto) {
-        return null;
-    }
 
     @Override
     public List<Tessera> getAll()  {
@@ -62,31 +58,28 @@ public class TesseraDAOImpl implements TesseraDAO {
                 LocalDate Scadenza = (LocalDate) rs.getObject("Scadenza");
                 String idCliente = rs.getString("IDCliente");
 
-                tessera=new Tessera(idTessera, Emissione, Scadenza, idCliente);
+                tessera=new Tessera(idTessera, Emissione, Scadenza);
                 listaTessere.add(tessera);
             }
             //Database.closeConnection(con);
 
         } catch (SQLException e) {
-           throw new RuntimeException( "Errore durante il recupero dei dati: ",e);
+           e.printStackTrace();
         }
 
 
         return listaTessere;
     }
 
+
+
     @Override
-    public void delete(Tessera tessera) {
-
-    }
-
-
-    public void delete(String id)  {
-
+    public void delete(Tessera tessera)  {
+/*
         String sql = "delete from tessera where IDTessera=?";
 
         try(Connection con = Database.getConnection();PreparedStatement ps = con.prepareStatement(sql)){
-            ps.setString(1,id);
+            ps.setString(1,tessera.getIdTessera());
             ps.executeUpdate();
             //Database.closeConnection(con);
 
@@ -97,6 +90,7 @@ public class TesseraDAOImpl implements TesseraDAO {
 
     @Override
     public void update(Tessera tessera)  {
+        /*
 
         String sql1="UPDATE tessera set emissione=?, scadenza=?, idcliente=? where IDTessera=?";
 
@@ -115,12 +109,12 @@ public class TesseraDAOImpl implements TesseraDAO {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
+        */
     }
 
     @Override
     public void insert(Tessera tessera)  {
-
+        /*
             String sql1 = "INSERT INTO tessera (IDTessera, emissione, scadenza, idcliente) VALUES (?, ?, ?, ?)";
             try (Connection con = Database.getConnection();PreparedStatement ps1 = con.prepareStatement(sql1)) {
                 // Impostazione dei parametri per la query 1
@@ -137,10 +131,8 @@ public class TesseraDAOImpl implements TesseraDAO {
          catch (Exception e) {
              throw new RuntimeException("Errore durante l'inserimento dati",e);
         }
-
+        */
     }
-
-
 
     /*Metodi da valutare*/
 

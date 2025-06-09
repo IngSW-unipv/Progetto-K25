@@ -17,7 +17,7 @@ public class Dipendente extends Utente {
 
     //Costruttore completo
 
-    public Dipendente(String id, String userPassword, String nome, String cognome, String luogoNascita, String sesso, LocalDate dataNascita, String cellulare, String indirizzo, String codTreno, double stipendio, String ruolo) {
+    public Dipendente(String id, String userPassword, String nome, String cognome, String luogoNascita, String sesso, LocalDate dataNascita, String cellulare, String indirizzo, double stipendio, String ruolo) {
         super(id, userPassword, nome, cognome, luogoNascita, sesso, dataNascita, cellulare, indirizzo);
         this.stipendio = stipendio;
         this.ruolo = ruolo;

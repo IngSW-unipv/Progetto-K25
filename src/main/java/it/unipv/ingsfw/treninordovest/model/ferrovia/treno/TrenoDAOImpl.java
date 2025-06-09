@@ -74,19 +74,15 @@ public class TrenoDAOImpl implements TrenoDAO {
         return treni;
     }
 
-    @Override
-    public void delete(Treno treno) {
-
-    }
 
     @Override
-    public void delete(String id)  {
-
+    public void delete(Treno treno)  {
+/*
         String sql1="DELETE FROM treno WHERE IDTreno=?";
 
         try(Connection con = Database.getConnection();PreparedStatement ps = con.prepareStatement(sql1)){
 
-            ps.setString(1,id);
+            ps.setString(1,treno.getIdTreno());
             ps.executeUpdate();
 
             //Database.closeConnection(con);

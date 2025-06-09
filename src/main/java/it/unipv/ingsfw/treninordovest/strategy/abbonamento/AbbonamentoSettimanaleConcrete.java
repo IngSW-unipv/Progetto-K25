@@ -28,7 +28,9 @@ public class AbbonamentoSettimanaleConcrete implements IAbbonamentoStrategy {
 
     @Override
     public Abbonamento createAbbonamento(String idCliente, String idPagamento, String idTessera) {
-        GeneraID generaIDAbbonamento = new GeneraID("AB");
+        /*GeneraID generaIDAbbonamento = new GeneraID("AB");
         return new Abbonamento(generaIDAbbonamento.getID(),idPagamento,LocalDate.now(),ottieniPrezzoAbbonamento(),getTipoAbbonamento(),getDataScadenza(),idTessera);
+   */
+        return new Abbonamento();
     }
 }

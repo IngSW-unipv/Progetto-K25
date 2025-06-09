@@ -120,10 +120,6 @@ public class TrattaFermataDAOImpl implements TrattaFermataDAO {
         return tratta;
     }
 
-    @Override
-    public TrattaFermata get(String id)  {
-        return null;
-    }
 
     @Override
     public TrattaFermata get(TrattaFermata oggetto) {
@@ -140,10 +136,6 @@ public class TrattaFermataDAOImpl implements TrattaFermataDAO {
 
     }
 
-    @Override
-    public void delete(String id) {
-
-    }
 
     @Override
     public void update(TrattaFermata trattaFermata) {

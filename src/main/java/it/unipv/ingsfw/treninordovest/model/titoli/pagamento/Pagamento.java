@@ -1,5 +1,7 @@
 package it.unipv.ingsfw.treninordovest.model.titoli.pagamento;
 
+import it.unipv.ingsfw.treninordovest.model.varie.GeneraID;
+
 import java.time.LocalDate;
 
 public class Pagamento {

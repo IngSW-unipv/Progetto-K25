@@ -15,16 +15,12 @@ import java.util.List;
 public class ViaggioDAOImpl implements ViaggioDAO {
 
     @Override
-    public Viaggio get(String id) {
-
-        Viaggio viaggio = null;
-
-
+    public Viaggio get(Viaggio viaggio) {
         String sql = "select idViaggio, IDPartenza,DataViaggio, OrarioPartenza, OrarioArrivo from Viaggio where idViaggio=?";
 
         try (Connection con = Database.getConnection(); PreparedStatement ps = con.prepareStatement(sql); ResultSet rs=ps.executeQuery()) {
 
-            ps.setString(1,id);
+            ps.setString(1, viaggio.getIdViaggio());
 
             if(rs.next()){
                 String idViaggio=rs.getString("idViaggio");
@@ -44,10 +40,6 @@ public class ViaggioDAOImpl implements ViaggioDAO {
         return viaggio;
     }
 
-    @Override
-    public Viaggio get(Viaggio oggetto) {
-        return null;
-    }
 
     @Override
     public List<Viaggio> getAll() {
@@ -81,18 +73,14 @@ public class ViaggioDAOImpl implements ViaggioDAO {
         return viaggi;
     }
 
-    @Override
-    public void delete(Viaggio viaggio) {
-
-    }
 
     @Override
-    public void delete(String id)  {
-
+    public void delete(Viaggio viaggio)  {
+/*
         String sql = "delete from Viaggio where idViaggio=?";
 
         try(Connection con = Database.getConnection(); PreparedStatement ps = con.prepareStatement(sql)){
-            ps.setString(1,id);
+            ps.setString(1,viaggio.getIdViaggio());
             ps.executeUpdate();
 
             //Database.closeConnection(con);

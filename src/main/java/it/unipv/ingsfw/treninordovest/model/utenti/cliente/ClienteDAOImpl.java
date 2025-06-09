@@ -61,7 +61,6 @@ public class ClienteDAOImpl implements ClienteDAO {
         return cliente;
     }
 
-
     @Override
     public List<Cliente> getAll() {
 
@@ -184,6 +183,24 @@ public class ClienteDAOImpl implements ClienteDAO {
     }
 
     /*Metodi da valutare*/
+
+    @Override
+    public Cliente findById(String id) {
+
+        String sql = "SELECT * FROM utente WHERE ID=?";
+        Cliente cliente = null;
+
+
+        try {
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+
+
+        return cliente;
+    }
 
     @Override
     public Cliente autenticate(Cliente cliente) {

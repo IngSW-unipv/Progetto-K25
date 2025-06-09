@@ -1,6 +1,9 @@
 package it.unipv.ingsfw.treninordovest.model.titoli.abbonamento;
 
 import it.unipv.ingsfw.treninordovest.dao.database.Database;
+import it.unipv.ingsfw.treninordovest.model.titoli.pagamento.Pagamento;
+import it.unipv.ingsfw.treninordovest.model.titoli.pagamento.PagamentoDAOImpl;
+import it.unipv.ingsfw.treninordovest.model.titoli.tessera.TesseraDAOImpl;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -9,6 +12,13 @@ import java.util.List;
 
 public class AbbonamentoDAOimpl implements AbbonamentoDAO {
 
+    private PagamentoDAOImpl pagamentoDAO;
+    private TesseraDAOImpl tesseraDAO;
+
+    public AbbonamentoDAOimpl() {
+        pagamentoDAO = new PagamentoDAOImpl();
+        tesseraDAO = new TesseraDAOImpl();
+    }
 
     @Override
     public Abbonamento get(Abbonamento abbonamento)  {
@@ -31,7 +41,7 @@ public class AbbonamentoDAOimpl implements AbbonamentoDAO {
                 LocalDate scadenzaLoc= scadenza.toLocalDate();
                 String idTessera = rs.getString("IDTessera");
 
-                abbonamento=new Abbonamento(idTitolo,idPagamento,emissioneLoc,prezzo,tipo,scadenzaLoc,idTessera);
+                abbonamento=new Abbonamento(idTitolo,emissioneLoc,prezzo,tipo,scadenzaLoc);
             }
             //Database.closeConnection(con);
 
@@ -41,7 +51,6 @@ public class AbbonamentoDAOimpl implements AbbonamentoDAO {
         return abbonamento;
 
     }
-
 
     @Override
     public List<Abbonamento> getAll()  {
@@ -63,7 +72,7 @@ public class AbbonamentoDAOimpl implements AbbonamentoDAO {
                 LocalDate scadenza = (LocalDate) rs.getObject("Scadenza");
                 String idTessera = rs.getString("IDTessera");
 
-                abbonamento=new Abbonamento(idTitolo,idPagamento,emissione,prezzo,tipo,scadenza,idTessera);
+                abbonamento=new Abbonamento(idTitolo,emissione,prezzo,tipo,scadenza);
                 listaAbbonamenti.add(abbonamento);
             }
 
@@ -97,7 +106,7 @@ public class AbbonamentoDAOimpl implements AbbonamentoDAO {
 
     @Override
     public void update(Abbonamento abbonamento)  {
-
+        /*
         String sql1="UPDATE titoloviaggio set IDPagamento=?, Emissione=?, Prezzo=? where IDTitolo=? ";
         String sql2="UPDATE abbonamento set Tipo=?, Scadenza=?, IDTessera=? where IDAbbonamento=?";
 
@@ -122,15 +131,18 @@ public class AbbonamentoDAOimpl implements AbbonamentoDAO {
 
         } catch (Exception e) {
             throw new RuntimeException("Errore durante l'aggiornamento dati",e);
-        }
+        }*/
 
 
     }
 
     @Override
     public void insert(Abbonamento abbonamento)  {
+        /*
         String sql1 = "INSERT INTO titoloviaggio (IDTitolo, IDPagamento, Emissione, Prezzo) VALUES (?, ?, ?, ?)";
         String sql2 = "INSERT INTO abbonamento (IDAbbonamento, Tipo, Scadenza, IDTessera) VALUES (?,?,?,?)";
+
+
 
         try (Connection con = Database.getConnection()) {
 
@@ -156,6 +168,8 @@ public class AbbonamentoDAOimpl implements AbbonamentoDAO {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+
+        */
 
     }
 

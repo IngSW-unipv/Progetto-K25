@@ -32,7 +32,7 @@ public class JEmployeeRegFrame extends JFrame {
         this.employeeRegistrationPanel = new EmployeeRegistrationPanel();
         add(employeeRegistrationPanel, BorderLayout.CENTER);
 
-        new EmployeeRegController(employeeRegistrationPanel,this,this::showSuccessMessage,this::hideFrame);
+        //new EmployeeRegController(employeeRegistrationPanel,this,this::showSuccessMessage,this::hideFrame);
     }
 
     /**

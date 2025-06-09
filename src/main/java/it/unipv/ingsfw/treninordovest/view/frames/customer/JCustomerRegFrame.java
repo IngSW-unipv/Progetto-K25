@@ -55,6 +55,10 @@ public class JCustomerRegFrame extends JFrame  {
 
     }
 
+    public static void main(String[] args) {
+        new JCustomerRegFrame().setVisible(true);
+    }
+
 
 
 

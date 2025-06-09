@@ -16,8 +16,8 @@ public class Biglietto extends TitoloViaggio {
     public Biglietto() {}
 
     //Costruttore completo
-    public Biglietto(String id, String idPagamento, LocalDate emissione, double prezzo, boolean ritorno, boolean validato,LocalDate dataRitorno, LocalDate dataValidazione) {
-        super(id, idPagamento, emissione, prezzo);
+    public Biglietto(String id,  LocalDate emissione, double prezzo, boolean ritorno, boolean validato,LocalDate dataRitorno, LocalDate dataValidazione) {
+        super(id, emissione, prezzo);
         this.ritorno = ritorno;
         this.validato = validato;
         this.dataRitorno  =  dataRitorno;

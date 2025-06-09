@@ -3,6 +3,7 @@ package it.unipv.ingsfw.treninordovest.model.titoli.pagamento;
 import it.unipv.ingsfw.treninordovest.dao.database.Database;
 
 
+import javax.persistence.EntityManager;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PagamentoDAOImpl implements PagamentoDAO {
+
     @Override
     public Pagamento get(Pagamento pagamento) {
         String sql = "select idPagamento,totale,idCliente,Tipo,dataPagamento from Pagamento where idPagamento=?";
