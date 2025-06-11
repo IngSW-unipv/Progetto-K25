@@ -2,12 +2,14 @@ package it.unipv.ingsfw.treninordovest.model.utenti.cliente;
 
 
 import it.unipv.ingsfw.treninordovest.model.utenti.utente.Utente;
+import it.unipv.ingsfw.treninordovest.model.varie.GeneraID;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.time.LocalDate;
 
 public class Cliente extends Utente {
+
 
     //Attributi
     private double bilancio;
@@ -25,6 +27,9 @@ public class Cliente extends Utente {
         this.bilancio = bilancio;
         this.email = email;
     }
+
+
+
 //Getters e Setters
 
     public double getBilancio() {
@@ -42,6 +47,7 @@ public class Cliente extends Utente {
     public void setEmail(String email) {
         this.email = email;
     }
+
 
     //Metodi di verifica
 

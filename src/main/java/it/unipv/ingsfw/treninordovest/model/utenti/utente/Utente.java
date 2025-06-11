@@ -36,6 +36,9 @@ public abstract class Utente {
         this.indirizzo = indirizzo;
     }
 
+
+
+
     //Getters e setters
     public String getId() {
         return id;
