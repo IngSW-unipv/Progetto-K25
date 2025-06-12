@@ -11,7 +11,7 @@ import javax.swing.*;
  * Interfaccia per la facade di registrazione utenti
  */
 public interface IUserRegistrationFacade {
-    /**
+    /*
      * Registra un nuovo cliente
      * 
      * @param view Panel di registrazione cliente
@@ -20,7 +20,7 @@ public interface IUserRegistrationFacade {
      */
      boolean registraCliente(Cliente cliente);
     
-    /**
+    /*
      * Registra un nuovo dipendente
      * 
      * @param view Panel di registrazione dipendente

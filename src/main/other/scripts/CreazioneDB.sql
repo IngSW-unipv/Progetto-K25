@@ -146,7 +146,7 @@ foreign key (IDBiglietto) references titoloviaggio(IDTitolo) on delete cascade o
 );
 
 create table abbonamento(
-IDAbbonamento varchar(10) not null,
+IDAbbonamento varchar(40) not null,
 Tipo varchar(30) not null,
 Scadenza date not null,
 IDTessera varchar(10), 
@@ -158,22 +158,22 @@ foreign key (IDAbbonamento) references titoloviaggio(IDTitolo) on delete cascade
 
 
 create table storicopagamento(
-IDStorico varchar(10) not null,
-IDPagamento varchar(10) not null,
+IDStorico varchar(40) not null,
+IDPagamento varchar(40) not null,
 Stato varchar(10) not null,
 primary key (IDStorico),
 foreign key (IDPagamento) references pagamento(IDPagamento) on delete cascade on update cascade
 );
 
 create table viaggio(
-IDViaggio varchar(10) not null,
-IDTratta varchar(10) not null,
-IDPartenza varchar(10) not null,
-IDArrivo varchar(10) not null,
+IDViaggio varchar(40) not null,
+IDTratta varchar(40) not null,
+IDPartenza varchar(40) not null,
+IDArrivo varchar(40) not null,
 DataViaggio date not null,
 OrarioPartenza TIME NOT NULL,
 OrarioArrivo TIME NOT NULL,
-IDBiglietto varchar(10) not null,
+IDBiglietto varchar(40) not null,
 primary key (IDViaggio),
 foreign key (IDTratta) references tratta(IDTratta) on delete cascade on update cascade,
 foreign key (IDPartenza) references fermata(IDFermata) on delete cascade on update cascade,
@@ -191,7 +191,7 @@ foreign key (IDBiglietto) references biglietto(IDBiglietto) on delete cascade on
 );*/
 
 create table rimborso(
-IDRimborso varchar(10) not null,
+IDRimborso varchar(40) not null,
 DataRimborso date not null ,
 Totale double not null, 
 IDBiglietto varchar(40) not null,

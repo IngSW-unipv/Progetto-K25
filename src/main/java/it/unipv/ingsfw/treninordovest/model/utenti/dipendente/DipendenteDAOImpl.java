@@ -21,7 +21,7 @@ public class DipendenteDAOImpl implements DipendenteDAO {
         String sql = "select ID,Userpassword,Nome,Cognome,Sesso,LuogoNascita,DataNascita,Cellulare,Indirizzo,Stipendio,Ruolo from utentiDipendenti where id=?";
         try (Connection con = Database.getConnection(); PreparedStatement ps= con.prepareStatement(sql)) {
             //Preparazione della Query
-            ps.setString(1,dipendente.getId());
+            ps.setString(1,dipendente.getId().toString());
             //Impostazione di estrapolazione query
 
             try (ResultSet rs=ps.executeQuery()) {

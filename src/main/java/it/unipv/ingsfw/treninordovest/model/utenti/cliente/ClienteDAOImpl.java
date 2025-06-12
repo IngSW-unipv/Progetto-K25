@@ -28,7 +28,7 @@ public class ClienteDAOImpl implements ClienteDAO {
 
         try (Connection con = Database.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
 
-            ps.setString(1, cliente.getId());
+             ps.setString(1, cliente.getId().toString());
 
             try (ResultSet rs = ps.executeQuery()) {
 
