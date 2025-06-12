@@ -189,8 +189,9 @@ public class CustomerRegistrationPanel extends JPanel {
     }
     public JButton getBtnMenuPrincipal() {return btnMenuPrincipal; }
 
+    /*
     public void addActionListener(ActionListener listener) {
         btnRegister.addActionListener(listener);
         btnMenuPrincipal.addActionListener(listener);
-    }
+    }*/
 }

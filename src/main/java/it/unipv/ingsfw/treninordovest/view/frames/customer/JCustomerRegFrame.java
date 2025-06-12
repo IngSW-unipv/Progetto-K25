@@ -1,6 +1,7 @@
 package it.unipv.ingsfw.treninordovest.view.frames.customer;
 
 
+import it.unipv.ingsfw.treninordovest.controller.GestioneUtenzaController;
 import it.unipv.ingsfw.treninordovest.view.panels.users.CustomerRegistrationPanel;
 
 import javax.swing.*;
@@ -39,7 +40,7 @@ public class JCustomerRegFrame extends JFrame  {
      */
     private void inizializzaComponenti() {
         add(customerRegistrationPanel, BorderLayout.CENTER);
-       // new CustomerRegController(customerRegistrationPanel,this,this::showSuccessMessage,this::hideFrame);
+        new GestioneUtenzaController(customerRegistrationPanel,this);
     }
     
     /**
@@ -50,10 +51,13 @@ public class JCustomerRegFrame extends JFrame  {
     }
     public void hideFrame() {setVisible(false);}
 
-    public void showSuccessMessage () {
-        JOptionPane.showMessageDialog(this, "Registrazione Dipendente avvenuta con successo!");
 
+    public CustomerRegistrationPanel getCustomerRegistrationPanel() {
+        return this.customerRegistrationPanel;
     }
+
+
+
 
 
 

@@ -7,6 +7,7 @@ import it.unipv.ingsfw.treninordovest.model.varie.GeneraID;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.time.LocalDate;
+import java.util.UUID;
 
 public class Cliente extends Utente {
 
@@ -22,7 +23,7 @@ public class Cliente extends Utente {
 
     //Costruttore completo
 
-    public Cliente(String id, String userPassword, String nome, String cognome, String luogoNascita, String sesso, LocalDate dataNascita, String cellulare, String indirizzo, double bilancio, String email) {
+    public Cliente(UUID id, String userPassword, String nome, String cognome, String luogoNascita, String sesso, LocalDate dataNascita, String cellulare, String indirizzo, double bilancio, String email) {
         super(id, userPassword, nome, cognome, luogoNascita, sesso, dataNascita, cellulare, indirizzo);
         this.bilancio = bilancio;
         this.email = email;
@@ -46,6 +47,10 @@ public class Cliente extends Utente {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public void inizializzaBilancio(){
+        this.bilancio=0;
     }
 
 

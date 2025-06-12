@@ -26,7 +26,7 @@ drop table if exists fermata;
 /*Area Treni*/
 
 create table treno(
-IDTreno varchar(10) not null,
+IDTreno varchar(40) not null,
 Modello varchar(30) not null,
 KW int not null,
 NumPosti int not null,
@@ -34,15 +34,15 @@ primary key (IDTreno)
 );
 
 create table tratta(
-IDTratta varchar(10) not null,
+IDTratta varchar(40) not null,
 Nome varchar(100) not null,
 Lunghezza int not null,
 primary key (IDTratta)
 );
 
 create table trenotratta(
-IDTratta varchar(10) not null,
-IDTreno varchar(10) not null,
+IDTratta varchar(40) not null,
+IDTreno varchar(40) not null,
 NumTreno int not null,
 primary key (IDTratta,IDTreno),
 foreign key (IDTratta) references tratta(IDTratta) on delete cascade on update cascade,
@@ -50,7 +50,7 @@ foreign key (IDTreno) references treno(IDTreno) on delete cascade on update casc
 );
 
 create table fermata(
-IDFermata varchar(10) not null,
+IDFermata varchar(40) not null,
 Citta varchar(30) not null,
 NumBinari int not null,
 primary key (IDFermata)
@@ -58,9 +58,9 @@ primary key (IDFermata)
 
 
 create table trattafermata(
-IDTratta varchar(10) not null,
+IDTratta varchar(40) not null,
 NumOrdine int not null,
-IDFermata varchar(10) not null,
+IDFermata varchar(40) not null,
 Binario int not null,
 OraPartenza time not null,
 OraArrivo time not null,
@@ -72,8 +72,8 @@ foreign key (IDFermata) references fermata(IDFermata) on delete cascade on updat
 
 /*Area Utenze*/
 create table utente (
-ID varchar(10) not null ,
-UserPassword varchar(20),
+ID varchar(40) not null ,
+UserPassword varchar(128),
 Nome varchar(30) not null,
 Cognome varchar(30) not null,
 Sesso varchar(1) not null,
@@ -85,7 +85,7 @@ primary key (ID)
 );
 
 create table cliente (
-IDCliente varchar(10) not null,
+IDCliente varchar(40) not null,
 Bilancio double default 0,
 Email varchar(40) not null,
 primary key (IDCliente),
@@ -104,7 +104,7 @@ foreign key (CodTreno) references treno(IDTreno) on delete cascade on update cas
 );
 
 create table tessera(
-IDTessera varchar(10) not null,
+IDTessera varchar(40) not null,
 Emissione date not null,
 Scadenza date not null,
 IDCliente varchar(10) not null,
@@ -113,7 +113,7 @@ foreign key (IDCliente) references cliente(IDCliente) on delete cascade on updat
 );
 
 create table pagamento(
-IDPagamento varchar(10) not null,
+IDPagamento varchar(40) not null,
 IDCliente varchar(10) not null,
 Totale double default 0,
 Tipo varchar(30) not null,
@@ -127,8 +127,8 @@ foreign key (IDCliente) references cliente(IDCliente) on delete cascade on updat
 
 /*Area Titoli*/
 create table titoloviaggio(
-IDTitolo varchar(10) not null,
-IDPagamento varchar(10) not null,
+IDTitolo varchar(40) not null,
+IDPagamento varchar(40) not null,
 Emissione date not null,
 Prezzo double not null,
 primary key (IDTitolo),
@@ -136,7 +136,7 @@ foreign key (IDPagamento) references pagamento(IDPagamento) on delete cascade on
 );
 
 create table biglietto(
-IDBiglietto varchar(10) not null,
+IDBiglietto varchar(40) not null,
 Ritorno bool default false,
 Validato bool default false,
 DataRitorno date null ,
@@ -194,8 +194,8 @@ create table rimborso(
 IDRimborso varchar(10) not null,
 DataRimborso date not null ,
 Totale double not null, 
-IDBiglietto varchar(10) not null,
-IDRichiedente varchar(10) not null,
+IDBiglietto varchar(40) not null,
+IDRichiedente varchar(40) not null,
 primary key (IDRimborso),
 foreign key (IDBiglietto) references biglietto(IDBiglietto) on delete cascade on update cascade,
 foreign key (IDRichiedente) references cliente(IDCliente) on delete cascade on update cascade

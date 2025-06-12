@@ -1,5 +1,7 @@
-package it.unipv.ingsfw.treninordovest.facade.interfaces;
+package it.unipv.ingsfw.treninordovest.facade.registazioniutenti;
 
+import it.unipv.ingsfw.treninordovest.model.utenti.cliente.Cliente;
+import it.unipv.ingsfw.treninordovest.model.utenti.dipendente.Dipendente;
 import it.unipv.ingsfw.treninordovest.view.panels.users.CustomerRegistrationPanel;
 import it.unipv.ingsfw.treninordovest.view.panels.users.EmployeeRegistrationPanel;
 
@@ -16,7 +18,7 @@ public interface IUserRegistrationFacade {
      * @param componenteParent Componente genitore per mostrare messaggi
      * @return L'ID generato per il cliente registrato
      */
-    String registraCliente(CustomerRegistrationPanel view, JFrame componenteParent);
+     boolean registraCliente(Cliente cliente);
     
     /**
      * Registra un nuovo dipendente
@@ -25,5 +27,5 @@ public interface IUserRegistrationFacade {
      * @param componenteParent Componente genitore per mostrare messaggi
      * @return L'ID generato per il dipendente registrato
      */
-    String registraDipendente(EmployeeRegistrationPanel view, JFrame componenteParent);
+    boolean registraDipendente(Dipendente dipendente);
 }

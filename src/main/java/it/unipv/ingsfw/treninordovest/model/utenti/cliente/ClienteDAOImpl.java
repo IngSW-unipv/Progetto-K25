@@ -11,6 +11,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.sql.Date;
 import java.util.List;
+import java.util.UUID;
 
 /*Classe che implementa l'interfaccia DAO derivata specifica di ogni entità, con essa si rispetta il CRUD per estrapolare dati dal DB */
 
@@ -72,7 +73,7 @@ public class ClienteDAOImpl implements ClienteDAO {
 
             //Itera sui record degli oggetti cliente
             while (rs.next()) {
-                String id = rs.getString("ID");
+                UUID id = (UUID) rs.getObject("ID");
                 String nome = rs.getString("nome");
                 String cognome = rs.getString("cognome");
                 String email = rs.getString("email");
@@ -101,7 +102,7 @@ public class ClienteDAOImpl implements ClienteDAO {
         String sql = "DELETE FROM utente where ID=?";
 
         try (Connection con = Database.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setString(1, cliente.getId());
+            ps.setString(1, cliente.getId().toString());
             ps.executeUpdate();
         } catch (Exception e) {
             throw new RuntimeException("Errore durante l'eliminazione dati: ", e);
@@ -127,12 +128,12 @@ public class ClienteDAOImpl implements ClienteDAO {
             ps1.setObject(6, cliente.getDataNascita());
             ps1.setString(7, cliente.getCellulare());
             ps1.setString(8, cliente.getIndirizzo());
-            ps1.setString(9, cliente.getId());
+            ps1.setString(9, cliente.getId().toString());
 
             //Seconda Query
             ps2.setDouble(1, cliente.getBilancio());
             ps2.setString(2, cliente.getEmail());
-            ps2.setString(3, cliente.getId());
+            ps2.setString(3, cliente.getId().toString());
 
             ps1.executeUpdate();
             ps2.executeUpdate();
@@ -154,7 +155,7 @@ public class ClienteDAOImpl implements ClienteDAO {
             String hashedPassword = PasswordUtils.hashPassword(cliente.getUserPassword());
 
             // Impostazione dei parametri per la query 1
-            ps1.setString(1, cliente.getId());
+            ps1.setString(1, cliente.getId().toString());
             ps1.setString(2, hashedPassword);
             ps1.setString(3, cliente.getNome());
             ps1.setString(4, cliente.getCognome());
@@ -165,7 +166,7 @@ public class ClienteDAOImpl implements ClienteDAO {
             ps1.setString(9, cliente.getIndirizzo());
 
             // Impostazione dei parametri per la query 2
-            ps2.setString(1, cliente.getId());
+            ps2.setString(1, cliente.getId().toString());
             ps2.setDouble(2, cliente.getBilancio());
             ps2.setString(3, cliente.getEmail());
 

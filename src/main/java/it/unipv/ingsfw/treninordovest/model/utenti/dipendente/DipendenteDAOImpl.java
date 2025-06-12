@@ -7,6 +7,7 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class DipendenteDAOImpl implements DipendenteDAO {
 
@@ -66,15 +67,12 @@ public class DipendenteDAOImpl implements DipendenteDAO {
         Dipendente dipendente ;
         try (Connection con = Database.getConnection(); PreparedStatement ps= con.prepareStatement(sql)) {
 
-            //Query effettuata su una vista creata nel DB per semplificare l'estrazione dei dati
-
-            //Estrazione dei dati dal DB
 
             //ps.setString(1,id);
             ResultSet rs=ps.executeQuery();
 
             while(rs.next()){
-                String id=rs.getString("ID");
+                UUID id=(UUID) rs.getObject("ID");
                 String nome=rs.getString("nome");
                 String cognome=rs.getString("cognome");
                 String password=rs.getString("UserPassword");

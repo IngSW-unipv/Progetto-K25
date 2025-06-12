@@ -1,11 +1,12 @@
 package it.unipv.ingsfw.treninordovest.model.utenti.utente;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 public abstract class Utente {
 
     /*Attributi della classe*/
-    private String id;
+    private UUID id;
     private String userPassword;
     private String nome;
     private String cognome;
@@ -24,7 +25,7 @@ public abstract class Utente {
     //Costruttore completo
 
 
-    public Utente(String id, String userPassword, String nome, String cognome, String luogoNascita, String sesso, LocalDate dataNascita, String cellulare, String indirizzo) {
+    public Utente(UUID id, String userPassword, String nome, String cognome, String luogoNascita, String sesso, LocalDate dataNascita, String cellulare, String indirizzo) {
         this.id = id;
         this.userPassword = userPassword;
         this.nome = nome;
@@ -39,12 +40,13 @@ public abstract class Utente {
 
 
 
+
     //Getters e setters
-    public String getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -115,18 +117,4 @@ public abstract class Utente {
     //Metodi vari
 
 
-    @Override
-    public String toString() {
-        return "Utente{" +
-                "id='" + id + '\'' +
-                ", userPassword='" + userPassword + '\'' +
-                ", nome='" + nome + '\'' +
-                ", cognome='" + cognome + '\'' +
-                ", luogoNascita='" + luogoNascita + '\'' +
-                ", dataNascita=" + dataNascita +
-                ", sesso=" + sesso +
-                ", cellulare='" + cellulare + '\'' +
-                ", indirizzo='" + indirizzo + '\'' +
-                '}';
-    }
 }
