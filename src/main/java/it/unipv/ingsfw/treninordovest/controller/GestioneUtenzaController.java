@@ -13,7 +13,8 @@ import it.unipv.ingsfw.treninordovest.view.panels.miscellanous.LoginPanel;
 import it.unipv.ingsfw.treninordovest.view.panels.users.CustomerRegistrationPanel;
 
 import javax.swing.*;
-import java.sql.Date;
+import java.time.ZoneId;
+import java.util.Date;
 import java.time.LocalDate;
 import java.util.UUID;
 
@@ -29,6 +30,7 @@ public class GestioneUtenzaController {
         this.viewcustomerRegistrationPanel = view;
         this.frameCustomerReg = frame;
         this.userRegistrationFacade = new UserRegistrationFacade();
+        addRegistrationListener();
     }
 
     public GestioneUtenzaController(LoginPanel view, JLoginFrame frame) {
@@ -46,8 +48,8 @@ public class GestioneUtenzaController {
         String nome = viewcustomerRegistrationPanel.getTxtNome().getText();
         String cognome = viewcustomerRegistrationPanel.getTxtNome().getText();
         String sesso =viewcustomerRegistrationPanel.getComboSesso();
-        Date dataNascita  = (Date) viewcustomerRegistrationPanel.getDataNascita().getDate();
-        LocalDate dataNascitaLocal= dataNascita.toLocalDate();
+        Date dataNascita  =  viewcustomerRegistrationPanel.getDataNascita().getDate();
+        LocalDate dataNascitaLocal= dataNascita.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
        String cellulare = viewcustomerRegistrationPanel.getTxtCellulare().getText();
        String email = viewcustomerRegistrationPanel.getTxtEmail().getText();
        String password = viewcustomerRegistrationPanel.getTxtPassword().getText();
@@ -73,10 +75,6 @@ public class GestioneUtenzaController {
         }
 
 
-
-
-
-
        /**
         * Passaggio dell'oggetto a una facade
         **/
@@ -91,7 +89,7 @@ public class GestioneUtenzaController {
     private void modificaDatiDipendente(){}
     private void aggiornaDatiProfilo(){}
 
-
+    ///Test -- Rimuovere
     public static void main(){
         JCustomerRegFrame frame = new JCustomerRegFrame();
        frame.setVisible(true);
@@ -109,9 +107,6 @@ public class GestioneUtenzaController {
 
 
         });
-
-
-
 
     }
 
