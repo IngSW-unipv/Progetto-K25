@@ -1,6 +1,6 @@
 package it.unipv.ingsfw.treninordovest.model.utenti.cliente;
 
-import it.unipv.ingsfw.treninordovest.view.frames.customer.JCustomerRegFrame;
+import it.unipv.ingsfw.treninordovest.view.frames.utenti.clienti.menu.registrazione.JCustomerRegFrame;
 
 public class ServiceTest {
 

@@ -1,8 +1,7 @@
-package it.unipv.ingsfw.treninordovest.view.frames.customer;
+package it.unipv.ingsfw.treninordovest.view.frames.utenti.clienti.menu.registrazione;
 
 
 import it.unipv.ingsfw.treninordovest.controller.GestioneUtenzaController;
-import it.unipv.ingsfw.treninordovest.view.panels.users.CustomerRegistrationPanel;
 
 import javax.swing.*;
 import java.awt.*;

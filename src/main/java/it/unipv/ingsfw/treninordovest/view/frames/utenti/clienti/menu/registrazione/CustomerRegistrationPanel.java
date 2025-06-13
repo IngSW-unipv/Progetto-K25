@@ -1,4 +1,4 @@
-package it.unipv.ingsfw.treninordovest.view.panels.users;
+package it.unipv.ingsfw.treninordovest.view.frames.utenti.clienti.menu.registrazione;
 
 import javax.swing.*;
 import com.toedter.calendar.JDateChooser;

@@ -1,25 +1,10 @@
 package it.unipv.ingsfw.treninordovest.facade.registazioniutenti;
 
 
-import it.unipv.ingsfw.treninordovest.model.ferrovia.treno.TrenoDAOImpl;
 import it.unipv.ingsfw.treninordovest.model.utenti.cliente.Cliente;
 import it.unipv.ingsfw.treninordovest.model.utenti.cliente.ClienteDAOImpl;
 import it.unipv.ingsfw.treninordovest.model.utenti.dipendente.Dipendente;
-import it.unipv.ingsfw.treninordovest.model.ferrovia.treno.Treno;
 import it.unipv.ingsfw.treninordovest.model.utenti.dipendente.DipendenteDAOImpl;
-import it.unipv.ingsfw.treninordovest.view.panels.users.CustomerRegistrationPanel;
-import it.unipv.ingsfw.treninordovest.view.panels.users.EmployeeRegistrationPanel;
-import it.unipv.ingsfw.treninordovest.model.varie.GeneraID;
-
-
-import javax.swing.*;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Random;
-import java.util.logging.Level;
 
 public class UserRegistrationFacade implements IUserRegistrationFacade {
 

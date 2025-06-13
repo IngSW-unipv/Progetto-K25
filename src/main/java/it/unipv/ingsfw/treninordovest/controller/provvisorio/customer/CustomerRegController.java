@@ -1,15 +1,6 @@
 package it.unipv.ingsfw.treninordovest.controller.provvisorio.customer;
 
 
-import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JMainMenuFrame;
-import it.unipv.ingsfw.treninordovest.view.frames.customer.JCustomerRegFrame;
-import it.unipv.ingsfw.treninordovest.view.panels.users.CustomerRegistrationPanel;
-
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.logging.Logger;
-import java.util.logging.Level;
 //
 //public class CustomerRegController implements ActionListener {
 //    private static final Logger LOGGER = Logger.getLogger(CustomerRegController.class.getName());

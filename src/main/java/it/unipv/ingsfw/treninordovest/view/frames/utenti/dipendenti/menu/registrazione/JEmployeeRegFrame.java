@@ -1,8 +1,7 @@
-package it.unipv.ingsfw.treninordovest.view.frames.employee;
+package it.unipv.ingsfw.treninordovest.view.frames.utenti.dipendenti.menu.registrazione;
 
 //import it.unipv.ingsfw.treninordovest.controller.provvisorio.employee.EmployeeRegController;
 import it.unipv.ingsfw.treninordovest.controller.GestioneUtenzaController;
-import it.unipv.ingsfw.treninordovest.view.panels.users.EmployeeRegistrationPanel;
 
 import javax.swing.*;
 import java.awt.*;

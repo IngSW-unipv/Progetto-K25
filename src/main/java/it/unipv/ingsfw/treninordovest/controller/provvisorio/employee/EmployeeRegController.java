@@ -1,16 +1,6 @@
 package it.unipv.ingsfw.treninordovest.controller.provvisorio.employee;
 
 
-import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JMainMenuFrame;
-import it.unipv.ingsfw.treninordovest.view.frames.employee.JEmployeeRegFrame;
-import it.unipv.ingsfw.treninordovest.view.panels.users.EmployeeRegistrationPanel;
-
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 //public class EmployeeRegController implements ActionListener {
 //
 //

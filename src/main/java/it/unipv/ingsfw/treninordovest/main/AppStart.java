@@ -1,6 +1,6 @@
 package it.unipv.ingsfw.treninordovest.main;
 
-import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JMainMenuFrame;
+import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.JMainMenuFrame;
 
 import javax.swing.*;
 import java.util.logging.Logger;

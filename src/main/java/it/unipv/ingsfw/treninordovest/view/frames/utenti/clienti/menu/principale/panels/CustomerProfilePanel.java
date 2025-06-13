@@ -1,12 +1,12 @@
-package it.unipv.ingsfw.treninordovest.view.panels.users;
+package it.unipv.ingsfw.treninordovest.view.frames.utenti.clienti.menu.principale.panels;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class EmployeeProfilePanel extends JPanel {
+public class CustomerProfilePanel extends JPanel {
     private JTextField txtNome;
     private JTextField txtCognome;
-    private JTextField txtRuolo;
+    private JTextField txtEmail;
     private JButton btnAggiornaPassword;
     private JButton btnAggionaProfilo;
     private JPasswordField txtPassword;
@@ -15,13 +15,14 @@ public class EmployeeProfilePanel extends JPanel {
     private JTextField txtLuogoNascita;
     private JTextField txtDataNascita;
     private JTextField txtCellulare;
-    private JTextField txtStipendio;
+    private JTextField txtBilancio;
     private JTextField txtIndirizzo;
     private Color coloreSfondo;
     private JButton btnEsci;
+    private JTextField txtDenaro;
+    private JButton btnConfermaDenaro;
 
-
-    public EmployeeProfilePanel() {
+    public CustomerProfilePanel() {
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5,5,5,5);
@@ -39,8 +40,8 @@ public class EmployeeProfilePanel extends JPanel {
         JLabel lblCognome = new JLabel("Cognome:");
         txtCognome = new JTextField(15);
 
-        JLabel lblRuolo = new JLabel("Ruolo:");
-        txtRuolo = new JTextField(15);
+        JLabel lblEmail = new JLabel("Email:");
+        txtEmail = new JTextField(15);
 
         JLabel lblSesso= new JLabel("Sesso:");
         txtSesso = new JTextField(15);
@@ -54,14 +55,17 @@ public class EmployeeProfilePanel extends JPanel {
         JLabel lblCell= new JLabel("Cellulare:");
         txtCellulare = new JTextField(15);
 
-        JLabel lblBilancio = new JLabel("Stipendio:");
-        txtStipendio = new JTextField(15);
+        JLabel lblBilancio = new JLabel("Bilancio:");
+        txtBilancio = new JTextField(15);
 
         JLabel lblIndirizzo= new JLabel("Indirizzo:");
         txtIndirizzo = new JTextField(15);
 
-        JLabel lblID = new JLabel("ID Dipendente:");
+        JLabel lblID = new JLabel("ID Cliente:");
         txtID= new JTextField(15);
+
+        txtDenaro = new JTextField(15);
+        btnConfermaDenaro = new JButton("Carica credito");
 
 
         btnAggiornaPassword = new JButton("Aggiorna password");
@@ -86,7 +90,7 @@ public class EmployeeProfilePanel extends JPanel {
         add(txtNome, gbc);
 
         //Cognome
-        gbc.gridx = 5;
+       gbc.gridx = 5;
         gbc.gridy = 2;
         add(lblCognome, gbc);
         gbc.gridx = 6;
@@ -143,20 +147,20 @@ public class EmployeeProfilePanel extends JPanel {
         /*Email*/
         gbc.gridx = 5;
         gbc.gridy = 8;
-        add(lblRuolo, gbc);
+        add(lblEmail, gbc);
         gbc.gridx = 6;
-        txtRuolo.setEditable(false);
-        txtRuolo.setBackground(Color.YELLOW);
-        add(txtRuolo, gbc);
+        txtEmail.setEditable(false);
+        txtEmail.setBackground(Color.YELLOW);
+        add(txtEmail, gbc);
 
-        //Stipendio
+        //Bilancio
         gbc.gridx = 5;
         gbc.gridy = 9;
         add(lblBilancio, gbc);
         gbc.gridx = 6;
-        txtStipendio.setEditable(false);
-        txtStipendio.setBackground(Color.YELLOW);
-        add(txtStipendio, gbc);
+        txtBilancio.setEditable(false);
+        txtBilancio.setBackground(Color.YELLOW);
+        add(txtBilancio, gbc);
 
 
         //ID
@@ -201,8 +205,24 @@ public class EmployeeProfilePanel extends JPanel {
         add(btnEsci, gbc);
 
 
+        //Portafoglio
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        gbc.gridwidth = 2;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        add(txtDenaro, gbc);
+
+        //Bottone conferma caricamento denaro
+        gbc.gridx = 0;
+        gbc.gridy = 4;
+        gbc.gridwidth = 2;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        add(btnConfermaDenaro, gbc);
+
 
     }
+
+    // Getters per il controller
 
     public JButton getBtnAggiornaPassword() {
         return btnAggiornaPassword;
@@ -217,11 +237,15 @@ public class EmployeeProfilePanel extends JPanel {
     }
 
     public void setTxtNome(String txtNome) {
-        this.txtNome.setText(txtNome);
+       this.txtNome.setText(txtNome);
     }
 
     public void setTxtCognome(String cognome) {
         this.txtCognome.setText(cognome);
+    }
+
+    public void setTxtEmail(String txtEmail) {
+       this.txtEmail.setText(txtEmail);
     }
 
     public void setTxtSesso(String  txtSesso) {
@@ -241,11 +265,11 @@ public class EmployeeProfilePanel extends JPanel {
     }
 
     public void setTxtCellulare(String txtCellulare) {
-        this.txtCellulare.setText(txtCellulare);
+       this.txtCellulare.setText(txtCellulare);
     }
 
-    public void setTxtRuolo(String txtRuolo) {
-        this.txtRuolo.setText(txtRuolo);
+    public void setTxtBilancio(String txtBilancio) {
+        this.txtBilancio.setText(txtBilancio);
     }
 
     public void setTxtIndirizzo(String txtIndirizzo) {
@@ -256,7 +280,12 @@ public class EmployeeProfilePanel extends JPanel {
         return btnEsci;
     }
 
-    public void setTxtStipendio(String stipendioString) {
-        this.txtStipendio.setText(stipendioString);
+    public JButton getBtnConfermaDenaro() {
+        return btnConfermaDenaro;
+    }
+
+    public double getTxtDenaro() {
+        double denaro = Double.parseDouble(txtDenaro.getText().toString());
+        return denaro;
     }
 }

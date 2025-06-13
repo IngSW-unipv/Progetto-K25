@@ -1,8 +1,8 @@
-package it.unipv.ingsfw.treninordovest.view.frames.employee;
+package it.unipv.ingsfw.treninordovest.view.frames.utenti.dipendenti.menu.principale;
 
 
-import it.unipv.ingsfw.treninordovest.view.panels.miscellanous.TravelDocCheckPanel;
-import it.unipv.ingsfw.treninordovest.view.panels.users.EmployeeProfilePanel;
+import it.unipv.ingsfw.treninordovest.view.frames.utenti.dipendenti.menu.principale.panels.TravelDocCheckPanel;
+import it.unipv.ingsfw.treninordovest.view.frames.utenti.dipendenti.menu.principale.panels.EmployeeProfilePanel;
 
 import javax.swing.*;
 import java.awt.*;

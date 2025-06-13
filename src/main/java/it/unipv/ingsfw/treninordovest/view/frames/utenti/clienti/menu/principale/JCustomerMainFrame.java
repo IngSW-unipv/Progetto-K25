@@ -1,8 +1,7 @@
-package it.unipv.ingsfw.treninordovest.view.frames.customer;
+package it.unipv.ingsfw.treninordovest.view.frames.utenti.clienti.menu.principale;
 
-import it.unipv.ingsfw.treninordovest.view.panels.finance.*;
+import it.unipv.ingsfw.treninordovest.view.frames.utenti.clienti.menu.principale.panels.*;
 import it.unipv.ingsfw.treninordovest.view.panels.miscellanous.*;
-import it.unipv.ingsfw.treninordovest.view.panels.users.*;
 
 import javax.swing.*;
 import java.awt.*;

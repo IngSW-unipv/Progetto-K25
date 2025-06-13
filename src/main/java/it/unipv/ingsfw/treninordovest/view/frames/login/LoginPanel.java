@@ -1,4 +1,4 @@
-package it.unipv.ingsfw.treninordovest.view.panels.miscellanous;
+package it.unipv.ingsfw.treninordovest.view.frames.login;
 
 import javax.swing.*;
 import java.awt.*;

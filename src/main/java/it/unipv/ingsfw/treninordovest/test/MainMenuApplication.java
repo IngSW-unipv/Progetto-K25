@@ -1,11 +1,11 @@
 package it.unipv.ingsfw.treninordovest.test;
 
-import it.unipv.ingsfw.treninordovest.view.frames.customer.JCustomerMainFrame;
-import it.unipv.ingsfw.treninordovest.view.frames.customer.JCustomerRegFrame;
-import it.unipv.ingsfw.treninordovest.view.frames.employee.JEmployeeMainFrame;
-import it.unipv.ingsfw.treninordovest.view.frames.employee.JEmployeeRegFrame;
-import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JLoginFrame;
-import it.unipv.ingsfw.treninordovest.view.frames.miscellanous.JMainMenuFrame;
+import it.unipv.ingsfw.treninordovest.view.frames.utenti.clienti.menu.principale.JCustomerMainFrame;
+import it.unipv.ingsfw.treninordovest.view.frames.utenti.clienti.menu.registrazione.JCustomerRegFrame;
+import it.unipv.ingsfw.treninordovest.view.frames.utenti.dipendenti.menu.principale.JEmployeeMainFrame;
+import it.unipv.ingsfw.treninordovest.view.frames.utenti.dipendenti.menu.registrazione.JEmployeeRegFrame;
+import it.unipv.ingsfw.treninordovest.view.frames.login.JLoginFrame;
+import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.JMainMenuFrame;
 
 public class MainMenuApplication {
 

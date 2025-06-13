@@ -2,10 +2,6 @@ package it.unipv.ingsfw.treninordovest.facade.registazioniutenti;
 
 import it.unipv.ingsfw.treninordovest.model.utenti.cliente.Cliente;
 import it.unipv.ingsfw.treninordovest.model.utenti.dipendente.Dipendente;
-import it.unipv.ingsfw.treninordovest.view.panels.users.CustomerRegistrationPanel;
-import it.unipv.ingsfw.treninordovest.view.panels.users.EmployeeRegistrationPanel;
-
-import javax.swing.*;
 
 /**
  * Interfaccia per la facade di registrazione utenti

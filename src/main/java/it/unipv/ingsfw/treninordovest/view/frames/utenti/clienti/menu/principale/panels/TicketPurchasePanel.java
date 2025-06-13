@@ -1,4 +1,4 @@
-package it.unipv.ingsfw.treninordovest.view.panels.finance;
+package it.unipv.ingsfw.treninordovest.view.frames.utenti.clienti.menu.principale.panels;
 
 import com.toedter.calendar.JDateChooser;
 

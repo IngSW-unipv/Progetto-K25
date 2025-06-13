@@ -1,9 +1,9 @@
-package it.unipv.ingsfw.treninordovest.view.frames.miscellanous;
+package it.unipv.ingsfw.treninordovest.view.frames.mainmenu;
 
 //import it.unipv.ingsfw.treninordovest.controller.provvisorio.misc.MainMenuController;
-import it.unipv.ingsfw.treninordovest.view.frames.customer.JCustomerRegFrame;
-import it.unipv.ingsfw.treninordovest.view.frames.employee.JEmployeeRegFrame;
-import it.unipv.ingsfw.treninordovest.view.panels.miscellanous.MainMenuPanel;
+import it.unipv.ingsfw.treninordovest.view.frames.login.JLoginFrame;
+import it.unipv.ingsfw.treninordovest.view.frames.utenti.clienti.menu.registrazione.JCustomerRegFrame;
+import it.unipv.ingsfw.treninordovest.view.frames.utenti.dipendenti.menu.registrazione.JEmployeeRegFrame;
 
 import javax.swing.*;
 import java.awt.*;
