@@ -1,6 +1,7 @@
 package it.unipv.ingsfw.treninordovest.facade.registazioniutenti;
 
 
+import it.unipv.ingsfw.treninordovest.model.ferrovia.treno.TrenoDAOImpl;
 import it.unipv.ingsfw.treninordovest.model.utenti.cliente.Cliente;
 import it.unipv.ingsfw.treninordovest.model.utenti.cliente.ClienteDAOImpl;
 import it.unipv.ingsfw.treninordovest.model.utenti.dipendente.Dipendente;
