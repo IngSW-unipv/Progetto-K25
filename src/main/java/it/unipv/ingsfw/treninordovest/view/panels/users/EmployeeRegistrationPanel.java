@@ -46,7 +46,8 @@ public class EmployeeRegistrationPanel extends JPanel  {
         txtCognome = new JTextField(15);
 
         JLabel lblsesso = new JLabel("Sesso:");
-        comboSesso = new JComboBox<>(new String[] {"M", "F"});
+        String sesso[]= {"-","M", "F"};
+        comboSesso = new JComboBox<>(sesso);
 
         JLabel lblcellulare = new JLabel("Cellulare:");
         txtCellulare = new JTextField(15);

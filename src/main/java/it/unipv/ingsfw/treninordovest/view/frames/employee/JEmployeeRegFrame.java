@@ -1,6 +1,7 @@
 package it.unipv.ingsfw.treninordovest.view.frames.employee;
 
 //import it.unipv.ingsfw.treninordovest.controller.provvisorio.employee.EmployeeRegController;
+import it.unipv.ingsfw.treninordovest.controller.GestioneUtenzaController;
 import it.unipv.ingsfw.treninordovest.view.panels.users.EmployeeRegistrationPanel;
 
 import javax.swing.*;
@@ -31,6 +32,7 @@ public class JEmployeeRegFrame extends JFrame {
 
         this.employeeRegistrationPanel = new EmployeeRegistrationPanel();
         add(employeeRegistrationPanel, BorderLayout.CENTER);
+        new GestioneUtenzaController(employeeRegistrationPanel,this);
 
         //new EmployeeRegController(employeeRegistrationPanel,this,this::showSuccessMessage,this::hideFrame);
     }
@@ -45,10 +47,11 @@ public class JEmployeeRegFrame extends JFrame {
         setVisible(false);
     }
 
-    public void showSuccessMessage () {
-        JOptionPane.showMessageDialog(this, "Registrazione Dipendente avvenuta con successo!");
 
+    public EmployeeRegistrationPanel getEmployeeRegistrationPanel() {
+        return employeeRegistrationPanel;
     }
+
 
 
 

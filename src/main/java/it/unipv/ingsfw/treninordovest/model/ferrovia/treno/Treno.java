@@ -1,5 +1,8 @@
 package it.unipv.ingsfw.treninordovest.model.ferrovia.treno;
 
+import java.util.List;
+import java.util.Random;
+
 public class Treno {
     private String idTreno;
     private String modello;
@@ -48,4 +51,23 @@ public class Treno {
     public void setNumPosti(int numPosti) {
         this.numPosti = numPosti;
     }
+
+    public static String getRandomTreno() {
+        try {
+            List<Treno> treni = new TrenoDAOImpl().getAll();
+            if (treni.isEmpty()) {
+                System.out.println("Treno non treno");
+                return "";
+            }
+
+            Random random = new Random();
+            int indiceCasuale = random.nextInt(treni.size());
+            return treni.get(indiceCasuale).getIdTreno();
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return "";
+        }
+    }
+
 }

@@ -94,7 +94,7 @@ foreign key (IDCliente) references utente(ID) on delete cascade on update cascad
 );
 
 create table dipendente(
-IDDipendente varchar(10) not null,
+IDDipendente varchar(40) not null,
 Stipendio double not null,
 Ruolo varchar(40) not null,
 CodTreno varchar(10) default null,

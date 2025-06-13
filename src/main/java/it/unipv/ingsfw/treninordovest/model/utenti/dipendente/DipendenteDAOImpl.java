@@ -1,6 +1,7 @@
 package it.unipv.ingsfw.treninordovest.model.utenti.dipendente;
 
 import it.unipv.ingsfw.treninordovest.dao.database.Database;
+import it.unipv.ingsfw.treninordovest.model.ferrovia.treno.Treno;
 import it.unipv.ingsfw.treninordovest.utils.PasswordUtils;
 
 import java.sql.*;
@@ -153,14 +154,14 @@ public class DipendenteDAOImpl implements DipendenteDAO {
 
     @Override
     public void insert(Dipendente dipendente) {
-       /* String sql1 = "INSERT INTO utente (ID, UserPassword, Nome, Cognome, Sesso, LuogoNascita, DataNascita, Cellulare, Indirizzo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+       String sql1 = "INSERT INTO utente (ID, UserPassword, Nome, Cognome, Sesso, LuogoNascita, DataNascita, Cellulare, Indirizzo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         String sql2 = "INSERT INTO dipendente (IDDipendente, Stipendio,Ruolo,CodTreno) VALUES (?, ?, ?,?)";
 
             try (Connection con = Database.getConnection() ;PreparedStatement ps1 = con.prepareStatement(sql1); PreparedStatement ps2 = con.prepareStatement(sql2)) {
 
                 String hashedPassword = PasswordUtils.hashPassword(dipendente.getUserPassword());
                 // Impostazione dei parametri per la query 1
-                ps1.setString(1, dipendente.getId());
+                ps1.setString(1, dipendente.getId().toString());
                 ps1.setString(2, hashedPassword);
                 ps1.setString(3, dipendente.getNome());
                 ps1.setString(4,dipendente.getCognome());
@@ -171,10 +172,10 @@ public class DipendenteDAOImpl implements DipendenteDAO {
                 ps1.setString(9,dipendente.getIndirizzo());
 
                 // Impostazione dei parametri per la query 2
-                ps2.setString(1, dipendente.getId());
+                ps2.setString(1, dipendente.getId().toString());
                 ps2.setDouble(2, dipendente.getStipendio());
                 ps2.setString(3, dipendente.getRuolo());
-                ps2.setString(4, dipendente.getCodTreno());
+                ps2.setString(4, Treno.getRandomTreno());
 
                 // Esecuzione delle query
                 ps1.executeUpdate();
@@ -187,10 +188,6 @@ public class DipendenteDAOImpl implements DipendenteDAO {
 
 
         }
-
-       */
-
-
 
     }
 

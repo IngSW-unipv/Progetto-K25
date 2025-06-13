@@ -3,8 +3,7 @@ package it.unipv.ingsfw.treninordovest.view.panels.users;
 import javax.swing.*;
 import com.toedter.calendar.JDateChooser;
 import java.awt.*;
-import java.awt.event.ActionListener;
-import java.time.LocalDate;
+
 
 
 public class CustomerRegistrationPanel extends JPanel {
@@ -160,7 +159,6 @@ public class CustomerRegistrationPanel extends JPanel {
         gbc.gridwidth = 2;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         add(btnMenuPrincipal, gbc);
-
 
 
     }

@@ -13,20 +13,22 @@ import java.util.List;
 public class TrenoDAOImpl implements TrenoDAO {
 
 
-    public Treno get(String id)  {
-        Treno treno = null;
+
+    @Override
+    public Treno get(Treno treno) {
+
         String sql = "select * from treno where IDTreno=?";
 
         try (Connection con = Database.getConnection(); PreparedStatement ps = con.prepareStatement(sql); ResultSet rs=ps.executeQuery()) {
 
-            ps.setString(1,id);
+            ps.setString(1,treno.getIdTreno());
 
             if(rs.next()){
                 String modello = rs.getString("modello");
                 int kw = rs.getInt("KW");
                 int numPosti = rs.getInt("numPosti");
 
-                treno=new Treno(id, modello, kw,numPosti );
+                treno=new Treno(treno.getIdTreno(), modello, kw,numPosti );
             }
             //Database.closeConnection(con);
 
@@ -34,11 +36,6 @@ public class TrenoDAOImpl implements TrenoDAO {
             throw new RuntimeException("Errore nell'acquisizione dati",e);
         }
         return treno;
-    }
-
-    @Override
-    public Treno get(Treno oggetto) {
-        return null;
     }
 
     @Override
