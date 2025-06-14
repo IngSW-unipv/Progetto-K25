@@ -1,5 +1,6 @@
 package it.unipv.ingsfw.treninordovest.controller;
 
+import it.unipv.ingsfw.treninordovest.facade.login.LoginFacade;
 import it.unipv.ingsfw.treninordovest.facade.registazioniutenti.UserRegistrationFacade;
 import it.unipv.ingsfw.treninordovest.model.utenti.cliente.Cliente;
 import it.unipv.ingsfw.treninordovest.model.utenti.dipendente.Dipendente;
@@ -25,7 +26,7 @@ public class GestioneUtenzaController {
     private JEmployeeRegFrame frameEmployeeReg;
     private JLoginFrame frameLogin;
     private UserRegistrationFacade userRegistrationFacade;
-
+    private LoginFacade loginFacade;
 
 
     //Costruttore per la registazione clienti
@@ -49,6 +50,8 @@ public class GestioneUtenzaController {
     public GestioneUtenzaController(LoginPanel view, JLoginFrame frame) {
         this.viewLoginPanel = view;
         this.frameLogin = frame;
+        this.loginFacade = new LoginFacade();
+
         login();
 
     }
@@ -157,8 +160,20 @@ public class GestioneUtenzaController {
 
     }
     private void login(){
-        String username = viewcustomerRegistrationPanel.getTxtNome().getText();
-        String password = Arrays.toString(viewcustomerRegistrationPanel.getTxtPassword().getPassword());
+        String identificativo =  viewLoginPanel.getCampoUtente();
+        String password = Arrays.toString(viewLoginPanel.getCampoPassword());
+        String tipoUtente = viewLoginPanel.getCampoUtente();
+
+        try {
+            if (loginFacade.login(new Cliente(identificativo,password),tipoUtente)){
+                JOptionPane.showMessageDialog(null,"Cliente login correttamente", "Info", JOptionPane.INFORMATION_MESSAGE);
+            }
+            else
+                JOptionPane.showMessageDialog(null, "Cliente login errati", "Errore", JOptionPane.ERROR_MESSAGE);
+
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
 
 
 

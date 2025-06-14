@@ -1,6 +1,4 @@
-package it.unipv.ingsfw.treninordovest.factory.implementations;
-
-import it.unipv.ingsfw.treninordovest.factory.interfaces.ILoginAbstractFactory;
+package it.unipv.ingsfw.treninordovest.factory.login;
 
 import java.util.Properties;
 import java.io.FileInputStream;
@@ -13,7 +11,7 @@ public class LoginFactoryProducer {
     /**
      * Versione che usa reflection e properties come nell'UtenteDAOFactory esistente
      */
-    public static ILoginAbstractFactory getFactoryFromProperties(String tipoUtente) {
+    public static ILoginFactory getFactoryFromProperties(String tipoUtente) {
         try {
             Properties pr = new Properties(System.getProperties());
             pr.load(new FileInputStream("properties/properties"));
@@ -30,7 +28,7 @@ public class LoginFactoryProducer {
                 throw new IllegalArgumentException("Tipo di utente non supportato: " + tipoUtente);
             }
 
-            return (ILoginAbstractFactory) Class.forName(factoryClassName).getDeclaredConstructor().newInstance();
+            return (ILoginFactory) Class.forName(factoryClassName).getDeclaredConstructor().newInstance();
         } catch (Exception e) {
             throw new RuntimeException("Errore nella creazione della factory: " + e.getMessage(), e);
         }

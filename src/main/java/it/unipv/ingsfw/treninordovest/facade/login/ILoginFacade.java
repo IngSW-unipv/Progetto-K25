@@ -1,7 +1,9 @@
 package it.unipv.ingsfw.treninordovest.facade.login;
 
+import it.unipv.ingsfw.treninordovest.model.utenti.utente.Utente;
+
 public interface ILoginFacade {
 
-    boolean login(String username, String password,String tipoUtente);
+    boolean login(Utente utente, String tipoUtente);
 
 }
