@@ -86,10 +86,17 @@ public class LoginPanel extends JPanel {
         return (String) comboRuolo.getSelectedItem();
     }
 
-    //Aggiunta dell'action listener per i bottoni'
-    public void addActionListener(ActionListener listener) {
-        bottoneAccesso.addActionListener(listener);
-        bottoneIndietro.addActionListener(listener);
+    public JButton getBottoneAccesso() {
+        return bottoneAccesso;
     }
+    public JButton getBottoneIndietro() {
+        return bottoneIndietro;
+    }
+
+    //Aggiunta dell'action listener per i bottoni'
+//    public void addActionListener(ActionListener listener) {
+//        bottoneAccesso.addActionListener(listener);
+//        bottoneIndietro.addActionListener(listener);
+//    }
 
 }

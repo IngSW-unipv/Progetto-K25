@@ -12,6 +12,7 @@ import it.unipv.ingsfw.treninordovest.view.frames.utenti.dipendenti.menu.registr
 
 import javax.swing.*;
 import java.time.ZoneId;
+import java.util.Arrays;
 import java.util.Date;
 import java.time.LocalDate;
 import java.util.UUID;
@@ -44,12 +45,11 @@ public class GestioneUtenzaController {
     }
 
 
-
-
     //Costruttore per il login
     public GestioneUtenzaController(LoginPanel view, JLoginFrame frame) {
         this.viewLoginPanel = view;
         this.frameLogin = frame;
+        login();
 
     }
 
@@ -133,9 +133,9 @@ public class GestioneUtenzaController {
 
 
 
-            if (!password.isEmpty() && !nome.isEmpty() && !cognome.isEmpty() && !sesso.isEmpty() && !luogoNascita.isEmpty() && !cellulare.isEmpty() && !indirizzo.isEmpty() && !(dataNascita ==null)) {
+            if (!password.isEmpty() && !nome.isEmpty() && !cognome.isEmpty() && !sesso.isEmpty() && !luogoNascita.isEmpty() && !cellulare.isEmpty() && !indirizzo.isEmpty() && !(dataNascita ==null)&& !dataNascitaLocal.isAfter(LocalDate.now())) {
 
-                dipendente= new Dipendente(UUID.randomUUID(),password, nome, cognome, sesso, luogoNascita,dataNascitaLocal, cellulare, indirizzo, 0, ruolo);
+                dipendente= new Dipendente(UUID.randomUUID(),password, nome, cognome, sesso, luogoNascita,dataNascitaLocal, cellulare, indirizzo, Dipendente.getStipendioByRuolo(ruolo), ruolo);
 
                 if (userRegistrationFacade.registraDipendente(dipendente)){
 
@@ -144,11 +144,11 @@ public class GestioneUtenzaController {
 
             } else
             {
-                JOptionPane.showMessageDialog(null, "Compilazione di tutti i campi obbligatoria", "Errore", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Dati non sufficienti o errati", "Errore", JOptionPane.ERROR_MESSAGE);
             }
 
 
-        }catch (NullPointerException e){
+        }catch (Exception e){
             System.out.println(e.getMessage());
             e.printStackTrace();
         }
@@ -156,7 +156,14 @@ public class GestioneUtenzaController {
 
 
     }
-    private void login(){}
+    private void login(){
+        String username = viewcustomerRegistrationPanel.getTxtNome().getText();
+        String password = Arrays.toString(viewcustomerRegistrationPanel.getTxtPassword().getPassword());
+
+
+
+
+    }
     private  void logout(){}
     private void modificaDatiCliente(){}
     private void modificaDatiDipendente(){}
@@ -192,6 +199,16 @@ public class GestioneUtenzaController {
             }
         });
 
+
+    }
+
+    private void addLoginListener(){
+
+        frameLogin.getLoginPanel().getBottoneAccesso().addActionListener(e -> {
+            if(frameLogin.getLoginPanel().getBottoneAccesso().getActionCommand().equals("accesso")){
+                login();
+            }
+        });
 
     }
 

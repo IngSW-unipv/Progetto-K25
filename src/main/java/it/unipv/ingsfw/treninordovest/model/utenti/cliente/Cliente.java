@@ -29,6 +29,11 @@ public class Cliente extends Utente {
         this.email = email;
     }
 
+    public Cliente(String email,String password){
+        this.email = email;
+        this.setUserPassword(password);
+    }
+
 
 
 //Getters e Setters

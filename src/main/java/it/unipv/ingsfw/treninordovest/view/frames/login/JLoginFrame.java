@@ -2,6 +2,8 @@ package it.unipv.ingsfw.treninordovest.view.frames.login;
 
 //import it.unipv.ingsfw.treninordovest.controller.provvisorio.misc.LoginController;
 
+import it.unipv.ingsfw.treninordovest.controller.GestioneUtenzaController;
+
 import javax.swing.*;
 
 /**
@@ -18,6 +20,7 @@ public class JLoginFrame extends JFrame  {
         setSize(820, 230);
         setLocationRelativeTo(null);
         inizializzaComponenti();
+        new GestioneUtenzaController(loginPanel,this);
     }
 
     private void inizializzaComponenti() {
@@ -38,6 +41,11 @@ public class JLoginFrame extends JFrame  {
     public void hideFrame() {
         setVisible(false);
     }
+
+    public LoginPanel getLoginPanel() {
+        return loginPanel;
+    }
+
 
 //
 //    @Override

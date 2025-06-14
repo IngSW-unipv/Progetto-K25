@@ -154,7 +154,7 @@ public class DipendenteDAOImpl implements DipendenteDAO {
 
     @Override
     public void insert(Dipendente dipendente) {
-        String sql1 = "INSERT INTO utente (ID,UserPassword,Nome,Cognome,Sesso, LuogoNascita, DataNascita, Cellulare, Indirizzo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql1 = "INSERT INTO utente (ID,UserPassword,Nome,Cognome, LuogoNascita,Sesso, DataNascita, Cellulare, Indirizzo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         String sql2 = "INSERT INTO dipendente (IDDipendente, Stipendio,Ruolo,CodTreno) VALUES (?, ?, ?,?)";
 
             try (Connection con = Database.getConnection() ;PreparedStatement ps1 = con.prepareStatement(sql1); PreparedStatement ps2 = con.prepareStatement(sql2)) {
@@ -164,8 +164,8 @@ public class DipendenteDAOImpl implements DipendenteDAO {
                 ps1.setString(1, dipendente.getId().toString());
                 ps1.setString(2, hashedPassword);
                 ps1.setString(3, dipendente.getNome());
-                ps1.setString(4,dipendente.getCognome());
-                ps1.setString(5, String.valueOf(dipendente.getSesso()));
+                ps1.setString(4,dipendente.getLuogoNascita());
+                ps1.setString(5, dipendente.getSesso());
                 ps1.setString(6, dipendente.getLuogoNascita());
                 ps1.setObject(7, dipendente.getDataNascita()); // Assicurati che il driver JDBC supporti JDBC 4.2+
                 ps1.setString(8,dipendente.getCellulare());

@@ -6,7 +6,8 @@ public interface ClienteDAO extends DAO<Cliente> {
 
     Cliente findById(String id);
 
-    Cliente autenticate(Cliente cliente) ;
+    Cliente autenticateByEmail(Cliente credentials) ;
+
 
     boolean updateBilancio(Cliente cliente) ;
 

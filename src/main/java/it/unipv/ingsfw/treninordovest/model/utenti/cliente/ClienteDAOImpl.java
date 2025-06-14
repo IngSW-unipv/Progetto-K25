@@ -3,6 +3,7 @@ package it.unipv.ingsfw.treninordovest.model.utenti.cliente;
 import it.unipv.ingsfw.treninordovest.dao.database.Database;
 import it.unipv.ingsfw.treninordovest.utils.PasswordUtils;
 
+import java.awt.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -24,11 +25,14 @@ public class ClienteDAOImpl implements ClienteDAO {
     @Override
     public Cliente get(Cliente cliente) {
 
-        String sql = "select ID,nome,cognome,email,Userpassword,bilancio,luogoNascita,dataNascita,sesso,cellulare,indirizzo,sesso from utentiClienti where id=?";
+        String sql = "select ID,nome,cognome,email,Userpassword,bilancio,luogoNascita,dataNascita,sesso,cellulare,indirizzo,sesso from utentiClienti where email=? ";
+        String hashedPassword = PasswordUtils.hashPassword(cliente.getUserPassword());
 
         try (Connection con = Database.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
 
-             ps.setString(1, cliente.getId().toString());
+
+
+             ps.setString(1, cliente.getEmail());
 
             try (ResultSet rs = ps.executeQuery()) {
 
@@ -204,30 +208,26 @@ public class ClienteDAOImpl implements ClienteDAO {
     }
 
     @Override
-    public Cliente autenticate(Cliente cliente) {
+    public Cliente autenticateByEmail(Cliente credentials) {
 
-//        //System.out.println("Tentativo di autenticazione per id: " + id);
-//
-//        //Cliente cliente = get(id);
-//        if (cliente == null) {
-//            System.out.println("Cliente non trovato nel database");
-//            return null;
-//        }
-//
-//
-//        //boolean passwordValida = PasswordUtils.verifyPassword(password, cliente.getUserPassword());
-//        System.out.println("Risultato verifica password: " + passwordValida);
-//
-//        if (passwordValida) {
-//            System.out.println("Autenticazione riuscita");
-//            return cliente;
-//        } else {
-//            System.out.println("Password non valida");
-//            return null;
-//
-//        }
-       return null;
+        Cliente clienteEstratto= null;
+        String emailInserita = credentials.getEmail();
+        String passwordInserita=credentials.getUserPassword();
+
+        clienteEstratto=get(credentials);
+
+        if (clienteEstratto!=null && clienteEstratto.getEmail().equals(emailInserita) && PasswordUtils.verifyPassword(passwordInserita, clienteEstratto.getUserPassword())) {
+
+            return clienteEstratto;
+
+        }   else
+            return null;
+
+
     }
+
+
+
     @Override
     public boolean updateBilancio (Cliente cliente) {
 

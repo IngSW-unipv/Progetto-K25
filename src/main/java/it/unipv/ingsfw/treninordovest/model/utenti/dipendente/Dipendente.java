@@ -1,7 +1,9 @@
 package it.unipv.ingsfw.treninordovest.model.utenti.dipendente;
 
 
+import it.unipv.ingsfw.treninordovest.factory.implementations.StipendioStrategyFactory;
 import it.unipv.ingsfw.treninordovest.model.utenti.utente.Utente;
+import it.unipv.ingsfw.treninordovest.strategy.stipendio.IStipendioStrategy;
 
 import java.time.LocalDate;
 import java.util.UUID;
@@ -43,6 +45,11 @@ public class Dipendente extends Utente {
         this.ruolo = ruolo;
     }
 
+
+    public static double getStipendioByRuolo(String ruolo) {
+        IStipendioStrategy strategy = StipendioStrategyFactory.getStrategy(ruolo);
+        return strategy.calcolaStipendio();
+    }
 
     //Metodi vari (se necessari)
 
