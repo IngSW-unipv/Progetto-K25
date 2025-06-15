@@ -51,8 +51,7 @@ public class GestioneUtenzaController {
         this.viewLoginPanel = view;
         this.frameLogin = frame;
         this.loginFacade = new LoginFacade();
-
-        login();
+        addLoginListener();
 
     }
 
@@ -162,10 +161,10 @@ public class GestioneUtenzaController {
     private void login(){
         String identificativo =  viewLoginPanel.getCampoUtente();
         String password = Arrays.toString(viewLoginPanel.getCampoPassword());
-        String tipoUtente = viewLoginPanel.getCampoUtente();
+        String tipoUtente = viewLoginPanel.getComboRuolo();
 
         try {
-            if (loginFacade.login(new Cliente(identificativo,password),tipoUtente)){
+            if (loginFacade.login(identificativo,password,tipoUtente)){
                 JOptionPane.showMessageDialog(null,"Cliente login correttamente", "Info", JOptionPane.INFORMATION_MESSAGE);
             }
             else
@@ -179,7 +178,11 @@ public class GestioneUtenzaController {
 
 
     }
-    private  void logout(){}
+    private  void logout(){
+
+        loginFacade.logout();
+
+    }
     private void modificaDatiCliente(){}
     private void modificaDatiDipendente(){}
     private void aggiornaDatiProfilo(){}
@@ -190,6 +193,8 @@ public class GestioneUtenzaController {
        frame.setVisible(true);
        JEmployeeRegFrame frame2 = new JEmployeeRegFrame();
        frame2.setVisible(true);
+       JLoginFrame frame3 = new JLoginFrame();
+       frame3.setVisible(true);
 
     }
 
@@ -198,7 +203,7 @@ public class GestioneUtenzaController {
     private void addClienteRegistrationListener(){
         frameCustomerReg.getCustomerRegistrationPanel().getBtnRegister().addActionListener(e -> {
 
-            if(frameCustomerReg.getCustomerRegistrationPanel().getBtnRegister().getActionCommand().equals("register")){
+            if(frameCustomerReg.getCustomerRegistrationPanel().getBtnRegister().getActionCommand().equals(CustomerRegistrationPanel.CMD_Register)){
                 registraCliente();
             }
 
@@ -209,7 +214,7 @@ public class GestioneUtenzaController {
 
     private void addDipendenteRegistrationListener(){
         frameEmployeeReg.getEmployeeRegistrationPanel().getBtnRegister().addActionListener(e -> {
-            if(frameEmployeeReg.getEmployeeRegistrationPanel().getBtnRegister().getActionCommand().equals("register")){
+            if(frameEmployeeReg.getEmployeeRegistrationPanel().getBtnRegister().getActionCommand().equals(EmployeeRegistrationPanel.CMD_Register)){
                 registraDipendente();
             }
         });
@@ -220,7 +225,7 @@ public class GestioneUtenzaController {
     private void addLoginListener(){
 
         frameLogin.getLoginPanel().getBottoneAccesso().addActionListener(e -> {
-            if(frameLogin.getLoginPanel().getBottoneAccesso().getActionCommand().equals("accesso")){
+            if(frameLogin.getLoginPanel().getBottoneAccesso().getActionCommand().equals(LoginPanel.CMD_Login)){
                 login();
             }
         });

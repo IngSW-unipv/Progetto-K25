@@ -1,36 +1,35 @@
 package it.unipv.ingsfw.treninordovest.factory.login;
 
+import java.lang.reflect.Constructor;
 import java.util.Properties;
 import java.io.FileInputStream;
 
 /**
  * Factory per creare le istanze appropriate di LoginAbstractFactory
  */
+
+
 public class LoginFactoryProducer {
 
-    /**
-     * Versione che usa reflection e properties come nell'UtenteDAOFactory esistente
-     */
-    public static ILoginFactory getFactoryFromProperties(String tipoUtente) {
+    public static ILogin getFactoryFromProperties(String tipoUtente) {
         try {
-            Properties pr = new Properties(System.getProperties());
+            Properties pr = new Properties();
             pr.load(new FileInputStream("properties/properties"));
-
-            // Converte il tipo di utente in minuscolo per la costruzione della chiave
-            String tipoUtenteLowerCase = tipoUtente.toLowerCase();
-            // Costruisce la chiave dinamicamente
-            String propertyKey = tipoUtenteLowerCase + ".factory.class.name";
-
-            // Ottiene il nome della classe dalla proprietà
-            String factoryClassName = pr.getProperty(propertyKey);
-
-            if (factoryClassName == null) {
-                throw new IllegalArgumentException("Tipo di utente non supportato: " + tipoUtente);
+            String key = tipoUtente.toLowerCase() + ".factory.class.name";
+            String className = pr.getProperty(key);
+            if (className == null) {
+                throw new IllegalArgumentException("Tipo utente non supportato: " + tipoUtente);
             }
 
-            return (ILoginFactory) Class.forName(factoryClassName).getDeclaredConstructor().newInstance();
+            Class<?> cls = Class.forName(className);
+            Constructor<? extends ILogin> ctor = cls.asSubclass(ILogin.class).getConstructor();
+            return ctor.newInstance();
+
         } catch (Exception e) {
-            throw new RuntimeException("Errore nella creazione della factory: " + e.getMessage(), e);
+            throw new RuntimeException("Errore nel creare factory per " + tipoUtente, e);
         }
     }
+
+
+
 }

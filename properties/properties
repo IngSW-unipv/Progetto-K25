@@ -5,10 +5,10 @@ db_psw=Andrea@2003
 
 
 
-cliente.factory.class.name=it.unipv.ingsfw.treninordovest.factory.implementations.ClienteLoginFactoryImpl
+cliente.factory.class.name=it.unipv.ingsfw.treninordovest.factory.implementations.ClienteLoginFactory
 cliente.dao.class.name=it.unipv.ingsfw.treninordovest.dao.implementations.utenti.ClienteDAOImpl
 
-dipendente.factory.class.name=it.unipv.ingsfw.treninordovest.factory.implementations.DipendenteLoginFactoryImpl
+dipendente.factory.class.name=it.unipv.ingsfw.treninordovest.factory.implementations.DipendenteLoginFactory
 dipendente.dao.class.name=it.unipv.ingsfw.treninordovest.dao.implementations.utenti.DipendenteDAOImpl
 
 # Configurazione per le strategie di calcolo stipendio
@@ -34,4 +34,6 @@ euwallet.factory.class.name=it.unipv.ingsfw.treninordovest.utils.metodipagamento
 venditaabbonamento.factory.class.name=it.unipv.ingsfw.treninordovest.strategy.pagamento.VenditaAbbonamentoStrategy
 venditabiglietto.factory.class.name=it.unipv.ingsfw.treninordovest.strategy.pagamento.VenditaBigliettoStrategy
 
-
+#Login
+cliente.factory.class.name=it.unipv.ingsfw.treninordovest.factory.login.ClienteLogin
+dipendente.factory.class.name=it.unipv.ingsfw.treninordovest.factory.login.DipendenteLogin

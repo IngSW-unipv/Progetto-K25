@@ -4,6 +4,7 @@ import it.unipv.ingsfw.treninordovest.model.utenti.utente.Utente;
 
 public interface ILoginFacade {
 
-    boolean login(Utente utente, String tipoUtente);
+    boolean login(String id, String password , String tipoUtente);
+    void logout();
 
 }

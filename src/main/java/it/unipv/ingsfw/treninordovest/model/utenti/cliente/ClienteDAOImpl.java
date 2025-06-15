@@ -38,22 +38,27 @@ public class ClienteDAOImpl implements ClienteDAO {
 
 
                 if (rs.next()) {
-                    String nome = rs.getString("nome");
-                    String cognome = rs.getString("cognome");
-                    String email = rs.getString("email");
-                    String password = rs.getString("UserPassword");
-                    double bilancio = rs.getDouble("bilancio");
-                    String luogoNascita = rs.getString("luogoNascita");
+                    String storedHash = rs.getString("UserPassword");
+                    if (PasswordUtils.verifyPassword(cliente.getUserPassword(), storedHash)){
+                        String nome = rs.getString("nome");
+                        String cognome = rs.getString("cognome");
+                        String email = rs.getString("email");
+                        String password = rs.getString("UserPassword");
+                        double bilancio = rs.getDouble("bilancio");
+                        String luogoNascita = rs.getString("luogoNascita");
 
-                    Date dataNascita = rs.getDate("dataNascita");
-                    LocalDate dataNascitaLocal = dataNascita.toLocalDate();
+                        Date dataNascita = rs.getDate("dataNascita");
+                        LocalDate dataNascitaLocal = dataNascita.toLocalDate();
 
-                    String sesso = rs.getString("sesso");
-                    String cellulare = rs.getString("cellulare");
-                    String indirizzo = rs.getString("indirizzo");
+                        String sesso = rs.getString("sesso");
+                        String cellulare = rs.getString("cellulare");
+                        String indirizzo = rs.getString("indirizzo");
 
 
-                    cliente = new Cliente(cliente.getId(), password, nome, cognome, luogoNascita, sesso, dataNascitaLocal, cellulare, indirizzo, bilancio, email);
+                        cliente = new Cliente(cliente.getId(), password, nome, cognome, luogoNascita, sesso, dataNascitaLocal, cellulare, indirizzo, bilancio, email);
+
+                    }
+
                 }
 
             }
@@ -65,6 +70,9 @@ public class ClienteDAOImpl implements ClienteDAO {
 
         return cliente;
     }
+
+
+
 
     @Override
     public List<Cliente> getAll() {
@@ -210,19 +218,18 @@ public class ClienteDAOImpl implements ClienteDAO {
     @Override
     public Cliente autenticateByEmail(Cliente credentials) {
 
-        Cliente clienteEstratto= null;
-        String emailInserita = credentials.getEmail();
-        String passwordInserita=credentials.getUserPassword();
+        try {
+            if (credentials != null && get(credentials)!=null) {
+                System.out.println("Autenticato con successo");
+                return get(credentials);
+            }
 
-        clienteEstratto=get(credentials);
+        }catch (Exception e) {
+           e.printStackTrace();
 
-        if (clienteEstratto!=null && clienteEstratto.getEmail().equals(emailInserita) && PasswordUtils.verifyPassword(passwordInserita, clienteEstratto.getUserPassword())) {
+        }
 
-            return clienteEstratto;
-
-        }   else
-            return null;
-
+        return null;
 
     }
 
