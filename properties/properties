@@ -35,5 +35,5 @@ venditaabbonamento.factory.class.name=it.unipv.ingsfw.treninordovest.strategy.pa
 venditabiglietto.factory.class.name=it.unipv.ingsfw.treninordovest.strategy.pagamento.VenditaBigliettoStrategy
 
 #Login
-cliente.factory.class.name=it.unipv.ingsfw.treninordovest.factory.login.ClienteLogin
-dipendente.factory.class.name=it.unipv.ingsfw.treninordovest.factory.login.DipendenteLogin
+clienteLogin.factory.class.name=it.unipv.ingsfw.treninordovest.factory.login.ClienteLogin
+dipendenteLogin.factory.class.name=it.unipv.ingsfw.treninordovest.factory.login.DipendenteLogin

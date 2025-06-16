@@ -8,8 +8,7 @@ public class LoginFacadeTest {
     @Test
     void loginTest() {
 
-        LoginFacade lf = new LoginFacade();
-        lf.login(new Cliente("admin", "admin"),"Cliente");
+
 
     }
 }

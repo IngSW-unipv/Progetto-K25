@@ -40,6 +40,7 @@ public class ClienteDAOImpl implements ClienteDAO {
                 if (rs.next()) {
                     String storedHash = rs.getString("UserPassword");
                     if (PasswordUtils.verifyPassword(cliente.getUserPassword(), storedHash)){
+                        String id = rs.getString("ID");
                         String nome = rs.getString("nome");
                         String cognome = rs.getString("cognome");
                         String email = rs.getString("email");
@@ -55,7 +56,7 @@ public class ClienteDAOImpl implements ClienteDAO {
                         String indirizzo = rs.getString("indirizzo");
 
 
-                        cliente = new Cliente(cliente.getId(), password, nome, cognome, luogoNascita, sesso, dataNascitaLocal, cellulare, indirizzo, bilancio, email);
+                        cliente = new Cliente(UUID.fromString(id), password, nome, cognome, luogoNascita, sesso, dataNascitaLocal, cellulare, indirizzo, bilancio, email);
 
                     }
 
@@ -218,10 +219,12 @@ public class ClienteDAOImpl implements ClienteDAO {
     @Override
     public Cliente autenticateByEmail(Cliente credentials) {
 
+        Cliente clienteAutenticato = new Cliente();
+
         try {
-            if (credentials != null && get(credentials)!=null) {
-                System.out.println("Autenticato con successo");
-                return get(credentials);
+            if (credentials != null ) {
+                clienteAutenticato = get(credentials);
+                return clienteAutenticato;
             }
 
         }catch (Exception e) {
@@ -229,8 +232,7 @@ public class ClienteDAOImpl implements ClienteDAO {
 
         }
 
-        return null;
-
+        return clienteAutenticato;
     }
 
 

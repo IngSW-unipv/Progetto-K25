@@ -18,6 +18,12 @@ public class Dipendente extends Utente {
         super();
     }
 
+    public Dipendente(String id , String password) {
+        this.setId(UUID.fromString(id));
+        this.setUserPassword(password);
+    }
+
+
     //Costruttore completo
 
     public Dipendente(UUID id, String userPassword, String nome, String cognome, String luogoNascita, String sesso, LocalDate dataNascita, String cellulare, String indirizzo, double stipendio, String ruolo) {

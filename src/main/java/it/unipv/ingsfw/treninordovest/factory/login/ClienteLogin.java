@@ -8,6 +8,6 @@ public class ClienteLogin implements ILogin<Cliente> {
     @Override
     public Cliente login(String username, String password) {
         ClienteDAOImpl dao = new ClienteDAOImpl();
-        return (Cliente) dao.autenticateByEmail(new Cliente(username, password));
+        return dao.autenticateByEmail(new Cliente(username, password));
     }
 }

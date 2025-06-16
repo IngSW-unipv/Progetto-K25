@@ -1,6 +1,11 @@
 package it.unipv.ingsfw.treninordovest.factory.login;
 
+import it.unipv.ingsfw.treninordovest.strategy.stipendio.IStipendioStrategy;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Properties;
 import java.io.FileInputStream;
 
@@ -11,23 +16,44 @@ import java.io.FileInputStream;
 
 public class LoginFactoryProducer {
 
-    public static ILogin getFactoryFromProperties(String tipoUtente) {
-        try {
-            Properties pr = new Properties();
-            pr.load(new FileInputStream("properties/properties"));
-            String key = tipoUtente.toLowerCase() + ".factory.class.name";
-            String className = pr.getProperty(key);
-            if (className == null) {
-                throw new IllegalArgumentException("Tipo utente non supportato: " + tipoUtente);
+    private static ILogin login;
+
+
+    public static ILogin getFactoryFromProperties(String tipo) {
+
+        if (login == null) {
+            try {
+                Properties pr = new Properties(System.getProperties());
+                pr.load(new FileInputStream("properties/properties"));
+
+                // Converte il tipo di utente in minuscolo per la costruzione della chiave
+                String tipoLowerCase = tipo.toLowerCase();
+                // Costruisce la chiave dinamicamente
+                String propertyKey = tipoLowerCase + "Login.factory.class.name";
+
+
+                // Ottiene il nome della classe dalla proprietà
+                String factoryClassName = pr.getProperty(propertyKey);
+
+
+                if (factoryClassName == null)
+                    System.out.println("Error: property " + propertyKey + " not found");
+
+                Constructor constructor = Class.forName(factoryClassName).getConstructor();
+                login = (ILogin) constructor.newInstance();
+
+                return (ILogin) Class.forName(factoryClassName).getDeclaredConstructor().newInstance();
+            } catch (Exception e) {
+                e.printStackTrace();
+                login = null;
             }
 
-            Class<?> cls = Class.forName(className);
-            Constructor<? extends ILogin> ctor = cls.asSubclass(ILogin.class).getConstructor();
-            return ctor.newInstance();
 
-        } catch (Exception e) {
-            throw new RuntimeException("Errore nel creare factory per " + tipoUtente, e);
+
+
         }
+
+        return login;
     }
 
 

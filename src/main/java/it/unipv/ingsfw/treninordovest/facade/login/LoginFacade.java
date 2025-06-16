@@ -14,8 +14,16 @@ public class LoginFacade implements ILoginFacade {
         try {
 
             ILogin loginAbstractFactory = LoginFactoryProducer.getFactoryFromProperties(tipoUtente);
-            if (loginAbstractFactory.login(id,password)!=null)
+           Utente user = (Utente) loginAbstractFactory.login(id, password);
+
+
+            if (user != null) {
+
+                System.out.println(user.getId());
+
+                //SessionManager.getInstance().setCurrentUser(user);
                 return true;
+            }
 
 
         }catch (Exception e) {
