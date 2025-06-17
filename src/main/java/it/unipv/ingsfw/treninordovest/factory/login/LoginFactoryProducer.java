@@ -16,12 +16,13 @@ import java.io.FileInputStream;
 
 public class LoginFactoryProducer {
 
-    private static ILogin login;
+    private ILogin login=null;
 
 
-    public static ILogin getFactoryFromProperties(String tipo) {
 
-        if (login == null) {
+
+    public  ILogin getFactoryFromProperties(String tipo) {
+
             try {
                 Properties pr = new Properties(System.getProperties());
                 pr.load(new FileInputStream("properties/properties"));
@@ -40,20 +41,18 @@ public class LoginFactoryProducer {
                     System.out.println("Error: property " + propertyKey + " not found");
 
                 Constructor constructor = Class.forName(factoryClassName).getConstructor();
-                login = (ILogin) constructor.newInstance();
+                 login = (ILogin) constructor.newInstance();
 
-                return (ILogin) Class.forName(factoryClassName).getDeclaredConstructor().newInstance();
+
+                //return (ILogin) Class.forName(factoryClassName).getDeclaredConstructor().newInstance();
             } catch (Exception e) {
                 e.printStackTrace();
                 login = null;
             }
 
 
+        return  login;
 
-
-        }
-
-        return login;
     }
 
 

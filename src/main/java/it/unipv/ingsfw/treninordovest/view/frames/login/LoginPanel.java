@@ -14,9 +14,6 @@ public class LoginPanel extends JPanel {
     public static final String CMD_Login= "login";
     public static final String CMD_Back= "indietro";
 
-   // private ImageIcon logoIcon = new ImageIcon("/logo.png");
-    //private JLabel logoLabel;
-    private Color coloreSfondo;
     private final JComboBox<String> comboRuolo;
 
     public LoginPanel() {
@@ -25,7 +22,9 @@ public class LoginPanel extends JPanel {
         campoPassword = new JPasswordField(15);
         bottoneAccesso = new JButton("Accesso");
         bottoneIndietro = new JButton("Torna al menù");
-        coloreSfondo = new  Color(131,168,195);
+        // private ImageIcon logoIcon = new ImageIcon("/logo.png");
+        //private JLabel logoLabel;
+        Color coloreSfondo = new Color(131, 168, 195);
 
         String[] tipo = new String[]{"Cliente", "Dipendente"};
         comboRuolo = new JComboBox<>(tipo);
@@ -74,16 +73,16 @@ public class LoginPanel extends JPanel {
     }
 
 
-    public String getCampoUtente() {
-        return campoUtente.getText();
+    public JTextField getCampoUtente() {
+        return campoUtente;
     }
 
-    public char[] getCampoPassword() {
-        return campoPassword.getPassword();
+    public JPasswordField getCampoPassword() {
+        return campoPassword;
     }
 
-    public String getComboRuolo() {
-        return (String) comboRuolo.getSelectedItem();
+    public JComboBox<String> getComboRuolo() {
+        return comboRuolo;
     }
 
     public JButton getBottoneAccesso() {

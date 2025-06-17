@@ -25,21 +25,20 @@ public class ClienteDAOImpl implements ClienteDAO {
     @Override
     public Cliente get(Cliente cliente) {
 
-        String sql = "select ID,nome,cognome,email,Userpassword,bilancio,luogoNascita,dataNascita,sesso,cellulare,indirizzo,sesso from utentiClienti where email=? ";
-        String hashedPassword = PasswordUtils.hashPassword(cliente.getUserPassword());
+        String sql = "select ID,nome,cognome,email,Userpassword,bilancio,luogoNascita,dataNascita,sesso,cellulare,indirizzo,sesso from utentiClienti where ID=? ";
+        //String hashedPassword = PasswordUtils.hashPassword(cliente.getUserPassword());
 
         try (Connection con = Database.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
 
 
 
-             ps.setString(1, cliente.getEmail());
+             ps.setString(1, cliente.getId().toString());
 
             try (ResultSet rs = ps.executeQuery()) {
 
 
                 if (rs.next()) {
-                    String storedHash = rs.getString("UserPassword");
-                    if (PasswordUtils.verifyPassword(cliente.getUserPassword(), storedHash)){
+
                         String id = rs.getString("ID");
                         String nome = rs.getString("nome");
                         String cognome = rs.getString("cognome");
@@ -58,7 +57,7 @@ public class ClienteDAOImpl implements ClienteDAO {
 
                         cliente = new Cliente(UUID.fromString(id), password, nome, cognome, luogoNascita, sesso, dataNascitaLocal, cellulare, indirizzo, bilancio, email);
 
-                    }
+
 
                 }
 
@@ -66,7 +65,8 @@ public class ClienteDAOImpl implements ClienteDAO {
 
 
         } catch (SQLException e) {
-            throw new RuntimeException("Errore durante il recupero dei dati: ", e);
+            e.printStackTrace();
+            return null;
         }
 
         return cliente;
@@ -217,23 +217,38 @@ public class ClienteDAOImpl implements ClienteDAO {
     }
 
     @Override
-    public Cliente autenticateByEmail(Cliente credentials) {
+    public Cliente autenticateByEmail(Cliente input) {
+        String sql = "SELECT ID,nome,cognome,UserPassword,bilancio,luogoNascita,dataNascita,sesso,cellulare,indirizzo,email FROM utentiClienti WHERE email=?";
+        try (Connection con = Database.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
 
-        Cliente clienteAutenticato = new Cliente();
-
-        try {
-            if (credentials != null ) {
-                clienteAutenticato = get(credentials);
-                return clienteAutenticato;
+            ps.setString(1, input.getEmail());
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    String storedHash = rs.getString("UserPassword");
+                    if (input.getEmail().equals(rs.getString("email"))  /*PasswordUtils.verifyPassword(input.getUserPassword(), storedHash)*/) {
+                        return new Cliente(
+                                UUID.fromString(rs.getString("ID")),
+                                storedHash,
+                                rs.getString("nome"),
+                                rs.getString("cognome"),
+                                rs.getString("luogoNascita"),
+                                rs.getString("sesso"),
+                                rs.getDate("dataNascita").toLocalDate(),
+                                rs.getString("cellulare"),
+                                rs.getString("indirizzo"),
+                                rs.getDouble("bilancio"),
+                                rs.getString("email")
+                        );
+                    }
+                }
             }
-
-        }catch (Exception e) {
-           e.printStackTrace();
-
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-
-        return clienteAutenticato;
+        return null;
     }
+
 
 
 

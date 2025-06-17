@@ -159,9 +159,9 @@ public class GestioneUtenzaController {
 
     }
     private void login(){
-        String identificativo =  viewLoginPanel.getCampoUtente();
-        String password = Arrays.toString(viewLoginPanel.getCampoPassword());
-        String tipoUtente = viewLoginPanel.getComboRuolo();
+        String identificativo =  viewLoginPanel.getCampoUtente().getText();
+        String password = Arrays.toString(viewLoginPanel.getCampoPassword().getPassword());
+        String tipoUtente = (String )viewLoginPanel.getComboRuolo().getSelectedItem();
 
         try {
             if (loginFacade.login(identificativo,password,tipoUtente)){

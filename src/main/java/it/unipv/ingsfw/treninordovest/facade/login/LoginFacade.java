@@ -2,6 +2,8 @@ package it.unipv.ingsfw.treninordovest.facade.login;
 
 import it.unipv.ingsfw.treninordovest.factory.login.ILogin;
 import it.unipv.ingsfw.treninordovest.factory.login.LoginFactoryProducer;
+import it.unipv.ingsfw.treninordovest.model.utenti.cliente.Cliente;
+import it.unipv.ingsfw.treninordovest.model.utenti.dipendente.Dipendente;
 import it.unipv.ingsfw.treninordovest.model.utenti.utente.Utente;
 import it.unipv.ingsfw.treninordovest.model.varie.SessionManager;
 
@@ -13,13 +15,12 @@ public class LoginFacade implements ILoginFacade {
 
         try {
 
-            ILogin loginAbstractFactory = LoginFactoryProducer.getFactoryFromProperties(tipoUtente);
-           Utente user = (Utente) loginAbstractFactory.login(id, password);
-
+            ILogin loginFactory =  new LoginFactoryProducer().getFactoryFromProperties(tipoUtente);
+              Utente user = (Utente) loginFactory.login(id, password);
 
             if (user != null) {
 
-                System.out.println(user.getId());
+                System.out.println("DEBUG: ID Utente:   "+user.getId());
 
                 //SessionManager.getInstance().setCurrentUser(user);
                 return true;
