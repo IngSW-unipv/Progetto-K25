@@ -36,6 +36,9 @@ public class AcquistoFacade implements IAcquistoFacade {
 
     @Override
     public boolean acquistoAbbonamento() {
+
+
+
         return false;
     }
 

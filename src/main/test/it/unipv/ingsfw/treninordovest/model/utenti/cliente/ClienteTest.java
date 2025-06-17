@@ -1,5 +1,6 @@
 package it.unipv.ingsfw.treninordovest.model.utenti.cliente;
 
+import it.unipv.ingsfw.treninordovest.model.titoli.pagamento.Pagamento;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -25,10 +26,26 @@ public class ClienteTest {
         cliente.setDataNascita(LocalDate.now());
         cliente.setSesso("T");
         cliente.setLuogoNascita("xyz");
-        cliente.setBilancio(200);
+        cliente.setBilancio(20000);
         cliente.setEmail("lfdm");
 
-        dao.insert(cliente);
+
+
+        //dao.insert(cliente);
+
+        System.out.println(cliente.getBilancio());
+        System.out.println(cliente.getWallet().getValue());
+
+        Pagamento pagamento = new Pagamento();
+
+        pagamento.setDataPagamento(LocalDate.now());
+        pagamento.setIdPagamento(UUID.randomUUID().toString());
+        pagamento.setTipo("Wallet");
+        pagamento.setTotale(220);
+
+        cliente.getWallet().preleva(pagamento.getTotale());
+
+        System.out.println("Bilancio post pagamento:" + cliente.getWallet().getValue());
 
 
 
