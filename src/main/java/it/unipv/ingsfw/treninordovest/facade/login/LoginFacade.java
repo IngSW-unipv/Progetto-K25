@@ -22,7 +22,7 @@ public class LoginFacade implements ILoginFacade {
 
                 System.out.println("DEBUG: ID Utente:   "+user.getId());
 
-                //SessionManager.getInstance().setCurrentUser(user);
+                SessionManager.getInstance().setCurrentUser(user);
                 return true;
             }
 

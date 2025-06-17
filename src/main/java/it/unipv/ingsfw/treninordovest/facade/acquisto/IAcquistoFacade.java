@@ -1,4 +1,4 @@
-package it.unipv.ingsfw.treninordovest.facade.implementations.acquisto;
+package it.unipv.ingsfw.treninordovest.facade.acquisto;
 
 public interface IAcquistoFacade {
 

@@ -1,4 +1,4 @@
-package it.unipv.ingsfw.treninordovest.facade.implementations.acquisto;
+package it.unipv.ingsfw.treninordovest.facade.acquisto;
 
 import it.unipv.ingsfw.treninordovest.model.titoli.abbonamento.AbbonamentoDAOimpl;
 import it.unipv.ingsfw.treninordovest.model.titoli.biglietto.BigliettoDAOImpl;
@@ -27,7 +27,6 @@ public class AcquistoFacade implements IAcquistoFacade {
         this.bigliettoDAO=new BigliettoDAOImpl();
         this.pagamentoDAO=new PagamentoDAOImpl();
         this.tesseraDAO=new TesseraDAOImpl();
-
     }
 
     @Override
@@ -42,28 +41,22 @@ public class AcquistoFacade implements IAcquistoFacade {
 
     @Override
     public boolean acquistaTessera(){
+        if(SessionManager.getInstance().getCurrentUser() !=null){
+            clienteLoggato = (Cliente) SessionManager.getInstance().getCurrentUser();
+        }
+        try {
+            if (!tesseraDAO.exists(clienteLoggato.getId().toString()) && clienteLoggato != null) {
+                    Tessera tessera = new Tessera( new GeneraID("TS").getID(), LocalDate.now(), LocalDate.now().plusYears(5));
+                    if (tesseraDAO.createTessera(tessera,clienteLoggato.getId().toString()))
+                        return true;
+
+            }
 
 
-//        if(SessionManager.getInstance().getCurrentUser() !=null){
-//            clienteLoggato = (Cliente) SessionManager.getInstance().getCurrentUser();
-//        }
-//
-//        try {
-//            if (!tesseraDAO.exists(clienteLoggato.getId().toString())){
-//
-//
-//                    Tessera tessera = new Tessera( new GeneraID("TS").getID(), LocalDate.now(),LocalDate.now().plusYears(5));
-//
-//                    tesseraDAO.insert(tessera);
-//
-//
-//            }
-//
-//
-//
-//        } catch (Exception e) {
-//            throw new RuntimeException(e);
-//        }
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+            return false;
+        }
 
         return false;
 

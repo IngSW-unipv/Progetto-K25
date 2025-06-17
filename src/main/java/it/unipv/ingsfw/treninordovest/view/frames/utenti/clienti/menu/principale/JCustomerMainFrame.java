@@ -1,5 +1,6 @@
 package it.unipv.ingsfw.treninordovest.view.frames.utenti.clienti.menu.principale;
 
+import it.unipv.ingsfw.treninordovest.controller.AcquistoController;
 import it.unipv.ingsfw.treninordovest.view.frames.utenti.clienti.menu.principale.panels.*;
 import it.unipv.ingsfw.treninordovest.view.panels.miscellanous.*;
 
@@ -8,7 +9,7 @@ import java.awt.*;
 import java.util.Observable;
 import java.util.Observer;
 
-public class JCustomerMainFrame extends JFrame implements Observer {
+public class JCustomerMainFrame extends JFrame {
     private final JTabbedPane tabbedPane = new JTabbedPane();
     private final TicketPurchasePanel ticketPurchasePanel = new TicketPurchasePanel();
     private final SubscriptionPanel subscriptionPanel = new SubscriptionPanel();
@@ -46,6 +47,8 @@ public class JCustomerMainFrame extends JFrame implements Observer {
 
         // Aggiunta di tutte le schede nel frame
         add(tabbedPane, BorderLayout.CENTER);
+
+        new AcquistoController(cardPurchasePanel,this);
     }
 
     // Getter per accedere ai pannelli
@@ -77,9 +80,5 @@ public class JCustomerMainFrame extends JFrame implements Observer {
         setVisible(false);
     }
 
-    @Override
-    public void update(Observable o, Object arg) {
 
-
-    }
 }

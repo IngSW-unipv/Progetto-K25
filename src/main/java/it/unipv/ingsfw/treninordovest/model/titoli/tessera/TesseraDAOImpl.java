@@ -169,10 +169,8 @@ public class TesseraDAOImpl implements TesseraDAO {
     }
 
     @Override
-    public String getIdTesseraByCustomerID(String idCliente)  {
+    public String getIdCustomer(String idCliente)  {
 
-       /* String idTessera = null;
-        Tessera tessera = null;
 
         String sql = "select idTessera, idCliente from tessera where IDCliente=?";
 
@@ -180,21 +178,50 @@ public class TesseraDAOImpl implements TesseraDAO {
             ps.setString(1,idCliente);
             ResultSet rs=ps.executeQuery();
             if(rs.next()){
-                idTessera = rs.getString("IDTessera");
                 idCliente = rs.getString("IDCliente");
 
             }
             Database.closeConnection(con);
 
         }catch (SQLException e) {
-           throw new RuntimeException( "Errore durante il recupero dei dati: ",e);
+           e.printStackTrace();
+           System.out.println("Tessera già posseduta");
         }
 
 
 
-        return idTessera;
+        return idCliente;
 
-        */
-       return null;
+
+       //return null;
+    }
+
+    @Override
+    public boolean createTessera(Tessera tessera, String idCliente) {
+
+        String sql1 = "INSERT INTO tessera (IDTessera, emissione, scadenza, idcliente) VALUES (?, ?, ?, ?)";
+
+        if (!getIdCustomer(idCliente).equals(idCliente)) {
+            try (Connection con = Database.getConnection();PreparedStatement ps1 = con.prepareStatement(sql1)) {
+                // Impostazione dei parametri per la query 1
+                ps1.setString(1, tessera.getIdTessera());
+                ps1.setObject(2, tessera.getEmissione());
+                ps1.setObject(3, tessera.getScadenza());
+                ps1.setObject(4, idCliente);
+
+                // Esecuzione delle query
+                ps1.executeUpdate();
+                // Database.closeConnection(con);
+                return true;
+            }
+            catch (SQLException e) {
+                e.printStackTrace();
+                //return false;
+
+            }
+
+        }
+
+        return false;
     }
 }

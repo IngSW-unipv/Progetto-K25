@@ -6,6 +6,8 @@ public interface TesseraDAO extends DAO<Tessera> {
 
     boolean exists(String idCliente) ;
 
-    String getIdTesseraByCustomerID(String idCliente) ;
+    String getIdCustomer(String idCliente) ;
+
+    boolean createTessera(Tessera tessera, String idCliente) ;
 
 }

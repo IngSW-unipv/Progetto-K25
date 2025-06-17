@@ -4,6 +4,7 @@ import it.unipv.ingsfw.treninordovest.facade.login.LoginFacade;
 import it.unipv.ingsfw.treninordovest.facade.registazioniutenti.UserRegistrationFacade;
 import it.unipv.ingsfw.treninordovest.model.utenti.cliente.Cliente;
 import it.unipv.ingsfw.treninordovest.model.utenti.dipendente.Dipendente;
+import it.unipv.ingsfw.treninordovest.view.frames.utenti.clienti.menu.principale.JCustomerMainFrame;
 import it.unipv.ingsfw.treninordovest.view.frames.utenti.clienti.menu.registrazione.JCustomerRegFrame;
 import it.unipv.ingsfw.treninordovest.view.frames.utenti.dipendenti.menu.registrazione.JEmployeeRegFrame;
 import it.unipv.ingsfw.treninordovest.view.frames.login.JLoginFrame;
@@ -166,6 +167,7 @@ public class GestioneUtenzaController {
         try {
             if (loginFacade.login(identificativo,password,tipoUtente)){
                 JOptionPane.showMessageDialog(null,"Cliente login correttamente", "Info", JOptionPane.INFORMATION_MESSAGE);
+
             }
             else
                 JOptionPane.showMessageDialog(null, "Cliente login errati", "Errore", JOptionPane.ERROR_MESSAGE);
@@ -195,6 +197,8 @@ public class GestioneUtenzaController {
        frame2.setVisible(true);
        JLoginFrame frame3 = new JLoginFrame();
        frame3.setVisible(true);
+        JCustomerMainFrame customerMainFrame = new JCustomerMainFrame();
+        customerMainFrame.setVisible(true);
 
     }
 

@@ -107,7 +107,7 @@ create table tessera(
 IDTessera varchar(40) not null,
 Emissione date not null,
 Scadenza date not null,
-IDCliente varchar(10) not null,
+IDCliente varchar(40) not null,
 primary key (IDTessera),
 foreign key (IDCliente) references cliente(IDCliente) on delete cascade on update cascade
 );
