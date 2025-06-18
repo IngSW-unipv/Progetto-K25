@@ -1,15 +1,19 @@
 package it.unipv.ingsfw.treninordovest.controller;
 
 import it.unipv.ingsfw.treninordovest.facade.acquisto.AcquistoFacade;
+import it.unipv.ingsfw.treninordovest.model.titoli.abbonamento.Abbonamento;
 import it.unipv.ingsfw.treninordovest.view.frames.utenti.clienti.menu.principale.JCustomerMainFrame;
 import it.unipv.ingsfw.treninordovest.view.frames.utenti.clienti.menu.principale.panels.CardPurchasePanel;
 import it.unipv.ingsfw.treninordovest.view.frames.utenti.clienti.menu.principale.panels.SubscriptionPanel;
+import it.unipv.ingsfw.treninordovest.view.frames.utenti.clienti.menu.principale.panels.TicketPurchasePanel;
 
 import javax.swing.*;
+import java.util.ArrayList;
 
 public class AcquistoController {
 
     private CardPurchasePanel viewCardPurchase;
+    private TicketPurchasePanel viewTicketPurchase;
     private SubscriptionPanel viewSubscription;
     private JCustomerMainFrame frameCustomer;
     private AcquistoFacade acquistoFacade;
@@ -26,6 +30,10 @@ public class AcquistoController {
         this.frameCustomer = frameCustomer;
         this.acquistoFacade = new AcquistoFacade();
         addAbbonamentoPurchaseListener();
+    }
+
+    public AcquistoController(TicketPurchasePanel viewTicketPurchase, JCustomerMainFrame frameCustomer) {
+
     }
 
 

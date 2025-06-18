@@ -67,7 +67,7 @@ public class GestioneUtenzaController {
         try {
 
             nome = viewcustomerRegistrationPanel.getTxtNome().getText();
-            cognome = viewcustomerRegistrationPanel.getTxtNome().getText();
+            cognome = viewcustomerRegistrationPanel.getTxtCognome().getText();
             sesso =viewcustomerRegistrationPanel.getComboSesso();
 
             dataNascita  =  viewcustomerRegistrationPanel.getDataNascita().getDate();
@@ -119,7 +119,7 @@ public class GestioneUtenzaController {
         try {
 
             nome = viewemployeeRegistrationPanel.getTxtNome().getText();
-            cognome = viewemployeeRegistrationPanel.getTxtNome().getText();
+            cognome = viewemployeeRegistrationPanel.getTxtCognome().getText();
             sesso =viewemployeeRegistrationPanel.getComboSesso();
 
             dataNascita  =  viewemployeeRegistrationPanel.getDataNascita().getDate();

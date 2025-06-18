@@ -1,6 +1,7 @@
 package it.unipv.ingsfw.treninordovest.facade.acquisto;
 
 import it.unipv.ingsfw.treninordovest.factory.implementations.AbbonamentoStrategyFactory;
+import it.unipv.ingsfw.treninordovest.model.titoli.abbonamento.Abbonamento;
 import it.unipv.ingsfw.treninordovest.model.titoli.abbonamento.AbbonamentoDAOimpl;
 import it.unipv.ingsfw.treninordovest.model.titoli.biglietto.BigliettoDAOImpl;
 import it.unipv.ingsfw.treninordovest.model.titoli.pagamento.Pagamento;
@@ -44,7 +45,16 @@ public class AcquistoFacade implements IAcquistoFacade {
 
         if(clienteLoggato!=null){
 
-            //IAbbonamentoStrategy abbonamentoStrategy = AbbonamentoStrategyFactory.getFactoryFromProperties();
+            try {
+                IAbbonamentoStrategy abbonamentoStrategy = AbbonamentoStrategyFactory.getFactoryFromProperties(tipoAbbonamento);
+
+                if( abbonamentoDAO.createAbbonamento((Abbonamento) abbonamentoStrategy, tesseraDAO.getIdTesseraByCustomerID(clienteLoggato.getId().toString()), clienteLoggato.getId().toString()))
+                        return true;
+
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
+
 
 
         }
@@ -69,7 +79,7 @@ public class AcquistoFacade implements IAcquistoFacade {
 
             } catch (NullPointerException e) {
                 e.printStackTrace();
-                return false;
+
             }
 
         }
