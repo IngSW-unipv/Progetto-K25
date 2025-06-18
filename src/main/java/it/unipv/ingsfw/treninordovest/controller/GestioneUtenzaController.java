@@ -142,7 +142,7 @@ public class GestioneUtenzaController {
 
                 if (userRegistrationFacade.registraDipendente(dipendente)){
 
-                    JOptionPane.showMessageDialog(null,"Cliente registrato correttamente", "Info", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null,"Dipendente registrato correttamente", "Info", JOptionPane.INFORMATION_MESSAGE);
                 }
 
             } else
