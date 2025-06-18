@@ -3,10 +3,11 @@ package it.unipv.ingsfw.treninordovest.model.titoli.pagamento;
 import it.unipv.ingsfw.treninordovest.model.varie.GeneraID;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 public class Pagamento {
 
-    private String idPagamento;
+    private UUID idPagamento;
     private double totale;
     private String tipo;
     private LocalDate dataPagamento;
@@ -18,19 +19,19 @@ public class Pagamento {
 
     public Pagamento() {}
 
-    public Pagamento(String idPagamento, double totale, String tipo, LocalDate dataPagamento) {
+    public Pagamento(UUID idPagamento, double totale, String tipo, LocalDate dataPagamento) {
         this.idPagamento = idPagamento;
         this.totale = totale;
         this.tipo = tipo;
         this.dataPagamento = dataPagamento;
     }
 
-    public String getIdPagamento() {
+    public UUID getIdPagamento() {
         return idPagamento;
     }
 
     public void setIdPagamento(String idPagamento) {
-        this.idPagamento = idPagamento;
+        this.idPagamento = UUID.fromString(idPagamento);
     }
 
     public double getTotale() {

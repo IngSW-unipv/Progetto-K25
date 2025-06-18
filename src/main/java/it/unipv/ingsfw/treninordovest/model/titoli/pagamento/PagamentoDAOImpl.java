@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class PagamentoDAOImpl implements PagamentoDAO {
 
@@ -21,7 +22,7 @@ public class PagamentoDAOImpl implements PagamentoDAO {
         try (Connection con = Database.getConnection(); PreparedStatement ps= con.prepareStatement(sql)) {
 
             //Estrazione dei dati dal DB
-            ps.setString(1, pagamento.getIdPagamento());
+            ps.setString(1, pagamento.getIdPagamento().toString());
             ResultSet rs=ps.executeQuery();
 
             if(rs.next()){
@@ -30,7 +31,7 @@ public class PagamentoDAOImpl implements PagamentoDAO {
                 String tipo=rs.getString("tipo");
                 LocalDate dataPagamento= (LocalDate) rs.getObject("dataPagamento");
 
-                pagamento=new Pagamento(idPagamento,totale, tipo, dataPagamento);
+                pagamento=new Pagamento(UUID.fromString(idPagamento),totale, tipo, dataPagamento);
             }
 
             Database.closeConnection(con);
@@ -143,7 +144,7 @@ public class PagamentoDAOImpl implements PagamentoDAO {
         try ( Connection con = Database.getConnection();PreparedStatement ps1 = con.prepareStatement(sql1)) {
 
             // Impostazione dei parametri per la query 1
-            ps1.setString(1,pagamento.getIdPagamento());
+            ps1.setString(1, pagamento.getIdPagamento().toString());
             ps1.setString(2,idCliente);
             ps1.setDouble(3,pagamento.getTotale());
             ps1.setString(4,pagamento.getTipo());

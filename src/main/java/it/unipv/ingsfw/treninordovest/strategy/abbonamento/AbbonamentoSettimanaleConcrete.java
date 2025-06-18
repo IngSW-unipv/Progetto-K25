@@ -4,6 +4,7 @@ import it.unipv.ingsfw.treninordovest.model.titoli.abbonamento.Abbonamento;
 import it.unipv.ingsfw.treninordovest.model.varie.GeneraID;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 public class AbbonamentoSettimanaleConcrete implements IAbbonamentoStrategy {
     @Override
@@ -28,9 +29,7 @@ public class AbbonamentoSettimanaleConcrete implements IAbbonamentoStrategy {
 
     @Override
     public Abbonamento createAbbonamento(String idCliente, String idPagamento, String idTessera) {
-        /*GeneraID generaIDAbbonamento = new GeneraID("AB");
-        return new Abbonamento(generaIDAbbonamento.getID(),idPagamento,LocalDate.now(),ottieniPrezzoAbbonamento(),getTipoAbbonamento(),getDataScadenza(),idTessera);
-   */
-        return new Abbonamento();
+        return new Abbonamento(UUID.randomUUID(),LocalDate.now(),ottieniPrezzoAbbonamento(),getTipoAbbonamento(),getDataScadenza());
+
     }
 }

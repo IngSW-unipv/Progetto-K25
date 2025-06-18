@@ -2,12 +2,8 @@ package it.unipv.ingsfw.treninordovest.strategy.pagamento;
 
 //import it.unipv.ingsfw.treninordovest.factory.implementations.MetodoPagamentoFactory;
 import it.unipv.ingsfw.treninordovest.model.titoli.pagamento.Pagamento;
-import it.unipv.ingsfw.treninordovest.model.varie.GeneraID;
-import it.unipv.ingsfw.treninordovest.utils.metodipagamento.IMetodoPagamento;
 
-import java.time.LocalDate;
-
-public class VenditaAbbonamentoStrategy implements IVenditaTitoliStrategy{
+public class PagamentoAbbonamentoStrategy implements IPagamentoTitoliStrategy {
     @Override
     public Pagamento generaPagamento(String idCliente, int numeroTitoli, double prezzoUnitario,String tipoPagamento) {
       /*  GeneraID generaID = new GeneraID("PG");

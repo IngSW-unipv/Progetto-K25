@@ -4,6 +4,7 @@ import it.unipv.ingsfw.treninordovest.model.titoli.biglietto.Biglietto;
 import it.unipv.ingsfw.treninordovest.model.varie.GeneraID;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 public class BigliettoConcrete implements IBigliettoStrategy {
     @Override
@@ -19,7 +20,7 @@ public class BigliettoConcrete implements IBigliettoStrategy {
     @Override
     public Biglietto createBiglietto(String idCliente, String idPagamento, String idTessera,boolean ritorno,LocalDate dataRitorno) {
         GeneraID generaID = new GeneraID("BG");
-        return new Biglietto(generaID.getID(),getDataEmissione(),ottieniPrezzoBiglietto(),ritorno,getValidazione(),dataRitorno,getDataValidazione());
+        return new Biglietto(UUID.randomUUID(),getDataEmissione(),ottieniPrezzoBiglietto(),ritorno,getValidazione(),dataRitorno,getDataValidazione());
     }
 
     @Override

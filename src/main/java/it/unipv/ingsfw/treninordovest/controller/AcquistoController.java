@@ -3,12 +3,14 @@ package it.unipv.ingsfw.treninordovest.controller;
 import it.unipv.ingsfw.treninordovest.facade.acquisto.AcquistoFacade;
 import it.unipv.ingsfw.treninordovest.view.frames.utenti.clienti.menu.principale.JCustomerMainFrame;
 import it.unipv.ingsfw.treninordovest.view.frames.utenti.clienti.menu.principale.panels.CardPurchasePanel;
+import it.unipv.ingsfw.treninordovest.view.frames.utenti.clienti.menu.principale.panels.SubscriptionPanel;
 
 import javax.swing.*;
 
 public class AcquistoController {
 
     private CardPurchasePanel viewCardPurchase;
+    private SubscriptionPanel viewSubscription;
     private JCustomerMainFrame frameCustomer;
     private AcquistoFacade acquistoFacade;
 
@@ -19,8 +21,26 @@ public class AcquistoController {
         addCardPurchaseListener();
     }
 
+    public AcquistoController(SubscriptionPanel viewSubscription, JCustomerMainFrame frameCustomer) {
+        this.viewSubscription = viewSubscription;
+        this.frameCustomer = frameCustomer;
+        this.acquistoFacade = new AcquistoFacade();
+        addAbbonamentoPurchaseListener();
+    }
+
+
     public void acquistoBiglietto() {}
     public void acquistoAbbonamento() {
+
+       String tipoAbbonamento=viewSubscription.getComboTipo().getSelectedItem().toString();
+       String tipoAcquisto=null;
+
+        if(acquistoFacade.acquistoAbbonamento(tipoAbbonamento,tipoAcquisto)){
+            JOptionPane.showMessageDialog(frameCustomer, "Acquisto con successo!");
+        }
+        else
+            JOptionPane.showMessageDialog(frameCustomer, "Possiedi già un abbonamento!");
+
 
 
     }
@@ -46,6 +66,14 @@ public class AcquistoController {
         });
 
 
+    }
+
+    private void addAbbonamentoPurchaseListener() {
+        frameCustomer.getSubscriptionPanel().getButtonAbbonati().addActionListener(e -> {
+            if (frameCustomer.getSubscriptionPanel().getButtonAbbonati().getActionCommand() != null) {
+                acquistoAbbonamento();
+            }
+        });
     }
 
 

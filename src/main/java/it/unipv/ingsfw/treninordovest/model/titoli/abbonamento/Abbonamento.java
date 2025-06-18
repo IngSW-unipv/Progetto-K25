@@ -3,7 +3,7 @@ package it.unipv.ingsfw.treninordovest.model.titoli.abbonamento;
 import it.unipv.ingsfw.treninordovest.model.titoli.titoloviaggio.TitoloViaggio;
 
 import java.time.LocalDate;
-
+import java.util.UUID;
 
 
 public class Abbonamento extends TitoloViaggio {
@@ -17,7 +17,7 @@ public class Abbonamento extends TitoloViaggio {
     }
 
 
-    public Abbonamento(String id, LocalDate emissione, double prezzo, String tipoAbbonamento, LocalDate scadenza) {
+    public Abbonamento(UUID id, LocalDate emissione, double prezzo, String tipoAbbonamento, LocalDate scadenza) {
         super(id, emissione, prezzo);
         this.tipoAbbonamento = tipoAbbonamento;
         this.scadenza = scadenza;

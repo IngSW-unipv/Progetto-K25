@@ -3,6 +3,7 @@ package it.unipv.ingsfw.treninordovest.model.titoli.biglietto;
 import it.unipv.ingsfw.treninordovest.model.titoli.titoloviaggio.TitoloViaggio;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 
 public class Biglietto extends TitoloViaggio {
@@ -16,7 +17,7 @@ public class Biglietto extends TitoloViaggio {
     public Biglietto() {}
 
     //Costruttore completo
-    public Biglietto(String id,  LocalDate emissione, double prezzo, boolean ritorno, boolean validato,LocalDate dataRitorno, LocalDate dataValidazione) {
+    public Biglietto(UUID id, LocalDate emissione, double prezzo, boolean ritorno, boolean validato, LocalDate dataRitorno, LocalDate dataValidazione) {
         super(id, emissione, prezzo);
         this.ritorno = ritorno;
         this.validato = validato;

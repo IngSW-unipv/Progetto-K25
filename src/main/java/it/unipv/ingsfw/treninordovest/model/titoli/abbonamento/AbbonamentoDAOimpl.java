@@ -9,6 +9,7 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class AbbonamentoDAOimpl implements AbbonamentoDAO {
 
@@ -28,7 +29,7 @@ public class AbbonamentoDAOimpl implements AbbonamentoDAO {
         try (Connection con =Database.getConnection();PreparedStatement ps = con.prepareStatement(sql);ResultSet rs=ps.executeQuery()) {
 
             //Estrazione dei dati dal DB
-            ps.setString(1, abbonamento.getId());
+            ps.setString(1, abbonamento.getId().toString());
 
             if(rs.next()){
                 String idTitolo = rs.getString("IDTitolo");
@@ -65,14 +66,12 @@ public class AbbonamentoDAOimpl implements AbbonamentoDAO {
 
             while (rs.next()){
                 String idTitolo = rs.getString("IDTitolo");
-                String idPagamento = rs.getString("IDPagamento");
                 LocalDate emissione = (LocalDate) rs.getObject("Emissione");
                 Double prezzo = (Double) rs.getObject("Prezzo");
                 String tipo = rs.getString("Tipo");
                 LocalDate scadenza = (LocalDate) rs.getObject("Scadenza");
-                String idTessera = rs.getString("IDTessera");
 
-                abbonamento=new Abbonamento(idTitolo,emissione,prezzo,tipo,scadenza);
+                abbonamento=new Abbonamento(UUID.fromString(idTitolo),emissione,prezzo,tipo,scadenza);
                 listaAbbonamenti.add(abbonamento);
             }
 
@@ -136,6 +135,11 @@ public class AbbonamentoDAOimpl implements AbbonamentoDAO {
         }*/
 
 
+    }
+
+    @Override
+    public boolean createAbbonamento(Abbonamento abbonamento, String idTessera, String idCliente) {
+        return false;
     }
 
     @Override

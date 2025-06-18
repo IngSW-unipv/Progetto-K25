@@ -1,14 +1,12 @@
 package it.unipv.ingsfw.treninordovest.factory.implementations;
 
-
-import it.unipv.ingsfw.treninordovest.strategy.abbonamento.IAbbonamentoStrategy;
-
+import it.unipv.ingsfw.treninordovest.strategy.pagamento.IPagamentoTitoliStrategy;
 
 import java.io.FileInputStream;
 import java.util.Properties;
 
-public class AbbonamentoStrategyFactory {
-    public static IAbbonamentoStrategy getFactoryFromProperties(String tipo) {
+public class PagamentoStrategyFactory {
+    public static IPagamentoTitoliStrategy getFactoryFromProperties(String tipo) {
         try {
             Properties pr = new Properties(System.getProperties());
             pr.load(new FileInputStream("properties/properties"));
@@ -22,12 +20,13 @@ public class AbbonamentoStrategyFactory {
             String factoryClassName = pr.getProperty(propertyKey);
 
             if (factoryClassName == null) {
-                throw new IllegalArgumentException("Tipo di abbonamento non supportato: " + tipo);
+                throw new IllegalArgumentException("Tipo non supportato: " + tipo);
             }
 
-            return (IAbbonamentoStrategy) Class.forName(factoryClassName).getDeclaredConstructor().newInstance();
+            return (IPagamentoTitoliStrategy) Class.forName(factoryClassName).getDeclaredConstructor().newInstance();
         } catch (Exception e) {
             throw new RuntimeException("Errore nella creazione della factory: " + e.getMessage(), e);
         }
     }
+
 }

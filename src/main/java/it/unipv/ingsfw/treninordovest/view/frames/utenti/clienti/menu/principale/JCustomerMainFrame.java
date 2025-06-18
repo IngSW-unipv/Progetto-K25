@@ -49,6 +49,7 @@ public class JCustomerMainFrame extends JFrame {
         add(tabbedPane, BorderLayout.CENTER);
 
         new AcquistoController(cardPurchasePanel,this);
+        new AcquistoController(subscriptionPanel,this);
     }
 
     // Getter per accedere ai pannelli

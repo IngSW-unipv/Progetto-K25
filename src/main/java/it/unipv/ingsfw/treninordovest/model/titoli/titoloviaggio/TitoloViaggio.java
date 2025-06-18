@@ -1,9 +1,10 @@
 package it.unipv.ingsfw.treninordovest.model.titoli.titoloviaggio;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 public abstract class TitoloViaggio {
-    private String id;
+    private UUID id;
     private LocalDate emissione;
     private double prezzo;
 
@@ -11,19 +12,19 @@ public abstract class TitoloViaggio {
     public TitoloViaggio() {}
 
     //Costruttore completo
-    public TitoloViaggio(String id, LocalDate emissione, double prezzo) {
+    public TitoloViaggio(UUID id, LocalDate emissione, double prezzo) {
         this.id = id;
         this.emissione = emissione;
         this.prezzo = prezzo;
     }
 
     //Getters e Setters
-    public String getId() {
+    public UUID getId() {
         return id;
     }
 
     public void setId(String id) {
-        this.id = id;
+        this.id = UUID.fromString(id);
     }
 
     public LocalDate getEmissione() {
