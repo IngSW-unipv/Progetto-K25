@@ -42,7 +42,7 @@ public class AbbonamentoDAOimpl implements AbbonamentoDAO {
                 LocalDate scadenzaLoc= scadenza.toLocalDate();
                 String idTessera = rs.getString("IDTessera");
 
-                abbonamento=new Abbonamento(idTitolo,emissioneLoc,prezzo,tipo,scadenzaLoc);
+                abbonamento=new Abbonamento(UUID.fromString(idTitolo),emissioneLoc,prezzo,tipo,scadenzaLoc);
             }
             //Database.closeConnection(con);
 

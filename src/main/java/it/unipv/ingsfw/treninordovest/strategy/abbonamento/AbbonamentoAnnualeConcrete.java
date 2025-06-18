@@ -4,6 +4,7 @@ import it.unipv.ingsfw.treninordovest.model.titoli.abbonamento.Abbonamento;
 import it.unipv.ingsfw.treninordovest.model.varie.GeneraID;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 public class AbbonamentoAnnualeConcrete implements IAbbonamentoStrategy {
     @Override

@@ -55,7 +55,7 @@ public class PagamentoDAOImpl implements PagamentoDAO {
 
             //Query effettuata su una vista creata nel DB per semplificare l'estrazione dei dati
             while(rs.next()){
-                String idPagamento=rs.getString("idPagamento");
+                UUID idPagamento=(UUID) rs.getObject("idPagamento");
                 double totale=rs.getDouble("totale");
                 String tipo=rs.getString("tipo");
                 LocalDate dataPagamento=(LocalDate) rs.getObject("dataPagamento");
@@ -80,7 +80,7 @@ public class PagamentoDAOImpl implements PagamentoDAO {
 
         try(Connection con = Database.getConnection();PreparedStatement ps = con.prepareStatement(sql1)){
 
-            ps.setString(1,pagamento.getIdPagamento());
+            ps.setObject(1,pagamento.getIdPagamento());
 
             ps.executeUpdate();
 
@@ -102,7 +102,7 @@ public class PagamentoDAOImpl implements PagamentoDAO {
             ps1.setDouble(2,pagamento.getTotale());
             ps1.setString(3,pagamento.getTipo());
             ps1.setObject(4,pagamento.getDataPagamento());
-            ps1.setString(5,pagamento.getIdPagamento());
+            ps1.setString(5,pagamento.getIdPagamento().toString());
 
             ps1.executeUpdate();
 
@@ -121,7 +121,7 @@ public class PagamentoDAOImpl implements PagamentoDAO {
         try ( Connection con = Database.getConnection();PreparedStatement ps1 = con.prepareStatement(sql1)) {
 
                 // Impostazione dei parametri per la query 1
-                ps1.setString(1,pagamento.getIdPagamento());
+                ps1.setString(1,pagamento.getIdPagamento().toString());
                 ps1.setString(2,null);
                 ps1.setDouble(3,pagamento.getTotale());
                 ps1.setString(4,pagamento.getTipo());

@@ -81,7 +81,7 @@ public class BigliettoDAOImpl implements BigliettoDAO {
                 LocalDate dataRitorno = (LocalDate) rs.getObject("DataRitorno");
                 LocalDate dataValidazione = (LocalDate) rs.getObject("DataValidazione");
 
-                biglietto=new Biglietto(idTitolo,emissione,prezzo,ritorno,validato,dataRitorno,dataValidazione);
+                biglietto=new Biglietto(UUID.fromString(idTitolo),emissione,prezzo,ritorno,validato,dataRitorno,dataValidazione);
                 listaBiglietti.add(biglietto);
             }
 
@@ -101,7 +101,7 @@ public class BigliettoDAOImpl implements BigliettoDAO {
         String sql1="DELETE FROM biglietto where IDBiglietto=?";
 
         try(Connection con = Database.getConnection();PreparedStatement ps = con.prepareStatement(sql1)){
-            ps.setString(1, biglietto.getId());
+            ps.setString(1, biglietto.getId().toString());
             ps.executeUpdate();
             //Database.closeConnection(con);
 
