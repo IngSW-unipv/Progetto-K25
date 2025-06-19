@@ -1,8 +1,6 @@
 package it.unipv.ingsfw.treninordovest.utils.metodipagamento.wallet;
 
-import it.unipv.ingsfw.treninordovest.utils.metodipagamento.IMetodoPagamento;
-
-public class EUWallet implements IValuable , IMetodoPagamento {
+public class EUWallet implements IValuable{
 
     private double val;
 
@@ -45,28 +43,4 @@ public class EUWallet implements IValuable , IMetodoPagamento {
         return false;
     }
 
-    @Override
-    public boolean valida() {
-        return false;
-    }
-
-    @Override
-    public boolean processaPagamento(double importo) {
-        return preleva(importo);
-    }
-
-    @Override
-    public boolean verificaSufficienzaCredito() {
-
-        if (val <= 0) {
-            System.out.println("DEBUG: Credito insufficiente");
-            return false;
-        }
-        if (val > 0) {
-            System.out.println("DEBUG: Credito positivo");
-            return true;
-        }
-
-        return false;
-    }
 }

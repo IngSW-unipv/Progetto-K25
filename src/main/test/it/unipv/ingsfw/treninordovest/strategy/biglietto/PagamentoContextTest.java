@@ -1,6 +1,7 @@
 package it.unipv.ingsfw.treninordovest.strategy.biglietto;
 
 import it.unipv.ingsfw.treninordovest.model.titoli.pagamento.Pagamento;
+import it.unipv.ingsfw.treninordovest.model.titoli.pagamento.PagamentoDAOImpl;
 import it.unipv.ingsfw.treninordovest.strategy.ordine.Sale;
 import it.unipv.ingsfw.treninordovest.strategy.ordine.SaleLineItem;
 import it.unipv.ingsfw.treninordovest.strategy.pagamento.PagamentoContext;
@@ -23,9 +24,13 @@ public class PagamentoContextTest {
         PagamentoContext ctx = new PagamentoContext();
 
         ctx.setStrategy(new CartaCredito("534535",LocalDate.now().plusYears(4),"113"));
+        String idCliente= "32e4e573-8a97-4dc2-a9bd-71c770f59360";
 
         if (order.paga(ctx)) {
             Pagamento p = order.getPagamento();
+
+            new PagamentoDAOImpl().insertPagamento(p,idCliente);
+
             System.out.println("Pagamento effettuato: " + p.getTotale() + " con " + p.getTipo());
 
             System.out.println("Dettagli pagamento -  Tipo: "+p.getTipo()+" ID:"+p.getIdPagamento());
