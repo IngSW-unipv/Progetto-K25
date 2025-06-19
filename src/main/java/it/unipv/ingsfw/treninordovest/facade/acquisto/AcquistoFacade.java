@@ -53,7 +53,7 @@ public class AcquistoFacade implements IAcquistoFacade {
                     IAbbonamentoStrategy abbonamentoStrategy = AbbonamentoStrategyFactory.getFactoryFromProperties(tipoAbbonamento);
                     Abbonamento abbonamento = abbonamentoStrategy.createAbbonamento(clienteLoggato.getId().toString(),idPagamento,idTesseraLoggato);
 
-                if( abbonamentoDAO.createAbbonamento((Abbonamento) abbonamentoStrategy, tesseraDAO.getIdTesseraByCustomerID(clienteLoggato.getId().toString()), clienteLoggato.getId().toString()))
+                    if( abbonamentoDAO.createAbbonamento(abbonamento, idTesseraLoggato, clienteLoggato.getId().toString(),idPagamento))
                         return true;
                 }
 

@@ -1,5 +1,6 @@
 package it.unipv.ingsfw.treninordovest.strategy.pagamento;
 
+
 public class PagamentoBigliettoStrategy implements IPagamentoStrategy {
 
     @Override
