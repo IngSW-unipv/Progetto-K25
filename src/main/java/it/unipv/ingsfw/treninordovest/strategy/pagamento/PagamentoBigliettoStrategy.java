@@ -1,24 +1,15 @@
 package it.unipv.ingsfw.treninordovest.strategy.pagamento;
 
-import it.unipv.ingsfw.treninordovest.model.titoli.pagamento.Pagamento;
+public class PagamentoBigliettoStrategy implements IPagamentoStrategy {
 
-import java.time.LocalDate;
-import java.util.UUID;
-
-public class PagamentoBigliettoStrategy implements IPagamentoTitoliStrategy {
     @Override
-    public Pagamento generaPagamento(String idCliente, int numeroTitoli, double prezzoUnitario ,String tipoPagamento) {
+    public boolean paga(double prezzo) {
 
-        double prezzo = getTotalPagamento(numeroTitoli,prezzoUnitario);
-
-        return new Pagamento(UUID.randomUUID(),prezzo,tipoPagamento, LocalDate.now());
-
+        return false;
     }
 
-
-    private double getTotalPagamento(double numeroTitoli, double prezzoUnitario) {
-        return prezzoUnitario*numeroTitoli;
+    @Override
+    public String getTipo() {
+        return "";
     }
-
-
 }

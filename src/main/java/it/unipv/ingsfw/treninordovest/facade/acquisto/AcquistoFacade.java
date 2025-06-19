@@ -4,7 +4,6 @@ import it.unipv.ingsfw.treninordovest.factory.implementations.AbbonamentoStrateg
 import it.unipv.ingsfw.treninordovest.model.titoli.abbonamento.Abbonamento;
 import it.unipv.ingsfw.treninordovest.model.titoli.abbonamento.AbbonamentoDAOimpl;
 import it.unipv.ingsfw.treninordovest.model.titoli.biglietto.BigliettoDAOImpl;
-import it.unipv.ingsfw.treninordovest.model.titoli.pagamento.Pagamento;
 import it.unipv.ingsfw.treninordovest.model.titoli.pagamento.PagamentoDAOImpl;
 
 import it.unipv.ingsfw.treninordovest.model.titoli.tessera.Tessera;
@@ -13,7 +12,6 @@ import it.unipv.ingsfw.treninordovest.model.utenti.cliente.Cliente;
 import it.unipv.ingsfw.treninordovest.model.varie.GeneraID;
 import it.unipv.ingsfw.treninordovest.model.varie.SessionManager;
 import it.unipv.ingsfw.treninordovest.strategy.abbonamento.IAbbonamentoStrategy;
-import it.unipv.ingsfw.treninordovest.strategy.pagamento.IPagamentoTitoliStrategy;
 
 import java.time.LocalDate;
 
@@ -32,7 +30,7 @@ public class AcquistoFacade implements IAcquistoFacade {
         this.bigliettoDAO=new BigliettoDAOImpl();
         this.pagamentoDAO=new PagamentoDAOImpl();
         this.tesseraDAO=new TesseraDAOImpl();
-        clienteLoggato = (Cliente) SessionManager.getInstance().getCurrentUser();
+
     }
 
     @Override
@@ -43,13 +41,22 @@ public class AcquistoFacade implements IAcquistoFacade {
     @Override
     public boolean acquistoAbbonamento(String tipoAbbonamento,String tipoPagamento) {
 
-        if(clienteLoggato!=null){
+        clienteLoggato = (Cliente) SessionManager.getInstance().getCurrentUser();
+        String idTesseraLoggato = tesseraDAO.getIdTesseraByCustomerID(clienteLoggato.getId().toString());
+
+        //Test
+        String idPagamento="PG0001";
 
             try {
-                IAbbonamentoStrategy abbonamentoStrategy = AbbonamentoStrategyFactory.getFactoryFromProperties(tipoAbbonamento);
+
+                if (clienteLoggato!=null) {
+                    IAbbonamentoStrategy abbonamentoStrategy = AbbonamentoStrategyFactory.getFactoryFromProperties(tipoAbbonamento);
+                    Abbonamento abbonamento = abbonamentoStrategy.createAbbonamento(clienteLoggato.getId().toString(),idPagamento,idTesseraLoggato);
 
                 if( abbonamentoDAO.createAbbonamento((Abbonamento) abbonamentoStrategy, tesseraDAO.getIdTesseraByCustomerID(clienteLoggato.getId().toString()), clienteLoggato.getId().toString()))
                         return true;
+                }
+
 
             }catch (Exception e) {
                 e.printStackTrace();
@@ -57,7 +64,6 @@ public class AcquistoFacade implements IAcquistoFacade {
 
 
 
-        }
 
 
 
@@ -67,9 +73,11 @@ public class AcquistoFacade implements IAcquistoFacade {
 
     @Override
     public boolean acquistaTessera(){
-        if(clienteLoggato !=null) {
+
+        clienteLoggato = (Cliente) SessionManager.getInstance().getCurrentUser();
+
             try {
-                if (!tesseraDAO.exists(clienteLoggato.getId().toString()) && clienteLoggato != null) {
+                if (!(tesseraDAO.exists(clienteLoggato.getId().toString())) && clienteLoggato != null) {
                     Tessera tessera = new Tessera(new GeneraID("TS").getID(), LocalDate.now(), LocalDate.now().plusYears(5));
                     if (tesseraDAO.createTessera(tessera, clienteLoggato.getId().toString()))
                         return true;
@@ -82,7 +90,7 @@ public class AcquistoFacade implements IAcquistoFacade {
 
             }
 
-        }
+
 
 
         return false;

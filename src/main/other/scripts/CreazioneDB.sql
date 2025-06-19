@@ -114,7 +114,7 @@ foreign key (IDCliente) references cliente(IDCliente) on delete cascade on updat
 
 create table pagamento(
 IDPagamento varchar(40) not null,
-IDCliente varchar(10) not null,
+IDCliente varchar(40) not null,
 Totale double default 0,
 Tipo varchar(30) not null,
 DataPagamento date not null ,

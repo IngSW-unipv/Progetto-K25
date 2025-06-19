@@ -12,15 +12,17 @@ public class Pagamento {
     private String tipo;
     private LocalDate dataPagamento;
 
-
-    //Costruttore completo
-
-    //Costruttore
-
     public Pagamento() {}
 
-    public Pagamento(UUID idPagamento, double totale, String tipo, LocalDate dataPagamento) {
-        this.idPagamento = idPagamento;
+    public Pagamento(double totale, String tipo) {
+        this.idPagamento = UUID.randomUUID();
+        this.totale = totale;
+        this.tipo = tipo;
+        this.dataPagamento = LocalDate.now();
+    }
+
+    public Pagamento(UUID uuid, double totale, String tipo, LocalDate dataPagamento) {
+        this.idPagamento = uuid;
         this.totale = totale;
         this.tipo = tipo;
         this.dataPagamento = dataPagamento;
@@ -30,31 +32,15 @@ public class Pagamento {
         return idPagamento;
     }
 
-    public void setIdPagamento(String idPagamento) {
-        this.idPagamento = UUID.fromString(idPagamento);
-    }
-
     public double getTotale() {
         return totale;
-    }
-
-    public void setTotale(double totale) {
-        this.totale = totale;
     }
 
     public String getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
     public LocalDate getDataPagamento() {
         return dataPagamento;
-    }
-
-    public void setDataPagamento(LocalDate dataPagamento) {
-        this.dataPagamento = dataPagamento;
     }
 }

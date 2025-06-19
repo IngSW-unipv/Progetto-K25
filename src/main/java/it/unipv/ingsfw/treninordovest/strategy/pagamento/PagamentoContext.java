@@ -1,14 +1,20 @@
 package it.unipv.ingsfw.treninordovest.strategy.pagamento;
 
-import it.unipv.ingsfw.treninordovest.utils.metodipagamento.IMetodoPagamento;
-
 public class PagamentoContext {
-    private IMetodoPagamento metodo;
+    private IPagamentoStrategy pagamentoStrategy;
 
 
-    public PagamentoContext() {
+    public void setStrategy(IPagamentoStrategy strategy) {
+        this.pagamentoStrategy = strategy;
+    }
 
+    public boolean paga(double amount) {
+        if (pagamentoStrategy == null) throw new IllegalStateException("Strategia non impostata");
+        return pagamentoStrategy.paga(amount);
+    }
 
+    public String getStrategyType() {
+        return pagamentoStrategy.getTipo();
     }
 
 

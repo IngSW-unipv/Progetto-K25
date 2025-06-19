@@ -38,10 +38,7 @@ public class ClienteTest {
 
         Pagamento pagamento = new Pagamento();
 
-        pagamento.setDataPagamento(LocalDate.now());
-        pagamento.setIdPagamento(UUID.randomUUID().toString());
-        pagamento.setTipo("Wallet");
-        pagamento.setTotale(220);
+
 
         cliente.getWallet().preleva(pagamento.getTotale());
 

@@ -1,13 +1,18 @@
 package it.unipv.ingsfw.treninordovest.utils.metodipagamento;
 
-import java.time.LocalDate;
+import it.unipv.ingsfw.treninordovest.strategy.pagamento.IPagamentoStrategy;
 
-public class CartaCredito implements IMetodoPagamento {
+import java.time.LocalDate;
+import java.util.Random;
+
+public class CartaCredito implements IMetodoPagamento, IPagamentoStrategy {
     private String numeroCarta;
     private LocalDate dataScadenza;
     private String cvv;
 
-    public CartaCredito() {}
+    public CartaCredito() {
+
+    }
 
     public CartaCredito(String numeroCarta, LocalDate dataScadenza, String cvv) {
         this.numeroCarta = numeroCarta;
@@ -32,6 +37,18 @@ public class CartaCredito implements IMetodoPagamento {
 
         // Implementa le verifiche di base, ad esempio l'algoritmo di Luhn
         return true; // Simulazione
+    }
+
+    @Override
+    public boolean paga(double prezzo) {
+
+        Random r = new Random();
+        return r.nextBoolean();
+    }
+
+    @Override
+    public String getTipo() {
+        return "";
     }
 
     @Override

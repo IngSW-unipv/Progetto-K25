@@ -1,12 +1,12 @@
 package it.unipv.ingsfw.treninordovest.factory.implementations;
 
-import it.unipv.ingsfw.treninordovest.strategy.pagamento.IPagamentoTitoliStrategy;
+import it.unipv.ingsfw.treninordovest.strategy.pagamento.IPagamentoStrategy;
 
 import java.io.FileInputStream;
 import java.util.Properties;
 
 public class PagamentoStrategyFactory {
-    public static IPagamentoTitoliStrategy getFactoryFromProperties(String tipo) {
+    public static IPagamentoStrategy getFactoryFromProperties(String tipo) {
         try {
             Properties pr = new Properties(System.getProperties());
             pr.load(new FileInputStream("properties/properties"));
@@ -23,7 +23,7 @@ public class PagamentoStrategyFactory {
                 throw new IllegalArgumentException("Tipo non supportato: " + tipo);
             }
 
-            return (IPagamentoTitoliStrategy) Class.forName(factoryClassName).getDeclaredConstructor().newInstance();
+            return (IPagamentoStrategy) Class.forName(factoryClassName).getDeclaredConstructor().newInstance();
         } catch (Exception e) {
             throw new RuntimeException("Errore nella creazione della factory: " + e.getMessage(), e);
         }
