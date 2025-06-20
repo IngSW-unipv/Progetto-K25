@@ -1,7 +1,6 @@
 package it.unipv.ingsfw.treninordovest.model.titoli.abbonamento;
 
-import it.unipv.ingsfw.treninordovest.dao.database.Database;
-import it.unipv.ingsfw.treninordovest.model.titoli.pagamento.Pagamento;
+import it.unipv.ingsfw.treninordovest.model.dao.database.Database;
 import it.unipv.ingsfw.treninordovest.model.titoli.pagamento.PagamentoDAOImpl;
 import it.unipv.ingsfw.treninordovest.model.titoli.tessera.TesseraDAOImpl;
 

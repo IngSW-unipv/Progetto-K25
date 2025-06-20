@@ -1,6 +1,6 @@
 package it.unipv.ingsfw.treninordovest.utils.metodipagamento;
 
-import it.unipv.ingsfw.treninordovest.strategy.pagamento.IPagamentoStrategy;
+import it.unipv.ingsfw.treninordovest.model.strategy.pagamento.IPagamentoStrategy;
 
 import java.time.LocalDate;
 import java.util.Random;

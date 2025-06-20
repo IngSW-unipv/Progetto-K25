@@ -29,9 +29,6 @@ public class PagamentoFacade implements IPagamentoFacade {
         return false;
     }
 
-    private boolean verificaCredito(){
-        return false;
-    }
 
 
 }

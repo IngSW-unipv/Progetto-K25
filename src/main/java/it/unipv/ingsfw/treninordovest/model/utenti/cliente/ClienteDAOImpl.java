@@ -1,9 +1,8 @@
 package it.unipv.ingsfw.treninordovest.model.utenti.cliente;
 
-import it.unipv.ingsfw.treninordovest.dao.database.Database;
+import it.unipv.ingsfw.treninordovest.model.dao.database.Database;
 import it.unipv.ingsfw.treninordovest.utils.PasswordUtils;
 
-import java.awt.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

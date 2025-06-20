@@ -1,6 +1,6 @@
 package it.unipv.ingsfw.treninordovest.model.titoli.tessera;
 
-import it.unipv.ingsfw.treninordovest.dao.interfaces.DAO;
+import it.unipv.ingsfw.treninordovest.model.dao.interfaces.DAO;
 
 public interface TesseraDAO extends DAO<Tessera> {
 

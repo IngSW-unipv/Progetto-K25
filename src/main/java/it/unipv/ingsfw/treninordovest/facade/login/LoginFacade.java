@@ -1,9 +1,7 @@
 package it.unipv.ingsfw.treninordovest.facade.login;
 
-import it.unipv.ingsfw.treninordovest.factory.login.ILogin;
-import it.unipv.ingsfw.treninordovest.factory.login.LoginFactoryProducer;
-import it.unipv.ingsfw.treninordovest.model.utenti.cliente.Cliente;
-import it.unipv.ingsfw.treninordovest.model.utenti.dipendente.Dipendente;
+import it.unipv.ingsfw.treninordovest.model.factory.login.ILogin;
+import it.unipv.ingsfw.treninordovest.model.factory.login.LoginFactoryProducer;
 import it.unipv.ingsfw.treninordovest.model.utenti.utente.Utente;
 import it.unipv.ingsfw.treninordovest.model.varie.SessionManager;
 

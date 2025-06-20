@@ -1,6 +1,6 @@
 package it.unipv.ingsfw.treninordovest.model.titoli.biglietto;
 
-import it.unipv.ingsfw.treninordovest.dao.database.Database;
+import it.unipv.ingsfw.treninordovest.model.dao.database.Database;
 
 import java.sql.*;
 import java.time.LocalDate;

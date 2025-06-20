@@ -1,9 +1,9 @@
 package it.unipv.ingsfw.treninordovest.model.utenti.dipendente;
 
 
-import it.unipv.ingsfw.treninordovest.factory.implementations.StipendioStrategyFactory;
+import it.unipv.ingsfw.treninordovest.model.factory.implementations.StipendioStrategyFactory;
 import it.unipv.ingsfw.treninordovest.model.utenti.utente.Utente;
-import it.unipv.ingsfw.treninordovest.strategy.stipendio.IStipendioStrategy;
+import it.unipv.ingsfw.treninordovest.model.strategy.stipendio.IStipendioStrategy;
 
 import java.time.LocalDate;
 import java.util.UUID;

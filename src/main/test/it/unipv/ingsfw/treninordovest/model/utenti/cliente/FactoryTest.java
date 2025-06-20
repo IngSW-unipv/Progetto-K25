@@ -1,12 +1,9 @@
 package it.unipv.ingsfw.treninordovest.model.utenti.cliente;
 
-import it.unipv.ingsfw.treninordovest.factory.login.ILogin;
-import it.unipv.ingsfw.treninordovest.factory.login.LoginFactoryProducer;
+import it.unipv.ingsfw.treninordovest.model.factory.login.ILogin;
+import it.unipv.ingsfw.treninordovest.model.factory.login.LoginFactoryProducer;
 import it.unipv.ingsfw.treninordovest.view.frames.login.JLoginFrame;
 import org.junit.jupiter.api.Test;
-
-import javax.swing.*;
-import java.util.Arrays;
 
 public class FactoryTest {
 

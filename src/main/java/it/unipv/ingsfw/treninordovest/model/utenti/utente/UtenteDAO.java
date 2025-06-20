@@ -1,6 +1,6 @@
 package it.unipv.ingsfw.treninordovest.model.utenti.utente;
 
-import it.unipv.ingsfw.treninordovest.dao.interfaces.DAO;
+import it.unipv.ingsfw.treninordovest.model.dao.interfaces.DAO;
 
 public interface UtenteDAO extends DAO<Utente> {
 

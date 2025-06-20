@@ -1,9 +1,8 @@
 package it.unipv.ingsfw.treninordovest.model.titoli.pagamento;
 
-import it.unipv.ingsfw.treninordovest.dao.database.Database;
+import it.unipv.ingsfw.treninordovest.model.dao.database.Database;
 
 
-import javax.persistence.EntityManager;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

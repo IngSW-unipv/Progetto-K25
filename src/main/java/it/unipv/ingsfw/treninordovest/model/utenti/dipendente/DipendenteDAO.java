@@ -1,6 +1,6 @@
 package it.unipv.ingsfw.treninordovest.model.utenti.dipendente;
 
-import it.unipv.ingsfw.treninordovest.dao.interfaces.DAO;
+import it.unipv.ingsfw.treninordovest.model.dao.interfaces.DAO;
 
 import java.sql.SQLException;
 

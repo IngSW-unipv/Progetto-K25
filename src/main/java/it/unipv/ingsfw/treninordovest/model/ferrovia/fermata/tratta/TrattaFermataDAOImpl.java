@@ -1,6 +1,6 @@
 package it.unipv.ingsfw.treninordovest.model.ferrovia.fermata.tratta;
 
-import it.unipv.ingsfw.treninordovest.dao.database.Database;
+import it.unipv.ingsfw.treninordovest.model.dao.database.Database;
 
 import java.sql.*;
 import java.time.LocalTime;

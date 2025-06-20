@@ -1,14 +1,5 @@
 package it.unipv.ingsfw.treninordovest.model.ferrovia.treno.tratta;
 
-import it.unipv.ingsfw.treninordovest.dao.database.Database;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.List;
-
-
 
 //public class TrenoTrattaDAOImpl implements TrenoTrattaDAO {
 //

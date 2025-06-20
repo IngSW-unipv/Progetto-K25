@@ -1,6 +1,6 @@
 package it.unipv.ingsfw.treninordovest.model.utenti.dipendente;
 
-import it.unipv.ingsfw.treninordovest.dao.database.Database;
+import it.unipv.ingsfw.treninordovest.model.dao.database.Database;
 import it.unipv.ingsfw.treninordovest.model.ferrovia.treno.Treno;
 import it.unipv.ingsfw.treninordovest.utils.PasswordUtils;
 
