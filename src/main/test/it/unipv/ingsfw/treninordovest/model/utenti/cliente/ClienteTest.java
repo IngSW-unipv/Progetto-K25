@@ -46,5 +46,23 @@ public class ClienteTest {
 
 
 
+
     }
+
+    @Test
+    void loginUser() {
+        String email = "marto44@gmail.com";
+        String password = "pinirossi";
+
+        Cliente cliente= new Cliente(email, password) ;
+
+        if(cliente.login(email, password)){
+            System.out.println("Login correto");
+        }
+
+
+    }
+
+
+
 }

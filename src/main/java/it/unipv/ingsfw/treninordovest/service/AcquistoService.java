@@ -3,7 +3,9 @@ package it.unipv.ingsfw.treninordovest.service;
 import it.unipv.ingsfw.treninordovest.model.factory.implementations.AbbonamentoStrategyFactory;
 import it.unipv.ingsfw.treninordovest.model.factory.implementations.PagamentoStrategyFactory;
 import it.unipv.ingsfw.treninordovest.model.strategy.abbonamento.IAbbonamentoStrategy;
+import it.unipv.ingsfw.treninordovest.model.strategy.ordine.Sale;
 import it.unipv.ingsfw.treninordovest.model.strategy.pagamento.IPagamentoStrategy;
+import it.unipv.ingsfw.treninordovest.model.strategy.pagamento.PagamentoContext;
 import it.unipv.ingsfw.treninordovest.model.titoli.abbonamento.Abbonamento;
 import it.unipv.ingsfw.treninordovest.model.titoli.abbonamento.AbbonamentoDAOimpl;
 import it.unipv.ingsfw.treninordovest.model.titoli.biglietto.BigliettoDAOImpl;
@@ -35,9 +37,14 @@ public class AcquistoService {
     public boolean acquistoAbbonamento(String tipoAbbonamento,String tipoPagamento) {
 
         clienteLoggato = (Cliente) SessionManager.getInstance().getCurrentUser();
-        IPagamentoStrategy pagamentoStrategy = PagamentoStrategyFactory.getFactoryFromProperties(tipoPagamento);
-        String idTesseraLoggato = tesseraDAO.getIdTesseraByCustomerID(clienteLoggato.getId().toString());
 
+        PagamentoContext pagamentoContext=new PagamentoContext(tipoPagamento);
+
+        Sale vendita = new Sale();
+
+        vendita.paga(pagamentoContext);
+
+        String idTesseraLoggato = tesseraDAO.getIdTesseraByCustomerID(clienteLoggato.getId().toString());
         //Test
         String idPagamento="PG0001";
 
@@ -45,7 +52,7 @@ public class AcquistoService {
 
             if (clienteLoggato!=null) {
                 IAbbonamentoStrategy abbonamentoStrategy = AbbonamentoStrategyFactory.getFactoryFromProperties(tipoAbbonamento);
-                Abbonamento abbonamento = abbonamentoStrategy.createAbbonamento(clienteLoggato.getId().toString(),idPagamento,idTesseraLoggato);
+                Abbonamento abbonamento = abbonamentoStrategy.createAbbonamento();
 
                 if( abbonamentoDAO.createAbbonamento(abbonamento, idTesseraLoggato, clienteLoggato.getId().toString(),idPagamento))
                     return true;
@@ -79,7 +86,7 @@ public class AcquistoService {
             }
 
 
-        } catch (NullPointerException e) {
+        } catch (Exception e) {
             e.printStackTrace();
 
         }

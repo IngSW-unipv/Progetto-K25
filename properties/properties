@@ -18,9 +18,9 @@ stipendio.controllore.strategy.class.name=it.unipv.ingsfw.treninordovest.strateg
 stipendio.impiegato.strategy.class.name=it.unipv.ingsfw.treninordovest.strategy.stipendio.ImpiegatoStipendioConcrete
 
 #Configurazione per abbonamenti
-settimanale.factory.class.name=it.unipv.ingsfw.treninordovest.strategy.abbonamento.AbbonamentoSettimanaleConcrete
-annuale.factory.class.name=it.unipv.ingsfw.treninordovest.strategy.abbonamento.AbbonamentoAnnualeConcrete
-mensile.factory.class.name=it.unipv.ingsfw.treninordovest.strategy.abbonamento.AbbonamentoMensileConcrete
+settimanale.factory.class.name=it.unipv.ingsfw.treninordovest.model.strategy.abbonamento.AbbonamentoSettimanaleConcrete
+annuale.factory.class.name=it.unipv.ingsfw.treninordovest.model.strategy.abbonamento.AbbonamentoAnnualeConcrete
+mensile.factory.class.name=it.unipv.ingsfw.treninordovest.model.strategy.abbonamento.AbbonamentoMensileConcrete
 
 #Configurazione per biglietto
 biglietto.factory.class.name=it.unipv.ingsfw.treninordovest.strategy.biglietto.BigliettoConcrete

@@ -28,7 +28,7 @@ public class AcquistoFacade implements IAcquistoFacade {
 
     @Override
     public boolean acquistaBiglietto() {
-        return false;
+        return acquistoService.acquistoBiglietto();
     }
 
     @Override
@@ -39,7 +39,6 @@ public class AcquistoFacade implements IAcquistoFacade {
     @Override
     public boolean acquistaTessera(){
         return acquistoService.acquistoTessera();
-
 
     }
 

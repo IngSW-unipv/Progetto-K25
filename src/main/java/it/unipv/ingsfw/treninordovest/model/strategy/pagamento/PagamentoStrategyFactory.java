@@ -32,13 +32,9 @@ public class PagamentoStrategyFactory {
             Constructor constructor = Class.forName(factoryClassName).getConstructor();
             pagamentoStrategy = (IPagamentoStrategy) constructor.newInstance();
 
-
-            //return (ILogin) Class.forName(factoryClassName).getDeclaredConstructor().newInstance();
         } catch (Exception e) {
             e.printStackTrace();
-            pagamentoStrategy = null;
         }
-
 
         return pagamentoStrategy;
 

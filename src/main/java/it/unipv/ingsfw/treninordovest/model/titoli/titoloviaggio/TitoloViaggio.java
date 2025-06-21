@@ -31,10 +31,6 @@ public abstract class TitoloViaggio {
         return emissione;
     }
 
-    public void setEmissione(LocalDate emissione) {
-        this.emissione = emissione;
-    }
-
     public double getPrezzo() {
         return prezzo;
     }

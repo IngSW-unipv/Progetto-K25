@@ -1,7 +1,10 @@
 package it.unipv.ingsfw.treninordovest.model.utenti.cliente;
 
 
+import it.unipv.ingsfw.treninordovest.facade.login.ILoginFacade;
 import it.unipv.ingsfw.treninordovest.facade.login.LoginFacade;
+import it.unipv.ingsfw.treninordovest.model.factory.login.ILogin;
+import it.unipv.ingsfw.treninordovest.model.factory.login.LoginFactoryProducer;
 import it.unipv.ingsfw.treninordovest.model.utenti.utente.Utente;
 import it.unipv.ingsfw.treninordovest.utils.metodipagamento.wallet.EUWallet;
 
@@ -56,6 +59,16 @@ public class Cliente extends Utente {
     public void setEmail(String email) {
         this.email = email;
     }
+
+
+    //Da vedere
+    public boolean login(String email, String password){
+       LoginFactoryProducer loginFactoryProducer = new LoginFactoryProducer();
+       ILogin loginn = loginFactoryProducer.getFactoryFromProperties("cliente");
+       loginn.login(email, password);
+       return true;
+    }
+
 
 
 

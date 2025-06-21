@@ -24,7 +24,7 @@ public class AbbonamentoAnnualeConcrete implements IAbbonamentoStrategy {
     }
 
     @Override
-    public Abbonamento createAbbonamento(String idCliente, String idPagamento, String idTessera) {
+    public Abbonamento createAbbonamento() {
         return new Abbonamento(UUID.randomUUID(),LocalDate.now(),ottieniPrezzoAbbonamento(),getTipoAbbonamento(),getDataScadenza());
     }
 
