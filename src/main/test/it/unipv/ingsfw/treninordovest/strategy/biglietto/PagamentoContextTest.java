@@ -21,9 +21,11 @@ public class PagamentoContextTest {
         order.addItem(new SaleLineItem(2, 50.0));
         order.addItem(new SaleLineItem(1, 75.0));
 
-        PagamentoContext ctx = new PagamentoContext();
+        String payPal = "PayPal";
+        String cartaCredito = "CartaCredito";
 
-        ctx.setStrategy(new CartaCredito("534535",LocalDate.now().plusYears(4),"113"));
+        PagamentoContext ctx = new PagamentoContext(payPal);
+
         String idCliente= "32e4e573-8a97-4dc2-a9bd-71c770f59360";
 
         if (order.paga(ctx)) {

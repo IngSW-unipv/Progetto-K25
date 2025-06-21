@@ -1,6 +1,7 @@
 package it.unipv.ingsfw.treninordovest.model.utenti.cliente;
 
 
+import it.unipv.ingsfw.treninordovest.facade.login.LoginFacade;
 import it.unipv.ingsfw.treninordovest.model.utenti.utente.Utente;
 import it.unipv.ingsfw.treninordovest.utils.metodipagamento.wallet.EUWallet;
 
@@ -55,6 +56,7 @@ public class Cliente extends Utente {
     public void setEmail(String email) {
         this.email = email;
     }
+
 
 
     //Metodi di verifica

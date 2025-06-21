@@ -27,8 +27,8 @@ biglietto.factory.class.name=it.unipv.ingsfw.treninordovest.strategy.biglietto.B
 
 
 #Metodi di pagamento
-carta.factory.class.name=it.unipv.ingsfw.treninordovest.utils.metodipagamento.CartaCredito
-euwallet.factory.class.name=it.unipv.ingsfw.treninordovest.utils.metodipagamento.wallet.EUWallet
+cartacredito.strategy.class.name=it.unipv.ingsfw.treninordovest.utils.metodipagamento.CartaCredito
+paypal.strategy.class.name=it.unipv.ingsfw.treninordovest.utils.metodipagamento.PayPal
 
 #Vendita
 venditaabbonamento.factory.class.name=it.unipv.ingsfw.treninordovest.strategy.pagamento.VenditaAbbonamentoStrategy
@@ -37,3 +37,6 @@ venditabiglietto.factory.class.name=it.unipv.ingsfw.treninordovest.strategy.paga
 #Login
 clienteLogin.factory.class.name=it.unipv.ingsfw.treninordovest.factory.login.ClienteLogin
 dipendenteLogin.factory.class.name=it.unipv.ingsfw.treninordovest.factory.login.DipendenteLogin
+
+
+

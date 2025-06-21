@@ -5,4 +5,6 @@ import it.unipv.ingsfw.treninordovest.model.strategy.pagamento.IPagamentoStrateg
 public class CartaCreditoAdapter {
     private IPagamentoStrategy pagamento;
 
+
+
 }

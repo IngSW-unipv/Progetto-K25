@@ -22,7 +22,7 @@ public class PagamentoFacade implements IPagamentoFacade {
 
         Pagamento pagamento;
 
-        pagamento= new Pagamento(UUID.randomUUID(),0,tipoPagamento, LocalDate.now());
+        pagamento= new Pagamento(0,tipoPagamento);
 
         pagamentoDAO.insertPagamento(pagamento,idClienteLoggato);
 
