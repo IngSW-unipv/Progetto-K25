@@ -36,7 +36,7 @@ public class PagamentoContextTest {
         if (order.paga(ctx)) {
              p = order.getPagamento();
 
-            new PagamentoDAOImpl().insertPagamento(p,idCliente);
+            //new PagamentoDAOImpl().insertPagamento(p,idCliente);
 
             System.out.println("Pagamento effettuato: " + p.getTotale() + " con " + p.getTipo());
 

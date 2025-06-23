@@ -1,5 +1,7 @@
 package it.unipv.ingsfw.treninordovest.model.titoli.titoloviaggio;
 
+import it.unipv.ingsfw.treninordovest.model.titoli.pagamento.Pagamento;
+
 import java.time.LocalDate;
 import java.util.UUID;
 
@@ -7,6 +9,7 @@ public abstract class TitoloViaggio {
     private UUID id;
     private LocalDate emissione;
     private double prezzo;
+    private Pagamento pagamento;
 
     //Costruttore vuoto
     public TitoloViaggio() {}
@@ -38,4 +41,14 @@ public abstract class TitoloViaggio {
     public void setPrezzo(double prezzo) {
         this.prezzo = prezzo;
     }
+
+    public Pagamento getPagamento() {
+        return pagamento;
+    }
+
+    public void setPagamento(Pagamento pagamento) {
+        this.pagamento = pagamento;
+    }
+
+
 }

@@ -41,15 +41,7 @@ public class AcquistoService {
     public boolean acquistoAbbonamento(String tipoAbbonamento,String tipoPagamento,int quantita) {
 
         clienteLoggato = (Cliente) SessionManager.getInstance().getCurrentUser();
-
-
-
-
-
-
-        String idTesseraLoggato = tesseraDAO.getIdTesseraByCustomerID(clienteLoggato.getId().toString());
-        //Test
-        String idPagamento="PG0001";
+        Pagamento pag;
 
         try {
 
@@ -57,10 +49,13 @@ public class AcquistoService {
                 IAbbonamentoStrategy abbonamentoStrategy = AbbonamentoStrategyFactory.getFactoryFromProperties(tipoAbbonamento);
                 Abbonamento abbonamento = abbonamentoStrategy.createAbbonamento(clienteLoggato.getTessera());
 
-                Pagamento p =  pagamentoService.effettuaPagamento(tipoPagamento,quantita,abbonamentoStrategy.ottieniPrezzoAbbonamento());
+                pag =  pagamentoService.effettuaPagamento(tipoPagamento,quantita,abbonamentoStrategy.ottieniPrezzoAbbonamento());
 
-                if( abbonamentoDAO.createAbbonamento(abbonamento, idTesseraLoggato, clienteLoggato.getId().toString(),idPagamento))
-                    return true;
+                abbonamento.setPagamento(pag);
+
+                abbonamentoDAO.insert(abbonamento);
+
+               return true;
             }
 
 
