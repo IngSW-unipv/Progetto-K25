@@ -12,18 +12,27 @@ public class Tessera {
     //Costruttore vuoto
     public Tessera() {}
 
-    //Costruttore completo
-    public Tessera(UUID idTessera, LocalDate emissione, LocalDate scadenza) {
-        this.idTessera = idTessera;
+    //Costruttore completo per DB
+    public Tessera(String idTessera, LocalDate emissione, LocalDate scadenza) {
+        this.idTessera = UUID.fromString(idTessera);
         this.emissione = emissione;
         Scadenza = scadenza;
     }
+    //Costruttore per reference
+    public Tessera(String idTessera) {
+        this.idTessera =UUID.fromString(idTessera);
+    }
 
+    //Costruttore
     public Tessera(UUID idTessera) {
         this.idTessera =idTessera;
         this.emissione = LocalDate.now().minusDays(5);
         this.Scadenza = LocalDate.now();
     }
+
+
+
+
 
 
     //Getters Setters

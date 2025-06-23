@@ -4,6 +4,6 @@ import it.unipv.ingsfw.treninordovest.model.dao.interfaces.DAO;
 
 public interface PagamentoDAO extends DAO<Pagamento> {
 
-    void insertPagamento(Pagamento pagamento,String idCliente);
+
 
 }

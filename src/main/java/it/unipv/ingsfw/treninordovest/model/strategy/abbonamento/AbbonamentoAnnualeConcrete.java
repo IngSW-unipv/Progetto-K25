@@ -1,6 +1,7 @@
 package it.unipv.ingsfw.treninordovest.model.strategy.abbonamento;
 
 import it.unipv.ingsfw.treninordovest.model.titoli.abbonamento.Abbonamento;
+import it.unipv.ingsfw.treninordovest.model.titoli.tessera.Tessera;
 
 import java.time.LocalDate;
 import java.util.UUID;
@@ -24,8 +25,8 @@ public class AbbonamentoAnnualeConcrete implements IAbbonamentoStrategy {
     }
 
     @Override
-    public Abbonamento createAbbonamento() {
-        return new Abbonamento(UUID.randomUUID(),LocalDate.now(),ottieniPrezzoAbbonamento(),getTipoAbbonamento(),getDataScadenza());
+    public Abbonamento createAbbonamento(Tessera tessera) {
+        return new Abbonamento(UUID.randomUUID(),LocalDate.now(),ottieniPrezzoAbbonamento(),getTipoAbbonamento(),getDataScadenza(),tessera);
     }
 
 

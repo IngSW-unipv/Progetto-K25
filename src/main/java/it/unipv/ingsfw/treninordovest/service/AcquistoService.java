@@ -1,5 +1,6 @@
 package it.unipv.ingsfw.treninordovest.service;
 
+import it.unipv.ingsfw.treninordovest.facade.pagamento.PagamentoFacade;
 import it.unipv.ingsfw.treninordovest.model.factory.implementations.AbbonamentoStrategyFactory;
 import it.unipv.ingsfw.treninordovest.model.factory.implementations.PagamentoStrategyFactory;
 import it.unipv.ingsfw.treninordovest.model.strategy.abbonamento.IAbbonamentoStrategy;
@@ -9,6 +10,7 @@ import it.unipv.ingsfw.treninordovest.model.strategy.pagamento.PagamentoContext;
 import it.unipv.ingsfw.treninordovest.model.titoli.abbonamento.Abbonamento;
 import it.unipv.ingsfw.treninordovest.model.titoli.abbonamento.AbbonamentoDAOimpl;
 import it.unipv.ingsfw.treninordovest.model.titoli.biglietto.BigliettoDAOImpl;
+import it.unipv.ingsfw.treninordovest.model.titoli.pagamento.Pagamento;
 import it.unipv.ingsfw.treninordovest.model.titoli.pagamento.PagamentoDAOImpl;
 import it.unipv.ingsfw.treninordovest.model.titoli.tessera.Tessera;
 import it.unipv.ingsfw.treninordovest.model.titoli.tessera.TesseraDAOImpl;
@@ -25,24 +27,25 @@ public class AcquistoService {
     private BigliettoDAOImpl bigliettoDAO;
     private PagamentoDAOImpl pagamentoDAO;
     private TesseraDAOImpl tesseraDAO;
-    private Utente clienteLoggato;
+    private Cliente clienteLoggato;
+    private PagamentoService pagamentoService;
 
     public AcquistoService() {
         this.abbonamentoDAO=new AbbonamentoDAOimpl();
         this.bigliettoDAO=new BigliettoDAOImpl();
         this.pagamentoDAO=new PagamentoDAOImpl();
         this.tesseraDAO=new TesseraDAOImpl();
+        this.pagamentoService=new PagamentoService();
     }
 
-    public boolean acquistoAbbonamento(String tipoAbbonamento,String tipoPagamento) {
+    public boolean acquistoAbbonamento(String tipoAbbonamento,String tipoPagamento,int quantita) {
 
         clienteLoggato = (Cliente) SessionManager.getInstance().getCurrentUser();
 
-        PagamentoContext pagamentoContext=new PagamentoContext(tipoPagamento);
 
-        Sale vendita = new Sale();
 
-        vendita.paga(pagamentoContext);
+
+
 
         String idTesseraLoggato = tesseraDAO.getIdTesseraByCustomerID(clienteLoggato.getId().toString());
         //Test
@@ -52,7 +55,9 @@ public class AcquistoService {
 
             if (clienteLoggato!=null) {
                 IAbbonamentoStrategy abbonamentoStrategy = AbbonamentoStrategyFactory.getFactoryFromProperties(tipoAbbonamento);
-                Abbonamento abbonamento = abbonamentoStrategy.createAbbonamento();
+                Abbonamento abbonamento = abbonamentoStrategy.createAbbonamento(clienteLoggato.getTessera());
+
+                Pagamento p =  pagamentoService.effettuaPagamento(tipoPagamento,quantita,abbonamentoStrategy.ottieniPrezzoAbbonamento());
 
                 if( abbonamentoDAO.createAbbonamento(abbonamento, idTesseraLoggato, clienteLoggato.getId().toString(),idPagamento))
                     return true;

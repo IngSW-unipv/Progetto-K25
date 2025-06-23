@@ -1,7 +1,9 @@
 package it.unipv.ingsfw.treninordovest.model.titoli.abbonamento;
 
 import it.unipv.ingsfw.treninordovest.model.dao.database.Database;
+import it.unipv.ingsfw.treninordovest.model.titoli.pagamento.Pagamento;
 import it.unipv.ingsfw.treninordovest.model.titoli.pagamento.PagamentoDAOImpl;
+import it.unipv.ingsfw.treninordovest.model.titoli.tessera.Tessera;
 import it.unipv.ingsfw.treninordovest.model.titoli.tessera.TesseraDAOImpl;
 
 import java.sql.*;
@@ -23,32 +25,42 @@ public class AbbonamentoDAOimpl implements AbbonamentoDAO {
     @Override
     public Abbonamento get(Abbonamento abbonamento)  {
 
+        Abbonamento abbonamentoDB = null;
         String sql = "select IDTitolo, IDPagamento, Emissione, Prezzo, Tipo, Scadenza, IDTessera from titoliAbbonamenti where IDTitolo=?";
 
-        try (Connection con =Database.getConnection();PreparedStatement ps = con.prepareStatement(sql);ResultSet rs=ps.executeQuery()) {
+        try (Connection con =Database.getConnection();PreparedStatement ps = con.prepareStatement(sql)) {
 
-            //Estrazione dei dati dal DB
             ps.setString(1, abbonamento.getId().toString());
+            try (ResultSet rs=ps.executeQuery()){
+                if(rs.next()){
+                    String idTitolo = rs.getString("IDTitolo");
+                    String idPagamento = rs.getString("IDPagamento");
+                    Date emissione = rs.getDate("Emissione");
+                    LocalDate emissioneLoc= emissione.toLocalDate();
+                    Double prezzo = (Double) rs.getObject("Prezzo");
+                    String tipo = rs.getString("Tipo");
+                    Date scadenza = rs.getDate("Scadenza");
+                    LocalDate scadenzaLoc= scadenza.toLocalDate();
+                    String idTessera = rs.getString("IDTessera");
 
-            if(rs.next()){
-                String idTitolo = rs.getString("IDTitolo");
-                String idPagamento = rs.getString("IDPagamento");
-                Date emissione = rs.getDate("Emissione");
-                LocalDate emissioneLoc= emissione.toLocalDate();
-                Double prezzo = (Double) rs.getObject("Prezzo");
-                String tipo = rs.getString("Tipo");
-                Date scadenza = rs.getDate("Scadenza");
-                LocalDate scadenzaLoc= scadenza.toLocalDate();
-                String idTessera = rs.getString("IDTessera");
+                    abbonamentoDB=new Abbonamento(UUID.fromString(idTitolo),emissioneLoc,prezzo,tipo,scadenzaLoc,new Tessera(idTessera));
+                }
 
-                abbonamento=new Abbonamento(UUID.fromString(idTitolo),emissioneLoc,prezzo,tipo,scadenzaLoc);
+
+            } catch (Exception e) {
+                throw new RuntimeException(e);
             }
+            //Estrazione dei dati dal DB
+
+
+
             //Database.closeConnection(con);
 
         } catch (SQLException e) {
             throw new RuntimeException("Errore nel recupero degli abbonamenti",e);
         }
-        return abbonamento;
+
+        return abbonamentoDB;
 
     }
 
@@ -69,8 +81,9 @@ public class AbbonamentoDAOimpl implements AbbonamentoDAO {
                 Double prezzo = (Double) rs.getObject("Prezzo");
                 String tipo = rs.getString("Tipo");
                 LocalDate scadenza = (LocalDate) rs.getObject("Scadenza");
+                String idTessera = rs.getString("IDTessera");
 
-                abbonamento=new Abbonamento(UUID.fromString(idTitolo),emissione,prezzo,tipo,scadenza);
+                abbonamento=new Abbonamento(UUID.fromString(idTitolo),emissione,prezzo,tipo,scadenza,new Tessera(idTessera) );
                 listaAbbonamenti.add(abbonamento);
             }
 

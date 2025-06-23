@@ -5,6 +5,7 @@ import it.unipv.ingsfw.treninordovest.facade.login.ILoginFacade;
 import it.unipv.ingsfw.treninordovest.facade.login.LoginFacade;
 import it.unipv.ingsfw.treninordovest.model.factory.login.ILogin;
 import it.unipv.ingsfw.treninordovest.model.factory.login.LoginFactoryProducer;
+import it.unipv.ingsfw.treninordovest.model.titoli.tessera.Tessera;
 import it.unipv.ingsfw.treninordovest.model.utenti.utente.Utente;
 import it.unipv.ingsfw.treninordovest.utils.metodipagamento.wallet.EUWallet;
 
@@ -17,6 +18,7 @@ public class Cliente extends Utente {
     //Attributi
     private final EUWallet bilancio = new EUWallet();
     private String email;
+    private Tessera tessera;
 
     //Costruttore vuoto
     public Cliente(){
@@ -67,6 +69,14 @@ public class Cliente extends Utente {
        ILogin loginn = loginFactoryProducer.getFactoryFromProperties("cliente");
        loginn.login(email, password);
        return true;
+    }
+
+    public Tessera getTessera() {
+        return tessera;
+    }
+
+    public void setTessera(Tessera tessera) {
+        this.tessera = tessera;
     }
 
 

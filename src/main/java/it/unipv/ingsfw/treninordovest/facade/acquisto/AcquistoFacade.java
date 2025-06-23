@@ -32,8 +32,8 @@ public class AcquistoFacade implements IAcquistoFacade {
     }
 
     @Override
-    public boolean acquistoAbbonamento(String tipoAbbonamento,String tipoPagamento) {
-        return acquistoService.acquistoAbbonamento(tipoAbbonamento,tipoPagamento);
+    public boolean acquistoAbbonamento(String tipoAbbonamento,String tipoPagamento,int quantita) {
+        return acquistoService.acquistoAbbonamento(tipoAbbonamento,tipoPagamento,quantita);
     }
 
     @Override

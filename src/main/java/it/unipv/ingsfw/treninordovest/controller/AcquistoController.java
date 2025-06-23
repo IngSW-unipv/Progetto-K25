@@ -43,7 +43,7 @@ public class AcquistoController {
        String tipoAbbonamento=viewSubscription.getComboTipo().getSelectedItem().toString();
        String tipoAcquisto=null;
 
-        if(acquistoFacade.acquistoAbbonamento(tipoAbbonamento,tipoAcquisto)){
+        if(acquistoFacade.acquistoAbbonamento(tipoAbbonamento,tipoAcquisto,1)){
             JOptionPane.showMessageDialog(frameCustomer, "Acquisto con successo!");
         }
         else

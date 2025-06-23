@@ -1,5 +1,7 @@
 package it.unipv.ingsfw.treninordovest.model.utenti.utente;
 
+import it.unipv.ingsfw.treninordovest.model.titoli.tessera.Tessera;
+
 import java.time.LocalDate;
 import java.util.UUID;
 
@@ -114,6 +116,8 @@ public abstract class Utente {
     public void setUserPassword(String userPassword) {
         this.userPassword = userPassword;
     }
+
+
 
     //Metodi vari
 

@@ -4,5 +4,5 @@ import it.unipv.ingsfw.treninordovest.model.titoli.pagamento.Pagamento;
 
 public interface IPagamentoFacade {
 
-    boolean generaPagamento(String tipoPagamento);
+    Pagamento generaPagamento(String tipoPagamento,int quantita,double prezzo);
 }

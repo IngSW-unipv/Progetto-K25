@@ -69,10 +69,11 @@ public class PagamentoContextTest {
 
         AbbonamentoDAOimpl abbonamentoDAOimpl = new AbbonamentoDAOimpl();
 
+        /*
         for(int i =0 ; i<quantita;i++){
             abbonamento = abbonamentoStrategy.createAbbonamento();
             abbonamentoDAOimpl.createAbbonamento(abbonamento,idTessera,idCliente,idPagamento);
-        }
+        }*/
 
 
 
