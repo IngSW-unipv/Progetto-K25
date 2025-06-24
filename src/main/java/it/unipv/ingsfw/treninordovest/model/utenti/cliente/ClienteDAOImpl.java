@@ -1,6 +1,8 @@
 package it.unipv.ingsfw.treninordovest.model.utenti.cliente;
 
 import it.unipv.ingsfw.treninordovest.model.dao.database.Database;
+import it.unipv.ingsfw.treninordovest.model.titoli.tessera.TesseraDAO;
+import it.unipv.ingsfw.treninordovest.model.titoli.tessera.TesseraDAOImpl;
 import it.unipv.ingsfw.treninordovest.utils.PasswordUtils;
 
 import java.sql.Connection;
@@ -18,7 +20,10 @@ import java.util.UUID;
 
 public class ClienteDAOImpl implements ClienteDAO {
 
+    private TesseraDAOImpl tesseraDAO = new TesseraDAOImpl();
+
     public ClienteDAOImpl() {
+       this.tesseraDAO = new TesseraDAOImpl();
     }
 
     @Override
@@ -28,8 +33,6 @@ public class ClienteDAOImpl implements ClienteDAO {
         //String hashedPassword = PasswordUtils.hashPassword(cliente.getUserPassword());
 
         try (Connection con = Database.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
-
-
 
              ps.setString(1, cliente.getId().toString());
 
@@ -53,6 +56,7 @@ public class ClienteDAOImpl implements ClienteDAO {
                         String cellulare = rs.getString("cellulare");
                         String indirizzo = rs.getString("indirizzo");
 
+                        String idTessera = tesseraDAO.getIdTesseraByCustomerID(id);
 
                         cliente = new Cliente(UUID.fromString(id), password, nome, cognome, luogoNascita, sesso, dataNascitaLocal, cellulare, indirizzo, bilancio, email);
 

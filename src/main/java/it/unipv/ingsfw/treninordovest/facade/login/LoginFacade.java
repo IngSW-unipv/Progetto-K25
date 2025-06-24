@@ -1,40 +1,27 @@
 package it.unipv.ingsfw.treninordovest.facade.login;
 
-import it.unipv.ingsfw.treninordovest.model.factory.login.ILogin;
-import it.unipv.ingsfw.treninordovest.model.factory.login.LoginFactoryProducer;
-import it.unipv.ingsfw.treninordovest.model.utenti.utente.Utente;
-import it.unipv.ingsfw.treninordovest.model.varie.SessionManager;
 
+import it.unipv.ingsfw.treninordovest.model.varie.SessionManager;
+import it.unipv.ingsfw.treninordovest.service.LoginService;
 
 
 public class LoginFacade implements ILoginFacade {
+
+    private LoginService loginService;
+
+    public LoginFacade() {
+
+    }
+
+
     @Override
     public boolean login(String id, String password, String tipoUtente) {
-
-        try {
-
-            ILogin loginFactory =  new LoginFactoryProducer().getFactoryFromProperties(tipoUtente);
-              Utente user = (Utente) loginFactory.login(id, password);
-
-            if (user != null) {
-
-                System.out.println("DEBUG: ID Utente:   "+user.getId());
-
-                SessionManager.getInstance().setCurrentUser(user);
-                return true;
-            }
-
-
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return false;
+       return loginService.login(id, password, tipoUtente) ;
     }
 
 
     @Override
     public void logout() {
-        SessionManager.getInstance().logout();
+        loginService.logout();
     }
 }

@@ -150,60 +150,18 @@ public class AbbonamentoDAOimpl implements AbbonamentoDAO {
     }
 
     @Override
-    public boolean createAbbonamento(Abbonamento abbonamento, String idTessera, String idCliente,String idPagamento) {
-
-        String sql1 = "INSERT INTO titoloviaggio (IDTitolo, IDPagamento, Emissione, Prezzo) VALUES (?, ?, ?, ?)";
-        String sql2 = "INSERT INTO abbonamento (IDAbbonamento, Tipo, Scadenza, IDTessera) VALUES (?,?,?,?)";
-
-
-
-        try (Connection con = Database.getConnection()) {
-
-            try (PreparedStatement ps1 = con.prepareStatement(sql1);PreparedStatement ps2 = con.prepareStatement(sql2)) {
-                // Impostazione dei parametri per la query 1
-                ps1.setString(1, abbonamento.getId().toString());
-                ps1.setString(2, idPagamento);
-                ps1.setObject(3, abbonamento.getEmissione());
-                ps1.setDouble(4, abbonamento.getPrezzo());
-                // Esecuzione delle query
-
-
-
-                // Impostazione dei parametri per la query 1
-                ps2.setString(1, abbonamento.getId().toString());
-                ps2.setString(2, abbonamento.getTipoAbbonamento());
-                ps2.setObject(3, abbonamento.getScadenza());
-                ps2.setString(4, idTessera);
-                // Esecuzione delle query
-                if(ps1.executeUpdate()>0 && ps2.executeUpdate()>0){
-                    return true;
-                }
-
-            }
-
-
-
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-
-        return false;
-    }
-
-    @Override
     public void insert(Abbonamento abbonamento)  {
-        /*
+
         String sql1 = "INSERT INTO titoloviaggio (IDTitolo, IDPagamento, Emissione, Prezzo) VALUES (?, ?, ?, ?)";
         String sql2 = "INSERT INTO abbonamento (IDAbbonamento, Tipo, Scadenza, IDTessera) VALUES (?,?,?,?)";
-
 
 
         try (Connection con = Database.getConnection()) {
 
             try (PreparedStatement ps1 = con.prepareStatement(sql1)) {
                 // Impostazione dei parametri per la query 1
-                ps1.setString(1,abbonamento.getId());
-                ps1.setString(2,abbonamento.getIdPagamento());
+                ps1.setString(1,abbonamento.getId().toString());
+                ps1.setString(2,abbonamento.getPagamento().getIdPagamento().toString());
                 ps1.setObject(3,abbonamento.getEmissione());
                 ps1.setDouble(4, abbonamento.getPrezzo());
                 // Esecuzione delle query
@@ -211,19 +169,19 @@ public class AbbonamentoDAOimpl implements AbbonamentoDAO {
             }
             try (PreparedStatement ps2 = con.prepareStatement(sql2)) {
                 // Impostazione dei parametri per la query 1
-                ps2.setString(1, abbonamento.getId());
-                ps2.setString(2, abbonamento.getIdPagamento());
+                ps2.setString(1, abbonamento.getId().toString());
+                ps2.setString(2, abbonamento.getPagamento().getIdPagamento().toString());
                 ps2.setObject(3, abbonamento.getScadenza());
-                ps2.setString(4, abbonamento.getIdTessera());
+                ps2.setString(4, abbonamento.getTessera().getIdTessera());
                 // Esecuzione delle query
                 ps2.executeUpdate();
             }
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
-        */
+
 
     }
 
