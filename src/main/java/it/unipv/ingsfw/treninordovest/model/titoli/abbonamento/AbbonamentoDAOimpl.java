@@ -170,7 +170,7 @@ public class AbbonamentoDAOimpl implements AbbonamentoDAO {
             try (PreparedStatement ps2 = con.prepareStatement(sql2)) {
                 // Impostazione dei parametri per la query 1
                 ps2.setString(1, abbonamento.getId().toString());
-                ps2.setString(2, abbonamento.getPagamento().getIdPagamento().toString());
+                ps2.setString(2, abbonamento.getTipoAbbonamento());
                 ps2.setObject(3, abbonamento.getScadenza());
                 ps2.setString(4, abbonamento.getTessera().getIdTessera());
                 // Esecuzione delle query

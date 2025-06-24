@@ -1,6 +1,7 @@
 package it.unipv.ingsfw.treninordovest.model.utenti.cliente;
 
 import it.unipv.ingsfw.treninordovest.model.dao.database.Database;
+import it.unipv.ingsfw.treninordovest.model.titoli.tessera.Tessera;
 import it.unipv.ingsfw.treninordovest.model.titoli.tessera.TesseraDAO;
 import it.unipv.ingsfw.treninordovest.model.titoli.tessera.TesseraDAOImpl;
 import it.unipv.ingsfw.treninordovest.utils.PasswordUtils;
@@ -28,6 +29,7 @@ public class ClienteDAOImpl implements ClienteDAO {
 
     @Override
     public Cliente get(Cliente cliente) {
+
 
         String sql = "select ID,nome,cognome,email,Userpassword,bilancio,luogoNascita,dataNascita,sesso,cellulare,indirizzo,sesso from utentiClienti where ID=? ";
         //String hashedPassword = PasswordUtils.hashPassword(cliente.getUserPassword());
@@ -58,7 +60,7 @@ public class ClienteDAOImpl implements ClienteDAO {
 
                         String idTessera = tesseraDAO.getIdTesseraByCustomerID(id);
 
-                        cliente = new Cliente(UUID.fromString(id), password, nome, cognome, luogoNascita, sesso, dataNascitaLocal, cellulare, indirizzo, bilancio, email);
+                        cliente = new Cliente(UUID.fromString(id), password, nome, cognome, luogoNascita, sesso, dataNascitaLocal, cellulare, indirizzo, bilancio, email,new Tessera(idTessera));
 
 
 
@@ -75,11 +77,9 @@ public class ClienteDAOImpl implements ClienteDAO {
         return cliente;
     }
 
-
-
-
     @Override
     public List<Cliente> getAll() {
+        /*
 
         List<Cliente> clienti = new ArrayList<>();
         String sql = "select ID,nome,cognome,email,Userpassword,bilancio,luogoNascita,dataNascita,sesso,cellulare,indirizzo,sesso from utentiClienti";
@@ -110,6 +110,9 @@ public class ClienteDAOImpl implements ClienteDAO {
             throw new RuntimeException("Errore durante il recupero dei dati: ", e);
         }
         return clienti;
+
+         */
+        return null;
     }
 
     @Override
@@ -221,6 +224,9 @@ public class ClienteDAOImpl implements ClienteDAO {
 
     @Override
     public Cliente autenticateByEmail(Cliente input) {
+
+        Cliente clienteAutenticato = null;
+
         String sql = "SELECT ID,nome,cognome,UserPassword,bilancio,luogoNascita,dataNascita,sesso,cellulare,indirizzo,email FROM utentiClienti WHERE email=?";
         try (Connection con = Database.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
@@ -230,26 +236,29 @@ public class ClienteDAOImpl implements ClienteDAO {
                 if (rs.next()) {
                     String storedHash = rs.getString("UserPassword");
                     if (input.getEmail().equals(rs.getString("email"))  /*PasswordUtils.verifyPassword(input.getUserPassword(), storedHash)*/) {
-                        return new Cliente(
-                                UUID.fromString(rs.getString("ID")),
-                                storedHash,
-                                rs.getString("nome"),
-                                rs.getString("cognome"),
-                                rs.getString("luogoNascita"),
-                                rs.getString("sesso"),
-                                rs.getDate("dataNascita").toLocalDate(),
-                                rs.getString("cellulare"),
-                                rs.getString("indirizzo"),
-                                rs.getDouble("bilancio"),
-                                rs.getString("email")
-                        );
+
+                        UUID id= UUID.fromString(rs.getString("ID"));
+                        String nome=rs.getString("nome");
+                        String cognome=rs.getString("cognome");
+                        double bilancio=rs.getDouble("bilancio");
+                        String luogoNascita=rs.getString("luogoNascita");
+                        LocalDate dataNascita= LocalDate.parse(rs.getString("dataNascita"));
+                        String cellulare=rs.getString("cellulare");
+                        String indirizzo=rs.getString("indirizzo");
+                        String email=rs.getString("email");
+                        Object sesso=  rs.getObject("sesso");
+                        Tessera tessera= new Tessera(tesseraDAO.getIdTesseraByCustomerID(String.valueOf(id)));
+
+                        clienteAutenticato= new Cliente(id,storedHash,nome,cognome,luogoNascita, (String) sesso,dataNascita,cellulare,indirizzo,bilancio,email,tessera);
+
+                        return clienteAutenticato;
                     }
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        return clienteAutenticato;
     }
 
 

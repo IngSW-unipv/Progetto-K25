@@ -27,10 +27,11 @@ public class Cliente extends Utente {
 
     //Costruttore completo
 
-    public Cliente(UUID id, String userPassword, String nome, String cognome, String luogoNascita, String sesso, LocalDate dataNascita, String cellulare, String indirizzo, double bilancio, String email) {
+    public Cliente(UUID id, String userPassword, String nome, String cognome, String luogoNascita, String sesso, LocalDate dataNascita, String cellulare, String indirizzo, double bilancio, String email, Tessera tessera) {
         super(id, userPassword, nome, cognome, luogoNascita, sesso, dataNascita, cellulare, indirizzo);
         this.bilancio.setVal(bilancio);
         this.email = email;
+        this.tessera = tessera;
     }
 
     public Cliente(String email,String password){
@@ -42,6 +43,9 @@ public class Cliente extends Utente {
         this.setId(UUID.fromString(id));
     }
 
+    public Cliente(UUID id, String userPassword, String nome, String cognome, String luogoNascita, String sesso, LocalDate dataNascita, String cellulare, String indirizzo, double bilancio, String email ) {
+        super(id, userPassword, nome, cognome, luogoNascita, sesso, dataNascita, cellulare, indirizzo);
+    }
 
 
 //Getters e Setters

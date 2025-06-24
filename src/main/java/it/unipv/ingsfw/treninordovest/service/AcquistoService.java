@@ -45,7 +45,7 @@ public class AcquistoService {
 
         try {
 
-            if (clienteLoggato!=null && tesseraDAO.getIdTesseraByCustomerID(clienteLoggato.getId().toString())!=null) {
+            if (clienteLoggato!=null && clienteLoggato.getTessera().getIdTessera()!=null) {
                 IAbbonamentoStrategy abbonamentoStrategy = AbbonamentoStrategyFactory.getFactoryFromProperties(tipoAbbonamento);
                 Abbonamento abbonamento = abbonamentoStrategy.createAbbonamento(clienteLoggato.getTessera());
 
