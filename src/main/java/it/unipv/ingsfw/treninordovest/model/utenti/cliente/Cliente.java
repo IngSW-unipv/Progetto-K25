@@ -38,6 +38,10 @@ public class Cliente extends Utente {
         this.setUserPassword(password);
     }
 
+    public Cliente (String id){
+        this.setId(UUID.fromString(id));
+    }
+
 
 
 //Getters e Setters

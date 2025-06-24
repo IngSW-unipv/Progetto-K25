@@ -8,7 +8,9 @@ import it.unipv.ingsfw.treninordovest.view.frames.utenti.clienti.menu.principale
 import it.unipv.ingsfw.treninordovest.view.frames.utenti.clienti.menu.principale.panels.TicketPurchasePanel;
 
 import javax.swing.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class AcquistoController {
 
@@ -33,17 +35,38 @@ public class AcquistoController {
     }
 
     public AcquistoController(TicketPurchasePanel viewTicketPurchase, JCustomerMainFrame frameCustomer) {
-
+        this.viewTicketPurchase = viewTicketPurchase;
+        this.frameCustomer = frameCustomer;
+        this.acquistoFacade = new AcquistoFacade();
+        addAbbonamentoPurchaseListener();
     }
 
 
-    public void acquistoBiglietto() {}
+    ///  Acquisto dei biglietti
+    public void acquistoBiglietto() {
+
+        String idTratta= viewTicketPurchase.getTextFieldTratta().getText();
+        boolean ritorno=viewTicketPurchase.getCheckBoxRitorno().isSelected() ;
+        Date dataRitorno= viewTicketPurchase.getDataRitorno().getDate();
+
+
+        if(acquistoFacade.acquistaBiglietto()) {
+            JOptionPane.showMessageDialog(frameCustomer, "Biglietti acquistati");
+        } else
+            JOptionPane.showMessageDialog(frameCustomer, "Errore durante l'acquisto dei biglietti");
+
+
+
+    }
+
+    ///  Acquisto dell'abbonamento
     public void acquistoAbbonamento() {
 
        String tipoAbbonamento=viewSubscription.getComboTipo().getSelectedItem().toString();
        String tipoAcquisto=null;
+       int quantita=1;
 
-        if(acquistoFacade.acquistoAbbonamento(tipoAbbonamento,tipoAcquisto,1)){
+        if(acquistoFacade.acquistoAbbonamento(tipoAbbonamento,tipoAcquisto,quantita)){
             JOptionPane.showMessageDialog(frameCustomer, "Acquisto con successo!");
         }
         else
@@ -52,6 +75,8 @@ public class AcquistoController {
 
 
     }
+
+    ///  Acquisto della tessera
     public void acquistoTessera() {
 
         if (acquistoFacade.acquistaTessera()) {
@@ -64,6 +89,8 @@ public class AcquistoController {
 
     }
 
+
+    /// Aggiunta degli Action Listener per i vari pannelli
 
     private void addCardPurchaseListener() {
 
@@ -84,7 +111,16 @@ public class AcquistoController {
         });
     }
 
+    private void addBigliettoPurchaseListener() {
+        frameCustomer.getTicketPurchasePanel().getButtonAcquista().addActionListener(e -> {
+            if (frameCustomer.getTicketPurchasePanel().getButtonAcquista().getActionCommand() != null) {
+                acquistoBiglietto();
+            }
+        });
+    }
 
+
+    ///  TEST --- RIMUOVERE
     public static void main(String[] args) {
        JCustomerMainFrame fea = new JCustomerMainFrame();
 
