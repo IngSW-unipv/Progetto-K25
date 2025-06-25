@@ -8,5 +8,5 @@ public interface IBigliettoStrategy {
     double ottieniPrezzoBiglietto();
     boolean getValidazione();
     LocalDate getDataEmissione();
-    Biglietto createBiglietto(String idCliente, String idPagamento, String idTessera,boolean ritorno,LocalDate dataRitorno);
+    Biglietto createBiglietto(String idCliente,String idTessera,boolean ritorno,LocalDate dataRitorno);
 }

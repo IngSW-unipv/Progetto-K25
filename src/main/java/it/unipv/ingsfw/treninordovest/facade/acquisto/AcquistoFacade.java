@@ -26,8 +26,9 @@ public class AcquistoFacade implements IAcquistoFacade {
         this.acquistoService = new AcquistoService();
     }
 
+
     @Override
-    public boolean acquistaBiglietto() {
+    public boolean acquistaBiglietto(String tipoBiglietto, String tipoPagamento, int quantita, String idTratta, boolean ritorno, LocalDate dataRitorno) {
         return acquistoService.acquistoBiglietto();
     }
 

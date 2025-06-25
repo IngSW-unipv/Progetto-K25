@@ -18,8 +18,7 @@ public class BigliettoConcrete implements IBigliettoStrategy {
     }
 
     @Override
-    public Biglietto createBiglietto(String idCliente, String idPagamento, String idTessera,boolean ritorno,LocalDate dataRitorno) {
-        GeneraID generaID = new GeneraID("BG");
+    public Biglietto createBiglietto(String idCliente, String idTessera,boolean ritorno,LocalDate dataRitorno) {
         return new Biglietto(UUID.randomUUID(),getDataEmissione(),ottieniPrezzoBiglietto(),ritorno,getValidazione(),dataRitorno,getDataValidazione());
     }
 

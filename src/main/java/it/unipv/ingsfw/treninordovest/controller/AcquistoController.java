@@ -9,6 +9,7 @@ import it.unipv.ingsfw.treninordovest.view.frames.utenti.clienti.menu.principale
 
 import javax.swing.*;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -47,10 +48,12 @@ public class AcquistoController {
 
         String idTratta= viewTicketPurchase.getTextFieldTratta().getText();
         boolean ritorno=viewTicketPurchase.getCheckBoxRitorno().isSelected() ;
-        Date dataRitorno= viewTicketPurchase.getDataRitorno().getDate();
+        LocalDate dataRitorno= viewTicketPurchase.getDataRitorno().getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        String tipoBiglietto = "";
+        String tipoPagamento = "";
+        int quantita = 0;
 
-
-        if(acquistoFacade.acquistaBiglietto()) {
+        if(acquistoFacade.acquistaBiglietto(tipoBiglietto,tipoPagamento,quantita,idTratta,ritorno,dataRitorno)) {
             JOptionPane.showMessageDialog(frameCustomer, "Biglietti acquistati");
         } else
             JOptionPane.showMessageDialog(frameCustomer, "Errore durante l'acquisto dei biglietti");
