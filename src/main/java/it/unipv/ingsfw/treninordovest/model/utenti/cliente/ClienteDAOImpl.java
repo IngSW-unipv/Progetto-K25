@@ -71,7 +71,6 @@ public class ClienteDAOImpl implements ClienteDAO {
 
         } catch (SQLException e) {
             e.printStackTrace();
-            return null;
         }
 
         return cliente;

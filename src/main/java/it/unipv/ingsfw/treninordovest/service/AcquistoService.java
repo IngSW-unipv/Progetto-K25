@@ -47,13 +47,16 @@ public class AcquistoService {
 
             if (clienteLoggato!=null && clienteLoggato.getTessera().getIdTessera()!=null) {
                 IAbbonamentoStrategy abbonamentoStrategy = AbbonamentoStrategyFactory.getFactoryFromProperties(tipoAbbonamento);
-                Abbonamento abbonamento = abbonamentoStrategy.createAbbonamento(clienteLoggato.getTessera());
+                Abbonamento abbonamento;
 
-                pag =  pagamentoService.effettuaPagamento(tipoPagamento,quantita,abbonamentoStrategy.ottieniPrezzoAbbonamento());
+                for(int it =0; it<quantita; it++) {
+                    abbonamento = abbonamentoStrategy.createAbbonamento(clienteLoggato.getTessera());
+                    pag =  pagamentoService.effettuaPagamento(tipoPagamento,quantita,abbonamentoStrategy.ottieniPrezzoAbbonamento());
+                    abbonamento.setPagamento(pag);
+                    abbonamentoDAO.insert(abbonamento);
+                }
 
-                abbonamento.setPagamento(pag);
 
-                abbonamentoDAO.insert(abbonamento);
 
                return true;
             }

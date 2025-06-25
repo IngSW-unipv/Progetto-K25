@@ -1,6 +1,8 @@
 package it.unipv.ingsfw.treninordovest.model.dao.database;
 
 import it.unipv.ingsfw.treninordovest.exceptions.DatabaseConnectionException;
+import it.unipv.ingsfw.treninordovest.model.dao.exception.PersistenceException;
+import org.hibernate.PersistentObjectException;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -43,9 +45,9 @@ public class Database {
         try (FileInputStream fis = new FileInputStream(filePath)) {
             p.load(fis);
         }catch(IOException e) {
-            System.err.println("Errore nella lettura dei parametri di connessione: "+e.getMessage());
-            e.printStackTrace();
-            throw new RuntimeException("Impossibile caricare il file di configurazione",e);
+           // System.err.println("Errore nella lettura dei parametri di connessione: "+e.getMessage());
+           // e.printStackTrace();
+
         }
         return p;
     }

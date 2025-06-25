@@ -25,11 +25,10 @@ public class PagamentoService {
         Pagamento pagamento = null;
 
         Sale vendita = new Sale();
+
         vendita.addItem(new SaleLineItem(quantita, prezzo));
 
         PagamentoContext pagamentoContext = new PagamentoContext(tipoPagamento);
-
-
 
 
         if (vendita.paga(pagamentoContext)){

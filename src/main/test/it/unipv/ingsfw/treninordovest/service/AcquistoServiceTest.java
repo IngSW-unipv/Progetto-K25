@@ -12,9 +12,9 @@ public class AcquistoServiceTest {
     void AcquistoAbbonamentoTest() {
 
         AcquistoService service = new AcquistoService();
-        String tipoAbb="settimanale";
+        String tipoAbb="annuale";
         String tipoPag="cartacredito";
-        int quantita=5;
+        int quantita=3;
 
         ClienteDAOImpl clienteDAO = new ClienteDAOImpl();
 

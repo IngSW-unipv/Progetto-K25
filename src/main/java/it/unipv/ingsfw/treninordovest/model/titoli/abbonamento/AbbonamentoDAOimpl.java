@@ -178,7 +178,7 @@ public class AbbonamentoDAOimpl implements AbbonamentoDAO {
             }
 
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            System.err.println("Errore nel recupero degli abbonamenti"+e.getMessage());
         }
 
 
