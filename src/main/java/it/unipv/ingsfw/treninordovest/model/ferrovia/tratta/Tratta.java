@@ -15,6 +15,11 @@ public class Tratta {
         this.lunghezza = lunghezza;
     }
 
+    public Tratta(String idTratta) {
+        this.idTratta = idTratta;
+    }
+
+
     public String getIdTratta() {
         return idTratta;
     }

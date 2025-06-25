@@ -1,11 +1,14 @@
 package it.unipv.ingsfw.treninordovest.model.ferrovia.fermata.tratta;
 
+import it.unipv.ingsfw.treninordovest.model.ferrovia.fermata.Fermata;
+import it.unipv.ingsfw.treninordovest.model.ferrovia.tratta.Tratta;
+
 import java.time.LocalTime;
 
 public class TrattaFermata {
     //Attributi
-    private String idFermata;
-    private String idTratta;
+    private Fermata fermata;
+    private Tratta tratta;
     private int numOrdine;
     private int binario;
     private LocalTime oraPartenza;
@@ -15,29 +18,14 @@ public class TrattaFermata {
     public TrattaFermata() {}
 
     public TrattaFermata(String idFermata, int numOrdine, String idTratta, LocalTime oraPartenza, LocalTime oraArrivo, int binario) {
-        this.idFermata = idFermata;
+        //this.idFermata = idFermata;
         this.numOrdine = numOrdine;
-        this.idTratta = idTratta;
+        //this.idTratta = idTratta;
         this.oraPartenza = oraPartenza;
         this.oraArrivo = oraArrivo;
         this.binario = binario;
     }
 
-    public String getIdFermata() {
-        return idFermata;
-    }
-
-    public void setIdFermata(String idFermata) {
-        this.idFermata = idFermata;
-    }
-
-    public String getIdTratta() {
-        return idTratta;
-    }
-
-    public void setIdTratta(String idTratta) {
-        this.idTratta = idTratta;
-    }
 
     public int getNumOrdine() {
         return numOrdine;

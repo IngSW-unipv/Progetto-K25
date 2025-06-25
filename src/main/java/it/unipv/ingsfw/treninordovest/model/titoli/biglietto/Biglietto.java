@@ -1,5 +1,6 @@
 package it.unipv.ingsfw.treninordovest.model.titoli.biglietto;
 
+import it.unipv.ingsfw.treninordovest.model.ferrovia.viaggio.Viaggio;
 import it.unipv.ingsfw.treninordovest.model.titoli.titoloviaggio.TitoloViaggio;
 
 import java.time.LocalDate;
@@ -12,6 +13,7 @@ public class Biglietto extends TitoloViaggio {
     private boolean validato;
     private LocalDate dataRitorno;
     private LocalDate dataValidazione;
+    private Viaggio viaggio;
 
     //Costruttore vuoto
     public Biglietto() {}
@@ -24,6 +26,19 @@ public class Biglietto extends TitoloViaggio {
         this.dataRitorno  =  dataRitorno;
         this.dataValidazione = dataValidazione;
     }
+
+
+    public Biglietto(UUID id, LocalDate emissione, double prezzo, boolean ritorno, boolean validato, LocalDate dataRitorno, LocalDate dataValidazione,Viaggio viaggio) {
+        super(id, emissione, prezzo);
+        this.ritorno = ritorno;
+        this.validato = validato;
+        this.dataRitorno  =  dataRitorno;
+        this.dataValidazione = dataValidazione;
+        this.viaggio = viaggio;
+    }
+
+
+
 
     //Getters e setters
     public boolean isValidato() {

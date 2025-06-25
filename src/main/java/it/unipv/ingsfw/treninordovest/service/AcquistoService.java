@@ -53,10 +53,15 @@ public class AcquistoService {
                 }
 
                return true;
+            } else if(clienteLoggato.getTessera()==null) {
+                System.out.println("Non disponi di una tessera");
+
             }
 
 
         }catch (Exception e) {
+            System.out.println("Non disponi di una tessera");
+            e.getMessage();
             e.printStackTrace();
             return false;
         }
@@ -76,6 +81,11 @@ public class AcquistoService {
             if(clienteLoggato!=null) {
                 biglietto = bigliettoStrategy.createBiglietto(clienteLoggato.getId().toString(),clienteLoggato.getTessera().getIdTessera(),ritorno,dataRitorno);
                pag = pagamentoService.effettuaPagamento(tipoPagamento,quantita,bigliettoStrategy.ottieniPrezzoBiglietto());
+               biglietto.setPagamento(pag);
+               for(int it =0; it<quantita; it++) {
+                   bigliettoDAO.insert(biglietto);
+                   biglietto.setId(UUID.randomUUID().toString());
+               }
 
 
             }

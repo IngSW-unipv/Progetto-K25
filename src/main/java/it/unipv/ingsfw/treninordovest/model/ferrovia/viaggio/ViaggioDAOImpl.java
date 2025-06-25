@@ -117,19 +117,18 @@ public class ViaggioDAOImpl implements ViaggioDAO {
 
     @Override
     public void insert(Viaggio viaggio)  {
-/*
-        String sql1 = "INSERT INTO viaggio (IDViaggio,IDTratta,IDPartenza,IDArrivo,DataViaggio,OrarioPartenza,OrarioArrivo,IDBiglietto) VALUES (?,?,?,?,?,?,?,?)";
+
+        String sql1 = "INSERT INTO viaggio (IDViaggio,IDTratta,IDPartenza,IDArrivo,DataViaggio,OrarioPartenza,OrarioArrivo) VALUES (?,?,?,?,?,?,?)";
 
         try( Connection con1 = Database.getConnection(); PreparedStatement ps1 = con1.prepareStatement(sql1)) {
                 //Impostazione dei parametri per la query 1
                 ps1.setString(1,viaggio.getIdViaggio());
-                ps1.setString(2,viaggio.getIDTratta());
-                ps1.setString(3,viaggio.getIDPartenza());
-                ps1.setString(4,viaggio.getIDArrivo());
+                ps1.setString(2,viaggio.getTratta().getIdTratta());
+                ps1.setString(3,viaggio.getPartenza().getIdFermata());
+                ps1.setString(4,viaggio.getArrivo().getIdFermata());
                 ps1.setObject(5,viaggio.getDataViaggio());
                 ps1.setObject(6,viaggio.getOraPartenza());
                 ps1.setObject(7,viaggio.getOraArrivo());
-                ps1.setString(8,viaggio.getIdBiglietto());
 
                 // Esecuzione delle query
                 ps1.executeUpdate();

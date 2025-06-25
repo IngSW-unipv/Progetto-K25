@@ -16,6 +16,11 @@ public class Fermata {
         this.numBinari = numBinari;
     }
 
+    public Fermata(String idFermata) {
+        this.idFermata = idFermata;
+    }
+
+
     public String getIdFermata() {
         return idFermata;
     }

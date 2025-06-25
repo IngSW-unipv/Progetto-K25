@@ -141,8 +141,10 @@ Ritorno bool default false,
 Validato bool default false,
 DataRitorno date null ,
 DataValidazione date null ,
+IDViaggio varchar(40) not null ,
 primary key (IDBiglietto),
-foreign key (IDBiglietto) references titoloviaggio(IDTitolo) on delete cascade on update cascade
+foreign key (IDBiglietto) references titoloviaggio(IDTitolo) on delete cascade on update cascade,
+foreign key (IDViaggio) references viaggio(IDViaggio) on delete cascade on update cascade
 );
 
 create table abbonamento(
@@ -177,8 +179,8 @@ IDBiglietto varchar(40) not null,
 primary key (IDViaggio),
 foreign key (IDTratta) references tratta(IDTratta) on delete cascade on update cascade,
 foreign key (IDPartenza) references fermata(IDFermata) on delete cascade on update cascade,
-foreign key (IDArrivo) references fermata(IDFermata) on delete cascade on update cascade,
-foreign key (IDBiglietto) references biglietto(idbiglietto) on delete cascade on update cascade
+foreign key (IDArrivo) references fermata(IDFermata) on delete cascade on update cascade#,
+#foreign key (IDBiglietto) references biglietto(idbiglietto) on delete cascade on update cascade
 );
 
 /* Non usata
