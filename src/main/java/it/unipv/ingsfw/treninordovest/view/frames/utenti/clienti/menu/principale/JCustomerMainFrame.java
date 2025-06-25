@@ -81,5 +81,9 @@ public class JCustomerMainFrame extends JFrame {
         setVisible(false);
     }
 
+    public static void main(String[] args) {
+        JCustomerMainFrame frame = new JCustomerMainFrame();
+        frame.setVisible(true);
+    }
 
 }

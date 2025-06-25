@@ -9,6 +9,7 @@ public class TicketPurchasePanel extends JPanel {
     //private JLabel labelDestinazione;
     //private JTextField textFieldDestinazione;
     private JLabel labelIDTratta;
+    private JSpinner timePicker;
     private JTextField textFieldTratta;
     private JButton buttonAcquista;
     private JCheckBox checkBoxRitorno;
@@ -30,6 +31,8 @@ public class TicketPurchasePanel extends JPanel {
         checkBoxRitorno = new JCheckBox("Ritorno");
         dataRitorno = new JDateChooser();
         buttonAcquista = new JButton("Acquista Biglietto");
+        timePicker = new JSpinner();
+
 
 
         /*panelInput.add(labelDestinazione);
@@ -40,6 +43,7 @@ public class TicketPurchasePanel extends JPanel {
         panelInput.add(checkBoxRitorno);
         panelInput.add(labelRitorno);
         panelInput.add(dataRitorno);
+        panelInput.add(timePicker);
 
 
 
@@ -67,4 +71,6 @@ public class TicketPurchasePanel extends JPanel {
     public JCheckBox getCheckBoxRitorno() {
         return checkBoxRitorno;
     }
+
+
 }

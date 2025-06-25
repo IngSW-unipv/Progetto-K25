@@ -17,10 +17,10 @@ public class TrattaFermata {
     //Costruttori
     public TrattaFermata() {}
 
-    public TrattaFermata(String idFermata, int numOrdine, String idTratta, LocalTime oraPartenza, LocalTime oraArrivo, int binario) {
-        //this.idFermata = idFermata;
+    public TrattaFermata(Fermata fermata, int numOrdine, Tratta tratta, LocalTime oraPartenza, LocalTime oraArrivo, int binario) {
         this.numOrdine = numOrdine;
-        //this.idTratta = idTratta;
+        this.fermata = fermata;
+        this.tratta = tratta;
         this.oraPartenza = oraPartenza;
         this.oraArrivo = oraArrivo;
         this.binario = binario;

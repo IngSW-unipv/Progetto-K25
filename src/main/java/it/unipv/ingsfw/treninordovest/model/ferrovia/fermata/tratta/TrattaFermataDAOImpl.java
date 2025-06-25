@@ -1,6 +1,8 @@
 package it.unipv.ingsfw.treninordovest.model.ferrovia.fermata.tratta;
 
 import it.unipv.ingsfw.treninordovest.model.dao.database.Database;
+import it.unipv.ingsfw.treninordovest.model.ferrovia.fermata.Fermata;
+import it.unipv.ingsfw.treninordovest.model.ferrovia.tratta.Tratta;
 
 import java.sql.*;
 import java.time.LocalTime;
@@ -8,7 +10,7 @@ import java.util.List;
 
 public class TrattaFermataDAOImpl implements TrattaFermataDAO {
     @Override
-    public TrattaFermata get(String idTratta, String idFermata)  {
+    public TrattaFermata get(Tratta tratta, Fermata fermata)  {
 
         TrattaFermata trattaFermata = new TrattaFermata();
         PreparedStatement ps;
@@ -19,8 +21,8 @@ public class TrattaFermataDAOImpl implements TrattaFermataDAO {
 
             //Estrazione dei dati dal DB
             ps = con.prepareStatement(sql);
-            ps.setString(1,idTratta);
-            ps.setString(2,idFermata);
+            ps.setString(1,tratta.getIdTratta());
+            ps.setString(2,fermata.getIdFermata());
             ResultSet rs=ps.executeQuery();
 
             if(rs.next()){
@@ -34,7 +36,7 @@ public class TrattaFermataDAOImpl implements TrattaFermataDAO {
                 LocalTime oraPartLocal = oraPartenza.toLocalTime();
                 LocalTime oraArrivoLocal = oraArrivo.toLocalTime();
 
-                trattaFermata=new TrattaFermata(idTratta, numOrdine, idFermata, oraPartLocal, oraArrivoLocal,binario);
+                trattaFermata=new TrattaFermata(new Fermata(idFermata1), numOrdine, new Tratta(idTratta1), oraPartLocal, oraArrivoLocal,binario);
             }
             Database.closeConnection(con);
 
@@ -46,8 +48,8 @@ public class TrattaFermataDAOImpl implements TrattaFermataDAO {
     }
 
     @Override
-    public TrattaFermata getPartenza(String idTratta) {
-        TrattaFermata tratta = new TrattaFermata();
+    public TrattaFermata getPartenza(Tratta tratta) {
+        TrattaFermata trattafer = new TrattaFermata();
         String sql = "SELECT t1.IDTratta, t1.NumOrdine, t1.IDFermata, t1.Binario, t1.OraPartenza, t1.OraArrivo " +
                 "FROM trattafermata t1 " +
                 "WHERE t1.NumOrdine = (" +
@@ -59,7 +61,7 @@ public class TrattaFermataDAOImpl implements TrattaFermataDAO {
         try (Connection con = Database.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
 
-            ps.setString(1, idTratta);
+            ps.setString(1, tratta.getIdTratta());
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
                     int numOrdine = rs.getInt("NumOrdine");
@@ -70,7 +72,7 @@ public class TrattaFermataDAOImpl implements TrattaFermataDAO {
                     LocalTime oraPartLocal = oraPartenza.toLocalTime();
                     LocalTime oraArrivoLocal = oraArrivo.toLocalTime();
 
-                    tratta = new TrattaFermata(idFermata, numOrdine, idTratta, oraPartLocal, oraArrivoLocal, binario);
+                    trattafer = new TrattaFermata(new Fermata(idFermata), numOrdine, new Tratta(tratta.getIdTratta()), oraPartLocal, oraArrivoLocal,binario);
                 }
             }
         } catch (SQLException e) {
@@ -79,13 +81,13 @@ public class TrattaFermataDAOImpl implements TrattaFermataDAO {
 
         }
 
-        return tratta;
+        return trattafer;
     }
 
 
     @Override
-    public TrattaFermata getArrivo(String idTratta)  {
-        TrattaFermata tratta = new TrattaFermata();
+    public TrattaFermata getArrivo(Tratta tratta)  {
+        TrattaFermata trattafer = new TrattaFermata();
         String sql = "SELECT t1.IDTratta, t1.NumOrdine, t1.IDFermata, t1.Binario, t1.OraPartenza, t1.OraArrivo " +
                 "FROM trattafermata t1 " +
                 "WHERE t1.NumOrdine = (" +
@@ -97,7 +99,7 @@ public class TrattaFermataDAOImpl implements TrattaFermataDAO {
         try (Connection con = Database.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
 
-            ps.setString(1, idTratta);
+            ps.setString(1, tratta.getIdTratta());
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
                     int numOrdine = rs.getInt("NumOrdine");
@@ -108,7 +110,7 @@ public class TrattaFermataDAOImpl implements TrattaFermataDAO {
                     LocalTime oraPartLocal = oraPartenza.toLocalTime();
                     LocalTime oraArrivoLocal = oraArrivo.toLocalTime();
 
-                    tratta = new TrattaFermata(idFermata, numOrdine, idTratta, oraPartLocal, oraArrivoLocal, binario);
+                    trattafer = new TrattaFermata(new Fermata(idFermata), numOrdine, new Tratta(tratta.getIdTratta()), oraPartLocal, oraArrivoLocal,binario);;
                 }
             }
         } catch (SQLException e) {
@@ -117,7 +119,7 @@ public class TrattaFermataDAOImpl implements TrattaFermataDAO {
 
         }
 
-        return tratta;
+        return trattafer;
     }
 
 
