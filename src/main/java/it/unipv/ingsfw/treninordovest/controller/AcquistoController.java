@@ -73,7 +73,7 @@ public class AcquistoController {
             JOptionPane.showMessageDialog(frameCustomer, "Acquisto con successo!");
         }
         else
-            JOptionPane.showMessageDialog(frameCustomer, "Possiedi già un abbonamento!");
+            JOptionPane.showMessageDialog(frameCustomer, "Abbonamento già posseduto o tessera non valida!","Errore",JOptionPane.ERROR_MESSAGE);
 
 
 
@@ -85,7 +85,7 @@ public class AcquistoController {
         if (acquistoFacade.acquistaTessera()) {
             JOptionPane.showMessageDialog(frameCustomer, "Acquisto con successo!");
         } else
-            JOptionPane.showMessageDialog(frameCustomer, "Errore !!! Sei già in possesso della tessera","Error",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(frameCustomer, "Errore !!! Tessera posseduta o non valida","Errore",JOptionPane.ERROR_MESSAGE);
 
 
 
