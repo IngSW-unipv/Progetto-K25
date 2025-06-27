@@ -30,4 +30,8 @@ public class BigliettoAndataConcrete implements IBigliettoStrategy {
         return null;
     }
 
+    @Override
+    public String getTipoBiglietto() {
+        return "Andata";
+    }
 }

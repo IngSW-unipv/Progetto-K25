@@ -26,7 +26,7 @@ public class Biglietto extends TitoloViaggio {
     }
 
 
-    public Biglietto(UUID id, LocalDate emissione, double prezzo, boolean ritorno, boolean validato, LocalDate dataRitorno, LocalDate dataValidazione,Viaggio viaggio) {
+    public Biglietto(UUID id, LocalDate emissione, double prezzo, boolean validato,Viaggio viaggio) {
         super(id, emissione, prezzo);
         this.validato = validato;
         this.dataValidazione = dataValidazione;
@@ -43,22 +43,6 @@ public class Biglietto extends TitoloViaggio {
 
     public void setValidato(boolean validato) {
         this.validato = validato;
-    }
-
-    public boolean isRitorno() {
-        return ritorno;
-    }
-
-    public void setRitorno(boolean ritorno) {
-        this.ritorno = ritorno;
-    }
-
-    public LocalDate getDataRitorno() {
-        return dataRitorno;
-    }
-
-    public void setDataRitorno(LocalDate dataRitorno) {
-        this.dataRitorno = dataRitorno;
     }
 
     public LocalDate getDataValidazione() {
