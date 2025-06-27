@@ -42,8 +42,8 @@ primary key (IDTratta)
 
 create table trenotratta(
 IDTratta varchar(40) not null,
-IDTreno varchar(40) not null,
-NumTreno int not null,
+IDTreno varchar(40) not null, -- Identificativo Univoco treno
+NumTreno varchar(40) not null, -- Numero commerciale del treno
 primary key (IDTratta,IDTreno),
 foreign key (IDTratta) references tratta(IDTratta) on delete cascade on update cascade,
 foreign key (IDTreno) references treno(IDTreno) on delete cascade on update cascade
@@ -97,7 +97,7 @@ create table dipendente(
 IDDipendente varchar(40) not null,
 Stipendio double not null,
 Ruolo varchar(40) not null,
-CodTreno varchar(10) default null,
+CodTreno varchar(40) default null,
 primary key (IDDipendente),
 foreign key (IDDipendente) references utente(ID) on delete cascade on update cascade,
 foreign key (CodTreno) references treno(IDTreno) on delete cascade on update cascade
@@ -164,24 +164,23 @@ IDArrivo varchar(40) not null,
 DataViaggio date not null,
 OrarioPartenza TIME NOT NULL,
 OrarioArrivo TIME NOT NULL,
-IDBiglietto varchar(40) not null,
+NumTreno varchar(40) not null ,
 primary key (IDViaggio),
 foreign key (IDTratta) references tratta(IDTratta) on delete cascade on update cascade,
 foreign key (IDPartenza) references fermata(IDFermata) on delete cascade on update cascade,
 foreign key (IDArrivo) references fermata(IDFermata) on delete cascade on update cascade#,
-#foreign key (IDBiglietto) references biglietto(idbiglietto) on delete cascade on update cascade
 );
 
+
 create table biglietto(
-                          IDBiglietto varchar(40) not null,
-                          Ritorno bool default false,
-                          Validato bool default false,
-                          DataRitorno date null ,
-                          DataValidazione date null ,
-                          IDViaggio varchar(40) not null ,
-                          primary key (IDBiglietto),
-                          foreign key (IDBiglietto) references titoloviaggio(IDTitolo) on delete cascade on update cascade,
-                          foreign key (IDViaggio) references viaggio(IDViaggio) on delete cascade on update cascade
+    IDBiglietto varchar(40) not null,
+    Validato bool default false,
+    DataValidazione date null ,
+    IDViaggio varchar(40) not null ,
+    TipoBiglietto varchar(40) not null ,  -- Può essere sola andata o andata e ritorno
+    primary key (IDBiglietto),
+    foreign key (IDBiglietto) references titoloviaggio(IDTitolo) on delete cascade on update cascade,
+   foreign key (IDViaggio) references viaggio(IDViaggio) on delete cascade on update cascade
 );
 
 /* Non usata
