@@ -8,5 +8,6 @@ public interface IBigliettoStrategy {
     double ottieniPrezzoBiglietto();
     boolean getValidazione();
     LocalDate getDataEmissione();
-    Biglietto createBiglietto(String idCliente,String idTessera,boolean ritorno,LocalDate dataRitorno);
+    String getTipoBiglietto();
+    Biglietto createBiglietto();
 }

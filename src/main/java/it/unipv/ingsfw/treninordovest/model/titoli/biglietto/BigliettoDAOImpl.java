@@ -63,6 +63,7 @@ public class BigliettoDAOImpl implements BigliettoDAO {
 
     @Override
     public List<Biglietto> getAll() {
+        /*
         List<Biglietto> listaBiglietti= new ArrayList<>();
         Biglietto biglietto;
         String sql = "select IDTitolo, IDPagamento, Emissione, Prezzo, Ritorno, Validato, DataRitorno,DataValidazione from titoliBiglietti where idTitolo=?";
@@ -91,7 +92,9 @@ public class BigliettoDAOImpl implements BigliettoDAO {
         } catch (SQLException e) {
            throw new RuntimeException("Errore nel recupero dei biglietti",e);
         }
-        return listaBiglietti;
+
+         */
+        return null;
     }
 
 

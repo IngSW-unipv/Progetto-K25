@@ -16,7 +16,7 @@ public class BigliettoStrategyFactory {
             // Converte il tipo di utente in minuscolo per la costruzione della chiave
             String tipoLowerCase = tipo.toLowerCase();
             // Costruisce la chiave dinamicamente
-            String propertyKey = tipoLowerCase + ".factory.class.name";
+            String propertyKey = tipoLowerCase + ".strategy.class.name";
 
             // Ottiene il nome della classe dalla proprietà
             String factoryClassName = pr.getProperty(propertyKey);

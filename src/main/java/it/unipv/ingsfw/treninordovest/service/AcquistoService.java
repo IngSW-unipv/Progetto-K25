@@ -70,18 +70,18 @@ public class AcquistoService {
 
     }
 
-    public boolean acquistoBiglietto(String tipoBiglietto, String tipoPagamento, int quantita, String idTratta, boolean ritorno, LocalDate dataRitorno) {
+    public boolean acquistoBiglietto(String tipoBiglietto, String tipoPagamento, int quantita, String idTratta) {
         clienteLoggato = (Cliente) SessionManager.getInstance().getCurrentUser();
         Pagamento pag;
-        Biglietto biglietto;
+        Biglietto biglietto=new Biglietto(); // Provvisorio
         IBigliettoStrategy bigliettoStrategy = BigliettoStrategyFactory.getFactoryFromProperties(tipoBiglietto);
 
         try {
 
             if(clienteLoggato!=null) {
-                biglietto = bigliettoStrategy.createBiglietto(clienteLoggato.getId().toString(),clienteLoggato.getTessera().getIdTessera(),ritorno,dataRitorno);
+               biglietto = bigliettoStrategy.createBiglietto();
                pag = pagamentoService.effettuaPagamento(tipoPagamento,quantita,bigliettoStrategy.ottieniPrezzoBiglietto());
-               biglietto.setPagamento(pag);
+              // biglietto.setPagamento(pag);
                for(int it =0; it<quantita; it++) {
                    bigliettoDAO.insert(biglietto);
                    biglietto.setId(UUID.randomUUID().toString());

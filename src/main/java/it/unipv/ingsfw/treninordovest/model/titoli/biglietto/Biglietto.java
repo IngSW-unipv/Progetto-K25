@@ -9,30 +9,26 @@ import java.util.UUID;
 
 public class Biglietto extends TitoloViaggio {
     //Attributi
-    private boolean ritorno;
     private boolean validato;
-    private LocalDate dataRitorno;
     private LocalDate dataValidazione;
+    private String tipoBiglietto;
     private Viaggio viaggio;
 
     //Costruttore vuoto
     public Biglietto() {}
 
     //Costruttore completo
-    public Biglietto(UUID id, LocalDate emissione, double prezzo, boolean ritorno, boolean validato, LocalDate dataRitorno, LocalDate dataValidazione) {
+    public Biglietto(UUID id, LocalDate emissione, double prezzo, boolean validato, String tipoBiglietto) {
         super(id, emissione, prezzo);
-        this.ritorno = ritorno;
         this.validato = validato;
-        this.dataRitorno  =  dataRitorno;
         this.dataValidazione = dataValidazione;
+        this.tipoBiglietto = tipoBiglietto;
     }
 
 
     public Biglietto(UUID id, LocalDate emissione, double prezzo, boolean ritorno, boolean validato, LocalDate dataRitorno, LocalDate dataValidazione,Viaggio viaggio) {
         super(id, emissione, prezzo);
-        this.ritorno = ritorno;
         this.validato = validato;
-        this.dataRitorno  =  dataRitorno;
         this.dataValidazione = dataValidazione;
         this.viaggio = viaggio;
     }
@@ -72,5 +68,6 @@ public class Biglietto extends TitoloViaggio {
     public void setDataValidazione(LocalDate dataValidazione) {
         this.dataValidazione = dataValidazione;
     }
+
 
 }

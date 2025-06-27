@@ -23,16 +23,14 @@ annuale.factory.class.name=it.unipv.ingsfw.treninordovest.model.strategy.abbonam
 mensile.factory.class.name=it.unipv.ingsfw.treninordovest.model.strategy.abbonamento.AbbonamentoMensileConcrete
 
 #Configurazione per biglietto
-biglietto.factory.class.name=it.unipv.ingsfw.treninordovest.strategy.biglietto.BigliettoConcrete
+andata.strategy.class.name=it.unipv.ingsfw.treninordovest.model.strategy.biglietto.BigliettoAndataConcrete
+andataritorno.strategy.class.name=it.unipv.ingsfw.treninordovest.model.strategy.biglietto.BigliettoAndataRitornoConcrete
 
 
 #Metodi di pagamento
 cartacredito.strategy.class.name=it.unipv.ingsfw.treninordovest.utils.metodipagamento.CartaCredito
 paypal.strategy.class.name=it.unipv.ingsfw.treninordovest.utils.metodipagamento.PayPal
 
-#Vendita
-venditaabbonamento.factory.class.name=it.unipv.ingsfw.treninordovest.strategy.pagamento.VenditaAbbonamentoStrategy
-venditabiglietto.factory.class.name=it.unipv.ingsfw.treninordovest.strategy.pagamento.VenditaBigliettoStrategy
 
 #Login
 clienteLogin.factory.class.name=it.unipv.ingsfw.treninordovest.model.factory.login.ClienteLogin
