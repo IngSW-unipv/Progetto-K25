@@ -15,13 +15,18 @@ public class ViaggioDAOTest {
 
         ViaggioDAOImpl dao = new ViaggioDAOImpl();
 
-        List<Viaggio> viaggi = new ArrayList<Viaggio>();
+       /* List<Viaggio> viaggi = new ArrayList<Viaggio>();
 
         viaggi = dao.getAll();
 
         for (Viaggio v : viaggi) {
             System.out.println(v);
-        }
+        }*/
+
+        Viaggio v = new Viaggio();
+        v= dao.get(new Viaggio("VGG002"));
+
+        System.out.println(v);
 
 
     }

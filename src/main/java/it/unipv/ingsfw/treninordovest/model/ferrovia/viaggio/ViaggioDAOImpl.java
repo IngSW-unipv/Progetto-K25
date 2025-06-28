@@ -6,10 +6,7 @@ import it.unipv.ingsfw.treninordovest.model.ferrovia.fermata.FermataDAOImpl;
 import it.unipv.ingsfw.treninordovest.model.ferrovia.tratta.Tratta;
 import it.unipv.ingsfw.treninordovest.model.ferrovia.treno.Treno;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -27,21 +24,33 @@ public class ViaggioDAOImpl implements ViaggioDAO {
 
     @Override
     public Viaggio get(Viaggio viaggio) {
-        String sql = "select idViaggio, IDPartenza,DataViaggio, OrarioPartenza, OrarioArrivo from Viaggio where idViaggio=?";
+        Viaggio viaggioEstr = null;
+        String sql = "select * from Viaggio where idViaggio=?";
 
-        try (Connection con = Database.getConnection(); PreparedStatement ps = con.prepareStatement(sql); ResultSet rs=ps.executeQuery()) {
+        try (Connection con = Database.getConnection(); PreparedStatement ps = con.prepareStatement(sql);) {
 
-            ps.setString(1, viaggio.getIdViaggio().toString());
+            ps.setString(1, viaggio.getIdViaggio());
 
-            if(rs.next()){
-                String idViaggio=rs.getString("idViaggio");
-                LocalDate dataViaggio= (LocalDate) rs.getObject("dataPagamento");
-                LocalTime oraPartenza=(LocalTime)rs.getObject("oraPartenza");
-                LocalTime oraArrivo=(LocalTime) rs.getObject("oraArrivo");
+            try ( ResultSet rs=ps.executeQuery()){
+                if(rs.next()){
+                    String idTratta=rs.getString("idTratta");
+                    String idPartenza=rs.getString("idPartenza");
+                    String idArrivo=rs.getString("idArrivo");
+                    Date dataViaggio= rs.getDate("dataViaggio");
+                    Time oraPartenza=rs.getTime("orarioPartenza");
+                    Time oraArrivo= rs.getTime("orarioArrivo");
+
+                    Fermata partenza=fermataDAO.get(new Fermata(idPartenza));
+                    Fermata arrivo=fermataDAO.get(new Fermata(idArrivo));
+                    Treno treno = new Treno(rs.getString("numTreno"));
+                    Tratta tratta = new Tratta(idTratta);
 
 
-                viaggio=new Viaggio(idViaggio, dataViaggio, oraPartenza, oraArrivo);
+                    viaggioEstr=new Viaggio(viaggio.getIdViaggio(),tratta,treno ,partenza,arrivo, oraPartenza.toLocalTime(), oraArrivo.toLocalTime(),dataViaggio.toLocalDate());
+                }
             }
+
+
 
             Database.closeConnection(con);
 
@@ -49,7 +58,7 @@ public class ViaggioDAOImpl implements ViaggioDAO {
         } catch (SQLException e) {
             throw new RuntimeException("Errore nel recupero dati",e);
         }
-        return viaggio;
+        return viaggioEstr;
     }
 
 
@@ -68,17 +77,17 @@ public class ViaggioDAOImpl implements ViaggioDAO {
                 String idTratta=rs.getString("idTratta");
                 String idPartenza=rs.getString("idPartenza");
                 String idArrivo=rs.getString("idArrivo");
-                LocalDate dataViaggio= (LocalDate) rs.getObject("dataViaggio");
-                LocalTime oraPartenza=(LocalTime)rs.getObject("oraPartenza");
-                LocalTime oraArrivo=(LocalTime) rs.getObject("oraArrivo");
+                Date dataViaggio= rs.getDate("dataViaggio");
+                Time oraPartenza=rs.getTime("orarioPartenza");
+                Time oraArrivo= rs.getTime("orarioArrivo");
 
                 Fermata partenza=fermataDAO.get(new Fermata(idPartenza));
                 Fermata arrivo=fermataDAO.get(new Fermata(idArrivo));
-                Treno treno = new Treno(rs.getString("idTreno"));
-                Tratta tratta = new Tratta(rs.getString(idTratta));
+                Treno treno = new Treno(rs.getString("numTreno"));
+                Tratta tratta = new Tratta(idTratta);
 
 
-               viaggio=new Viaggio(idViaggio,tratta,treno ,partenza,arrivo, oraPartenza, oraArrivo,dataViaggio);
+               viaggio=new Viaggio(idViaggio,tratta,treno ,partenza,arrivo, oraPartenza.toLocalTime(), oraArrivo.toLocalTime(),dataViaggio.toLocalDate());
                 viaggi.add(viaggio);
             }
            // Database.closeConnection(con);

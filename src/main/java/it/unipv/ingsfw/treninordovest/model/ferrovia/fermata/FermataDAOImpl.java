@@ -17,11 +17,10 @@ public class FermataDAOImpl implements FermataDAO {
     public Fermata get(Fermata fermata) {
 
         String sql = "select idFermata, citta, numBinari from Fermata where idFermata=?";
-        PreparedStatement ps;
-        try (Connection con = Database.getConnection()) {
+
+        try (Connection con = Database.getConnection();PreparedStatement ps = con.prepareStatement(sql)) {
             //Query effettuata su una vista creata nel DB per semplificare l'estrazione dei dati
             //Estrazione dei dati dal DB
-            ps = con.prepareStatement(sql);
             ps.setString(1, fermata.getIdFermata());
             ResultSet rs = ps.executeQuery();
 
@@ -47,35 +46,30 @@ public class FermataDAOImpl implements FermataDAO {
         List<Fermata> fermate= new ArrayList<Fermata>();
 
         //Avvio della connessione col DB
-        PreparedStatement ps;
         Fermata fermata = null;
+        String sql = "select idFermata, citta, numBinari from Fermata";
         try (Connection con = Database.getConnection()) {
 
-            //Query effettuata su una vista creata nel DB per semplificare l'estrazione dei dati
-            String sql = "select idFermata, citta, numBinari from Fermata";
-
-            //Estrazione dei dati dal DB
-            ps = null;
-            ps = con.prepareStatement(sql);
-
-            //ps.setString(1,id);
-            ResultSet rs=ps.executeQuery();
-
-            while(rs.next()){
-                String idFermata=rs.getString("idFermata");
-                String citta=rs.getString("citta");
-                int numBinari=rs.getInt("numBinari");
+            //Query estrazione fermate
+            try (PreparedStatement ps = con.prepareStatement(sql);  ResultSet rs=ps.executeQuery();){
+                while(rs.next()){
+                    String idFermata=rs.getString("idFermata");
+                    String citta=rs.getString("citta");
+                    int numBinari=rs.getInt("numBinari");
 
 
 
-                fermata=new Fermata(idFermata, citta, numBinari);
-                fermate.add(fermata);
+                    fermata=new Fermata(idFermata, citta, numBinari);
+                    fermate.add(fermata);
+                }
             }
-            Database.closeConnection(con);
+
+            //Database.closeConnection(con);
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         return fermate;
     }
 

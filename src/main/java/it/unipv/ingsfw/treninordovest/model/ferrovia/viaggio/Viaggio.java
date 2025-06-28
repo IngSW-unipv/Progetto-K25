@@ -13,7 +13,7 @@ public class Viaggio {
     public Viaggio() {
     }
 
-    private UUID idViaggio;
+    private String idViaggio;
     private LocalDate DataViaggio;
     private LocalTime oraPartenza;
     private LocalTime oraArrivo;
@@ -24,7 +24,7 @@ public class Viaggio {
 
 
     public Viaggio(String idViaggio, LocalDate DataViaggio, LocalTime OraPartenza, LocalTime OraArrivo) {
-        this.idViaggio = UUID.fromString(idViaggio);
+        this.idViaggio = idViaggio;
         this.DataViaggio = DataViaggio;
         this.oraPartenza = OraPartenza;
         this.oraArrivo = OraArrivo;
@@ -32,11 +32,11 @@ public class Viaggio {
 
     //Costuttore per incapsulare gli spostamenti delle chiavi esterne
     public Viaggio(String idViaggio){
-        this.idViaggio = UUID.fromString(idViaggio);
+        this.idViaggio = idViaggio;
     }
 
     public Viaggio(String idViaggio, Tratta tratta,Treno treno, Fermata partenza, Fermata destinazione, LocalTime oraPartenza,LocalTime oraArrivo,LocalDate DataViaggio) {
-        this.idViaggio = UUID.fromString(idViaggio);
+        this.idViaggio = idViaggio;
         this.treno = treno;
         this.partenza = partenza;
         this.destinazione = destinazione;
@@ -46,7 +46,7 @@ public class Viaggio {
         this.tratta = tratta;
     }
 
-    public UUID getIdViaggio() {
+    public String getIdViaggio() {
         return idViaggio;
     }
 
@@ -76,6 +76,20 @@ public class Viaggio {
 
     public Fermata getDestinazione() {
         return destinazione;
+    }
+
+    @Override
+    public String toString() {
+        return "Viaggio{" +
+                "idViaggio='" + idViaggio + '\'' +
+                ", DataViaggio=" + DataViaggio +
+                ", oraPartenza=" + oraPartenza +
+                ", oraArrivo=" + oraArrivo +
+                ", partenza=" + partenza.getCitta() +
+                ", destinazione=" + destinazione.getCitta() +
+                ", tratta=" + tratta.getIdTratta() +
+                ", treno=" + treno.getIdTreno() +
+                '}';
     }
 }
 
