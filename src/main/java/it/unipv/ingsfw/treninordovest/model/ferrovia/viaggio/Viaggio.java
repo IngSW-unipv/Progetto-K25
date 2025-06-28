@@ -18,7 +18,7 @@ public class Viaggio {
     private LocalTime oraPartenza;
     private LocalTime oraArrivo;
     private Fermata partenza;
-    private Fermata arrivo;
+    private Fermata destinazione;
     private Tratta tratta;
     private Treno treno;
 
