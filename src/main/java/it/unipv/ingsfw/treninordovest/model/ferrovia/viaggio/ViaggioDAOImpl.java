@@ -1,6 +1,10 @@
 package it.unipv.ingsfw.treninordovest.model.ferrovia.viaggio;
 
 import it.unipv.ingsfw.treninordovest.model.dao.database.Database;
+import it.unipv.ingsfw.treninordovest.model.ferrovia.fermata.Fermata;
+import it.unipv.ingsfw.treninordovest.model.ferrovia.fermata.FermataDAOImpl;
+import it.unipv.ingsfw.treninordovest.model.ferrovia.tratta.Tratta;
+import it.unipv.ingsfw.treninordovest.model.ferrovia.treno.Treno;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,19 +18,27 @@ import java.util.List;
 
 public class ViaggioDAOImpl implements ViaggioDAO {
 
+    private FermataDAOImpl fermataDAO;
+
+    public ViaggioDAOImpl() {
+        fermataDAO = new FermataDAOImpl();
+    }
+
+
     @Override
     public Viaggio get(Viaggio viaggio) {
         String sql = "select idViaggio, IDPartenza,DataViaggio, OrarioPartenza, OrarioArrivo from Viaggio where idViaggio=?";
 
         try (Connection con = Database.getConnection(); PreparedStatement ps = con.prepareStatement(sql); ResultSet rs=ps.executeQuery()) {
 
-            ps.setString(1, viaggio.getIdViaggio());
+            ps.setString(1, viaggio.getIdViaggio().toString());
 
             if(rs.next()){
                 String idViaggio=rs.getString("idViaggio");
                 LocalDate dataViaggio= (LocalDate) rs.getObject("dataPagamento");
                 LocalTime oraPartenza=(LocalTime)rs.getObject("oraPartenza");
                 LocalTime oraArrivo=(LocalTime) rs.getObject("oraArrivo");
+
 
                 viaggio=new Viaggio(idViaggio, dataViaggio, oraPartenza, oraArrivo);
             }
@@ -46,24 +58,28 @@ public class ViaggioDAOImpl implements ViaggioDAO {
         List<Viaggio> viaggi= new ArrayList<>();
 
         //Avvio della connessione col DB
-        String sql = "select idViaggio, idTratta, idPartenza, idArrivo, dataViaggio, OrarioArrivo, OrarioArrivo, idbiglietto from Viaggio";
+        String sql = "select * from Viaggio";
         Viaggio viaggio;
         try (Connection con = Database.getConnection(); PreparedStatement  ps = con.prepareStatement(sql); ResultSet rs=ps.executeQuery()) {
 
             //Estrazione dei dati dal DB
             while(rs.next()){
                 String idViaggio=rs.getString("idViaggio");
-                String idTratta=rs.getString("idPartenza");
+                String idTratta=rs.getString("idTratta");
                 String idPartenza=rs.getString("idPartenza");
                 String idArrivo=rs.getString("idArrivo");
-                LocalDate dataViaggio= (LocalDate) rs.getObject("dataPagamento");
+                LocalDate dataViaggio= (LocalDate) rs.getObject("dataViaggio");
                 LocalTime oraPartenza=(LocalTime)rs.getObject("oraPartenza");
                 LocalTime oraArrivo=(LocalTime) rs.getObject("oraArrivo");
-                String IdBiglietto=rs.getString("idbiglietto");
+
+                Fermata partenza=fermataDAO.get(new Fermata(idPartenza));
+                Fermata arrivo=fermataDAO.get(new Fermata(idArrivo));
+                Treno treno = new Treno(rs.getString("idTreno"));
+                Tratta tratta = new Tratta(rs.getString(idTratta));
 
 
-               /* viaggio=new Viaggio(idViaggio, idTratta, idPartenza, idArrivo, dataViaggio, oraPartenza, oraArrivo,IdBiglietto);
-                viaggi.add(viaggio);*/
+               viaggio=new Viaggio(idViaggio,tratta,treno ,partenza,arrivo, oraPartenza, oraArrivo,dataViaggio);
+                viaggi.add(viaggio);
             }
            // Database.closeConnection(con);
 
@@ -122,10 +138,10 @@ public class ViaggioDAOImpl implements ViaggioDAO {
 
         try( Connection con1 = Database.getConnection(); PreparedStatement ps1 = con1.prepareStatement(sql1)) {
                 //Impostazione dei parametri per la query 1
-                ps1.setString(1,viaggio.getIdViaggio());
+                ps1.setString(1,viaggio.getIdViaggio().toString());
                 ps1.setString(2,viaggio.getTratta().getIdTratta());
                 ps1.setString(3,viaggio.getPartenza().getIdFermata());
-                ps1.setString(4,viaggio.getArrivo().getIdFermata());
+                ps1.setString(4,viaggio.getDestinazione().getIdFermata());
                 ps1.setObject(5,viaggio.getDataViaggio());
                 ps1.setObject(6,viaggio.getOraPartenza());
                 ps1.setObject(7,viaggio.getOraArrivo());

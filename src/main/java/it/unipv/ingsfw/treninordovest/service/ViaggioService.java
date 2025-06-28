@@ -15,7 +15,7 @@ public class ViaggioService {
         this.viaggioDAO = new ViaggioDAOImpl();
     }
 
-    public boolean creaViaggio(LocalDate dataViaggio, LocalTime oraPartenza,LocalTime oraArrivo,String idPartenza,String idArrivo,String idTratta) {
+    public boolean cercaViaggio(LocalDate dataViaggio, LocalTime oraPartenza,LocalTime oraArrivo,String idPartenza,String idArrivo,String idTratta) {
 
         Viaggio viaggio;
 

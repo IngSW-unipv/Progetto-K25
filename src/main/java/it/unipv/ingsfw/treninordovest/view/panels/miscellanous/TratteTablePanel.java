@@ -1,6 +1,7 @@
 package it.unipv.ingsfw.treninordovest.view.panels.miscellanous;
 
-import it.unipv.ingsfw.treninordovest.model.ferrovia.tratta.Tratta;
+
+import it.unipv.ingsfw.treninordovest.model.ferrovia.viaggio.Viaggio;
 
 
 import javax.swing.*;
@@ -22,7 +23,7 @@ public class TratteTablePanel extends JPanel {
 
     }
 
-    public void setData(List<Tratta> listaTratte ){
+    public void setData(List<Viaggio> listaTratte ){
         tableModelTratte.setData(listaTratte);
     }
 

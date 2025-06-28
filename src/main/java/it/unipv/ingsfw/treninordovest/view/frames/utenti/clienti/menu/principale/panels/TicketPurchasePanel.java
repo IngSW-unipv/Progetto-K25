@@ -25,7 +25,7 @@ public class TicketPurchasePanel extends JPanel {
         // Pannello per i controlli
         JPanel panelInput = new JPanel(new FlowLayout());
         //Partenza
-        labelIDTratta = new JLabel("Inserisci l'ID Tratta:");
+        labelIDTratta = new JLabel("Id Viaggio da acquistare:");
         textFieldTratta = new JTextField(20);
         labelRitorno = new JLabel("Data Ritorno:");
         checkBoxRitorno = new JCheckBox("Ritorno");

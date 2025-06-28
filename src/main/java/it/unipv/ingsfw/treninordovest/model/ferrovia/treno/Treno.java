@@ -20,6 +20,10 @@ public class Treno {
         this.numPosti = numPosti;
     }
 
+    public Treno(String idTreno) {
+        this.idTreno = idTreno;
+    }
+
     public String getIdTreno() {
         return idTreno;
     }

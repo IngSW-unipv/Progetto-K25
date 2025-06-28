@@ -29,7 +29,7 @@ public class AcquistoFacade implements IAcquistoFacade {
 
     @Override
     public boolean acquistaBiglietto(String tipoBiglietto, String tipoPagamento, int quantita, String idTratta, boolean ritorno, LocalDate dataRitorno) {
-        return acquistoService.acquistoBiglietto(tipoBiglietto,tipoPagamento, quantita,idTratta,ritorno,dataRitorno);
+        return acquistoService.acquistoBiglietto(tipoBiglietto,tipoPagamento, quantita,idTratta);
     }
 
     @Override

@@ -62,4 +62,8 @@ public class TravelSearchPanel extends JPanel {
     public JButton getButtonCerca() {
         return buttonCerca;
     }
+
+
+
+
 }

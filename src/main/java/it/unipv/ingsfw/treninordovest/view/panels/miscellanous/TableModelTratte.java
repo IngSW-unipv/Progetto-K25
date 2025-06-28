@@ -1,6 +1,7 @@
 package it.unipv.ingsfw.treninordovest.view.panels.miscellanous;
 
 import it.unipv.ingsfw.treninordovest.model.ferrovia.tratta.Tratta;
+import it.unipv.ingsfw.treninordovest.model.ferrovia.viaggio.Viaggio;
 
 import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;
@@ -8,14 +9,14 @@ import java.util.List;
 
 public class TableModelTratte extends AbstractTableModel {
 
-    private List<Tratta> listaTratte = new ArrayList<>(); // Inizializzazione come lista vuota
-    private final String[] columnNames = {"ID", "Nome tratta","Lunghezza"};
+    private List<Viaggio> listaTratte = new ArrayList<>(); // Inizializzazione come lista vuota
+    private final String[] columnNames = {"IDViaggio","Treno","Partenza","Destinazione","Ora Partenza","Ora Arrivo", "Data Viaggio"};
 
     public TableModelTratte() {
         // Il costruttore ora è pulito perché l'inizializzazione è fatta nella dichiarazione
     }
 
-    public void setData(List<Tratta> tratte) {
+    public void setData(List<Viaggio> tratte) {
         this.listaTratte = tratte != null ? tratte : new ArrayList<>();
         // Notifica alla JTable che il modello è cambiato
         fireTableDataChanged();
@@ -33,19 +34,27 @@ public class TableModelTratte extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return 3;
+        return columnNames.length;
     }
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Tratta tratta = listaTratte.get(rowIndex);
+        Viaggio tratta = listaTratte.get(rowIndex);
         switch (columnIndex) {
             case 0:
-                return tratta.getIdTratta();
+                return tratta.getIdViaggio();
             case 1:
-                return tratta.getNome();
+                return tratta.getTreno().getIdTreno();
             case 2:
-                return tratta.getLunghezza();
+                return tratta.getPartenza().getIdFermata();
+                case 3:
+                    return tratta.getDestinazione().getIdFermata();
+                    case 4:
+                        return tratta.getOraPartenza();
+                        case 5:
+                            return tratta.getOraArrivo();
+                            case 6:
+                                return tratta.getDataViaggio();
             default:
                 return null;
         }
