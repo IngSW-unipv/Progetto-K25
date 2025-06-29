@@ -1,4 +1,4 @@
-package it.unipv.ingsfw.treninordovest.view.frames.utenti.clienti.menu.principale.panels;
+package it.unipv.ingsfw.treninordovest;
 
 import javax.swing.*;
 import java.awt.*;
@@ -158,6 +158,11 @@ public class CustomerProfilePanel extends JPanel {
         denaroPanel.add(btnConfermaDenaro, denaroGbc);
 
         // Aggiungi il pannello denaro al pannello principale
+        gbc.gridx = 0;
+        gbc.gridy = 4; // Posiziona sotto il pannello password
+        gbc.gridheight = 3;
+        gbc.fill = GridBagConstraints.BOTH;
+        add(denaroPanel, gbc);
 
         // --- Bottone Esci (in basso a sinistra) ---
         gbc.gridx = 0;
@@ -262,5 +267,13 @@ public class CustomerProfilePanel extends JPanel {
         return btnConfermaDenaro;
     }
 
-
+    public double getTxtDenaro() {
+        try {
+            return Double.parseDouble(txtDenaro.getText());
+        } catch (NumberFormatException e) {
+            // Gestione errore: il testo non è un numero valido
+            JOptionPane.showMessageDialog(this, "Inserisci un importo valido per il denaro.", "Errore Input", JOptionPane.ERROR_MESSAGE);
+            return 0.0; // O lancia un'eccezione custom, a seconda della logica dell'applicazione
+        }
+    }
 }

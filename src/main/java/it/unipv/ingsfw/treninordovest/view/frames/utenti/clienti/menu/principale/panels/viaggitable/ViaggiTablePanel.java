@@ -1,4 +1,4 @@
-package it.unipv.ingsfw.treninordovest.view.panels.miscellanous;
+package it.unipv.ingsfw.treninordovest.view.frames.utenti.clienti.menu.principale.panels.viaggitable;
 
 
 import it.unipv.ingsfw.treninordovest.model.ferrovia.viaggio.Viaggio;
@@ -8,13 +8,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
-public class TratteTablePanel extends JPanel {
+public class ViaggiTablePanel extends JPanel {
 
-    private final TableModelTratte tableModelTratte;
+    private final ViaggiTableModel tableModelTratte;
 
-    public TratteTablePanel() {
+    public ViaggiTablePanel() {
 
-        tableModelTratte = new TableModelTratte();
+        tableModelTratte = new ViaggiTableModel();
         JTable table = new JTable(tableModelTratte);
 
         setLayout(new BorderLayout());

@@ -2,23 +2,21 @@ package it.unipv.ingsfw.treninordovest.view.frames.utenti.clienti.menu.principal
 
 import it.unipv.ingsfw.treninordovest.controller.AcquistoController;
 import it.unipv.ingsfw.treninordovest.view.frames.utenti.clienti.menu.principale.panels.*;
-import it.unipv.ingsfw.treninordovest.view.panels.miscellanous.*;
+import it.unipv.ingsfw.treninordovest.view.frames.utenti.clienti.menu.principale.panels.titolitable.TitoliViaggioTablePanel;
+import it.unipv.ingsfw.treninordovest.view.frames.utenti.clienti.menu.principale.panels.viaggitable.ViaggiTablePanel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Observable;
-import java.util.Observer;
 
 public class JCustomerMainFrame extends JFrame {
     private final JTabbedPane tabbedPane = new JTabbedPane();
     private final TicketPurchasePanel ticketPurchasePanel = new TicketPurchasePanel();
     private final SubscriptionPanel subscriptionPanel = new SubscriptionPanel();
     private final CardPurchasePanel cardPurchasePanel = new CardPurchasePanel();
-    private final TravelSearchPanel travelSearchPanel = new TravelSearchPanel();
     private final RefundPanel refundPanel = new RefundPanel();
     private final CustomerProfilePanel profilePanel = new CustomerProfilePanel();
-    private final TratteTablePanel tratteTablePanel = new TratteTablePanel();
-    private Color coloreSfondo = new Color(131, 168, 195);
+    private final ViaggiTablePanel tratteTablePanel = new ViaggiTablePanel();
+    private final Color coloreSfondo = new Color(131, 168, 195);
 
     public JCustomerMainFrame() {
         setTitle("Treninordovest - Area Cliente");
@@ -33,7 +31,6 @@ public class JCustomerMainFrame extends JFrame {
         ticketPurchasePanel.setBackground(coloreSfondo);
         subscriptionPanel.setBackground(coloreSfondo);
         cardPurchasePanel.setBackground(coloreSfondo);
-        travelSearchPanel.setBackground(coloreSfondo);
         refundPanel.setBackground(coloreSfondo);
 
         tratteTablePanel.aggiornaTratta();
@@ -42,9 +39,19 @@ public class JCustomerMainFrame extends JFrame {
         tabbedPane.addTab("Acquisto Tessera", cardPurchasePanel);
         tabbedPane.addTab("Rimborso", refundPanel);
         tabbedPane.addTab("Profilo", profilePanel);
-        //tabbedPane.addTab("Tratte", travelSearchPanel);
 
         ticketPurchasePanel.add(tratteTablePanel);
+
+        //Test
+
+        AcquistoBigliettoPanel acquistoBigliettoPanel = new AcquistoBigliettoPanel();
+        acquistoBigliettoPanel.setBackground(coloreSfondo);
+        tabbedPane.addTab("Acquisto", acquistoBigliettoPanel);
+
+        TitoliViaggioTablePanel titoliViaggioTablePanel = new TitoliViaggioTablePanel();
+        titoliViaggioTablePanel.setBackground(coloreSfondo);
+        tabbedPane.addTab("Titoli", titoliViaggioTablePanel);
+
 
         // Aggiunta di tutte le schede nel frame
         add(tabbedPane, BorderLayout.CENTER);
@@ -74,7 +81,7 @@ public class JCustomerMainFrame extends JFrame {
         return profilePanel;
     }
 
-    public TratteTablePanel getTratteTablePanel() {
+    public ViaggiTablePanel getTratteTablePanel() {
         return tratteTablePanel;
     }
 
@@ -83,8 +90,13 @@ public class JCustomerMainFrame extends JFrame {
     }
 
     public static void main(String[] args) {
-        JCustomerMainFrame frame = new JCustomerMainFrame();
-        frame.setVisible(true);
+
+        SwingUtilities.invokeLater(() -> {
+            JCustomerMainFrame frame = new JCustomerMainFrame();
+            frame.setVisible(true);
+        });
+
+
     }
 
 }

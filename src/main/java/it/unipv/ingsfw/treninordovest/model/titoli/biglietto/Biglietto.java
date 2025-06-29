@@ -21,7 +21,6 @@ public class Biglietto extends TitoloViaggio {
     public Biglietto(UUID id, LocalDate emissione, double prezzo, boolean validato, String tipoBiglietto) {
         super(id, emissione, prezzo);
         this.validato = validato;
-        this.dataValidazione = dataValidazione;
         this.tipoBiglietto = tipoBiglietto;
     }
 
@@ -29,7 +28,6 @@ public class Biglietto extends TitoloViaggio {
     public Biglietto(UUID id, LocalDate emissione, double prezzo, boolean validato,Viaggio viaggio) {
         super(id, emissione, prezzo);
         this.validato = validato;
-        this.dataValidazione = dataValidazione;
         this.viaggio = viaggio;
     }
 

@@ -1,18 +1,17 @@
-package it.unipv.ingsfw.treninordovest.view.panels.miscellanous;
+package it.unipv.ingsfw.treninordovest.view.frames.utenti.clienti.menu.principale.panels.viaggitable;
 
-import it.unipv.ingsfw.treninordovest.model.ferrovia.tratta.Tratta;
 import it.unipv.ingsfw.treninordovest.model.ferrovia.viaggio.Viaggio;
 
 import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TableModelTratte extends AbstractTableModel {
+public class ViaggiTableModel extends AbstractTableModel {
 
     private List<Viaggio> listaTratte = new ArrayList<>(); // Inizializzazione come lista vuota
     private final String[] columnNames = {"IDViaggio","Treno","Partenza","Destinazione","Ora Partenza","Ora Arrivo", "Data Viaggio"};
 
-    public TableModelTratte() {
+    public ViaggiTableModel() {
         // Il costruttore ora è pulito perché l'inizializzazione è fatta nella dichiarazione
     }
 

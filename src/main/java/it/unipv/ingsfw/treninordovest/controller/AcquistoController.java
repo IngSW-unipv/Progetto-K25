@@ -8,12 +8,15 @@ import it.unipv.ingsfw.treninordovest.view.frames.utenti.clienti.menu.principale
 import it.unipv.ingsfw.treninordovest.view.frames.utenti.clienti.menu.principale.panels.TicketPurchasePanel;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class AcquistoController {
+public class AcquistoController implements ActionListener {
+
 
     private CardPurchasePanel viewCardPurchase;
     private TicketPurchasePanel viewTicketPurchase;
@@ -39,7 +42,7 @@ public class AcquistoController {
         this.viewTicketPurchase = viewTicketPurchase;
         this.frameCustomer = frameCustomer;
         this.acquistoFacade = new AcquistoFacade();
-        addAbbonamentoPurchaseListener();
+        addBigliettoPurchaseListener();
     }
 
 
@@ -130,5 +133,11 @@ public class AcquistoController {
         fea.setVisible(true);
     }
 
+
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+    }
 
 }
