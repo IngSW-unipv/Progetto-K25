@@ -71,7 +71,7 @@ public class AcquistoService {
 
     }
 
-    public boolean acquistoBiglietto(String tipoBiglietto, String tipoPagamento, int quantita, String idViaggio) {
+    public boolean acquistoBiglietto(String tipoBiglietto, String tipoPagamento, int quantita, String idViaggio,boolean ritorno, LocalDate dataRitorno) {
         clienteLoggato = (Cliente) SessionManager.getInstance().getCurrentUser();
         Pagamento pag;
         Biglietto biglietto;
@@ -82,11 +82,11 @@ public class AcquistoService {
             if(clienteLoggato!=null) {
                biglietto = bigliettoStrategy.createBiglietto();
                pag = pagamentoService.effettuaPagamento(tipoPagamento,quantita,bigliettoStrategy.ottieniPrezzoBiglietto());
-                 biglietto.setPagamento(pag);
-                 biglietto.setTipoBiglietto(tipoBiglietto);
-                 biglietto.setViaggio(new Viaggio(idViaggio));
+                biglietto.setPagamento(pag);
 
                for(int it =0; it<quantita; it++) {
+                   biglietto.setTipoBiglietto(tipoBiglietto);
+                   biglietto.setViaggio(new Viaggio(idViaggio));
                    bigliettoDAO.insert(biglietto);
                    biglietto.setId(UUID.randomUUID().toString());
                }

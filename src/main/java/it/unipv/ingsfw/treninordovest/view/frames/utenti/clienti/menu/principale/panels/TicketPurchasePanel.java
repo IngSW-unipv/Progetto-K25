@@ -38,7 +38,7 @@ public class TicketPurchasePanel extends JPanel {
         quantitaSpinner = new JSpinner();
         String[] tipo = new String[]{"Andata", "AndataRitorno"};
         comboTipoBiglietto = new JComboBox<>(tipo);
-        
+
 
         /*panelInput.add(labelDestinazione);
         panelInput.add(textFieldDestinazione);*/

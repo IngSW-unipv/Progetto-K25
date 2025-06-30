@@ -9,6 +9,7 @@ import it.unipv.ingsfw.treninordovest.view.frames.utenti.clienti.menu.principale
 import it.unipv.ingsfw.treninordovest.view.frames.utenti.clienti.menu.principale.panels.TicketPurchasePanel;
 
 import javax.swing.*;
+import javax.swing.text.html.parser.Parser;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
@@ -20,7 +21,6 @@ public class AcquistoController implements ActionListener, Observer {
 
 
     private CardPurchasePanel viewCardPurchase;
-    private TicketPurchasePanel viewTicketPurchase;
     private SubscriptionPanel viewSubscription;
     private JCustomerMainFrame frameCustomer;
     private AcquistoFacade acquistoFacade;
@@ -44,7 +44,6 @@ public class AcquistoController implements ActionListener, Observer {
     }
 
     public AcquistoController(TicketPurchasePanel viewTicketPurchase, JCustomerMainFrame frameCustomer) {
-        this.viewTicketPurchase = viewTicketPurchase;
         this.frameCustomer = frameCustomer;
         this.acquistoFacade = new AcquistoFacade();
         addBigliettoPurchaseListener();
@@ -54,18 +53,17 @@ public class AcquistoController implements ActionListener, Observer {
     ///  Acquisto dei biglietti
     public void acquistoBiglietto() {
 
-
-        String idTratta= viewTicketPurchase.getTextFieldTratta().getText();
-        boolean ritorno=viewTicketPurchase.getCheckBoxRitorno().isSelected() ;
-        LocalDate dataRitorno= viewTicketPurchase.getDataRitorno().getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        String idTratta= frameCustomer.getTicketPurchasePanel().getTextFieldTratta().getText();
+        boolean ritorno=frameCustomer.getTicketPurchasePanel().getCheckBoxRitorno().isSelected() ;
+        LocalDate dataRitorno= frameCustomer.getTicketPurchasePanel().getDataRitorno().getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         String tipoBiglietto = frameCustomer.getTicketPurchasePanel().getComboTipoBiglietto().getSelectedItem().toString();
         String tipoPagamento = "cartacredito"; //Provvisorio
-        int quantita = 0;
+        int quantita =  Integer.parseInt(frameCustomer.getTicketPurchasePanel().getQuantitaSpinner().getValue().toString() ) ;
 
         if(acquistoFacade.acquistaBiglietto(tipoBiglietto,tipoPagamento,quantita,idTratta,ritorno,dataRitorno)) {
             JOptionPane.showMessageDialog(frameCustomer, "Biglietti acquistati");
         } else
-            JOptionPane.showMessageDialog(frameCustomer, "Errore durante l'acquisto dei biglietti");
+            JOptionPane.showMessageDialog(frameCustomer, "Errore durante l'acquisto dei biglietti!","Errore",JOptionPane.ERROR_MESSAGE);
 
 
 

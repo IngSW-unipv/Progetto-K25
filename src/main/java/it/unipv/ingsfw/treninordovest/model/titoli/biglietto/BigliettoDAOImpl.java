@@ -158,31 +158,31 @@ public class BigliettoDAOImpl implements BigliettoDAO {
         * di integrità referenziale in modo da avere una coerenza coi dati
 
         String sql1 = "INSERT INTO titoloviaggio (IDTitolo, IDPagamento, Emissione, Prezzo) VALUES (?, ?, ?, ?)";
-        String sql2 = "INSERT INTO biglietto (IDBiglietto, Ritorno, Validato, DataRitorno, DataValidazione) VALUES (?,?,?,?,?)";
+        String sql2 = "INSERT INTO biglietto (IDBiglietto, Validato, DataValidazione,IDViaggio,TipoBiglietto) VALUES (?,?,?,?,?)";
 
         try(Connection con = Database.getConnection(); PreparedStatement ps1= con.prepareStatement(sql1); PreparedStatement ps2 = con.prepareStatement(sql2)){
 
             //Impostazione degli attributi
-            ps1.setString(1,biglietto.getId());
-            ps1.setString(2,biglietto.getIdPagamento());
-            ps1.setObject(3,biglietto.getEmissione());
+            ps1.setString(1,biglietto.getId().toString());
+            ps1.setString(2,biglietto.getPagamento().getIdPagamento().toString());
+            ps1.setObject(3, Date.valueOf(biglietto.getEmissione()));
             ps1.setDouble(4,biglietto.getPrezzo());
 
-            ps2.setString(1,biglietto.getId());
-            ps2.setObject(2,biglietto.isRitorno());
-            ps2.setObject(3,biglietto.isValidato());
-            ps2.setObject(4,biglietto.getDataRitorno());
-            ps2.setObject(5,biglietto.getDataValidazione());
+            ps2.setString(1,biglietto.getId().toString());
+            ps2.setObject(2,biglietto.isValidato());
+            ps2.setObject(3,biglietto.getDataValidazione());
+            ps2.setString(4,biglietto.getViaggio().getIdViaggio());
+            ps2.setString(5,biglietto.getTipoBiglietto());
 
             ps1.executeUpdate();
             ps2.executeUpdate();
             //Chiusura della connessione col Database
            // Database.closeConnection(con);
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
            throw new RuntimeException("Errore durante l'inserimento",e);
         }
 
-         */
+
     }
 }

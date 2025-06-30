@@ -58,4 +58,12 @@ public class Biglietto extends TitoloViaggio {
     public void setTipoBiglietto(String tipoBiglietto) {
         this.tipoBiglietto = tipoBiglietto;
     }
+
+    public Viaggio getViaggio() {
+        return viaggio;
+    }
+
+    public String getTipoBiglietto() {
+        return tipoBiglietto;
+    }
 }
