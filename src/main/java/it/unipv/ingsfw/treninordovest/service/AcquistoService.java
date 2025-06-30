@@ -2,6 +2,7 @@ package it.unipv.ingsfw.treninordovest.service;
 
 import it.unipv.ingsfw.treninordovest.model.factory.implementations.AbbonamentoStrategyFactory;
 import it.unipv.ingsfw.treninordovest.model.factory.implementations.BigliettoStrategyFactory;
+import it.unipv.ingsfw.treninordovest.model.ferrovia.viaggio.Viaggio;
 import it.unipv.ingsfw.treninordovest.model.strategy.abbonamento.IAbbonamentoStrategy;
 import it.unipv.ingsfw.treninordovest.model.strategy.biglietto.IBigliettoStrategy;
 import it.unipv.ingsfw.treninordovest.model.titoli.abbonamento.Abbonamento;
@@ -73,7 +74,7 @@ public class AcquistoService {
     public boolean acquistoBiglietto(String tipoBiglietto, String tipoPagamento, int quantita, String idViaggio) {
         clienteLoggato = (Cliente) SessionManager.getInstance().getCurrentUser();
         Pagamento pag;
-        Biglietto biglietto=new Biglietto(); // Provvisorio
+        Biglietto biglietto;
         IBigliettoStrategy bigliettoStrategy = BigliettoStrategyFactory.getFactoryFromProperties(tipoBiglietto);
 
         try {
@@ -81,7 +82,10 @@ public class AcquistoService {
             if(clienteLoggato!=null) {
                biglietto = bigliettoStrategy.createBiglietto();
                pag = pagamentoService.effettuaPagamento(tipoPagamento,quantita,bigliettoStrategy.ottieniPrezzoBiglietto());
-              // biglietto.setPagamento(pag);
+                 biglietto.setPagamento(pag);
+                 biglietto.setTipoBiglietto(tipoBiglietto);
+                 biglietto.setViaggio(new Viaggio(idViaggio));
+
                for(int it =0; it<quantita; it++) {
                    bigliettoDAO.insert(biglietto);
                    biglietto.setId(UUID.randomUUID().toString());

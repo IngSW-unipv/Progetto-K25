@@ -100,7 +100,9 @@ public class JCustomerMainFrame extends JFrame {
         setVisible(false);
     }
 
-
+    public CreditCardPanel getCreditCardPanel() {
+        return creditCardPanel;
+    }
 
     public static void main(String[] args) {
 

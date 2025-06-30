@@ -51,5 +51,11 @@ public class Biglietto extends TitoloViaggio {
         this.dataValidazione = dataValidazione;
     }
 
+    public void setViaggio(Viaggio viaggio) {
+        this.viaggio = viaggio;
+    }
 
+    public void setTipoBiglietto(String tipoBiglietto) {
+        this.tipoBiglietto = tipoBiglietto;
+    }
 }

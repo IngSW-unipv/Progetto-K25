@@ -16,6 +16,7 @@ public class TicketPurchasePanel extends JPanel {
     private JCheckBox checkBoxRitorno;
     private JLabel labelRitorno;
     private JDateChooser dataRitorno;
+    private JComboBox<String> comboTipoBiglietto;
     //private TratteTablePanel tratteTablePanel;
 
     /*DA MODIFICARE*/
@@ -35,8 +36,9 @@ public class TicketPurchasePanel extends JPanel {
         dataRitorno = new JDateChooser();
         buttonAcquista = new JButton("Acquista Biglietto");
         quantitaSpinner = new JSpinner();
-
-
+        String[] tipo = new String[]{"Andata", "AndataRitorno"};
+        comboTipoBiglietto = new JComboBox<>(tipo);
+        
 
         /*panelInput.add(labelDestinazione);
         panelInput.add(textFieldDestinazione);*/
@@ -47,6 +49,7 @@ public class TicketPurchasePanel extends JPanel {
         panelInput.add(labelRitorno);
         panelInput.add(dataRitorno);
         panelInput.add(quantitaSpinner);
+        panelInput.add(comboTipoBiglietto);
 
 
 
@@ -83,8 +86,7 @@ public class TicketPurchasePanel extends JPanel {
     public JSpinner getQuantitaSpinner() {
         return quantitaSpinner;}
 
-
-
-
-
+    public JComboBox<String> getComboTipoBiglietto() {
+        return comboTipoBiglietto;
+    }
 }

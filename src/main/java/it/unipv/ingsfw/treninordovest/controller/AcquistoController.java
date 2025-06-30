@@ -58,8 +58,8 @@ public class AcquistoController implements ActionListener, Observer {
         String idTratta= viewTicketPurchase.getTextFieldTratta().getText();
         boolean ritorno=viewTicketPurchase.getCheckBoxRitorno().isSelected() ;
         LocalDate dataRitorno= viewTicketPurchase.getDataRitorno().getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        String tipoBiglietto = "";
-        String tipoPagamento = "";
+        String tipoBiglietto = frameCustomer.getTicketPurchasePanel().getComboTipoBiglietto().getSelectedItem().toString();
+        String tipoPagamento = "cartacredito"; //Provvisorio
         int quantita = 0;
 
         if(acquistoFacade.acquistaBiglietto(tipoBiglietto,tipoPagamento,quantita,idTratta,ritorno,dataRitorno)) {
