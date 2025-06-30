@@ -39,6 +39,11 @@ public class Pagamento {
         this.dataPagamento = dataPagamento;
     }
 
+    public Pagamento(String idPagamento) {
+        this.idPagamento = UUID.fromString(idPagamento);
+
+    }
+
 
     public UUID getIdPagamento() {
         return idPagamento;

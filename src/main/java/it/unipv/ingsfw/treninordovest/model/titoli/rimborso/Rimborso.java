@@ -1,29 +1,45 @@
 package it.unipv.ingsfw.treninordovest.model.titoli.rimborso;
 
+import it.unipv.ingsfw.treninordovest.model.titoli.biglietto.Biglietto;
+import it.unipv.ingsfw.treninordovest.model.utenti.cliente.Cliente;
+
 import java.time.LocalDate;
+import java.util.UUID;
 
 public class Rimborso {
 
     //Attributi
-    private String idRimborso;
+    private UUID idRimborso;
     private LocalDate dataRimborso;
     private double totale;
+    private Biglietto biglietto;
+    private Cliente cliente;
 
     //Costruttori
-    public Rimborso() {}
+    public Rimborso() {
 
-    public Rimborso(String idRimborso, LocalDate dataOra, double totale) {
-        this.idRimborso = idRimborso;
-        this.dataRimborso = dataOra;
+    }
+
+    //Costruttore per generazione rimborsi
+    public Rimborso(String idRichiedente,String idBiglietto) {
+       this.idRimborso =UUID.randomUUID() ;
+       this.dataRimborso = LocalDate.now();
+       this.totale= biglietto.getPrezzo();
+    }
+
+    //Estrazione dati dal DB
+    public Rimborso(UUID uuid, LocalDate dataRimborso, double totale) {
+        this.idRimborso = uuid;
+        this.dataRimborso = dataRimborso;
         this.totale = totale;
     }
 
     //Getters e Setters
-    public String getIdRimborso() {
+    public UUID getIdRimborso() {
         return idRimborso;
     }
 
-    public void setIdRimborso(String idRimborso) {
+    public void setIdRimborso(UUID idRimborso) {
         this.idRimborso = idRimborso;
     }
 

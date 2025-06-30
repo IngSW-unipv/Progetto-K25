@@ -43,9 +43,10 @@ public class AcquistoFacade implements IAcquistoFacade {
 
     }
 
-
-
-
+    @Override
+    public boolean rimborsoBiglietto(String idBiglietto) {
+        return false;
+    }
 
 
 }

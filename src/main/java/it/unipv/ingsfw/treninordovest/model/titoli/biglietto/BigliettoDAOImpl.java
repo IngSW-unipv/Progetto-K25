@@ -1,6 +1,8 @@
 package it.unipv.ingsfw.treninordovest.model.titoli.biglietto;
 
 import it.unipv.ingsfw.treninordovest.model.dao.database.Database;
+import it.unipv.ingsfw.treninordovest.model.ferrovia.viaggio.Viaggio;
+import it.unipv.ingsfw.treninordovest.model.titoli.pagamento.Pagamento;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -10,55 +12,45 @@ import java.util.UUID;
 
 public class BigliettoDAOImpl implements BigliettoDAO {
 
-    public Biglietto get(String id) {
-//
-//        /*Per semplificazione delle query di recupero dati si è scelto l'uso di Viste SQL basate su Join interne*/
-//
-//        String sql = "select IDTitolo, IDPagamento, Emissione, Prezzo, Ritorno, Validato, DataRitorno,DataValidazione from titoliBiglietti where idTitolo=?";
-//
-//        Biglietto biglietto = null;
-//
-//        try (Connection con = Database.getConnection(); PreparedStatement ps = con.prepareStatement(sql); ResultSet rs=ps.executeQuery()) {
-//
-//            //Estrazione dei dati dal DB
-//            ps.setString(1, id);
-//
-//            if(rs.next()){
-//                String idTitolo = rs.getString("IDTitolo");
-//                String idPagamento = rs.getString("IDPagamento");
-//                Date emissione =  rs.getDate("Emissione");
-//
-//                LocalDate emissioneLocal= emissione.toLocalDate();
-//
-//                Double prezzo = (Double) rs.getObject("Prezzo");
-//                Boolean validato = (Boolean) rs.getObject("Validato");
-//                Boolean ritorno = (Boolean) rs.getObject("Ritorno");
-//
-//                LocalDate dataRitornoLocal=LocalDate.now();
-//                if (rs.getDate("DataRitorno") == null ) {
-//                    dataRitornoLocal = LocalDate.now();
-//                }else
-//                    rs.getDate("DataRitorno");
-//                Date dataValidazione = rs.getDate("DataValidazione");
-//
-//                LocalDate dataValLocal= dataValidazione.toLocalDate();
-//
-//               biglietto=new Biglietto(UUID.fromString(idTitolo),emissioneLocal,prezzo,ritorno,validato,dataRitornoLocal,dataValLocal);
-//            }
-//            //Database.closeConnection(con);
-//
-//        } catch (SQLException e) {
-//            throw new RuntimeException("Errore nel recupero dei biglietti",e);
-//        }
-//        return biglietto;
-
-        return null;
-
-    }
-
     @Override
-    public Biglietto get(Biglietto oggetto) {
-        return null;
+    public Biglietto get(Biglietto biglietto) {
+
+        /*Per semplificazione delle query di recupero dati si è scelto l'uso di Viste SQL basate su Join interne*/
+
+        Biglietto bigliettoDB = null;
+        String sql = "select * from titoliBiglietti where idTitolo=?";
+
+        try (Connection con = Database.getConnection(); PreparedStatement ps = con.prepareStatement(sql); ResultSet rs=ps.executeQuery()) {
+
+            //Estrazione dei dati dal DB
+            ps.setString(1, biglietto.getId().toString());
+
+            if(rs.next()){
+                String idTitolo = rs.getString("IDTitolo");
+                String idPagamento = rs.getString("IDPagamento");
+                Pagamento pagamento = new Pagamento(idPagamento);
+                Date emissione =  rs.getDate("Emissione");
+                Viaggio viaggio = new Viaggio(rs.getString("IDViaggio"));
+                Double prezzo = (Double) rs.getObject("Prezzo");
+                Boolean validato = (Boolean) rs.getObject("Validato");
+                String tipoBiglietto = rs.getString("TipoBiglietto");
+                Date dataValidazione = rs.getDate("DataValidazione");
+
+
+
+
+               bigliettoDB=new Biglietto(UUID.fromString(idTitolo),pagamento,emissione.toLocalDate(),prezzo,validato,dataValidazione.toLocalDate(),viaggio,tipoBiglietto);
+            }
+            //Database.closeConnection(con);
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Errore nel recupero dei biglietti",e);
+
+        }
+
+
+        return bigliettoDB;
+
     }
 
     @Override

@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class RimborsoDAOImpl implements RimborsoDAO {
 
@@ -63,7 +64,7 @@ public class RimborsoDAOImpl implements RimborsoDAO {
                 LocalDate dataRimborso = (LocalDate)rs.getObject("DataRimborso");
 
 
-                rimborso=new Rimborso(idRimborso,dataRimborso,totale);
+                rimborso=new Rimborso(UUID.fromString(idRimborso),dataRimborso,totale);
                 rimborsi.add(rimborso);
             }
 

@@ -9,12 +9,11 @@ import it.unipv.ingsfw.treninordovest.view.frames.utenti.clienti.menu.principale
 import it.unipv.ingsfw.treninordovest.view.frames.utenti.clienti.menu.principale.panels.TicketPurchasePanel;
 
 import javax.swing.*;
-import javax.swing.text.html.parser.Parser;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.Observable;
+
 
 
 public class AcquistoController implements ActionListener, Observer {
