@@ -22,9 +22,7 @@ public class CartaCredito implements  IPagamentoStrategy {
 
     @Override
     public boolean paga(double prezzo) {
-
-        Random r = new Random();
-        return r.nextBoolean();
+        return true;
     }
 
     @Override
