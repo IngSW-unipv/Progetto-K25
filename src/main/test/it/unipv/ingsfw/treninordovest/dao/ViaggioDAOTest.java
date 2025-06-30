@@ -1,5 +1,6 @@
 package it.unipv.ingsfw.treninordovest.dao;
 
+import it.unipv.ingsfw.treninordovest.model.ferrovia.fermata.tratta.TrattaFermataDAOImpl;
 import it.unipv.ingsfw.treninordovest.model.ferrovia.viaggio.Viaggio;
 import it.unipv.ingsfw.treninordovest.model.ferrovia.viaggio.ViaggioDAO;
 import it.unipv.ingsfw.treninordovest.model.ferrovia.viaggio.ViaggioDAOImpl;
@@ -14,6 +15,9 @@ public class ViaggioDAOTest {
     void ViaggioTestDAO() {
 
         ViaggioDAOImpl dao = new ViaggioDAOImpl();
+        TrattaFermataDAOImpl trattaFermataDAO = new TrattaFermataDAOImpl();
+
+
 
        /* List<Viaggio> viaggi = new ArrayList<Viaggio>();
 
@@ -26,7 +30,10 @@ public class ViaggioDAOTest {
         Viaggio v = new Viaggio();
         v= dao.get(new Viaggio("VGG002"));
 
+
         System.out.println(v);
+
+
 
 
     }

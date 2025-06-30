@@ -1,6 +1,6 @@
 //package it.unipv.ingsfw.treninordovest.controller.provvisorio.customer;
-
-
+//
+//
 //
 //public class CustomerProfileController  {
 //    private CustomerProfilePanel view;
@@ -100,7 +100,7 @@
 //
 //
 //    }
-
+//
 //    private void caricaDenaro (){
 //
 //        try {

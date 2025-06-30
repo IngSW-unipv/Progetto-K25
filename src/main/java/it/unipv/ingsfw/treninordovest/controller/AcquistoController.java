@@ -1,7 +1,8 @@
 package it.unipv.ingsfw.treninordovest.controller;
 
 import it.unipv.ingsfw.treninordovest.facade.acquisto.AcquistoFacade;
-import it.unipv.ingsfw.treninordovest.model.titoli.abbonamento.Abbonamento;
+import it.unipv.ingsfw.treninordovest.model.observer.Observer;
+import it.unipv.ingsfw.treninordovest.model.observer.model.AcquistoModel;
 import it.unipv.ingsfw.treninordovest.view.frames.utenti.clienti.menu.principale.JCustomerMainFrame;
 import it.unipv.ingsfw.treninordovest.view.frames.utenti.clienti.menu.principale.panels.CardPurchasePanel;
 import it.unipv.ingsfw.treninordovest.view.frames.utenti.clienti.menu.principale.panels.SubscriptionPanel;
@@ -12,10 +13,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.Date;
+import java.util.Observable;
 
-public class AcquistoController implements ActionListener {
+
+public class AcquistoController implements ActionListener, Observer {
 
 
     private CardPurchasePanel viewCardPurchase;
@@ -23,12 +24,16 @@ public class AcquistoController implements ActionListener {
     private SubscriptionPanel viewSubscription;
     private JCustomerMainFrame frameCustomer;
     private AcquistoFacade acquistoFacade;
+    private AcquistoModel acquistoModel=new AcquistoModel();
 
     public AcquistoController(CardPurchasePanel viewCardPurchase, JCustomerMainFrame frameCustomer) {
         this.viewCardPurchase = viewCardPurchase;
         this.frameCustomer = frameCustomer;
         this.acquistoFacade = new AcquistoFacade();
         addCardPurchaseListener();
+
+        acquistoModel.addObserver(this);
+
     }
 
     public AcquistoController(SubscriptionPanel viewSubscription, JCustomerMainFrame frameCustomer) {
@@ -48,6 +53,7 @@ public class AcquistoController implements ActionListener {
 
     ///  Acquisto dei biglietti
     public void acquistoBiglietto() {
+
 
         String idTratta= viewTicketPurchase.getTextFieldTratta().getText();
         boolean ritorno=viewTicketPurchase.getCheckBoxRitorno().isSelected() ;
@@ -138,6 +144,12 @@ public class AcquistoController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
+
     }
 
+
+    @Override
+    public void update(Object event) {
+
+    }
 }

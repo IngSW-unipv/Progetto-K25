@@ -10,7 +10,7 @@ public class LoginFacade implements ILoginFacade {
     private LoginService loginService;
 
     public LoginFacade() {
-
+        loginService = new LoginService();
     }
 
 

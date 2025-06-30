@@ -26,7 +26,7 @@ public class Tessera {
     //Costruttore
     public Tessera(UUID idTessera) {
         this.idTessera =idTessera;
-        this.emissione = LocalDate.now().minusDays(5);
+        this.emissione = LocalDate.now().plusYears(5);
         this.Scadenza = LocalDate.now();
     }
 

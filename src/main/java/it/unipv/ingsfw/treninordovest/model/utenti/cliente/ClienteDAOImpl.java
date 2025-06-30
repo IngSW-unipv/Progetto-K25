@@ -236,7 +236,7 @@ public class ClienteDAOImpl implements ClienteDAO {
                     String storedHash = rs.getString("UserPassword");
                     if (input.getEmail().equals(rs.getString("email"))  /*PasswordUtils.verifyPassword(input.getUserPassword(), storedHash)*/) {
 
-                        UUID id= UUID.fromString(rs.getString("ID"));
+                        String id= rs.getString("ID");
                         String nome=rs.getString("nome");
                         String cognome=rs.getString("cognome");
                         double bilancio=rs.getDouble("bilancio");
@@ -246,9 +246,9 @@ public class ClienteDAOImpl implements ClienteDAO {
                         String indirizzo=rs.getString("indirizzo");
                         String email=rs.getString("email");
                         Object sesso=  rs.getObject("sesso");
-                        Tessera tessera= new Tessera(tesseraDAO.getIdTesseraByCustomerID(String.valueOf(id)));
+                        Tessera tessera= new Tessera(id);
 
-                        clienteAutenticato= new Cliente(id,storedHash,nome,cognome,luogoNascita, (String) sesso,dataNascita,cellulare,indirizzo,bilancio,email,tessera);
+                        clienteAutenticato= new Cliente(UUID.fromString(id),storedHash,nome,cognome,luogoNascita, (String) sesso,dataNascita,cellulare,indirizzo,bilancio,email,tessera);
 
                         return clienteAutenticato;
                     }

@@ -15,20 +15,10 @@ public class ViaggioService {
         this.viaggioDAO = new ViaggioDAOImpl();
     }
 
-    public boolean cercaViaggio(LocalDate dataViaggio, LocalTime oraPartenza,LocalTime oraArrivo,String idPartenza,String idArrivo,String idTratta) {
+    public boolean cercaViaggio(String idViaggio) {
 
         Viaggio viaggio;
-
-
-
-
-
-       // viaggio = new Viaggio(String.valueOf(UUID.randomUUID()),dataViaggio,);
-
-        /*if(viaggioDAO.insert()){
-
-        }*/
-
+        viaggio = viaggioDAO.get(new Viaggio(idViaggio));
 
         return false;
 

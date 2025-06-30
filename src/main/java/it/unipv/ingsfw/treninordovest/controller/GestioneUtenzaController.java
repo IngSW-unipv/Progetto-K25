@@ -52,6 +52,7 @@ public class GestioneUtenzaController {
         this.viewLoginPanel = view;
         this.frameLogin = frame;
         this.loginFacade = new LoginFacade();
+        this.userRegistrationFacade = new UserRegistrationFacade();
         addLoginListener();
 
     }

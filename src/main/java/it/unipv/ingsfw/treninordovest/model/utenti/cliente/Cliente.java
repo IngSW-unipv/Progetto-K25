@@ -45,6 +45,8 @@ public class Cliente extends Utente {
 
     public Cliente(UUID id, String userPassword, String nome, String cognome, String luogoNascita, String sesso, LocalDate dataNascita, String cellulare, String indirizzo, double bilancio, String email ) {
         super(id, userPassword, nome, cognome, luogoNascita, sesso, dataNascita, cellulare, indirizzo);
+        this.bilancio.setVal(bilancio);
+        this.email = email;
     }
 
 

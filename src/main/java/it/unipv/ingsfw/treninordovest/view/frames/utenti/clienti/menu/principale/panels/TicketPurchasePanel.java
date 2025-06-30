@@ -1,6 +1,7 @@
 package it.unipv.ingsfw.treninordovest.view.frames.utenti.clienti.menu.principale.panels;
 
 import com.toedter.calendar.JDateChooser;
+import it.unipv.ingsfw.treninordovest.view.frames.utenti.clienti.menu.principale.JCustomerMainFrame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,7 +20,9 @@ public class TicketPurchasePanel extends JPanel {
 
     /*DA MODIFICARE*/
 
-    public TicketPurchasePanel() {
+
+    public TicketPurchasePanel(JCustomerMainFrame frame) {
+
         setLayout(new BorderLayout());
 
         // Pannello per i controlli
@@ -46,6 +49,11 @@ public class TicketPurchasePanel extends JPanel {
         panelInput.add(quantitaSpinner);
 
 
+
+        buttonAcquista.addActionListener(e -> {
+            ((JCustomerMainFrame) SwingUtilities.getWindowAncestor(this))
+                    .showPaymentTab();
+        });
 
 
 
@@ -74,6 +82,8 @@ public class TicketPurchasePanel extends JPanel {
 
     public JSpinner getQuantitaSpinner() {
         return quantitaSpinner;}
+
+
 
 
 

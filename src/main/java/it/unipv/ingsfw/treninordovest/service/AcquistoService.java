@@ -70,7 +70,7 @@ public class AcquistoService {
 
     }
 
-    public boolean acquistoBiglietto(String tipoBiglietto, String tipoPagamento, int quantita, String idTratta) {
+    public boolean acquistoBiglietto(String tipoBiglietto, String tipoPagamento, int quantita, String idViaggio) {
         clienteLoggato = (Cliente) SessionManager.getInstance().getCurrentUser();
         Pagamento pag;
         Biglietto biglietto=new Biglietto(); // Provvisorio
