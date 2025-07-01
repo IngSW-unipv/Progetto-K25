@@ -71,7 +71,6 @@ public class LoginPanel extends JPanel {
 
     }
 
-
     public JTextField getCampoUtente() {
         return campoUtente;
     }
@@ -87,14 +86,10 @@ public class LoginPanel extends JPanel {
     public JButton getBottoneAccesso() {
         return bottoneAccesso;
     }
+
     public JButton getBottoneIndietro() {
         return bottoneIndietro;
     }
 
-    //Aggiunta dell'action listener per i bottoni'
-//    public void addActionListener(ActionListener listener) {
-//        bottoneAccesso.addActionListener(listener);
-//        bottoneIndietro.addActionListener(listener);
-//    }
 
 }

@@ -36,6 +36,7 @@ public class GestioneUtenzaController {
         addLoginListener();
         addDipendenteRegistrationListener();
         addMainMenuListener();
+
     }
 
 
@@ -195,6 +196,13 @@ public class GestioneUtenzaController {
             }
         });
 
+        frame.getEmployeeRegistrationPanel().getBtnMenuPrincipal().addActionListener(e->{
+          if(frame.getEmployeeRegistrationPanel().getBtnMenuPrincipal().getActionCommand().equals(EmployeeRegistrationPanel.CMD_Back)){
+                frame.showPanel(JTreniNordOvestFrame.MAIN_MENU);
+            }
+
+        });
+
 
     }
 
@@ -204,25 +212,40 @@ public class GestioneUtenzaController {
             if(frame.getLoginPanel().getBottoneAccesso().getActionCommand().equals(LoginPanel.CMD_Login)){
                 login();
             }
+
         });
 
+        frame.getLoginPanel().getBottoneIndietro().addActionListener(e -> {
+            if(frame.getLoginPanel().getBottoneIndietro().getActionCommand().equals(LoginPanel.CMD_Back)){
+               frame.showPanel(JTreniNordOvestFrame.MAIN_MENU);
+            }
+        });
+
+
     }
-
-
 
     private void addMainMenuListener(){
-        viewMainMenupanel.getAccesso().addActionListener(e ->
-                frame.showPanel(JTreniNordOvestFrame.LOGIN)
-        );
 
-        viewMainMenupanel.getRegistrazioneCliente().addActionListener(e ->
-                frame.showPanel(JTreniNordOvestFrame.CUSTOMER_REGISTRATION)
-        );
+        frame.getMainMenuPanel().getAccesso().addActionListener(e -> {
 
-        viewMainMenupanel.getRegistrazioneDipendente().addActionListener(e ->
-                frame.showPanel(JTreniNordOvestFrame.EMPLOYEE_REGISTRATION)
-        );
+            if (frame.getMainMenuPanel().getAccesso().getActionCommand().equals(MainMenuPanel.CMD_LOGIN)){
+                System.out.println("Accesso al login");
+                frame.showPanel( JTreniNordOvestFrame.LOGIN );
+            }
+        });
+
+        frame.getMainMenuPanel().getRegistrazioneDipendente().addActionListener(e -> {
+            System.out.println("Registrazione dipendente");
+            frame.showPanel(JTreniNordOvestFrame.EMPLOYEE_REGISTRATION);
+        });
+
+
+
+
     }
+
+
+
 
 
 }
