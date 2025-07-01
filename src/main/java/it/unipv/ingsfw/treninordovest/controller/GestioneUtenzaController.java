@@ -39,9 +39,6 @@ public class GestioneUtenzaController {
     }
 
 
-
-
-
     private void registraCliente(){
 
         String nome,cognome,sesso,password,cellulare,email,indirizzo,luogoNascita;
@@ -151,11 +148,12 @@ public class GestioneUtenzaController {
 
         try {
             if (loginFacade.login(identificativo,password,tipoUtente)){
-                JOptionPane.showMessageDialog(null,"Cliente login correttamente", "Info", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null,"Login effettuato correttamente", "Info", JOptionPane.INFORMATION_MESSAGE);
 
+                frame.showPanel(frame.getLoginPanel().getComboRuolo().getSelectedItem().toString());
             }
             else
-                JOptionPane.showMessageDialog(null, "Cliente login errati", "Errore", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Problema durante il login", "Errore", JOptionPane.ERROR_MESSAGE);
 
         }catch (Exception e){
             System.out.println(e.getMessage());
@@ -213,6 +211,7 @@ public class GestioneUtenzaController {
         frame.getLoginPanel().getBottoneAccesso().addActionListener(e -> {
             if(frame.getLoginPanel().getBottoneAccesso().getActionCommand().equals(LoginPanel.CMD_Login)){
                 login();
+
             }
 
         });
@@ -249,6 +248,8 @@ public class GestioneUtenzaController {
 
 
     }
+
+
 
 
 

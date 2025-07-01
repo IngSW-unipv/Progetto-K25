@@ -21,8 +21,8 @@ public class JTreniNordOvestFrame extends JFrame implements PropertyChangeListen
     public static final String CUSTOMER_REGISTRATION = "CUSTOMER_REGISTRATION";
     public static final String EMPLOYEE_REGISTRATION = "EMPLOYEE_REGISTRATION";
     public static final String LOGIN = "LOGIN";
-    public static final String CUSTOMER_MAINFRAME = "CUSTOMER_MAINFRAME";
-    public static final String EMPLOYEE_MAINFRAME = "EMPLOYEE_MAINFRAME";
+    public static final String CUSTOMER_MAINFRAME = "Cliente";
+    public static final String EMPLOYEE_MAINFRAME = "Dipendente";
 
 
 
