@@ -21,10 +21,8 @@ import java.util.UUID;
 
 public class GestioneUtenzaController {
 
-    private final MainMenuPanel viewMainMenupanel = new MainMenuPanel();
-    private LoginPanel viewLoginPanel;
-    private UserRegistrationFacade userRegistrationFacade;
-    private LoginFacade loginFacade;
+    private final UserRegistrationFacade userRegistrationFacade;
+    private final LoginFacade loginFacade;
     private JTreniNordOvestFrame frame;
 
 
@@ -32,6 +30,7 @@ public class GestioneUtenzaController {
     public GestioneUtenzaController( JTreniNordOvestFrame frame) {
         this.userRegistrationFacade = new UserRegistrationFacade();
         this.frame = frame;
+        this.loginFacade = new LoginFacade();
         addClienteRegistrationListener();
         addLoginListener();
         addDipendenteRegistrationListener();
@@ -146,9 +145,9 @@ public class GestioneUtenzaController {
 
     }
     private void login(){
-        String identificativo =  viewLoginPanel.getCampoUtente().getText();
-        String password = Arrays.toString(viewLoginPanel.getCampoPassword().getPassword());
-        String tipoUtente = (String )viewLoginPanel.getComboRuolo().getSelectedItem();
+        String identificativo =  frame.getLoginPanel().getCampoUtente().getText();
+        String password = Arrays.toString(frame.getLoginPanel().getCampoPassword().getPassword());
+        String tipoUtente = (String )frame.getLoginPanel().getComboRuolo().getSelectedItem();
 
         try {
             if (loginFacade.login(identificativo,password,tipoUtente)){
@@ -179,12 +178,15 @@ public class GestioneUtenzaController {
 
     private void addClienteRegistrationListener(){
         frame.getCustomerRegistrationPanel().getBtnRegister().addActionListener(e -> {
-
             if(frame.getCustomerRegistrationPanel().getBtnRegister().getActionCommand().equals(CustomerRegistrationPanel.CMD_Register)){
                 registraCliente();
             }
+        });
 
-
+        frame.getCustomerRegistrationPanel().getBtnMenuPrincipal().addActionListener(e->{
+            if (frame.getCustomerRegistrationPanel().getBtnMenuPrincipal().getActionCommand().equals(CustomerRegistrationPanel.CMD_Back)){
+                frame.showPanel(JTreniNordOvestFrame.MAIN_MENU);
+            }
         });
 
     }
@@ -239,6 +241,10 @@ public class GestioneUtenzaController {
             frame.showPanel(JTreniNordOvestFrame.EMPLOYEE_REGISTRATION);
         });
 
+        frame.getMainMenuPanel().getRegistrazioneCliente().addActionListener(e -> {
+            System.out.println("Registrazione cliente");
+            frame.showPanel(JTreniNordOvestFrame.CUSTOMER_REGISTRATION);
+        });
 
 
 

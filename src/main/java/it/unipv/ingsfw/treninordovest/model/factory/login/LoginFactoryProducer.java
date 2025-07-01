@@ -13,9 +13,6 @@ public class LoginFactoryProducer {
 
     private ILogin login=null;
 
-
-
-
     public  ILogin getFactoryFromProperties(String tipo) {
 
             try {
