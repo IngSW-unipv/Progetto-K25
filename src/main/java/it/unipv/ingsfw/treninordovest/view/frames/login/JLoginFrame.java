@@ -3,6 +3,7 @@ package it.unipv.ingsfw.treninordovest.view.frames.login;
 //import it.unipv.ingsfw.treninordovest.controller.provvisorio.misc.LoginController;
 
 import it.unipv.ingsfw.treninordovest.controller.GestioneUtenzaController;
+import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.login.LoginPanel;
 
 import javax.swing.*;
 
@@ -20,7 +21,7 @@ public class JLoginFrame extends JFrame  {
         setSize(820, 230);
         setLocationRelativeTo(null);
         inizializzaComponenti();
-        new GestioneUtenzaController(loginPanel,this);
+
     }
 
     private void inizializzaComponenti() {

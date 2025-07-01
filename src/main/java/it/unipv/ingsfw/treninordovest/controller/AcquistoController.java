@@ -1,12 +1,10 @@
 package it.unipv.ingsfw.treninordovest.controller;
 
 import it.unipv.ingsfw.treninordovest.facade.acquisto.AcquistoFacade;
-import it.unipv.ingsfw.treninordovest.model.observer.Observer;
-import it.unipv.ingsfw.treninordovest.model.observer.model.AcquistoModel;
-import it.unipv.ingsfw.treninordovest.view.frames.utenti.clienti.menu.principale.JCustomerMainFrame;
-import it.unipv.ingsfw.treninordovest.view.frames.utenti.clienti.menu.principale.panels.CardPurchasePanel;
-import it.unipv.ingsfw.treninordovest.view.frames.utenti.clienti.menu.principale.panels.SubscriptionPanel;
-import it.unipv.ingsfw.treninordovest.view.frames.utenti.clienti.menu.principale.panels.TicketPurchasePanel;
+import it.unipv.ingsfw.treninordovest.service.AcquistoService;
+import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.JTreniNordOvestFrame;
+import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.cliente.CustomerMainPanel;
+
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -16,53 +14,36 @@ import java.time.ZoneId;
 
 
 
-public class AcquistoController implements ActionListener, Observer {
+public class AcquistoController  {
 
+    //private JTreniNordOvestFrame frame;
+    private final CustomerMainPanel view;
+    private final AcquistoFacade acquistoFacade;
 
-    private CardPurchasePanel viewCardPurchase;
-    private SubscriptionPanel viewSubscription;
-    private JCustomerMainFrame frameCustomer;
-    private AcquistoFacade acquistoFacade;
-    private AcquistoModel acquistoModel=new AcquistoModel();
-
-    public AcquistoController(CardPurchasePanel viewCardPurchase, JCustomerMainFrame frameCustomer) {
-        this.viewCardPurchase = viewCardPurchase;
-        this.frameCustomer = frameCustomer;
+    public AcquistoController(CustomerMainPanel view, JTreniNordOvestFrame frame) {
+       // this.frame = frame;
         this.acquistoFacade = new AcquistoFacade();
-        addCardPurchaseListener();
-
-        acquistoModel.addObserver(this);
-
+        this.view = view;
+        this.addListeners();
     }
 
-    public AcquistoController(SubscriptionPanel viewSubscription, JCustomerMainFrame frameCustomer) {
-        this.viewSubscription = viewSubscription;
-        this.frameCustomer = frameCustomer;
-        this.acquistoFacade = new AcquistoFacade();
-        addAbbonamentoPurchaseListener();
-    }
 
-    public AcquistoController(TicketPurchasePanel viewTicketPurchase, JCustomerMainFrame frameCustomer) {
-        this.frameCustomer = frameCustomer;
-        this.acquistoFacade = new AcquistoFacade();
-        addBigliettoPurchaseListener();
-    }
 
 
     ///  Acquisto dei biglietti
     public void acquistoBiglietto() {
 
-        String idTratta= frameCustomer.getTicketPurchasePanel().getTextFieldTratta().getText();
-        boolean ritorno=frameCustomer.getTicketPurchasePanel().getCheckBoxRitorno().isSelected() ;
-        LocalDate dataRitorno= frameCustomer.getTicketPurchasePanel().getDataRitorno().getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        String tipoBiglietto = frameCustomer.getTicketPurchasePanel().getComboTipoBiglietto().getSelectedItem().toString();
+        String idTratta= view.getTicketPurchasePanel().getTextFieldTratta().getText();
+        boolean ritorno= view.getTicketPurchasePanel().getCheckBoxRitorno().isSelected();
+        LocalDate dataRitorno= view.getTicketPurchasePanel().getDataRitorno().getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        String tipoBiglietto = view.getTicketPurchasePanel().getComboTipoBiglietto().getSelectedItem().toString();
         String tipoPagamento = "cartacredito"; //Provvisorio
-        int quantita =  Integer.parseInt(frameCustomer.getTicketPurchasePanel().getQuantitaSpinner().getValue().toString() ) ;
+        int quantita =  Integer.parseInt(view.getTicketPurchasePanel().getQuantitaSpinner().getValue().toString() ) ;
 
         if(acquistoFacade.acquistaBiglietto(tipoBiglietto,tipoPagamento,quantita,idTratta,ritorno,dataRitorno)) {
-            JOptionPane.showMessageDialog(frameCustomer, "Biglietti acquistati");
+            JOptionPane.showMessageDialog(view, "Biglietti acquistati");
         } else
-            JOptionPane.showMessageDialog(frameCustomer, "Errore durante l'acquisto dei biglietti!","Errore",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(view, "Errore durante l'acquisto dei biglietti!","Errore",JOptionPane.ERROR_MESSAGE);
 
 
 
@@ -71,17 +52,15 @@ public class AcquistoController implements ActionListener, Observer {
     ///  Acquisto dell'abbonamento
     public void acquistoAbbonamento() {
 
-       String tipoAbbonamento=viewSubscription.getComboTipo().getSelectedItem().toString();
-       String tipoAcquisto=null;
+       String tipoAbbonamento=view.getSubscriptionPanel().getComboTipo().getSelectedItem().toString();
+       String tipoAcquisto=null; //DA DEFINIRE
        int quantita=1;
 
         if(acquistoFacade.acquistoAbbonamento(tipoAbbonamento,tipoAcquisto,quantita)){
-            JOptionPane.showMessageDialog(frameCustomer, "Acquisto con successo!");
+            JOptionPane.showMessageDialog(view, "Acquisto con successo!");
         }
         else
-            JOptionPane.showMessageDialog(frameCustomer, "Abbonamento già posseduto o tessera non valida!","Errore",JOptionPane.ERROR_MESSAGE);
-
-
+            JOptionPane.showMessageDialog(view, "Abbonamento già posseduto o tessera non valida!","Errore",JOptionPane.ERROR_MESSAGE);
 
     }
 
@@ -89,64 +68,26 @@ public class AcquistoController implements ActionListener, Observer {
     public void acquistoTessera() {
 
         if (acquistoFacade.acquistaTessera()) {
-            JOptionPane.showMessageDialog(frameCustomer, "Acquisto con successo!");
+            JOptionPane.showMessageDialog(view, "Acquisto con successo!");
         } else
-            JOptionPane.showMessageDialog(frameCustomer, "Errore !!! Tessera posseduta o non valida","Errore",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(view, "Errore !!! Tessera posseduta o non valida","Errore",JOptionPane.ERROR_MESSAGE);
 
 
 
 
     }
-
 
     /// Aggiunta degli Action Listener per i vari pannelli
 
-    private void addCardPurchaseListener() {
-
-        frameCustomer.getCardPurchasePanel().getButtonAcquistaTessera().addActionListener(e -> {
-            if (frameCustomer.getCardPurchasePanel().getButtonAcquistaTessera().getActionCommand() != null) {
-                acquistoTessera();
-            }
-        });
-
-
-    }
-
-    private void addAbbonamentoPurchaseListener() {
-        frameCustomer.getSubscriptionPanel().getButtonAbbonati().addActionListener(e -> {
-            if (frameCustomer.getSubscriptionPanel().getButtonAbbonati().getActionCommand() != null) {
-                acquistoAbbonamento();
-            }
-        });
-    }
-
-    private void addBigliettoPurchaseListener() {
-        frameCustomer.getTicketPurchasePanel().getButtonAcquista().addActionListener(e -> {
-            if (frameCustomer.getTicketPurchasePanel().getButtonAcquista().getActionCommand() != null) {
-                acquistoBiglietto();
-            }
-        });
-    }
-
-
-    ///  TEST --- RIMUOVERE
-    public static void main(String[] args) {
-       JCustomerMainFrame fea = new JCustomerMainFrame();
-
-        fea.setVisible(true);
+    private void addListeners() {
+        // La logica è direttamente collegata al pulsante.
+        view.getTicketPurchasePanel().getButtonAcquista().addActionListener(e -> acquistoBiglietto());
+        view.getSubscriptionPanel().getButtonAbbonati().addActionListener(e -> acquistoAbbonamento());
+        view.getCardPurchasePanel().getButtonAcquistaTessera().addActionListener(e -> acquistoTessera());
     }
 
 
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
 
 
-    }
-
-
-    @Override
-    public void update(Object event) {
-
-    }
 }

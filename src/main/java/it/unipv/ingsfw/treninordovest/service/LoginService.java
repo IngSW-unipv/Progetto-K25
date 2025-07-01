@@ -5,9 +5,16 @@ import it.unipv.ingsfw.treninordovest.model.factory.login.LoginFactoryProducer;
 import it.unipv.ingsfw.treninordovest.model.utenti.utente.Utente;
 import it.unipv.ingsfw.treninordovest.model.varie.SessionManager;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
+
 public class LoginService {
 
-    public LoginService() {}
+    private final PropertyChangeSupport support ;
+
+    public LoginService() {
+        this.support = new PropertyChangeSupport(this);
+    }
 
 
     public boolean login(String id, String password,String tipoUtente) {
@@ -36,6 +43,16 @@ public class LoginService {
     public boolean logout() {
         SessionManager.getInstance().logout();
         return true;
+    }
+
+    public void addPropertyChangeListener(PropertyChangeListener listener) {
+        support.addPropertyChangeListener(listener);
+    }
+    public void removePropertyChangeListener(PropertyChangeListener listener) {
+        support.removePropertyChangeListener(listener);
+    }
+    public void notifyPropertyChange(String propertyName, Object oldValue, Object newValue) {
+        support.firePropertyChange(propertyName, oldValue, newValue);
     }
 
 }

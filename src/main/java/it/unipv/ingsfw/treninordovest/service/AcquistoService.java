@@ -15,24 +15,31 @@ import it.unipv.ingsfw.treninordovest.model.titoli.tessera.Tessera;
 import it.unipv.ingsfw.treninordovest.model.titoli.tessera.TesseraDAOImpl;
 import it.unipv.ingsfw.treninordovest.model.utenti.cliente.Cliente;
 import it.unipv.ingsfw.treninordovest.model.varie.SessionManager;
+import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.JTreniNordOvestFrame;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.time.LocalDate;
 import java.util.UUID;
 
 public class AcquistoService {
     private AbbonamentoDAOimpl abbonamentoDAO;
-    private BigliettoDAOImpl bigliettoDAO;
-    private PagamentoDAOImpl pagamentoDAO;
-    private TesseraDAOImpl tesseraDAO;
+    private final BigliettoDAOImpl bigliettoDAO;
+    private final TesseraDAOImpl tesseraDAO;
     private Cliente clienteLoggato;
-    private PagamentoService pagamentoService;
+    private final PagamentoService pagamentoService;
+    private final PropertyChangeSupport support;
+    private final JTreniNordOvestFrame jTreniNordOvestFrame=new JTreniNordOvestFrame();
+
 
     public AcquistoService() {
         this.abbonamentoDAO=new AbbonamentoDAOimpl();
         this.bigliettoDAO=new BigliettoDAOImpl();
-        this.pagamentoDAO=new PagamentoDAOImpl();
         this.tesseraDAO=new TesseraDAOImpl();
         this.pagamentoService=new PagamentoService();
+        this.support=new PropertyChangeSupport(this);
+
+        addPropertyChangeListener(jTreniNordOvestFrame);
     }
 
     public boolean acquistoAbbonamento(String tipoAbbonamento,String tipoPagamento,int quantita) {
@@ -52,6 +59,8 @@ public class AcquistoService {
                     abbonamentoDAO.insert(abbonamento);
                     abbonamento.setId(UUID.randomUUID().toString());
                 }
+
+                notifyPropertyChange("abbonamento_acquistato", null, abbonamento);
 
                return true;
             } else if(clienteLoggato.getTessera()==null) {
@@ -92,6 +101,8 @@ public class AcquistoService {
                }
 
 
+               notifyPropertyChange("biglietto_acquistato", null, biglietto);
+
 
                return true;
             }
@@ -115,6 +126,7 @@ public class AcquistoService {
             if (!(tesseraDAO.exists(clienteLoggato.getId().toString())) && clienteLoggato != null) {
                 Tessera tessera = new Tessera(UUID.randomUUID());
                 if (tesseraDAO.createTessera(tessera, clienteLoggato.getId().toString()))
+                    notifyPropertyChange("tessera_acquistata", null, tessera);
                     return true;
 
             }
@@ -127,6 +139,20 @@ public class AcquistoService {
 
 
         return false;
+    }
+
+
+
+
+
+    public void addPropertyChangeListener(PropertyChangeListener listener) {
+        support.addPropertyChangeListener(listener);
+    }
+    public void removePropertyChangeListener(PropertyChangeListener listener) {
+        support.removePropertyChangeListener(listener);
+    }
+    public void notifyPropertyChange(String propertyName, Object oldValue, Object newValue) {
+        support.firePropertyChange(propertyName, oldValue, newValue);
     }
 
 

@@ -1,6 +1,6 @@
 package it.unipv.ingsfw.treninordovest.controller;
 
-import it.unipv.ingsfw.treninordovest.view.frames.utenti.clienti.menu.principale.panels.titolitable.TitoliViaggioTablePanel;
+import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.cliente.panels.titolitable.TitoliViaggioTablePanel;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

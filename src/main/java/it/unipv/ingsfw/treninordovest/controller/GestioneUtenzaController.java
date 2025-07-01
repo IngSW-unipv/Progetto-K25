@@ -4,15 +4,15 @@ import it.unipv.ingsfw.treninordovest.facade.login.LoginFacade;
 import it.unipv.ingsfw.treninordovest.facade.registazioniutenti.UserRegistrationFacade;
 import it.unipv.ingsfw.treninordovest.model.utenti.cliente.Cliente;
 import it.unipv.ingsfw.treninordovest.model.utenti.dipendente.Dipendente;
-import it.unipv.ingsfw.treninordovest.view.frames.utenti.clienti.menu.principale.JCustomerMainFrame;
-import it.unipv.ingsfw.treninordovest.view.frames.utenti.clienti.menu.registrazione.JCustomerRegFrame;
-import it.unipv.ingsfw.treninordovest.view.frames.utenti.dipendenti.menu.registrazione.JEmployeeRegFrame;
-import it.unipv.ingsfw.treninordovest.view.frames.login.JLoginFrame;
-import it.unipv.ingsfw.treninordovest.view.frames.login.LoginPanel;
-import it.unipv.ingsfw.treninordovest.view.frames.utenti.clienti.menu.registrazione.CustomerRegistrationPanel;
-import it.unipv.ingsfw.treninordovest.view.frames.utenti.dipendenti.menu.registrazione.EmployeeRegistrationPanel;
+import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.JTreniNordOvestFrame;
+import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.login.LoginPanel;
+import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.cliente.CustomerRegistrationPanel;
+import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.dipendente.EmployeeRegistrationPanel;
+import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.menu.MainMenuPanel;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.time.ZoneId;
 import java.util.Arrays;
 import java.util.Date;
@@ -20,42 +20,25 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 public class GestioneUtenzaController {
-    private CustomerRegistrationPanel viewcustomerRegistrationPanel;
-    private EmployeeRegistrationPanel viewemployeeRegistrationPanel;
+
+    private final MainMenuPanel viewMainMenupanel = new MainMenuPanel();
     private LoginPanel viewLoginPanel;
-    private JCustomerRegFrame frameCustomerReg;
-    private JEmployeeRegFrame frameEmployeeReg;
-    private JLoginFrame frameLogin;
     private UserRegistrationFacade userRegistrationFacade;
     private LoginFacade loginFacade;
+    private JTreniNordOvestFrame frame;
 
 
     //Costruttore per la registazione clienti
-    public GestioneUtenzaController(CustomerRegistrationPanel view, JCustomerRegFrame frame) {
-        this.viewcustomerRegistrationPanel = view;
-        this.frameCustomerReg = frame;
+    public GestioneUtenzaController( JTreniNordOvestFrame frame) {
         this.userRegistrationFacade = new UserRegistrationFacade();
+        this.frame = frame;
         addClienteRegistrationListener();
-    }
-
-
-    public GestioneUtenzaController(EmployeeRegistrationPanel view, JEmployeeRegFrame frame) {
-        this.viewemployeeRegistrationPanel= view;
-        this.frameEmployeeReg = frame;
-        this.userRegistrationFacade = new UserRegistrationFacade();
-        addDipendenteRegistrationListener();
-    }
-
-
-    //Costruttore per il login
-    public GestioneUtenzaController(LoginPanel view, JLoginFrame frame) {
-        this.viewLoginPanel = view;
-        this.frameLogin = frame;
-        this.loginFacade = new LoginFacade();
-        this.userRegistrationFacade = new UserRegistrationFacade();
         addLoginListener();
-
+        addDipendenteRegistrationListener();
+        addMainMenuListener();
     }
+
+
 
 
 
@@ -67,21 +50,21 @@ public class GestioneUtenzaController {
 
         try {
 
-            nome = viewcustomerRegistrationPanel.getTxtNome().getText();
-            cognome = viewcustomerRegistrationPanel.getTxtCognome().getText();
-            sesso =viewcustomerRegistrationPanel.getComboSesso();
+            nome = frame.getCustomerRegistrationPanel().getTxtNome().getText();
+            cognome = frame.getCustomerRegistrationPanel().getTxtCognome().getText();
+            sesso = frame.getCustomerRegistrationPanel().getComboSesso();
 
-            dataNascita  =  viewcustomerRegistrationPanel.getDataNascita().getDate();
+            dataNascita  = frame.getCustomerRegistrationPanel().getDataNascita().getDate();
             if(dataNascita==null){
                 JOptionPane.showMessageDialog(null,"Data nascita non inserita","Error",JOptionPane.ERROR_MESSAGE);
             }
             LocalDate dataNascitaLocal= dataNascita.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
-            cellulare = viewcustomerRegistrationPanel.getTxtCellulare().getText();
-            email = viewcustomerRegistrationPanel.getTxtEmail().getText();
-            password = viewcustomerRegistrationPanel.getTxtPassword().getText();
-            indirizzo = viewcustomerRegistrationPanel.getTxtIndirizzo().getText();
-            luogoNascita = viewcustomerRegistrationPanel.getTxtLuogoNascita().getText();
+            cellulare = frame.getCustomerRegistrationPanel().getTxtCellulare().getText();
+            email = frame.getCustomerRegistrationPanel().getTxtEmail().getText();
+            password = frame.getCustomerRegistrationPanel().getTxtPassword().getText();
+            indirizzo = frame.getCustomerRegistrationPanel().getTxtIndirizzo().getText();
+            luogoNascita = frame.getCustomerRegistrationPanel().getTxtLuogoNascita().getText();
 
 
 
@@ -113,33 +96,34 @@ public class GestioneUtenzaController {
     }
     private void registraDipendente(){
 
-        String nome,cognome,sesso,password,cellulare,indirizzo,luogoNascita,ruolo;
+        String nome,cognome,sesso,cellulare,indirizzo,luogoNascita,ruolo;
+        char[] password;
         Date dataNascita;
         Dipendente dipendente;
 
         try {
 
-            nome = viewemployeeRegistrationPanel.getTxtNome().getText();
-            cognome = viewemployeeRegistrationPanel.getTxtCognome().getText();
-            sesso =viewemployeeRegistrationPanel.getComboSesso();
+            nome = frame.getEmployeeRegistrationPanel().getTxtNome().getText();
+            cognome = frame.getEmployeeRegistrationPanel().getTxtCognome().getText();
+            sesso = frame.getEmployeeRegistrationPanel().getComboSesso();
 
-            dataNascita  =  viewemployeeRegistrationPanel.getDataNascita().getDate();
+            dataNascita  = frame.getEmployeeRegistrationPanel().getDataNascita().getDate();
             if(dataNascita==null){
                 JOptionPane.showMessageDialog(null,"Data nascita non inserita","Error",JOptionPane.ERROR_MESSAGE);
             }
             LocalDate dataNascitaLocal= dataNascita.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
-            cellulare = viewemployeeRegistrationPanel.getTxtCellulare().getText();
-            password = viewemployeeRegistrationPanel.getTxtPassword().getText();
-            indirizzo = viewemployeeRegistrationPanel.getTxtIndirizzo().getText();
-            luogoNascita = viewemployeeRegistrationPanel.getTxtLuogoNascita().getText();
-            ruolo = viewemployeeRegistrationPanel.getComboRuolo();
+            cellulare = frame.getEmployeeRegistrationPanel().getTxtCellulare().getText();
+            password = frame.getEmployeeRegistrationPanel().getTxtPassword().getPassword();
+            indirizzo = frame.getEmployeeRegistrationPanel().getTxtIndirizzo().getText();
+            luogoNascita = frame.getEmployeeRegistrationPanel().getTxtLuogoNascita().getText();
+            ruolo = frame.getEmployeeRegistrationPanel().getComboRuolo().toString();
 
 
 
-            if (!password.isEmpty() && !nome.isEmpty() && !cognome.isEmpty() && !sesso.isEmpty() && !luogoNascita.isEmpty() && !cellulare.isEmpty() && !indirizzo.isEmpty() && !(dataNascita ==null)&& !dataNascitaLocal.isAfter(LocalDate.now())) {
+            if (!password.toString().isEmpty() && !nome.isEmpty() && !cognome.isEmpty() && !sesso.isEmpty() && !luogoNascita.isEmpty() && !cellulare.isEmpty() && !indirizzo.isEmpty() && !(dataNascita ==null)&& !dataNascitaLocal.isAfter(LocalDate.now())) {
 
-                dipendente= new Dipendente(UUID.randomUUID(),password, nome, cognome, sesso, luogoNascita,dataNascitaLocal, cellulare, indirizzo, Dipendente.getStipendioByRuolo(ruolo), ruolo);
+                dipendente= new Dipendente(UUID.randomUUID(),password.toString(), nome, cognome, sesso, luogoNascita,dataNascitaLocal, cellulare, indirizzo, Dipendente.getStipendioByRuolo(ruolo), ruolo);
 
                 if (userRegistrationFacade.registraDipendente(dipendente)){
 
@@ -190,25 +174,12 @@ public class GestioneUtenzaController {
     private void modificaDatiDipendente(){}
     private void aggiornaDatiProfilo(){}
 
-    ///Test -- Rimuovere
-    public static void main(){
-        JCustomerRegFrame frame = new JCustomerRegFrame();
-       frame.setVisible(true);
-       JEmployeeRegFrame frame2 = new JEmployeeRegFrame();
-       frame2.setVisible(true);
-       JLoginFrame frame3 = new JLoginFrame();
-       frame3.setVisible(true);
-        JCustomerMainFrame customerMainFrame = new JCustomerMainFrame();
-        customerMainFrame.setVisible(true);
-
-    }
-
 
 
     private void addClienteRegistrationListener(){
-        frameCustomerReg.getCustomerRegistrationPanel().getBtnRegister().addActionListener(e -> {
+        frame.getCustomerRegistrationPanel().getBtnRegister().addActionListener(e -> {
 
-            if(frameCustomerReg.getCustomerRegistrationPanel().getBtnRegister().getActionCommand().equals(CustomerRegistrationPanel.CMD_Register)){
+            if(frame.getCustomerRegistrationPanel().getBtnRegister().getActionCommand().equals(CustomerRegistrationPanel.CMD_Register)){
                 registraCliente();
             }
 
@@ -218,8 +189,8 @@ public class GestioneUtenzaController {
     }
 
     private void addDipendenteRegistrationListener(){
-        frameEmployeeReg.getEmployeeRegistrationPanel().getBtnRegister().addActionListener(e -> {
-            if(frameEmployeeReg.getEmployeeRegistrationPanel().getBtnRegister().getActionCommand().equals(EmployeeRegistrationPanel.CMD_Register)){
+        frame.getEmployeeRegistrationPanel().getBtnRegister().addActionListener(e -> {
+            if(frame.getEmployeeRegistrationPanel().getBtnRegister().getActionCommand().equals(EmployeeRegistrationPanel.CMD_Register)){
                 registraDipendente();
             }
         });
@@ -229,12 +200,28 @@ public class GestioneUtenzaController {
 
     private void addLoginListener(){
 
-        frameLogin.getLoginPanel().getBottoneAccesso().addActionListener(e -> {
-            if(frameLogin.getLoginPanel().getBottoneAccesso().getActionCommand().equals(LoginPanel.CMD_Login)){
+        frame.getLoginPanel().getBottoneAccesso().addActionListener(e -> {
+            if(frame.getLoginPanel().getBottoneAccesso().getActionCommand().equals(LoginPanel.CMD_Login)){
                 login();
             }
         });
 
+    }
+
+
+
+    private void addMainMenuListener(){
+        viewMainMenupanel.getAccesso().addActionListener(e ->
+                frame.showPanel(JTreniNordOvestFrame.LOGIN)
+        );
+
+        viewMainMenupanel.getRegistrazioneCliente().addActionListener(e ->
+                frame.showPanel(JTreniNordOvestFrame.CUSTOMER_REGISTRATION)
+        );
+
+        viewMainMenupanel.getRegistrazioneDipendente().addActionListener(e ->
+                frame.showPanel(JTreniNordOvestFrame.EMPLOYEE_REGISTRATION)
+        );
     }
 
 

@@ -1,6 +1,6 @@
 package it.unipv.ingsfw.treninordovest.main;
 
-import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.JMainMenuFrame;
+import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.JTreniNordOvestFrame;
 
 import javax.swing.*;
 import java.util.logging.Logger;
@@ -30,9 +30,9 @@ public class AppStart {
         SwingUtilities.invokeLater(() -> {
             try {
                 // Crea la finestra principale
-                JMainMenuFrame mainFrame = new JMainMenuFrame();
+                JTreniNordOvestFrame mainFrame = new JTreniNordOvestFrame();
                 // Configura e mostra il frame principale
-                mainFrame.showFrame();
+                mainFrame.setVisible(true);
                 // Il controller viene già creato all'interno del JMainMenuFrame
                 // in base alla tua struttura attuale
             } catch (Exception e) {

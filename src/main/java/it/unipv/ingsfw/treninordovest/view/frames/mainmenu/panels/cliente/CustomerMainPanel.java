@@ -1,0 +1,82 @@
+package it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.cliente;
+
+// Imports have been simplified
+import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.cliente.panels.*;
+import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.cliente.panels.pagamenti.CreditCardPanel;
+import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.cliente.panels.titolitable.TitoliViaggioTablePanel;
+import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.cliente.panels.viaggitable.ViaggiTablePanel;
+
+import javax.swing.*;
+import java.awt.*;
+
+// 1. Changed to extend JPanel
+public class CustomerMainPanel extends JPanel {
+    private final JTabbedPane tabbedPane = new JTabbedPane();
+    private final TicketPurchasePanel ticketPurchasePanel;
+    private final SubscriptionPanel subscriptionPanel = new SubscriptionPanel();
+    private final CardPurchasePanel cardPurchasePanel = new CardPurchasePanel();
+    private final RefundPanel refundPanel = new RefundPanel();
+    private final CustomerProfilePanel profilePanel = new CustomerProfilePanel();
+    private final ViaggiTablePanel tratteTablePanel = new ViaggiTablePanel();
+    private final Color coloreSfondo = new Color(131, 168, 195);
+    private final CreditCardPanel creditCardPanel;
+
+    public CustomerMainPanel() {
+        // 2. All window-specific calls are removed from the constructor.
+        // The panel's layout is now set directly.
+        this.setLayout(new BorderLayout());
+
+        // We pass 'this' to the child panels so they can call back to the parent
+        // to switch tabs.
+        this.creditCardPanel = new CreditCardPanel(this);
+        this.ticketPurchasePanel = new TicketPurchasePanel(this);
+
+        initComponents();
+    }
+
+    private void initComponents() {
+        ticketPurchasePanel.setBackground(coloreSfondo);
+        subscriptionPanel.setBackground(coloreSfondo);
+        cardPurchasePanel.setBackground(coloreSfondo);
+        refundPanel.setBackground(coloreSfondo);
+
+        tratteTablePanel.aggiornaTratta();
+        tabbedPane.addTab("Acquisto Biglietto", ticketPurchasePanel);
+        tabbedPane.addTab("Abbonamento", subscriptionPanel);
+        tabbedPane.addTab("Acquisto Tessera", cardPurchasePanel);
+        tabbedPane.addTab("Rimborso", refundPanel);
+        tabbedPane.addTab("Profilo", profilePanel);
+        tabbedPane.addTab("Pagamento Carta", creditCardPanel);
+
+        ticketPurchasePanel.add(tratteTablePanel);
+
+        // Test panels
+        AcquistoBigliettoPanel acquistoBigliettoPanel = new AcquistoBigliettoPanel();
+        acquistoBigliettoPanel.setBackground(coloreSfondo);
+        tabbedPane.addTab("Acquisto", acquistoBigliettoPanel);
+
+        TitoliViaggioTablePanel titoliViaggioTablePanel = new TitoliViaggioTablePanel();
+        titoliViaggioTablePanel.setBackground(coloreSfondo);
+        tabbedPane.addTab("Titoli", titoliViaggioTablePanel);
+
+        // Add the tabbed pane to this panel
+        add(tabbedPane, BorderLayout.CENTER);
+
+        // 3. The view DOES NOT create its own controllers. This is done externally.
+    }
+
+    /**
+     * Switches the visible tab to the payment panel.
+     * This method can be called by child panels.
+     */
+    public void showPaymentTab() {
+        tabbedPane.setSelectedComponent(creditCardPanel);
+    }
+
+    // Getter methods remain the same, so controllers can access the panels
+    public TicketPurchasePanel getTicketPurchasePanel() { return ticketPurchasePanel; }
+    public SubscriptionPanel getSubscriptionPanel() { return subscriptionPanel; }
+    public CardPurchasePanel getCardPurchasePanel() { return cardPurchasePanel; }
+    public CreditCardPanel getCreditCardPanel() { return creditCardPanel; }
+    // ... other getters ...
+}
