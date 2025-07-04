@@ -16,6 +16,7 @@ public class TicketPurchasePanel extends JPanel {
     private JLabel labelRitorno;
     private JDateChooser dataRitorno;
     private JComboBox<String> comboTipoBiglietto;
+    public static String CMD_Acquista = "acquista";
     //private TratteTablePanel tratteTablePanel;
 
     /*DA MODIFICARE*/
@@ -50,11 +51,8 @@ public class TicketPurchasePanel extends JPanel {
         panelInput.add(quantitaSpinner);
         panelInput.add(comboTipoBiglietto);
 
+        buttonAcquista.setActionCommand(CMD_Acquista);
 
-
-        buttonAcquista.addActionListener(e -> {
-
-        });
 
 
 

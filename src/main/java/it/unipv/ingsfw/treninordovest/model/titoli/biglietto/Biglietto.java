@@ -22,6 +22,8 @@ public class Biglietto extends TitoloViaggio {
         setId(id);
     }
 
+
+
     //Costruttore completo
 
 

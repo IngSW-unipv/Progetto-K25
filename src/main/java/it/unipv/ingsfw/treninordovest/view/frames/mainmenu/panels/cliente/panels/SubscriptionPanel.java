@@ -11,6 +11,7 @@ public class SubscriptionPanel extends JPanel {
     private JLabel labelDataInizio;
     private JDateChooser textDataInizio;
     private JButton buttonAbbonati;
+    public static String CMD_Abbonati = "abbonati";
 
     public SubscriptionPanel() {
 
@@ -27,6 +28,8 @@ public class SubscriptionPanel extends JPanel {
         textDataInizio = new JDateChooser();
 
         buttonAbbonati = new JButton("Abbonati");
+
+        buttonAbbonati.setActionCommand(CMD_Abbonati);
 
         gbc.gridx = 0;
         gbc.gridy = 0;

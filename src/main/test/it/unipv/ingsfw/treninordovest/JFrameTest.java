@@ -1,17 +1,17 @@
 package it.unipv.ingsfw.treninordovest;
 
+import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.JTreniNordOvestFrame;
 import org.junit.jupiter.api.Test;
 
 import javax.swing.*;
 
 public class JFrameTest  extends JFrame {
     public JFrameTest() {
-        CustomerProfilePanel cp = new CustomerProfilePanel();
-        this.add(cp);
+
     }
 
     @Test
-    void MostraPanel() {
-        this.setVisible(true);
+    void MostraPanel() {JTreniNordOvestFrame  frame = new JTreniNordOvestFrame();
+        frame.setVisible(true);
     }
 }

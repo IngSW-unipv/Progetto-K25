@@ -19,38 +19,31 @@ public class RimborsoService {
     }
 
     public boolean effettuaRimborso(String idBiglietto) {
-
         Rimborso rimborso;
-        Biglietto biglietto;
+        Biglietto bigliettoDB;
         Cliente clienteLoggato = (Cliente) SessionManager.getInstance().getCurrentUser();
 
         if(clienteLoggato!=null) {
+            try {
+                Biglietto biglietto = new Biglietto(idBiglietto);
 
-            try{
-               biglietto = bigliettoDao.get(new Biglietto(idBiglietto));
+                bigliettoDB = bigliettoDao.get(biglietto);
+                Cliente richiedente = (Cliente) SessionManager.getInstance().getCurrentUser();
 
-               if(bigliettoDao !=null){
-                   rimborso = new Rimborso(clienteLoggato.getId().toString(),idBiglietto);
-                   rimborsoDao.insert(rimborso);
-                   return true;
-               }
+                if (bigliettoDB != null) {
+                    System.out.println("Biglietto trovato");
+                    rimborso = new Rimborso(richiedente, bigliettoDB);
+                    rimborsoDao.insert(rimborso);
 
-
-
-
-
+                    return true;
 
 
+                }
             }catch (Exception e) {
-
                 e.printStackTrace();
-                return  false;
+                return false;
             }
-
         }
-
-
-
 
 
 

@@ -1,14 +1,12 @@
 package it.unipv.ingsfw.treninordovest.controller;
 
 import it.unipv.ingsfw.treninordovest.facade.acquisto.AcquistoFacade;
-import it.unipv.ingsfw.treninordovest.service.AcquistoService;
 import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.JTreniNordOvestFrame;
 import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.cliente.CustomerMainPanel;
-
+import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.cliente.panels.SubscriptionPanel;
+import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.cliente.panels.TicketPurchasePanel;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.ZoneId;
 
@@ -16,19 +14,16 @@ import java.time.ZoneId;
 
 public class AcquistoController  {
 
-    //private JTreniNordOvestFrame frame;
+
     private final CustomerMainPanel view;
     private final AcquistoFacade acquistoFacade;
+    private final JTreniNordOvestFrame frame=null;
 
-    public AcquistoController(CustomerMainPanel view, JTreniNordOvestFrame frame) {
-       // this.frame = frame;
+   public AcquistoController(CustomerMainPanel view) {
+        this.view=view;
         this.acquistoFacade = new AcquistoFacade();
-        this.view = view;
         this.addListeners();
     }
-
-
-
 
     ///  Acquisto dei biglietti
     public void acquistoBiglietto() {
@@ -36,7 +31,7 @@ public class AcquistoController  {
         String idTratta= view.getTicketPurchasePanel().getTextFieldTratta().getText();
         boolean ritorno= view.getTicketPurchasePanel().getCheckBoxRitorno().isSelected();
         LocalDate dataRitorno= view.getTicketPurchasePanel().getDataRitorno().getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        String tipoBiglietto = view.getTicketPurchasePanel().getComboTipoBiglietto().getSelectedItem().toString();
+        String tipoBiglietto =view.getTicketPurchasePanel().getComboTipoBiglietto().getSelectedItem().toString();
         String tipoPagamento = "cartacredito"; //Provvisorio
         int quantita =  Integer.parseInt(view.getTicketPurchasePanel().getQuantitaSpinner().getValue().toString() ) ;
 
@@ -81,10 +76,21 @@ public class AcquistoController  {
 
     private void addListeners() {
         // La logica è direttamente collegata al pulsante.
-        view.getTicketPurchasePanel().getButtonAcquista().addActionListener(e -> acquistoBiglietto());
-        view.getSubscriptionPanel().getButtonAbbonati().addActionListener(e -> acquistoAbbonamento());
+        view.getTicketPurchasePanel().getButtonAcquista().addActionListener(e -> {
+            if (view.getTicketPurchasePanel().getButtonAcquista().getActionCommand().equals(TicketPurchasePanel.CMD_Acquista)){
+                acquistoBiglietto();
+            }
+
+        });
+        view.getSubscriptionPanel().getButtonAbbonati().addActionListener(e -> {
+            if(view.getSubscriptionPanel().getButtonAbbonati().getActionCommand().equals(SubscriptionPanel.CMD_Abbonati)){
+                acquistoAbbonamento();
+            }
+        });
         view.getCardPurchasePanel().getButtonAcquistaTessera().addActionListener(e -> acquistoTessera());
     }
+
+
 
 
 

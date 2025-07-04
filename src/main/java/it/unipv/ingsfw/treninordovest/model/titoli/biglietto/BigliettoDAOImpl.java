@@ -20,10 +20,12 @@ public class BigliettoDAOImpl implements BigliettoDAO {
         Biglietto bigliettoDB = null;
         String sql = "select * from titoliBiglietti where idTitolo=?";
 
-        try (Connection con = Database.getConnection(); PreparedStatement ps = con.prepareStatement(sql); ResultSet rs=ps.executeQuery()) {
+        try (Connection con = Database.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
 
             //Estrazione dei dati dal DB
             ps.setString(1, biglietto.getId().toString());
+
+            ResultSet rs = ps.executeQuery();
 
             if(rs.next()){
                 String idTitolo = rs.getString("IDTitolo");

@@ -14,6 +14,7 @@ import it.unipv.ingsfw.treninordovest.model.varie.SessionManager;
 import it.unipv.ingsfw.treninordovest.model.strategy.abbonamento.IAbbonamentoStrategy;
 import it.unipv.ingsfw.treninordovest.service.AcquistoService;
 
+import java.beans.PropertyChangeListener;
 import java.time.LocalDate;
 
 
@@ -46,6 +47,16 @@ public class AcquistoFacade implements IAcquistoFacade {
     @Override
     public boolean rimborsoBiglietto(String idBiglietto) {
         return false;
+    }
+
+    public void addPropertyChangeListener(PropertyChangeListener listener) {
+        acquistoService.addPropertyChangeListener(listener);
+    }
+    public void removePropertyChangeListener(PropertyChangeListener listener) {
+        acquistoService.removePropertyChangeListener(listener);
+    }
+    public void notifyPropertyChange(String propertyName, Object oldValue, Object newValue) {
+        acquistoService.notifyPropertyChange(propertyName, oldValue, newValue);
     }
 
 

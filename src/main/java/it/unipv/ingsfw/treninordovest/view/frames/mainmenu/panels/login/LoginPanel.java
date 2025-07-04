@@ -3,7 +3,7 @@ package it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.login;
 import javax.swing.*;
 import java.awt.*;
 
-public class LoginPanel extends JPanel {
+public class LoginPanel extends JPanel  {
     //Dichiarazione dei componenti
     private final JTextField campoUtente;
     private final JPasswordField campoPassword;

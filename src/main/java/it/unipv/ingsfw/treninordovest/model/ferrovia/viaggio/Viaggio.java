@@ -78,18 +78,6 @@ public class Viaggio {
         return destinazione;
     }
 
-    @Override
-    public String toString() {
-        return "Viaggio{" +
-                "idViaggio='" + idViaggio + '\'' +
-                ", DataViaggio=" + DataViaggio +
-                ", oraPartenza=" + oraPartenza +
-                ", oraArrivo=" + oraArrivo +
-                ", partenza=" + partenza.getCitta() +
-                ", destinazione=" + destinazione.getCitta() +
-                ", tratta=" + tratta.getIdTratta() +
-                ", treno=" + treno.getIdTreno() +
-                '}';
-    }
+
 }
 

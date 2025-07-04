@@ -8,6 +8,7 @@ public class RimborsoController implements ActionListener {
 
     public RimborsoController() {
 
+
     }
 
     public void effettuaRimborso() {

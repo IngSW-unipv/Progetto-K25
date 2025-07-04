@@ -12,6 +12,9 @@ public class LoginService {
 
     private final PropertyChangeSupport support ;
 
+    public static final String LOGIN_SUCCESS_PROPERTY = "login_success";
+
+
     public LoginService() {
         this.support = new PropertyChangeSupport(this);
     }
@@ -28,6 +31,7 @@ public class LoginService {
                 System.out.println("DEBUG: ID Utente:   "+user.getId());
 
                 SessionManager.getInstance().setCurrentUser(user);
+                support.firePropertyChange(LOGIN_SUCCESS_PROPERTY, null, user);
                 return true;
             }
 

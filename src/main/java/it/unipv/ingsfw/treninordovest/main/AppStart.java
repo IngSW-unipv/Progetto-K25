@@ -1,5 +1,7 @@
 package it.unipv.ingsfw.treninordovest.main;
 
+import it.unipv.ingsfw.treninordovest.facade.login.LoginFacade;
+import it.unipv.ingsfw.treninordovest.service.LoginService;
 import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.JTreniNordOvestFrame;
 
 import javax.swing.*;
@@ -31,6 +33,10 @@ public class AppStart {
             try {
                 // Crea la finestra principale
                 JTreniNordOvestFrame mainFrame = new JTreniNordOvestFrame();
+
+                LoginFacade loginFacade = new LoginFacade();
+                loginFacade.addPropertyChangeListener(mainFrame);
+
                 // Configura e mostra il frame principale
                 mainFrame.setVisible(true);
                 // Il controller viene già creato all'interno del JMainMenuFrame

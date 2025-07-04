@@ -19,11 +19,12 @@ import java.util.Date;
 import java.time.LocalDate;
 import java.util.UUID;
 
-public class GestioneUtenzaController {
+public class GestioneUtenzaController implements ActionListener{
 
     private final UserRegistrationFacade userRegistrationFacade;
     private final LoginFacade loginFacade;
     private JTreniNordOvestFrame frame;
+    private MainMenuPanel view;
 
 
     //Costruttore per la registazione clienti
@@ -31,12 +32,20 @@ public class GestioneUtenzaController {
         this.userRegistrationFacade = new UserRegistrationFacade();
         this.frame = frame;
         this.loginFacade = new LoginFacade();
-        addClienteRegistrationListener();
+        //addClienteRegistrationListener();
         addLoginListener();
-        addDipendenteRegistrationListener();
+       //addDipendenteRegistrationListener();
         addMainMenuListener();
-
+        loginFacade.addPropertyChangeListener(frame);
     }
+    public GestioneUtenzaController(MainMenuPanel view) {
+        this.view = view;
+        this.userRegistrationFacade = new UserRegistrationFacade();
+        this.loginFacade = new LoginFacade();
+        //addClienteRegistrationListener();
+    }
+
+
 
 
     private void registraCliente(){
@@ -223,6 +232,9 @@ public class GestioneUtenzaController {
         });
 
 
+        loginFacade.addPropertyChangeListener(frame);
+
+
     }
 
     private void addMainMenuListener(){
@@ -250,9 +262,8 @@ public class GestioneUtenzaController {
     }
 
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
 
-
-
-
-
+    }
 }
