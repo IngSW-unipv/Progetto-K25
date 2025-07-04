@@ -1,12 +1,8 @@
 package it.unipv.ingsfw.treninordovest.facade.pagamento;
 
 import it.unipv.ingsfw.treninordovest.model.titoli.pagamento.Pagamento;
-import it.unipv.ingsfw.treninordovest.model.titoli.pagamento.PagamentoDAOImpl;
-import it.unipv.ingsfw.treninordovest.model.varie.SessionManager;
 import it.unipv.ingsfw.treninordovest.service.PagamentoService;
 
-import java.time.LocalDate;
-import java.util.UUID;
 
 public class PagamentoFacade implements IPagamentoFacade {
 

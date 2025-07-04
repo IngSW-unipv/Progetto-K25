@@ -60,7 +60,7 @@ public class RimborsoServiceTest {
     @Test
     void testMethod() {
 
-        String idBiglietto= "09387ec3-fed9-4ffa-923f-5a55a2e1d372";
+        String idBiglietto= "9ff7c796-2bb5-4eac-ba90-1b98482880c6";
         SessionManager.getInstance().setCurrentUser(new Cliente("cd9714b9-d9a2-4b8f-b062-9a8056c25f0e"));
 
         RimborsoService rimborsoService = new RimborsoService();

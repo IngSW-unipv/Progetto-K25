@@ -30,15 +30,15 @@ public class RimborsoService {
                 bigliettoDB = bigliettoDao.get(biglietto);
                 Cliente richiedente = (Cliente) SessionManager.getInstance().getCurrentUser();
 
-                if (bigliettoDB != null) {
+                if (bigliettoDB != null && !rimborsoDao.exists(new Rimborso(richiedente, bigliettoDB))) {
                     System.out.println("Biglietto trovato");
                     rimborso = new Rimborso(richiedente, bigliettoDB);
                     rimborsoDao.insert(rimborso);
 
                     return true;
-
-
                 }
+                else
+                    System.out.println("Rimborso già effettuato o biglietto non trovato");
             }catch (Exception e) {
                 e.printStackTrace();
                 return false;
