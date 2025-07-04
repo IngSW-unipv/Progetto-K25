@@ -2,7 +2,9 @@ package it.unipv.ingsfw.treninordovest.model.titoli.biglietto;
 
 import it.unipv.ingsfw.treninordovest.model.dao.database.Database;
 import it.unipv.ingsfw.treninordovest.model.ferrovia.viaggio.Viaggio;
+import it.unipv.ingsfw.treninordovest.model.titoli.abbonamento.Abbonamento;
 import it.unipv.ingsfw.treninordovest.model.titoli.pagamento.Pagamento;
+import it.unipv.ingsfw.treninordovest.model.titoli.tessera.Tessera;
 
 import java.sql.*;
 import java.time.LocalDate;

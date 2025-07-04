@@ -36,8 +36,8 @@ public class Biglietto extends TitoloViaggio {
         this.validato = validato;
     }
 
-    public Biglietto(UUID uuid, LocalDate dataEmissione, double v, boolean validazione, String tipoBiglietto) {
-        super(uuid, dataEmissione, v);
+    public Biglietto(UUID uuid, LocalDate dataEmissione, double prezzo, boolean validazione, String tipoBiglietto) {
+        super(uuid, dataEmissione, prezzo);
       this.validato = validazione;
         this.tipoBiglietto = tipoBiglietto;
         this.viaggio = null;
