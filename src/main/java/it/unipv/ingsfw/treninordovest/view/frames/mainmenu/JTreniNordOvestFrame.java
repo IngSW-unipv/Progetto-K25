@@ -86,7 +86,7 @@ public class JTreniNordOvestFrame extends JFrame implements PropertyChangeListen
     }
 
     private void initController(){
-        new GestioneUtenzaController(this.mainMenuPanel,this);
+        //new GestioneUtenzaController(this.mainMenuPanel,this);
         //new AcquistoController(this.customerMainPanel);
     }
 

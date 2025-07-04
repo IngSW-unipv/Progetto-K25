@@ -31,13 +31,15 @@ public class GestioneUtenzaController implements ActionListener{
 
     //Costruttore per la registazione clienti
     public GestioneUtenzaController( JTreniNordOvestFrame frame) {
+        this.viewMainPanel = frame.getMainMenuPanel();
+        this.frame = (JTreniNordOvestFrame) frame;
         this.userRegistrationFacade = new UserRegistrationFacade();
-        this.frame = frame;
         this.loginFacade = new LoginFacade();
 //        addLoginListener();
 //        addMainMenuListener();
 
-        frame.addActionListener(this);
+        viewMainPanel.addActionListener(this);
+        //frame.addActionListener(this);
     }
 
     public GestioneUtenzaController(MainMenuPanel view,JFrame frame) {
@@ -277,18 +279,29 @@ public class GestioneUtenzaController implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        if(viewMainPanel.getAccesso().getActionCommand().equalsIgnoreCase("login")){
-            frame.showPanel(JTreniNordOvestFrame.LOGIN);
+        String command = e.getActionCommand();
+        // Usa uno switch per eseguire l'azione corretta per ogni comando
+        // CONTROLLA ATTENTAMENTE QUESTA PARTE NEL TUO CODICE!
+        switch (command) {
+            case "login":
+                // Se il comando è "login", mostra il pannello di LOGIN
+                frame.showPanel(JTreniNordOvestFrame.LOGIN);
+                break;
 
-        }
+            case "customerRegistration":
+                // Se è "customerRegistration", mostra il pannello di REGISTRAZIONE CLIENTE
+                frame.showPanel(JTreniNordOvestFrame.CUSTOMER_REGISTRATION);
+                break;
 
-        if(viewMainPanel.getRegistrazioneCliente().getActionCommand().equalsIgnoreCase("customerRegistration")){
-           frame.showPanel(JTreniNordOvestFrame.CUSTOMER_REGISTRATION);
-        }
+            case "employeeRegistration":
+                // E così via...
+                frame.showPanel(JTreniNordOvestFrame.EMPLOYEE_REGISTRATION);
+                break;
 
-
-        if(viewMainPanel.getRegistrazioneDipendente().getActionCommand().equalsIgnoreCase("employeeRegistration")){
-           frame.showPanel(JTreniNordOvestFrame.EMPLOYEE_REGISTRATION);
+            // È buona norma avere un caso di default
+            default:
+                System.err.println("Comando non riconosciuto: " + command);
+                break;
         }
 
 
