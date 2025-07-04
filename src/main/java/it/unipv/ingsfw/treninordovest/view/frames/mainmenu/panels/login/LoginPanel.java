@@ -2,8 +2,10 @@ package it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.login;
 
 import javax.swing.*;
 import java.awt.*;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
-public class LoginPanel extends JPanel  {
+public class LoginPanel extends JPanel implements PropertyChangeListener {
     //Dichiarazione dei componenti
     private final JTextField campoUtente;
     private final JPasswordField campoPassword;
@@ -92,4 +94,14 @@ public class LoginPanel extends JPanel  {
     }
 
 
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+
+        if ("login_success".equals(evt.getPropertyName()) ){
+
+
+        }
+
+
+    }
 }

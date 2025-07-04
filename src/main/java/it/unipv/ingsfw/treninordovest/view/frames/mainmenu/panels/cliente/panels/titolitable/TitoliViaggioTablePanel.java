@@ -66,6 +66,10 @@ public class TitoliViaggioTablePanel extends JPanel {
 
         // Inizialmente mostra la carta degli abbonamenti
         cardLayout.show(cardsPanel, ABBONAMENTI_CARD);
+
+        btnShowAbbonamenti.setActionCommand("abbonamenti");
+        btnShowBiglietti.setActionCommand("biglietti");
+
     }
 
     // --- Metodi per impostare i dati (usati dal Controller) ---

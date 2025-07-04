@@ -33,9 +33,7 @@ public class LoginFacade implements ILoginFacade {
     public void removePropertyChangeListener(PropertyChangeListener listener) {
         loginService.removePropertyChangeListener(listener);
     }
-    public void notifyPropertyChange(String propertyName, Object oldValue, Object newValue) {
-        loginService.notifyPropertyChange(propertyName, oldValue, newValue);
-    }
+
 
 
 }

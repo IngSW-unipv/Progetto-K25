@@ -28,17 +28,15 @@ public class AcquistoService {
     private Cliente clienteLoggato;
     private final PagamentoService pagamentoService;
     private final PropertyChangeSupport support;
-    private final JTreniNordOvestFrame jTreniNordOvestFrame=new JTreniNordOvestFrame();
-
 
     public AcquistoService() {
         this.abbonamentoDAO=new AbbonamentoDAOimpl();
         this.bigliettoDAO=new BigliettoDAOImpl();
         this.tesseraDAO=new TesseraDAOImpl();
         this.pagamentoService=new PagamentoService();
-        this.support=new PropertyChangeSupport(this);
 
-        addPropertyChangeListener(jTreniNordOvestFrame);
+
+        this.support=new PropertyChangeSupport(this);
     }
 
     public boolean acquistoAbbonamento(String tipoAbbonamento,String tipoPagamento,int quantita) {
@@ -59,7 +57,7 @@ public class AcquistoService {
                     abbonamento.setId(UUID.randomUUID().toString());
                 }
 
-                notifyPropertyChange("abbonamento_acquistato", null, abbonamento);
+                support.firePropertyChange("abbonamento_acquistato", null, abbonamento);
 
                return true;
             } else if(clienteLoggato.getTessera()==null) {
@@ -100,7 +98,7 @@ public class AcquistoService {
                }
 
 
-               notifyPropertyChange("biglietto_acquistato", null, biglietto);
+               support.firePropertyChange("biglietto_acquistato", null, biglietto);
 
 
                return true;
@@ -125,7 +123,7 @@ public class AcquistoService {
             if (!(tesseraDAO.exists(clienteLoggato.getId().toString())) && clienteLoggato != null) {
                 Tessera tessera = new Tessera(UUID.randomUUID());
                 if (tesseraDAO.createTessera(tessera, clienteLoggato.getId().toString()))
-                    notifyPropertyChange("tessera_acquistata", null, tessera);
+                    support.firePropertyChange("tessera_acquistata", null, tessera);
                     return true;
 
             }
@@ -150,9 +148,7 @@ public class AcquistoService {
     public void removePropertyChangeListener(PropertyChangeListener listener) {
         support.removePropertyChangeListener(listener);
     }
-    public void notifyPropertyChange(String propertyName, Object oldValue, Object newValue) {
-        support.firePropertyChange(propertyName, oldValue, newValue);
-    }
+
 
 
 

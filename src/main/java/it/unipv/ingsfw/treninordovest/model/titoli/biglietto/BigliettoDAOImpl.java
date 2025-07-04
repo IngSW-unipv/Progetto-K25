@@ -209,4 +209,29 @@ public class BigliettoDAOImpl implements BigliettoDAO {
         return listaBiglietti;
 
     }
+
+
+    /***  Da ULTIMARE
+     * select * from
+     *     abbonamento join tessera on abbonamento.IDTessera = tessera.IDTessera
+     * where idCliente ="cd9714b9-d9a2-4b8f-b062-9a8056c25f0e";
+     *
+     * select ta.IDTitolo,ta.IDPagamento,ta.Prezzo,ta.Tipo,ta.Scadenza, ts.IDTessera from titoliabbonamenti ta join tessera ts on ta.IDTessera = ts.IDTessera where idCliente ="cd9714b9-d9a2-4b8f-b062-9a8056c25f0e";
+     *
+     * select tb.IDTitolo,tb.Emissione,tb.Prezzo,tb.Validato,tb.DataValidazione,tb.TipoBiglietto
+     * from titolibiglietti tb join pagamento pg on tb.IDPagamento=pg.IdPagamento
+     * where idCliente ="cd9714b9-d9a2-4b8f-b062-9a8056c25f0e"
+     * and Validato=true;
+     *
+     *
+     * select *
+     * from titolibiglietti tb join pagamento pg on tb.IDPagamento=pg.IdPagamento
+     * where idCliente ="cd9714b9-d9a2-4b8f-b062-9a8056c25f0e"
+     *
+     * ;
+     *
+     *
+     */
+
+
 }

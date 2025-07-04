@@ -25,6 +25,8 @@ public class GestioneUtenzaController implements ActionListener{
     private final LoginFacade loginFacade;
     private JTreniNordOvestFrame frame;
     private MainMenuPanel viewMainPanel;
+    private LoginPanel viewLoginPanel;
+    private CustomerRegistrationPanel viewCustomerRegistrationPanel;
 
 
     //Costruttore per la registazione clienti
@@ -32,18 +34,33 @@ public class GestioneUtenzaController implements ActionListener{
         this.userRegistrationFacade = new UserRegistrationFacade();
         this.frame = frame;
         this.loginFacade = new LoginFacade();
-        //addClienteRegistrationListener();
-        addLoginListener();
-       //addDipendenteRegistrationListener();
-        addMainMenuListener();
-        loginFacade.addPropertyChangeListener(frame);
+//        addLoginListener();
+//        addMainMenuListener();
+
+        frame.addActionListener(this);
     }
-    public GestioneUtenzaController(MainMenuPanel view) {
+
+    public GestioneUtenzaController(MainMenuPanel view,JFrame frame) {
         this.viewMainPanel = view;
+        this.frame = (JTreniNordOvestFrame) frame;
         this.userRegistrationFacade = new UserRegistrationFacade();
         this.loginFacade = new LoginFacade();
-        //addClienteRegistrationListener();
+
+        viewMainPanel.addActionListener(this);
+
     }
+
+    public GestioneUtenzaController(LoginPanel view,JFrame frame) {
+        this.viewLoginPanel = view;
+        this.frame = (JTreniNordOvestFrame) frame;
+        this.userRegistrationFacade = new UserRegistrationFacade();
+        this.loginFacade = new LoginFacade();
+
+       // viewMainPanel.addActionListener(this);
+
+    }
+
+
 
 
 
@@ -197,7 +214,6 @@ public class GestioneUtenzaController implements ActionListener{
         });
 
     }
-
     private void addDipendenteRegistrationListener(){
         frame.getEmployeeRegistrationPanel().getBtnRegister().addActionListener(e -> {
             if(frame.getEmployeeRegistrationPanel().getBtnRegister().getActionCommand().equals(EmployeeRegistrationPanel.CMD_Register)){
@@ -214,21 +230,15 @@ public class GestioneUtenzaController implements ActionListener{
 
 
     }
-
     private void addLoginListener(){
 
         frame.getLoginPanel().getBottoneAccesso().addActionListener(e -> {
-            if(frame.getLoginPanel().getBottoneAccesso().getActionCommand().equals(LoginPanel.CMD_Login)){
-                login();
 
-            }
 
         });
 
         frame.getLoginPanel().getBottoneIndietro().addActionListener(e -> {
-            if(frame.getLoginPanel().getBottoneIndietro().getActionCommand().equals(LoginPanel.CMD_Back)){
-               frame.showPanel(JTreniNordOvestFrame.MAIN_MENU);
-            }
+
         });
 
 
@@ -236,12 +246,13 @@ public class GestioneUtenzaController implements ActionListener{
 
 
     }
-
     private void addMainMenuListener(){
+
+
 
         frame.getMainMenuPanel().getAccesso().addActionListener(e -> {
 
-            if (frame.getMainMenuPanel().getAccesso().getActionCommand().equals(MainMenuPanel.CMD_LOGIN)){
+            if (frame.getMainMenuPanel().getAccesso().getActionCommand().equals("login")){
                 System.out.println("Accesso al login");
                 frame.showPanel( JTreniNordOvestFrame.LOGIN );
             }
@@ -262,10 +273,22 @@ public class GestioneUtenzaController implements ActionListener{
     }
 
 
+
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(viewMainPanel.getAccesso().getActionCommand().equals(LoginPanel.CMD_Login)){
+
+        if(viewMainPanel.getAccesso().getActionCommand().equalsIgnoreCase("login")){
             frame.showPanel(JTreniNordOvestFrame.LOGIN);
+
+        }
+
+        if(viewMainPanel.getRegistrazioneCliente().getActionCommand().equalsIgnoreCase("customerRegistration")){
+           frame.showPanel(JTreniNordOvestFrame.CUSTOMER_REGISTRATION);
+        }
+
+
+        if(viewMainPanel.getRegistrazioneDipendente().getActionCommand().equalsIgnoreCase("employeeRegistration")){
+           frame.showPanel(JTreniNordOvestFrame.EMPLOYEE_REGISTRATION);
         }
 
 

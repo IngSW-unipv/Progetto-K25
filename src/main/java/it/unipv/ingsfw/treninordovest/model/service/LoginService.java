@@ -10,10 +10,8 @@ import java.beans.PropertyChangeSupport;
 
 public class LoginService {
 
+
     private final PropertyChangeSupport support ;
-
-    public static final String LOGIN_SUCCESS_PROPERTY = "login_success";
-
 
     public LoginService() {
         this.support = new PropertyChangeSupport(this);
@@ -31,7 +29,7 @@ public class LoginService {
                 System.out.println("DEBUG: ID Utente:   "+user.getId());
 
                 SessionManager.getInstance().setCurrentUser(user);
-                support.firePropertyChange(LOGIN_SUCCESS_PROPERTY, null, user);
+                support.firePropertyChange("login_success", null, user);
                 return true;
             }
 
@@ -46,6 +44,7 @@ public class LoginService {
 
     public boolean logout() {
         SessionManager.getInstance().logout();
+        support.firePropertyChange("logout_success", null, null);
         return true;
     }
 
@@ -55,8 +54,6 @@ public class LoginService {
     public void removePropertyChangeListener(PropertyChangeListener listener) {
         support.removePropertyChangeListener(listener);
     }
-    public void notifyPropertyChange(String propertyName, Object oldValue, Object newValue) {
-        support.firePropertyChange(propertyName, oldValue, newValue);
-    }
+
 
 }

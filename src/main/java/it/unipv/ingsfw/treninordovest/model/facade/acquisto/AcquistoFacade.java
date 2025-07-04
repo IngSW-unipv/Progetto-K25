@@ -43,9 +43,7 @@ public class AcquistoFacade implements IAcquistoFacade {
     public void removePropertyChangeListener(PropertyChangeListener listener) {
         acquistoService.removePropertyChangeListener(listener);
     }
-    public void notifyPropertyChange(String propertyName, Object oldValue, Object newValue) {
-        acquistoService.notifyPropertyChange(propertyName, oldValue, newValue);
-    }
+
 
 
 }

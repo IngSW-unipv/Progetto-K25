@@ -11,6 +11,7 @@ import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.menu.MainMenuP
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
@@ -85,7 +86,7 @@ public class JTreniNordOvestFrame extends JFrame implements PropertyChangeListen
     }
 
     private void initController(){
-        new GestioneUtenzaController(this.mainMenuPanel);
+        new GestioneUtenzaController(this.mainMenuPanel,this);
         //new AcquistoController(this.customerMainPanel);
     }
 
@@ -110,7 +111,7 @@ public class JTreniNordOvestFrame extends JFrame implements PropertyChangeListen
         return mainMenuPanel;
     }
 
-    public LoginPanel getLoginPanel() {
+   public LoginPanel getLoginPanel() {
         return loginPanel;
     }
     public CustomerMainPanel getCustomerMainPanel() {
@@ -130,15 +131,31 @@ public class JTreniNordOvestFrame extends JFrame implements PropertyChangeListen
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        String cmd =(String) evt.getNewValue();
-        if (LoginService.LOGIN_SUCCESS_PROPERTY.equals(cmd)) {
-            showPanel(LOGIN);
-        } else if ("customerRegistration".equals(cmd)) {
-            showPanel(CUSTOMER_REGISTRATION);
-        } else if ("employeeRegistration".equals(cmd)) {
-            showPanel(EMPLOYEE_REGISTRATION);
-        } else if ("mainMenu".equals(cmd)) {
-            showPanel(MAIN_MENU);
-        } else if ("customerMainFrame".equals(cmd)) {}
+//        if ("accesso".equals(evt.getPropertyName())){
+//            showPanel(LOGIN);
+//        }
+//        if ("registrazione_cliente".equals(evt.getPropertyName())){
+//            showPanel(CUSTOMER_REGISTRATION);
+//        }
+//        if ("registrazione_dipendente".equals(evt.getPropertyName())){
+//            showPanel(EMPLOYEE_REGISTRATION);
+//        }
+
+        if ("login_success".equals(evt.getPropertyName()) ){
+            String ruolo = (String) evt.getNewValue();
+            if (ruolo.equals("Cliente")){
+                showPanel(CUSTOMER_MAINFRAME);
+            }else if (ruolo.equals("Dipendente")){
+                showPanel(EMPLOYEE_MAINFRAME);
+            }
+        }else if ("login_failed".equals(evt.getPropertyName()) ){}
+
+    }
+
+    public void addActionListener(ActionListener actionListener) {
+
+//        loginPanel.getBottoneAccesso().addActionListener(actionListener);
+//        loginPanel.getBottoneIndietro().addActionListener(actionListener);
+
     }
 }
