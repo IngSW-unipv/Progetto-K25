@@ -5,15 +5,10 @@ import it.unipv.ingsfw.treninordovest.model.strategy.abbonamento.IAbbonamentoStr
 import it.unipv.ingsfw.treninordovest.model.titoli.abbonamento.Abbonamento;
 import it.unipv.ingsfw.treninordovest.model.titoli.abbonamento.AbbonamentoDAOimpl;
 import it.unipv.ingsfw.treninordovest.model.titoli.pagamento.Pagamento;
-import it.unipv.ingsfw.treninordovest.model.titoli.pagamento.PagamentoDAOImpl;
 import it.unipv.ingsfw.treninordovest.model.strategy.ordine.Sale;
 import it.unipv.ingsfw.treninordovest.model.strategy.ordine.SaleLineItem;
 import it.unipv.ingsfw.treninordovest.model.strategy.pagamento.PagamentoContext;
-import it.unipv.ingsfw.treninordovest.utils.metodipagamento.CartaCredito;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import java.time.LocalDate;
 
 
 public class PagamentoContextTest {

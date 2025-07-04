@@ -22,7 +22,7 @@ public class TicketPurchasePanel extends JPanel {
     /*DA MODIFICARE*/
 
 
-    public TicketPurchasePanel(JPanel parent) {
+    public TicketPurchasePanel() {
 
         setLayout(new BorderLayout());
 

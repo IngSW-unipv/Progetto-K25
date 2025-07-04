@@ -1,10 +1,8 @@
 package it.unipv.ingsfw.treninordovest.view.frames.mainmenu;
 
-import it.unipv.ingsfw.treninordovest.controller.AcquistoController;
 import it.unipv.ingsfw.treninordovest.controller.GestioneUtenzaController;
-import it.unipv.ingsfw.treninordovest.service.LoginService;
+import it.unipv.ingsfw.treninordovest.model.service.LoginService;
 import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.cliente.CustomerMainPanel;
-import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.cliente.panels.SubscriptionPanel;
 import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.dipendente.panels.EmployeeMainPanel;
 import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.login.LoginPanel;
 import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.cliente.CustomerRegistrationPanel;
@@ -120,6 +118,12 @@ public class JTreniNordOvestFrame extends JFrame implements PropertyChangeListen
     }
     public EmployeeMainPanel getEmployeeMainPanel() {
         return employeeMainPanel;
+    }
+
+
+    public static void main(String[] args) {
+        JTreniNordOvestFrame frame = new JTreniNordOvestFrame();
+        frame.setVisible(true);
     }
 
 

@@ -2,7 +2,7 @@ package it.unipv.ingsfw.treninordovest.model.utenti.dipendente;
 
 import it.unipv.ingsfw.treninordovest.model.dao.database.Database;
 import it.unipv.ingsfw.treninordovest.model.ferrovia.treno.Treno;
-import it.unipv.ingsfw.treninordovest.utils.PasswordUtils;
+import it.unipv.ingsfw.treninordovest.model.utils.PasswordUtils;
 
 import java.sql.*;
 import java.time.LocalDate;

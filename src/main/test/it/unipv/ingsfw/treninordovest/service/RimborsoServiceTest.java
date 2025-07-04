@@ -1,17 +1,13 @@
 package it.unipv.ingsfw.treninordovest.service;
 
+import it.unipv.ingsfw.treninordovest.model.service.RimborsoService;
 import it.unipv.ingsfw.treninordovest.model.titoli.biglietto.Biglietto;
 import it.unipv.ingsfw.treninordovest.model.titoli.biglietto.BigliettoDAOImpl;
 import it.unipv.ingsfw.treninordovest.model.titoli.rimborso.Rimborso;
 import it.unipv.ingsfw.treninordovest.model.titoli.rimborso.RimborsoDAOImpl;
 import it.unipv.ingsfw.treninordovest.model.utenti.cliente.Cliente;
-import it.unipv.ingsfw.treninordovest.model.varie.GeneraID;
 import it.unipv.ingsfw.treninordovest.model.varie.SessionManager;
 import org.junit.jupiter.api.Test;
-
-import javax.swing.*;
-import java.time.LocalDate;
-import java.util.UUID;
 
 public class RimborsoServiceTest {
 

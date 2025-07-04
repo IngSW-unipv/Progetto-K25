@@ -28,8 +28,8 @@ public class CustomerMainPanel extends JPanel {
 
         // We pass 'this' to the child panels so they can call back to the parent
         // to switch tabs.
-        this.creditCardPanel = new CreditCardPanel(this);
-        this.ticketPurchasePanel = new TicketPurchasePanel(this);
+        this.creditCardPanel = new CreditCardPanel();
+        this.ticketPurchasePanel = new TicketPurchasePanel();
 
         initComponents();
     }

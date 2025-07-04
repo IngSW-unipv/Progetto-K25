@@ -1,13 +1,11 @@
 package it.unipv.ingsfw.treninordovest.model.utenti.cliente;
 
 
-import it.unipv.ingsfw.treninordovest.facade.login.ILoginFacade;
-import it.unipv.ingsfw.treninordovest.facade.login.LoginFacade;
 import it.unipv.ingsfw.treninordovest.model.factory.login.ILogin;
 import it.unipv.ingsfw.treninordovest.model.factory.login.LoginFactoryProducer;
 import it.unipv.ingsfw.treninordovest.model.titoli.tessera.Tessera;
 import it.unipv.ingsfw.treninordovest.model.utenti.utente.Utente;
-import it.unipv.ingsfw.treninordovest.utils.metodipagamento.wallet.EUWallet;
+import it.unipv.ingsfw.treninordovest.model.utils.metodipagamento.wallet.EUWallet;
 
 import java.time.LocalDate;
 import java.util.UUID;

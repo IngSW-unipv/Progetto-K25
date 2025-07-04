@@ -1,7 +1,7 @@
 package it.unipv.ingsfw.treninordovest.controller;
 
-import it.unipv.ingsfw.treninordovest.facade.login.LoginFacade;
-import it.unipv.ingsfw.treninordovest.facade.registazioniutenti.UserRegistrationFacade;
+import it.unipv.ingsfw.treninordovest.model.facade.login.LoginFacade;
+import it.unipv.ingsfw.treninordovest.model.facade.registazioniutenti.UserRegistrationFacade;
 import it.unipv.ingsfw.treninordovest.model.utenti.cliente.Cliente;
 import it.unipv.ingsfw.treninordovest.model.utenti.dipendente.Dipendente;
 import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.JTreniNordOvestFrame;
@@ -24,7 +24,7 @@ public class GestioneUtenzaController implements ActionListener{
     private final UserRegistrationFacade userRegistrationFacade;
     private final LoginFacade loginFacade;
     private JTreniNordOvestFrame frame;
-    private MainMenuPanel view;
+    private MainMenuPanel viewMainPanel;
 
 
     //Costruttore per la registazione clienti
@@ -39,7 +39,7 @@ public class GestioneUtenzaController implements ActionListener{
         loginFacade.addPropertyChangeListener(frame);
     }
     public GestioneUtenzaController(MainMenuPanel view) {
-        this.view = view;
+        this.viewMainPanel = view;
         this.userRegistrationFacade = new UserRegistrationFacade();
         this.loginFacade = new LoginFacade();
         //addClienteRegistrationListener();
@@ -264,6 +264,10 @@ public class GestioneUtenzaController implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if(viewMainPanel.getAccesso().getActionCommand().equals(LoginPanel.CMD_Login)){
+            frame.showPanel(JTreniNordOvestFrame.LOGIN);
+        }
+
 
     }
 }

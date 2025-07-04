@@ -2,16 +2,14 @@ package it.unipv.ingsfw.treninordovest.model.utenti.cliente;
 
 import it.unipv.ingsfw.treninordovest.model.dao.database.Database;
 import it.unipv.ingsfw.treninordovest.model.titoli.tessera.Tessera;
-import it.unipv.ingsfw.treninordovest.model.titoli.tessera.TesseraDAO;
 import it.unipv.ingsfw.treninordovest.model.titoli.tessera.TesseraDAOImpl;
-import it.unipv.ingsfw.treninordovest.utils.PasswordUtils;
+import it.unipv.ingsfw.treninordovest.model.utils.PasswordUtils;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.sql.Date;
 import java.util.List;
 import java.util.UUID;

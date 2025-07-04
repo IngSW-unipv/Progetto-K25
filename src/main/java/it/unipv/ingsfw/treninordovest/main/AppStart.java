@@ -1,7 +1,6 @@
 package it.unipv.ingsfw.treninordovest.main;
 
-import it.unipv.ingsfw.treninordovest.facade.login.LoginFacade;
-import it.unipv.ingsfw.treninordovest.service.LoginService;
+import it.unipv.ingsfw.treninordovest.model.facade.login.LoginFacade;
 import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.JTreniNordOvestFrame;
 
 import javax.swing.*;

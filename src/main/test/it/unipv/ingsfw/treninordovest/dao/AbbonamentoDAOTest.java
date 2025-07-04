@@ -4,6 +4,7 @@ import it.unipv.ingsfw.treninordovest.model.titoli.abbonamento.Abbonamento;
 import it.unipv.ingsfw.treninordovest.model.titoli.abbonamento.AbbonamentoDAOimpl;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
 import java.util.UUID;
 
 public class AbbonamentoDAOTest {
@@ -13,16 +14,16 @@ public class AbbonamentoDAOTest {
 
         AbbonamentoDAOimpl abbonamentoDAO = new AbbonamentoDAOimpl();
 
-        Abbonamento abbonamento = new Abbonamento("0def94e6-c950-4abc-b4b6-0443cbe93694");
+        String idCliente = "cd9714b9-d9a2-4b8f-b062-9a8056c25f0e";
+        List<Abbonamento> abbonamentoList = abbonamentoDAO.getAllAbbonamentiByCliente(idCliente);
 
-//        Abbonamento abbonamento1 =  abbonamentoDAO.get(abbonamento);
-//
-//        System.out.println(abbonamento1.getTipoAbbonamento());
-//        System.out.println(abbonamento1.getId());
-//        System.out.println(abbonamento1.getScadenza());
+        for (Abbonamento a : abbonamentoList) {
+            System.out.println(a.getId());
+        }
 
-        System.out.println(UUID.randomUUID().toString());
 
     }
+
+
 
 }

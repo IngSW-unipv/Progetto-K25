@@ -1,5 +1,6 @@
 package it.unipv.ingsfw.treninordovest.service;
 
+import it.unipv.ingsfw.treninordovest.model.service.AcquistoService;
 import it.unipv.ingsfw.treninordovest.model.utenti.cliente.Cliente;
 import it.unipv.ingsfw.treninordovest.model.utenti.cliente.ClienteDAOImpl;
 import it.unipv.ingsfw.treninordovest.model.varie.SessionManager;

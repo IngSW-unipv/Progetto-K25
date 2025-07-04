@@ -1,12 +1,8 @@
 package it.unipv.ingsfw.treninordovest.dao;
 
 import it.unipv.ingsfw.treninordovest.model.utenti.dipendente.Dipendente;
-import it.unipv.ingsfw.treninordovest.model.utenti.dipendente.DipendenteDAO;
 import it.unipv.ingsfw.treninordovest.model.utenti.dipendente.DipendenteDAOImpl;
-import it.unipv.ingsfw.treninordovest.utils.PasswordUtils;
 import org.junit.jupiter.api.Test;
-
-import java.util.UUID;
 
 public class DipendenteDAOTest {
 

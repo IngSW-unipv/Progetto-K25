@@ -1,6 +1,6 @@
 package it.unipv.ingsfw.treninordovest.model.observer.model;
 
-import it.unipv.ingsfw.treninordovest.facade.acquisto.AcquistoFacade;
+import it.unipv.ingsfw.treninordovest.model.facade.acquisto.AcquistoFacade;
 import it.unipv.ingsfw.treninordovest.model.observer.Observer;
 import it.unipv.ingsfw.treninordovest.model.observer.Subject;
 

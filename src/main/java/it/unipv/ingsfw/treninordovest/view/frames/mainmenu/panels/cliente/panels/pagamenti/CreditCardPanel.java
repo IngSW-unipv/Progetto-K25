@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class CreditCardPanel extends JPanel {
-    public CreditCardPanel(JPanel parent) {
+    public CreditCardPanel() {
         setLayout(new GridLayout(4,2,5,5));
         JTextField tfNum = new JTextField(16);
         JDateChooser tfExpiry = new JDateChooser();

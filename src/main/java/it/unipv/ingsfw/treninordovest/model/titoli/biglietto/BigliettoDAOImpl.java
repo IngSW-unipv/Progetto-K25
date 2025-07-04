@@ -176,4 +176,35 @@ public class BigliettoDAOImpl implements BigliettoDAO {
 
 
     }
+
+    @Override
+    public List<Biglietto> getAllBigliettiByCliente(String idCliente) {
+        String sql ="select tb.IDTitolo,tb.Emissione,tb.Prezzo,tb.Validato,tb.DataValidazione,tb.TipoBiglietto,tb.tipo from titolibiglietti tb join pagamento pg on tb.IDPagamento=pg.IdPagamento where idCliente =? and Validato=true";
+        List<Biglietto> listaBiglietti =  new ArrayList<>();
+        Biglietto biglietto;
+
+        try (Connection con = Database.getConnection();PreparedStatement  ps = con.prepareStatement(sql)) {
+            ps.setString(1,idCliente);
+            ResultSet rs=ps.executeQuery();
+
+            while (rs.next()){
+                String idTitolo = rs.getString("IDTitolo");
+                Date emissione = rs.getDate("Emissione");
+                Double prezzo = (Double) rs.getObject("Prezzo");
+                Boolean validato = (Boolean) rs.getObject("Validato");
+                Date dataValidazione = rs.getDate("DataValidazione");
+                String tipo = rs.getString("Tipo");
+
+                biglietto=new Biglietto(UUID.fromString(idTitolo),emissione.toLocalDate(),prezzo,validato,tipo);
+                listaBiglietti.add(biglietto);
+            }
+
+            // Database.closeConnection(con);
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Errore nel recupero dei biglietti",e);
+        }
+        return listaBiglietti;
+
+    }
 }

@@ -1,6 +1,6 @@
 package it.unipv.ingsfw.treninordovest.controller;
 
-import it.unipv.ingsfw.treninordovest.facade.acquisto.AcquistoFacade;
+import it.unipv.ingsfw.treninordovest.model.facade.acquisto.AcquistoFacade;
 import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.JTreniNordOvestFrame;
 import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.cliente.CustomerMainPanel;
 import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.cliente.panels.SubscriptionPanel;

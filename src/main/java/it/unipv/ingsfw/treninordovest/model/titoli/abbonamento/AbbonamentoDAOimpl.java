@@ -186,5 +186,38 @@ public class AbbonamentoDAOimpl implements AbbonamentoDAO {
     }
 
 
+    @Override
+    public List<Abbonamento> getAllAbbonamentiByCliente(String idCliente) {
 
+        String sql ="select ta.IDTitolo,ta.IDPagamento,ta.Prezzo,ta.Tipo,ta.Emissione,ta.Scadenza, ts.IDTessera from titoliabbonamenti ta join tessera ts on ta.IDTessera = ts.IDTessera where idCliente =?" ;
+        List<Abbonamento> listaAbbonamenti =  new ArrayList<>();
+        Abbonamento abbonamento;
+
+        try (Connection con = Database.getConnection();PreparedStatement  ps = con.prepareStatement(sql)) {
+            //Query effettuata su una vista creata nel DB per semplificare l'estrazione dei dati
+            //Estrazione dei dati dal DB
+
+            ps.setString(1,idCliente);
+            ResultSet rs=ps.executeQuery();
+
+            while (rs.next()){
+                String idTitolo = rs.getString("IDTitolo");
+                Date emissione = rs.getDate("Emissione");
+                Double prezzo = (Double) rs.getObject("Prezzo");
+                String tipo = rs.getString("Tipo");
+                Date scadenza = rs.getDate("Scadenza");
+                String idTessera = rs.getString("IDTessera");
+
+                abbonamento=new Abbonamento(UUID.fromString(idTitolo),emissione.toLocalDate(),prezzo,tipo,scadenza.toLocalDate(),new Tessera(idTessera) );
+                listaAbbonamenti.add(abbonamento);
+            }
+
+            // Database.closeConnection(con);
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Errore nel recupero degli abbonamenti",e);
+        }
+        return listaAbbonamenti;
+
+    }
 }
