@@ -262,9 +262,5 @@ public class CustomerProfilePanel extends JPanel {
         return btnEsci;
     }
 
-    public JButton getBtnConfermaDenaro() {
-        return btnConfermaDenaro;
-    }
-
 
 }

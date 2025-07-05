@@ -210,8 +210,7 @@ public class GestioneUtenzaController implements ActionListener{
                 // Se è "customerRegistration", mostra il pannello di REGISTRAZIONE CLIENTE
                 frame.showPanel(JTreniNordOvestFrame.CUSTOMER_REGISTRATION);
                 break;
-
-            case "employeeRegistration":
+            case MainMenuPanel.CMD_RegistrazioneDipendente:
                 // E così via...
                 frame.showPanel(JTreniNordOvestFrame.EMPLOYEE_REGISTRATION);
                 break;

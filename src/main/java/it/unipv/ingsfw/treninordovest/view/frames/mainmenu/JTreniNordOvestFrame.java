@@ -134,11 +134,14 @@ public class JTreniNordOvestFrame extends JFrame implements PropertyChangeListen
         if (RegistrationService.ptNameLogin.equalsIgnoreCase(evt.getPropertyName())){
             System.out.println("Login avvenuto con successo");
         }
-        if ("customer_registration".equalsIgnoreCase(evt.getPropertyName()) ){
+        if (RegistrationService.ptNameRegCliente.equalsIgnoreCase(evt.getPropertyName()) ){
             System.out.println("Registrazione Cliente avvenuta con successo");
         }
-        if ("employee_registration".equalsIgnoreCase(evt.getPropertyName()) ){
+        if (RegistrationService.ptnRegDipendente.equalsIgnoreCase(evt.getPropertyName()) ){
             System.out.println("Registrazione Dipendente avvenuta con successo");
+        }
+        if (RegistrationService.ptNameLogout.equalsIgnoreCase(evt.getPropertyName()) ){
+            System.out.println("Logout avvenuto con successo");
         }
         else System.out.println("Errore generico");
     }
