@@ -10,7 +10,6 @@ import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.menu.MainMenuP
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
@@ -121,29 +120,18 @@ public class JTreniNordOvestFrame extends JFrame implements PropertyChangeListen
     }
 
 
-    public static void main(String[] args) {
-        JTreniNordOvestFrame frame = new JTreniNordOvestFrame();
-        frame.setVisible(true);
-    }
-
 
 
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        if (RegistrationService.ptNameLogin.equalsIgnoreCase(evt.getPropertyName())){
-            System.out.println("Login avvenuto con successo");
+        String command = evt.getPropertyName();
+        if (command.equals(RegistrationService.ptNameLogin)) {
+            this.showPanel(CUSTOMER_MAINFRAME);
         }
-        if (RegistrationService.ptNameRegCliente.equalsIgnoreCase(evt.getPropertyName()) ){
-            System.out.println("Registrazione Cliente avvenuta con successo");
-        }
-        if (RegistrationService.ptnRegDipendente.equalsIgnoreCase(evt.getPropertyName()) ){
-            System.out.println("Registrazione Dipendente avvenuta con successo");
-        }
-        if (RegistrationService.ptNameLogout.equalsIgnoreCase(evt.getPropertyName()) ){
-            System.out.println("Logout avvenuto con successo");
-        }
-        else System.out.println("Errore generico");
+
+
+
     }
 
 

@@ -1,5 +1,7 @@
 package it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.login;
 
+import it.unipv.ingsfw.treninordovest.model.service.RegistrationService;
+
 import javax.swing.*;
 import java.awt.*;
 import java.beans.PropertyChangeEvent;
@@ -97,8 +99,10 @@ public class LoginPanel extends JPanel implements PropertyChangeListener {
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
 
-        if ("login_success".equals(evt.getPropertyName()) ){
-
+        if (evt.getPropertyName().equals(RegistrationService.ptNameLogin)) {
+            campoUtente.setText(" ");
+            campoPassword.setText(" ");
+            System.out.println("DEBUG: Osservatore Login Panel --- Login Avvenuto");
 
         }
 

@@ -13,6 +13,9 @@ public class CreditCardDialog extends JDialog {
     private JComboBox<Integer> expiryYearComboBox;
     private JPasswordField cvcField;
 
+    public final static String CMD_Confirm ="confirm";
+    public final static String CMD_Cancel ="cancel";
+
     private JButton confirmButton;
     private JButton cancelButton;
 
@@ -112,6 +115,12 @@ public class CreditCardDialog extends JDialog {
         cvcField.setColumns(4);
         panel.add(cvcField, gbc);
 
+
+
+        confirmButton.setActionCommand(CMD_Confirm);
+        cancelButton.setActionCommand(CMD_Cancel);
+
+
         return panel;
     }
 
@@ -165,4 +174,13 @@ public class CreditCardDialog extends JDialog {
      * Una semplice classe (record) per contenere i dati della carta.
      */
     public record CreditCardData(String cardNumber, String cardHolderName, int expiryMonth, int expiryYear, String cvc) {}
+
+
+    public JButton getConfirmButton() {
+        return confirmButton;
+    }
+
+    public JButton getCancelButton() {
+        return cancelButton;
+    }
 }

@@ -11,6 +11,8 @@ public class CardPurchasePanel extends JPanel implements PropertyChangeListener 
     private JButton buttonAcquistaTessera;
     private JLabel labelAvviso;
 
+    public static final String CMD_AcquistaTessera = "acquistaTessera";
+
     public CardPurchasePanel() {
 
         Color color = new Color(255, 255, 255);
@@ -40,6 +42,8 @@ public class CardPurchasePanel extends JPanel implements PropertyChangeListener 
         gbc.gridy = 3;
         gbc.gridwidth = 2;
         add(buttonAcquistaTessera, gbc);
+
+        buttonAcquistaTessera.setActionCommand(CMD_AcquistaTessera);
     }
 
     // Getters per il Controller

@@ -29,7 +29,7 @@ public class AcquistoController implements ActionListener {
         this.acquistoFacade = new AcquistoFacade();
 
         //Aggiunta dei listener
-        view.addActionListener(this);
+       addListeners();
 
     }
 
@@ -55,7 +55,7 @@ public class AcquistoController implements ActionListener {
     public void acquistoAbbonamento() {
 
         String tipoAbbonamento = view.getSubscriptionPanel().getComboTipo().getSelectedItem().toString();
-        String tipoAcquisto = null; //DA DEFINIRE
+        String tipoAcquisto = "cartacredito"; //DA DEFINIRE
         int quantita = 1;
 
         if (acquistoFacade.acquistoAbbonamento(tipoAbbonamento, tipoAcquisto, quantita)) {
@@ -79,34 +79,41 @@ public class AcquistoController implements ActionListener {
     /// Aggiunta degli Action Listener per i vari pannelli
 
     private void addListeners() {
-//        // La logica è direttamente collegata al pulsante.
-//        view.getTicketPurchasePanel().getButtonAcquista().addActionListener(e -> {
-//            if (view.getTicketPurchasePanel().getButtonAcquista().getActionCommand().equals(TicketPurchasePanel.CMD_Acquista)){
-//                acquistoBiglietto();
-//            }
-//
-//        });
-//        view.getSubscriptionPanel().getButtonAbbonati().addActionListener(e -> {
-//            if(view.getSubscriptionPanel().getButtonAbbonati().getActionCommand().equals(SubscriptionPanel.CMD_Abbonati)){
-//                acquistoAbbonamento();
-//            }
-//        });
-//        view.getCardPurchasePanel().getButtonAcquistaTessera().addActionListener(e -> acquistoTessera());
+        view.getTicketPurchasePanel().getButtonAcquista().addActionListener(this);
+        view.getSubscriptionPanel().getButtonAbbonati().addActionListener(this);
+        view.getCardPurchasePanel().getButtonAcquistaTessera().addActionListener(this);
+
     }
 
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
+        CreditCardDialog creditCardDialog = new CreditCardDialog(frame);
+        creditCardDialog.getConfirmButton().addActionListener(this);
+        creditCardDialog.getCancelButton().addActionListener(this);
+
         String command = e.getActionCommand();
         // Usa uno switch per eseguire l'azione corretta per ogni comando
         // CONTROLLA ATTENTAMENTE QUESTA PARTE NEL TUO CODICE!
         switch (command) {
             case SubscriptionPanel.CMD_Abbonati:
-                CreditCardDialog creditCardDialog = new CreditCardDialog(frame);
-                creditCardDialog.setVisible(true);
+                creditCardDialog.showDialog();
+                if (creditCardDialog.getConfirmButton().getActionCommand().equals(CreditCardDialog.CMD_Confirm)) {
+                    acquistoAbbonamento();
+                }
                 break;
 
+            case TicketPurchasePanel.CMD_Acquista:
+                creditCardDialog.showDialog();
+                if (creditCardDialog.getConfirmButton().getActionCommand().equals(CreditCardDialog.CMD_Confirm)) {
+                    acquistoBiglietto();
+                }
+                break;
+
+            case CardPurchasePanel.CMD_AcquistaTessera:
+                acquistoTessera();
+                break;
 
         }
     }

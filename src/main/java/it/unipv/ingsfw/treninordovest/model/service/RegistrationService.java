@@ -60,7 +60,7 @@ public class RegistrationService {
     public boolean logout() {
         SessionManager.getInstance().logout();
         System.out.println("DEBUG: Login effettuato con successo -- PCS");
-        support.firePropertyChange("logout_success", null, null);
+        support.firePropertyChange(ptNameLogout, null, null);
         return true;
     }
 
@@ -69,7 +69,7 @@ public class RegistrationService {
         try {
             clienteDAO.insert(cliente);
             System.out.println("DEBUG: Registrazione Cliente effettuata con successo -- PCS");
-            support.firePropertyChange("customer_registration",null,cliente);
+            support.firePropertyChange(ptNameRegCliente,null,cliente);
             return true;
 
 
@@ -85,7 +85,7 @@ public class RegistrationService {
         try {
             dipendenteDAO.insert(dipendente);
             System.out.println("DEBUG: Registrazione Dipendente effettuata con successo");
-            support.firePropertyChange("employee_registration",null,dipendente);
+            support.firePropertyChange(ptnRegDipendente,null,dipendente);
             return true;
 
         }catch (Exception e) {

@@ -28,8 +28,8 @@ andataritorno.strategy.class.name=it.unipv.ingsfw.treninordovest.model.strategy.
 
 
 #Metodi di pagamento
-cartacredito.strategy.class.name=it.unipv.ingsfw.treninordovest.utils.metodipagamento.CartaCredito
-paypal.strategy.class.name=it.unipv.ingsfw.treninordovest.utils.metodipagamento.PayPal
+cartacredito.strategy.class.name=it.unipv.ingsfw.treninordovest.model.utils.metodipagamento.CartaCredito
+paypal.strategy.class.name=it.unipv.ingsfw.treninordovest.model.utils.metodipagamento.PayPal
 
 
 #Login

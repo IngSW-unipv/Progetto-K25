@@ -8,7 +8,7 @@ import java.awt.*;
 public class TicketPurchasePanel extends JPanel {
     //private JLabel labelDestinazione;
     //private JTextField textFieldDestinazione;
-    private JLabel labelIDTratta;
+    private final JLabel labelIDTratta;
     private JSpinner quantitaSpinner;
     private JTextField textFieldTratta;
     private JButton buttonAcquista;
@@ -16,7 +16,7 @@ public class TicketPurchasePanel extends JPanel {
     private JLabel labelRitorno;
     private JDateChooser dataRitorno;
     private JComboBox<String> comboTipoBiglietto;
-    public static String CMD_Acquista = "acquista";
+    public static final String CMD_Acquista = "acquista";
     //private TratteTablePanel tratteTablePanel;
 
     /*DA MODIFICARE*/
