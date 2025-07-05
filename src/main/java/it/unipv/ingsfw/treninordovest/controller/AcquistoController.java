@@ -3,6 +3,7 @@ package it.unipv.ingsfw.treninordovest.controller;
 import it.unipv.ingsfw.treninordovest.model.facade.acquisto.AcquistoFacade;
 import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.JTreniNordOvestFrame;
 import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.cliente.CustomerMainPanel;
+import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.cliente.panels.CardPurchasePanel;
 import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.cliente.panels.CreditCardDialog;
 import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.cliente.panels.SubscriptionPanel;
 import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.cliente.panels.TicketPurchasePanel;
