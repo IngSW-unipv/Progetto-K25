@@ -7,22 +7,26 @@ import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.cliente.panels
 import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.cliente.panels.TicketPurchasePanel;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.ZoneId;
 
 
 
-public class AcquistoController  {
+public class AcquistoController implements ActionListener {
 
 
     private final CustomerMainPanel view;
     private final AcquistoFacade acquistoFacade;
-    private final JTreniNordOvestFrame frame=null;
 
-   public AcquistoController(CustomerMainPanel view) {
-        this.view=view;
+   public AcquistoController(JTreniNordOvestFrame frame) {
+        this.view=frame.getCustomerMainPanel();
         this.acquistoFacade = new AcquistoFacade();
-        this.addListeners();
+
+        //Aggiunta dei listener
+        view.addActionListener(this);
+
     }
 
     ///  Acquisto dei biglietti
@@ -75,25 +79,36 @@ public class AcquistoController  {
     /// Aggiunta degli Action Listener per i vari pannelli
 
     private void addListeners() {
-        // La logica è direttamente collegata al pulsante.
-        view.getTicketPurchasePanel().getButtonAcquista().addActionListener(e -> {
-            if (view.getTicketPurchasePanel().getButtonAcquista().getActionCommand().equals(TicketPurchasePanel.CMD_Acquista)){
-                acquistoBiglietto();
-            }
-
-        });
-        view.getSubscriptionPanel().getButtonAbbonati().addActionListener(e -> {
-            if(view.getSubscriptionPanel().getButtonAbbonati().getActionCommand().equals(SubscriptionPanel.CMD_Abbonati)){
-                acquistoAbbonamento();
-            }
-        });
-        view.getCardPurchasePanel().getButtonAcquistaTessera().addActionListener(e -> acquistoTessera());
+//        // La logica è direttamente collegata al pulsante.
+//        view.getTicketPurchasePanel().getButtonAcquista().addActionListener(e -> {
+//            if (view.getTicketPurchasePanel().getButtonAcquista().getActionCommand().equals(TicketPurchasePanel.CMD_Acquista)){
+//                acquistoBiglietto();
+//            }
+//
+//        });
+//        view.getSubscriptionPanel().getButtonAbbonati().addActionListener(e -> {
+//            if(view.getSubscriptionPanel().getButtonAbbonati().getActionCommand().equals(SubscriptionPanel.CMD_Abbonati)){
+//                acquistoAbbonamento();
+//            }
+//        });
+//        view.getCardPurchasePanel().getButtonAcquistaTessera().addActionListener(e -> acquistoTessera());
     }
 
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+        if(e.getSource()==view.getTicketPurchasePanel().getButtonAcquista()){
+            if(view.getTicketPurchasePanel().getButtonAcquista().getActionCommand().equals(TicketPurchasePanel.CMD_Acquista)){
+                acquistoBiglietto();
+            }
+        }
+        else if(e.getSource()==view.getSubscriptionPanel().getButtonAbbonati()){
+            if(view.getSubscriptionPanel().getButtonAbbonati().getActionCommand().equals(SubscriptionPanel.CMD_Abbonati)){
+                acquistoAbbonamento();
+            }
+        }
 
 
-
-
-
+    }
 }

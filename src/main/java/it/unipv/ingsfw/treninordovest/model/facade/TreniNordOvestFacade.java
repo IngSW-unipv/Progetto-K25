@@ -1,14 +1,14 @@
 package it.unipv.ingsfw.treninordovest.model.facade;
 
 import it.unipv.ingsfw.treninordovest.model.facade.acquisto.AcquistoFacade;
-import it.unipv.ingsfw.treninordovest.model.facade.login.LoginFacade;
+import it.unipv.ingsfw.treninordovest.model.facade.login.RegistrationFacade;
 
 public class TreniNordOvestFacade {
 
     private static TreniNordOvestFacade instance;
 
     private AcquistoFacade acquistoFacade;
-    private LoginFacade loginFacade;
+    private RegistrationFacade loginFacade;
 
 
     public static TreniNordOvestFacade getInstance(){
@@ -19,7 +19,7 @@ public class TreniNordOvestFacade {
 
     private TreniNordOvestFacade(){
         this.acquistoFacade = new AcquistoFacade();
-        this.loginFacade = new LoginFacade();
+        this.loginFacade = new RegistrationFacade();
     }
 
 
@@ -27,7 +27,7 @@ public class TreniNordOvestFacade {
         return this.acquistoFacade;
     }
 
-    public LoginFacade getLoginFacade(){
+    public RegistrationFacade getRegistrationFacade(){
         return this.loginFacade;
     }
 

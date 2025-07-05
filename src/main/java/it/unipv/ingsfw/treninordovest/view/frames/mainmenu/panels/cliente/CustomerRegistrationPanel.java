@@ -21,8 +21,8 @@ public class CustomerRegistrationPanel extends JPanel {
     private final JTextField txtLuogoNascita;
     private final Color colorePannello;
 
-    public static final String CMD_Register = "register";
-    public static final String CMD_Back = "back";
+    public static final String CMD_Register = "register_customer";
+    public static final String CMD_Back = "back_customer";
 
 
 

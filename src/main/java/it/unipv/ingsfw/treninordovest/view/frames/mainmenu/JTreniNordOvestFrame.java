@@ -1,7 +1,5 @@
 package it.unipv.ingsfw.treninordovest.view.frames.mainmenu;
 
-import it.unipv.ingsfw.treninordovest.controller.GestioneUtenzaController;
-import it.unipv.ingsfw.treninordovest.model.service.LoginService;
 import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.cliente.CustomerMainPanel;
 import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.dipendente.panels.EmployeeMainPanel;
 import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.login.LoginPanel;
@@ -131,31 +129,24 @@ public class JTreniNordOvestFrame extends JFrame implements PropertyChangeListen
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-//        if ("accesso".equals(evt.getPropertyName())){
-//            showPanel(LOGIN);
-//        }
-//        if ("registrazione_cliente".equals(evt.getPropertyName())){
-//            showPanel(CUSTOMER_REGISTRATION);
-//        }
-//        if ("registrazione_dipendente".equals(evt.getPropertyName())){
-//            showPanel(EMPLOYEE_REGISTRATION);
-//        }
-
-        if ("login_success".equals(evt.getPropertyName()) ){
-            String ruolo = (String) evt.getNewValue();
-            if (ruolo.equals("Cliente")){
-                showPanel(CUSTOMER_MAINFRAME);
-            }else if (ruolo.equals("Dipendente")){
-                showPanel(EMPLOYEE_MAINFRAME);
-            }
-        }else if ("login_failed".equals(evt.getPropertyName()) ){}
-
+        if ("login_success".equalsIgnoreCase(evt.getPropertyName()) ){
+            System.out.println("Login avvenuto con successo");
+        }
+        if ("customer_registration".equalsIgnoreCase(evt.getPropertyName()) ){
+            System.out.println("Registrazione Cliente avvenuta con successo");
+        }
+        if ("employee_registration".equalsIgnoreCase(evt.getPropertyName()) ){
+            System.out.println("Registrazione Dipendente avvenuta con successo");
+        }
+        else System.out.println("Errore generico");
     }
 
     public void addActionListener(ActionListener actionListener) {
 
-//        loginPanel.getBottoneAccesso().addActionListener(actionListener);
-//        loginPanel.getBottoneIndietro().addActionListener(actionListener);
+        loginPanel.getBottoneAccesso().addActionListener(actionListener);
+        loginPanel.getBottoneIndietro().addActionListener(actionListener);
+        customerRegistrationPanel.getBtnRegister().addActionListener(actionListener);
+        employeeRegistrationPanel.getBtnRegister().addActionListener(actionListener);
 
     }
 }

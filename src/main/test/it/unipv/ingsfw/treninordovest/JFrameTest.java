@@ -1,11 +1,10 @@
 package it.unipv.ingsfw.treninordovest;
 
-import it.unipv.ingsfw.treninordovest.model.facade.login.LoginFacade;
+import it.unipv.ingsfw.treninordovest.model.facade.login.RegistrationFacade;
 import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.JTreniNordOvestFrame;
 import org.junit.jupiter.api.Test;
 
 import javax.swing.*;
-import java.util.UUID;
 
 public class JFrameTest  extends JFrame {
 
@@ -13,7 +12,7 @@ public class JFrameTest  extends JFrame {
     public void Test() {
 
         JTreniNordOvestFrame frame = new JTreniNordOvestFrame();
-        LoginFacade loginFacade = new LoginFacade();
+        RegistrationFacade loginFacade = new RegistrationFacade();
 
         loginFacade.addPropertyChangeListener(frame);
 

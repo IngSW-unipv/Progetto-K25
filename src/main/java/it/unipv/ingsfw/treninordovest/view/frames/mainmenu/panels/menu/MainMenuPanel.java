@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-public class MainMenuPanel extends JPanel {
+public class MainMenuPanel extends JPanel implements PropertyChangeListener{
 
 
 
@@ -70,4 +70,10 @@ public class MainMenuPanel extends JPanel {
     }
 
 
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+
+
+
+    }
 }

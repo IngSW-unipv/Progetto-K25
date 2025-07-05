@@ -8,6 +8,7 @@ import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.cliente.panels
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 // 1. Changed to extend JPanel
 public class CustomerMainPanel extends JPanel {
@@ -78,5 +79,12 @@ public class CustomerMainPanel extends JPanel {
     public SubscriptionPanel getSubscriptionPanel() { return subscriptionPanel; }
     public CardPurchasePanel getCardPurchasePanel() { return cardPurchasePanel; }
     public CreditCardPanel getCreditCardPanel() { return creditCardPanel; }
-    // ... other getters ...
+
+
+    public void addActionListener(ActionListener actionListener) {
+        getSubscriptionPanel().getButtonAbbonati().addActionListener(actionListener);
+        getTicketPurchasePanel().getButtonAcquista().addActionListener(actionListener);
+    }
+
+
 }

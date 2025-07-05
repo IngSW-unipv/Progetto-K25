@@ -1,6 +1,6 @@
 package it.unipv.ingsfw.treninordovest.main;
 
-import it.unipv.ingsfw.treninordovest.model.facade.login.LoginFacade;
+import it.unipv.ingsfw.treninordovest.model.facade.login.RegistrationFacade;
 import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.JTreniNordOvestFrame;
 
 import javax.swing.*;
@@ -33,7 +33,7 @@ public class AppStart {
                 // Crea la finestra principale
                 JTreniNordOvestFrame mainFrame = new JTreniNordOvestFrame();
 
-                LoginFacade loginFacade = new LoginFacade();
+                RegistrationFacade loginFacade = new RegistrationFacade();
                 loginFacade.addPropertyChangeListener(mainFrame);
 
                 // Configura e mostra il frame principale

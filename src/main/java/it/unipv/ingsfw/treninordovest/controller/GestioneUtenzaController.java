@@ -1,7 +1,6 @@
 package it.unipv.ingsfw.treninordovest.controller;
 
-import it.unipv.ingsfw.treninordovest.model.facade.login.LoginFacade;
-import it.unipv.ingsfw.treninordovest.model.facade.registazioniutenti.UserRegistrationFacade;
+import it.unipv.ingsfw.treninordovest.model.facade.login.RegistrationFacade;
 import it.unipv.ingsfw.treninordovest.model.utenti.cliente.Cliente;
 import it.unipv.ingsfw.treninordovest.model.utenti.dipendente.Dipendente;
 import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.JTreniNordOvestFrame;
@@ -21,8 +20,8 @@ import java.util.UUID;
 
 public class GestioneUtenzaController implements ActionListener{
 
-    private final UserRegistrationFacade userRegistrationFacade;
-    private final LoginFacade loginFacade;
+
+    private final RegistrationFacade loginFacade;
     private JTreniNordOvestFrame frame;
     private MainMenuPanel viewMainPanel;
     private LoginPanel viewLoginPanel;
@@ -33,37 +32,13 @@ public class GestioneUtenzaController implements ActionListener{
     public GestioneUtenzaController( JTreniNordOvestFrame frame) {
         this.viewMainPanel = frame.getMainMenuPanel();
         this.frame = (JTreniNordOvestFrame) frame;
-        this.userRegistrationFacade = new UserRegistrationFacade();
-        this.loginFacade = new LoginFacade();
-//        addLoginListener();
-//        addMainMenuListener();
+        this.loginFacade = new RegistrationFacade();
+
 
         viewMainPanel.addActionListener(this);
-        //frame.addActionListener(this);
-    }
-
-    public GestioneUtenzaController(MainMenuPanel view,JFrame frame) {
-        this.viewMainPanel = view;
-        this.frame = (JTreniNordOvestFrame) frame;
-        this.userRegistrationFacade = new UserRegistrationFacade();
-        this.loginFacade = new LoginFacade();
-
-        viewMainPanel.addActionListener(this);
+        frame.addActionListener(this);
 
     }
-
-    public GestioneUtenzaController(LoginPanel view,JFrame frame) {
-        this.viewLoginPanel = view;
-        this.frame = (JTreniNordOvestFrame) frame;
-        this.userRegistrationFacade = new UserRegistrationFacade();
-        this.loginFacade = new LoginFacade();
-
-       // viewMainPanel.addActionListener(this);
-
-    }
-
-
-
 
 
 
@@ -97,7 +72,7 @@ public class GestioneUtenzaController implements ActionListener{
 
                 cliente = new Cliente(UUID.randomUUID(),password,nome,cognome,luogoNascita,sesso,dataNascitaLocal,cellulare,indirizzo,0, email);
 
-                if (userRegistrationFacade.registraCliente(cliente)){
+                if (loginFacade.registraCliente(cliente)){
 
                     JOptionPane.showMessageDialog(null,"Cliente registrato correttamente", "Info", JOptionPane.INFORMATION_MESSAGE);
                 }
@@ -150,7 +125,7 @@ public class GestioneUtenzaController implements ActionListener{
 
                 dipendente= new Dipendente(UUID.randomUUID(),password.toString(), nome, cognome, sesso, luogoNascita,dataNascitaLocal, cellulare, indirizzo, Dipendente.getStipendioByRuolo(ruolo), ruolo);
 
-                if (userRegistrationFacade.registraDipendente(dipendente)){
+                if (loginFacade.registraDipendente(dipendente)){
 
                     JOptionPane.showMessageDialog(null,"Dipendente registrato correttamente", "Info", JOptionPane.INFORMATION_MESSAGE);
                 }
