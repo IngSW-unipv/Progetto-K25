@@ -157,28 +157,29 @@ public class AbbonamentoDAOimpl implements AbbonamentoDAO {
 
 
         try (Connection con = Database.getConnection()) {
+            PreparedStatement ps1 = con.prepareStatement(sql1);
+            PreparedStatement ps2 = con.prepareStatement(sql2);
 
-            try (PreparedStatement ps1 = con.prepareStatement(sql1)) {
                 // Impostazione dei parametri per la query 1
                 ps1.setString(1,abbonamento.getId().toString());
                 ps1.setString(2,abbonamento.getPagamento().getIdPagamento().toString());
                 ps1.setObject(3,abbonamento.getEmissione());
                 ps1.setDouble(4, abbonamento.getPrezzo());
                 // Esecuzione delle query
-                ps1.executeUpdate();
-            }
-            try (PreparedStatement ps2 = con.prepareStatement(sql2)) {
+
                 // Impostazione dei parametri per la query 1
                 ps2.setString(1, abbonamento.getId().toString());
                 ps2.setString(2, abbonamento.getTipoAbbonamento());
                 ps2.setObject(3, abbonamento.getScadenza());
                 ps2.setString(4, abbonamento.getTessera().getIdTessera());
                 // Esecuzione delle query
+                ps1.executeUpdate();
                 ps2.executeUpdate();
-            }
 
+                Database.closeConnection(con);
         } catch (SQLException e) {
-            System.err.println("Errore nel recupero degli abbonamenti"+e.getMessage());
+            System.err.println("Errore durante inserimento degli abbonamenti"+e.getMessage());
+            e.printStackTrace();
         }
 
 

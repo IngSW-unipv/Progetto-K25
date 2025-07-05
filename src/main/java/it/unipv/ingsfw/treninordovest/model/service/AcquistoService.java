@@ -57,10 +57,12 @@ public class AcquistoService {
                 pag =  pagamentoService.effettuaPagamento(tipoPagamento,quantita,abbonamentoStrategy.ottieniPrezzoAbbonamento());
                 abbonamento.setPagamento(pag);
 
-                for(int it =0; it<quantita; it++) {
-                    abbonamentoDAO.insert(abbonamento);
-                    abbonamento.setId(UUID.randomUUID().toString());
-                }
+                abbonamentoDAO.insert(abbonamento);
+
+//                for(int it =0; it<quantita; it++) {
+//                    abbonamentoDAO.insert(abbonamento);
+//                    abbonamento.setId(UUID.randomUUID().toString());
+//                }
 
                 support.firePropertyChange("abbonamento_acquistato", null, abbonamento);
 
