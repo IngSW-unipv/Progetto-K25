@@ -29,6 +29,11 @@ public class AcquistoService {
     private final PagamentoService pagamentoService;
     private final PropertyChangeSupport support;
 
+    //Property name dei support
+    public final String ptNameAbbonamento ="abbonamento_acquistato";
+    public final String ptNameBiglietto ="biglietto_acquistato";
+    public final String ptnTessera ="tessera_acquistato";
+
     public AcquistoService() {
         this.abbonamentoDAO=new AbbonamentoDAOimpl();
         this.bigliettoDAO=new BigliettoDAOImpl();

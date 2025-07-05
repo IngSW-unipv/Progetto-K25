@@ -81,9 +81,11 @@ public class CustomerMainPanel extends JPanel {
     public CreditCardPanel getCreditCardPanel() { return creditCardPanel; }
 
 
+
     public void addActionListener(ActionListener actionListener) {
-        getSubscriptionPanel().getButtonAbbonati().addActionListener(actionListener);
-        getTicketPurchasePanel().getButtonAcquista().addActionListener(actionListener);
+        subscriptionPanel.getButtonAbbonati().addActionListener(actionListener);
+        ticketPurchasePanel.getButtonAcquista().addActionListener(actionListener);
+        profilePanel.getBtnEsci().addActionListener(actionListener);
     }
 
 

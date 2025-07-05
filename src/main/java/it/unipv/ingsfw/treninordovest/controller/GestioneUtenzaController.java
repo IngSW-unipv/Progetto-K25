@@ -4,6 +4,7 @@ import it.unipv.ingsfw.treninordovest.model.facade.login.RegistrationFacade;
 import it.unipv.ingsfw.treninordovest.model.utenti.cliente.Cliente;
 import it.unipv.ingsfw.treninordovest.model.utenti.dipendente.Dipendente;
 import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.JTreniNordOvestFrame;
+import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.cliente.panels.CustomerProfilePanel;
 import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.login.LoginPanel;
 import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.cliente.CustomerRegistrationPanel;
 import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.dipendente.EmployeeRegistrationPanel;
@@ -35,8 +36,9 @@ public class GestioneUtenzaController implements ActionListener{
         this.loginFacade = new RegistrationFacade();
 
 
-        viewMainPanel.addActionListener(this);
-        frame.addActionListener(this);
+       // viewMainPanel.addActionListener(this);
+
+        addActionListener();
 
     }
 
@@ -177,76 +179,18 @@ public class GestioneUtenzaController implements ActionListener{
 
 
 
-    private void addClienteRegistrationListener(){
-        frame.getCustomerRegistrationPanel().getBtnRegister().addActionListener(e -> {
-            if(frame.getCustomerRegistrationPanel().getBtnRegister().getActionCommand().equals(CustomerRegistrationPanel.CMD_Register)){
-                registraCliente();
-            }
-        });
+    private void addActionListener(){
 
-        frame.getCustomerRegistrationPanel().getBtnMenuPrincipal().addActionListener(e->{
-            if (frame.getCustomerRegistrationPanel().getBtnMenuPrincipal().getActionCommand().equals(CustomerRegistrationPanel.CMD_Back)){
-                frame.showPanel(JTreniNordOvestFrame.MAIN_MENU);
-            }
-        });
+       frame.getLoginPanel().getBottoneAccesso().addActionListener(this);
+        frame.getLoginPanel().getBottoneIndietro().addActionListener(this);
+        frame.getCustomerRegistrationPanel().getBtnRegister().addActionListener(this);
+       frame.getEmployeeRegistrationPanel().getBtnRegister().addActionListener(this);
+        frame.getCustomerRegistrationPanel() .getBtnMenuPrincipal().addActionListener(this);
+        frame.getEmployeeRegistrationPanel().getBtnMenuPrincipal().addActionListener(this);
 
-    }
-    private void addDipendenteRegistrationListener(){
-        frame.getEmployeeRegistrationPanel().getBtnRegister().addActionListener(e -> {
-            if(frame.getEmployeeRegistrationPanel().getBtnRegister().getActionCommand().equals(EmployeeRegistrationPanel.CMD_Register)){
-                registraDipendente();
-            }
-        });
-
-        frame.getEmployeeRegistrationPanel().getBtnMenuPrincipal().addActionListener(e->{
-          if(frame.getEmployeeRegistrationPanel().getBtnMenuPrincipal().getActionCommand().equals(EmployeeRegistrationPanel.CMD_Back)){
-                frame.showPanel(JTreniNordOvestFrame.MAIN_MENU);
-            }
-
-        });
-
-
-    }
-    private void addLoginListener(){
-
-        frame.getLoginPanel().getBottoneAccesso().addActionListener(e -> {
-
-
-        });
-
-        frame.getLoginPanel().getBottoneIndietro().addActionListener(e -> {
-
-        });
-
-
-        loginFacade.addPropertyChangeListener(frame);
-
-
-    }
-    private void addMainMenuListener(){
-
-
-
-        frame.getMainMenuPanel().getAccesso().addActionListener(e -> {
-
-            if (frame.getMainMenuPanel().getAccesso().getActionCommand().equals("login")){
-                System.out.println("Accesso al login");
-                frame.showPanel( JTreniNordOvestFrame.LOGIN );
-            }
-        });
-
-        frame.getMainMenuPanel().getRegistrazioneDipendente().addActionListener(e -> {
-            System.out.println("Registrazione dipendente");
-            frame.showPanel(JTreniNordOvestFrame.EMPLOYEE_REGISTRATION);
-        });
-
-        frame.getMainMenuPanel().getRegistrazioneCliente().addActionListener(e -> {
-            System.out.println("Registrazione cliente");
-            frame.showPanel(JTreniNordOvestFrame.CUSTOMER_REGISTRATION);
-        });
-
-
-
+        frame.getMainMenuPanel().getRegistrazioneDipendente().addActionListener(this);
+        frame.getMainMenuPanel().getRegistrazioneCliente().addActionListener(this);
+        frame.getMainMenuPanel().getAccesso().addActionListener(this);
     }
 
 
@@ -258,12 +202,11 @@ public class GestioneUtenzaController implements ActionListener{
         // Usa uno switch per eseguire l'azione corretta per ogni comando
         // CONTROLLA ATTENTAMENTE QUESTA PARTE NEL TUO CODICE!
         switch (command) {
-            case "login":
+            case MainMenuPanel.CMD_Accesso:
                 // Se il comando è "login", mostra il pannello di LOGIN
                 frame.showPanel(JTreniNordOvestFrame.LOGIN);
                 break;
-
-            case "customerRegistration":
+            case MainMenuPanel.CMD_RegistrazioneCliente:
                 // Se è "customerRegistration", mostra il pannello di REGISTRAZIONE CLIENTE
                 frame.showPanel(JTreniNordOvestFrame.CUSTOMER_REGISTRATION);
                 break;
@@ -272,20 +215,27 @@ public class GestioneUtenzaController implements ActionListener{
                 // E così via...
                 frame.showPanel(JTreniNordOvestFrame.EMPLOYEE_REGISTRATION);
                 break;
-
             case CustomerRegistrationPanel.CMD_Register:
                    registraCliente();
                     break;
-
             case EmployeeRegistrationPanel.CMD_Register:
                registraDipendente();
                 break;
-
             case CustomerRegistrationPanel.CMD_Back:
                 frame.showPanel(JTreniNordOvestFrame.MAIN_MENU);
                 break;
-
             case EmployeeRegistrationPanel.CMD_Back:
+                frame.showPanel(JTreniNordOvestFrame.MAIN_MENU);
+                break;
+            case LoginPanel.CMD_Login:
+                login();
+                break;
+            case LoginPanel.CMD_Back:
+                frame.showPanel(JTreniNordOvestFrame.MAIN_MENU);
+                break;
+
+            case CustomerProfilePanel.CMD_LOGOUT:
+                logout();
                 frame.showPanel(JTreniNordOvestFrame.MAIN_MENU);
                 break;
 

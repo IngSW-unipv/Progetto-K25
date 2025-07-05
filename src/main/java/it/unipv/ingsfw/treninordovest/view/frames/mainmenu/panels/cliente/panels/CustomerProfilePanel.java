@@ -2,32 +2,32 @@ package it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.cliente.panel
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class CustomerProfilePanel extends JPanel {
     // Campi per i dati del profilo (read-only)
-    private JTextField txtNome;
-    private  JTextField txtCognome;
-    private  JTextField txtEmail;
-    private  JTextField txtSesso;
-    private  JTextField txtID;
-    private  JTextField txtLuogoNascita;
-    private JTextField txtDataNascita;
-    private  JTextField txtCellulare;
-    private  JTextField txtBilancio;
-    private  JTextField txtIndirizzo;
+    private final JTextField txtNome;
+    private final JTextField txtCognome;
+    private final JTextField txtEmail;
+    private final JTextField txtSesso;
+    private final JTextField txtID;
+    private final JTextField txtLuogoNascita;
+    private final JTextField txtDataNascita;
+    private final JTextField txtCellulare;
+    private final JTextField txtBilancio;
+    private final JTextField txtIndirizzo;
 
     // Campi per l'aggiornamento della password
-    private  JPasswordField txtPassword;
+    private final JPasswordField txtPassword;
 
     // Bottoni
-    private JButton btnAggiornaPassword;
-    private JButton btnAggiornaProfilo; // Corretto il nome
-    private  JButton btnEsci;
+    private final JButton btnAggiornaPassword;
+    private final JButton btnAggiornaProfilo; // Corretto il nome
+    private final JButton btnEsci;
 
-    // Campi per la gestione del denaro (sezione aggiunta)
-    private JTextField txtDenaro;
-    private JButton btnConfermaDenaro;
-
+    public static final String CMD_LOGOUT="logout";
+    public static final String CMD_AGPROFILO="update_profile";
+    public static final String CMD_AGPASS="update_password";
 
     public CustomerProfilePanel() {
         // Impostazioni generali del pannello
@@ -148,14 +148,7 @@ public class CustomerProfilePanel extends JPanel {
         denaroGbc.insets = new Insets(5, 5, 5, 5);
         denaroGbc.fill = GridBagConstraints.HORIZONTAL;
 
-        txtDenaro = new JTextField(10); // Campo per importo denaro
-        addLabeledField(denaroPanel, "Importo:", txtDenaro, denaroGbc, 0);
 
-        btnConfermaDenaro = new JButton("Aggiungi");
-        denaroGbc.gridx = 0;
-        denaroGbc.gridy = 1;
-        denaroGbc.gridwidth = 2;
-        denaroPanel.add(btnConfermaDenaro, denaroGbc);
 
         // Aggiungi il pannello denaro al pannello principale
 
@@ -168,6 +161,9 @@ public class CustomerProfilePanel extends JPanel {
         gbc.anchor = GridBagConstraints.SOUTHWEST; // Allineato in basso a sinistra
         btnEsci = new JButton("Esci");
         add(btnEsci, gbc);
+
+        //Funzione che imposta gli actionCommand
+        setActionCommand();
     }
 
     /**
@@ -179,6 +175,14 @@ public class CustomerProfilePanel extends JPanel {
         textField.setEditable(false);
         textField.setBackground(new Color(255, 255, 200)); // Giallo tenue per leggerezza
         return textField;
+    }
+
+    private void setActionCommand(){
+
+        btnEsci.setActionCommand(CMD_LOGOUT);
+        btnAggiornaProfilo.setActionCommand(CMD_AGPROFILO);
+        btnAggiornaPassword.setActionCommand(CMD_AGPASS);
+
     }
 
     /**

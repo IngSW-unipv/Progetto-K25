@@ -1,5 +1,6 @@
 package it.unipv.ingsfw.treninordovest.view.frames.mainmenu;
 
+import it.unipv.ingsfw.treninordovest.model.service.RegistrationService;
 import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.cliente.CustomerMainPanel;
 import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.dipendente.panels.EmployeeMainPanel;
 import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.login.LoginPanel;
@@ -127,9 +128,10 @@ public class JTreniNordOvestFrame extends JFrame implements PropertyChangeListen
 
 
 
+
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        if ("login_success".equalsIgnoreCase(evt.getPropertyName()) ){
+        if (RegistrationService.ptNameLogin.equalsIgnoreCase(evt.getPropertyName())){
             System.out.println("Login avvenuto con successo");
         }
         if ("customer_registration".equalsIgnoreCase(evt.getPropertyName()) ){
@@ -141,12 +143,5 @@ public class JTreniNordOvestFrame extends JFrame implements PropertyChangeListen
         else System.out.println("Errore generico");
     }
 
-    public void addActionListener(ActionListener actionListener) {
 
-        loginPanel.getBottoneAccesso().addActionListener(actionListener);
-        loginPanel.getBottoneIndietro().addActionListener(actionListener);
-        customerRegistrationPanel.getBtnRegister().addActionListener(actionListener);
-        employeeRegistrationPanel.getBtnRegister().addActionListener(actionListener);
-
-    }
 }

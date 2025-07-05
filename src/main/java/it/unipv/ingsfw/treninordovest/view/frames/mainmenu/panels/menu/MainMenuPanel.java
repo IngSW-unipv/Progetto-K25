@@ -6,9 +6,13 @@ import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-public class MainMenuPanel extends JPanel implements PropertyChangeListener{
+public class MainMenuPanel extends JPanel {
 
 
+    //Comandi
+    public final static String CMD_Accesso = "login_pannel";
+    public final static String CMD_RegistrazioneCliente = "customerRegistration_panel";
+    public final static String CMD_RegistrazioneDipendente = "employeeRegistration_panel";
 
     //private JButton accessoCliente;
     private final JButton registrazioneCliente;
@@ -26,9 +30,9 @@ public class MainMenuPanel extends JPanel implements PropertyChangeListener{
         registrazioneCliente = new JButton("Registrazione Cliente");
         registrazioneDipendente = new JButton("Registrazione Dipendente");
 
-        accesso.setActionCommand( "login");
-        registrazioneCliente.setActionCommand("customerRegistration");
-        registrazioneDipendente.setActionCommand("employeeRegistration");
+        accesso.setActionCommand(CMD_Accesso);
+        registrazioneCliente.setActionCommand(CMD_RegistrazioneCliente);
+        registrazioneDipendente.setActionCommand(CMD_RegistrazioneDipendente);
 
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -63,17 +67,7 @@ public class MainMenuPanel extends JPanel implements PropertyChangeListener{
         return accesso;
     }
 
-    public void addActionListener(ActionListener listener) {
-        accesso.addActionListener(listener);
-        registrazioneCliente.addActionListener(listener);
-        registrazioneDipendente.addActionListener(listener);
-    }
-
-
-    @Override
-    public void propertyChange(PropertyChangeEvent evt) {
 
 
 
-    }
 }

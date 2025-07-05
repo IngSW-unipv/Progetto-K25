@@ -19,6 +19,13 @@ public class RegistrationService {
     private final ClienteDAOImpl clienteDAO;
     private final DipendenteDAOImpl dipendenteDAO ;
 
+
+    public static final String ptNameLogin ="login_success";
+    public static final String ptNameLogout ="logout_success";
+    public static final String ptNameRegCliente ="customer_registration";
+    public static final String ptnRegDipendente ="employee_registration";
+
+
     public RegistrationService() {
         this.support = new PropertyChangeSupport(this);
         clienteDAO = new ClienteDAOImpl();
@@ -37,7 +44,7 @@ public class RegistrationService {
                 System.out.println("DEBUG: ID Utente:   "+user.getId());
 
                 SessionManager.getInstance().setCurrentUser(user);
-                support.firePropertyChange("login_success", null, user);
+                support.firePropertyChange(ptNameLogin, null, user);
                 return true;
             }
 
