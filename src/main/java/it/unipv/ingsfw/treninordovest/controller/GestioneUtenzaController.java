@@ -273,6 +273,23 @@ public class GestioneUtenzaController implements ActionListener{
                 frame.showPanel(JTreniNordOvestFrame.EMPLOYEE_REGISTRATION);
                 break;
 
+            case CustomerRegistrationPanel.CMD_Register:
+                   registraCliente();
+                    break;
+
+            case EmployeeRegistrationPanel.CMD_Register:
+               registraDipendente();
+                break;
+
+            case CustomerRegistrationPanel.CMD_Back:
+                frame.showPanel(JTreniNordOvestFrame.MAIN_MENU);
+                break;
+
+            case EmployeeRegistrationPanel.CMD_Back:
+                frame.showPanel(JTreniNordOvestFrame.MAIN_MENU);
+                break;
+
+
             // È buona norma avere un caso di default
             default:
                 System.err.println("Comando non riconosciuto: " + command);
