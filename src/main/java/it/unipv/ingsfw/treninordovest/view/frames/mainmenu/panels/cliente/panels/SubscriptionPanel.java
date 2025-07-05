@@ -6,12 +6,13 @@ import javax.swing.*;
 import java.awt.*;
 
 public class SubscriptionPanel extends JPanel {
+
     private JLabel labelTipo;
     private JComboBox<String> comboTipo;
     private JLabel labelDataInizio;
     private JDateChooser textDataInizio;
     private JButton buttonAbbonati;
-    public static String CMD_Abbonati = "abbonati";
+    public static final String CMD_Abbonati = "abbonati";
 
     public SubscriptionPanel() {
 

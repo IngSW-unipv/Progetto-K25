@@ -183,14 +183,17 @@ public class GestioneUtenzaController implements ActionListener{
 
        frame.getLoginPanel().getBottoneAccesso().addActionListener(this);
         frame.getLoginPanel().getBottoneIndietro().addActionListener(this);
+
         frame.getCustomerRegistrationPanel().getBtnRegister().addActionListener(this);
        frame.getEmployeeRegistrationPanel().getBtnRegister().addActionListener(this);
+
         frame.getCustomerRegistrationPanel() .getBtnMenuPrincipal().addActionListener(this);
         frame.getEmployeeRegistrationPanel().getBtnMenuPrincipal().addActionListener(this);
 
         frame.getMainMenuPanel().getRegistrazioneDipendente().addActionListener(this);
         frame.getMainMenuPanel().getRegistrazioneCliente().addActionListener(this);
         frame.getMainMenuPanel().getAccesso().addActionListener(this);
+        frame.getCustomerMainPanel().getProfilePanel().getBtnEsci().addActionListener(this);
     }
 
 

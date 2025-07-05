@@ -3,8 +3,10 @@ package it.unipv.ingsfw.treninordovest.controller;
 import it.unipv.ingsfw.treninordovest.model.facade.acquisto.AcquistoFacade;
 import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.JTreniNordOvestFrame;
 import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.cliente.CustomerMainPanel;
+import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.cliente.panels.CreditCardDialog;
 import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.cliente.panels.SubscriptionPanel;
 import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.cliente.panels.TicketPurchasePanel;
+import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.menu.MainMenuPanel;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -18,6 +20,7 @@ public class AcquistoController implements ActionListener {
 
 
     private final CustomerMainPanel view;
+    private final JTreniNordOvestFrame frame;
     private final AcquistoFacade acquistoFacade;
 
    public AcquistoController(JTreniNordOvestFrame frame) {
@@ -98,16 +101,14 @@ public class AcquistoController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        if(e.getSource()==view.getTicketPurchasePanel().getButtonAcquista()){
-            if(view.getTicketPurchasePanel().getButtonAcquista().getActionCommand().equals(TicketPurchasePanel.CMD_Acquista)){
-                acquistoBiglietto();
-            }
-        }
-        else if(e.getSource()==view.getSubscriptionPanel().getButtonAbbonati()){
-            if(view.getSubscriptionPanel().getButtonAbbonati().getActionCommand().equals(SubscriptionPanel.CMD_Abbonati)){
-                acquistoAbbonamento();
-            }
-        }
+        String command = e.getActionCommand();
+        // Usa uno switch per eseguire l'azione corretta per ogni comando
+        // CONTROLLA ATTENTAMENTE QUESTA PARTE NEL TUO CODICE!
+        switch (command) {
+            case SubscriptionPanel.CMD_Abbonati:
+                CreditCardDialog creditCardDialog = new CreditCardDialog(frame);
+                creditCardDialog.setVisible(true);
+                break;
 
 
     }
