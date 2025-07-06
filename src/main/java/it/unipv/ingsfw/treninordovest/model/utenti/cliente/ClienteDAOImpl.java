@@ -203,26 +203,14 @@ public class ClienteDAOImpl implements ClienteDAO {
 
     @Override
     public Cliente findById(String id) {
-
-        String sql = "SELECT * FROM utente WHERE ID=?";
-        Cliente cliente = null;
-
-
-        try {
-
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-
-
-
-        return cliente;
+        return null;
     }
 
     @Override
     public Cliente autenticateByEmail(Cliente input) {
         // Il valore predefinito è null, verrà popolato solo se il login ha successo.
         Cliente clienteAutenticato = null;
+
 
         // La vista 'utentiClienti' dovrebbe includere anche l'ID della tessera.
         String sql = "SELECT ID, nome, cognome, UserPassword, bilancio, luogoNascita, dataNascita, sesso, cellulare, indirizzo, email FROM utentiClienti WHERE email = ?";
@@ -239,6 +227,7 @@ public class ClienteDAOImpl implements ClienteDAO {
 
                     // La verifica della password è l'unico controllo necessario qui.
                     if (PasswordUtils.verifyPassword(input.getUserPassword(), storedHash)) {
+                        System.out.println("DEBUG DAO : Password corretta ");
 
                         // Se la password è corretta, popola l'oggetto Cliente con i dati dal DB.
                         String id = rs.getString("ID");
@@ -253,15 +242,16 @@ public class ClienteDAOImpl implements ClienteDAO {
                         String sesso = rs.getString("sesso"); // Usa getString per tipi VARCHAR
 
                         // Recupera l'ID della tessera dal database, non dall'input.
-                        String idTessera = tesseraDAO.getIdTesseraByCustomerID(input.getId().toString());
-                        Tessera tessera = new Tessera(idTessera);
+
+
 
                         // Crea l'oggetto Cliente autenticato, passando null per la password.
-                        clienteAutenticato = new Cliente(UUID.fromString(id), storedHash, nome, cognome, luogoNascita, sesso, dataNascita, cellulare, indirizzo, bilancio, email, tessera);
+                        clienteAutenticato = new Cliente(UUID.fromString(id), storedHash, nome, cognome, luogoNascita, sesso, dataNascita, cellulare, indirizzo, bilancio, input.getEmail());
                     }
+
                 }
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             // Per la produzione, usa un logger (es. SLF4J) invece di printStackTrace.
             // logger.error("Errore durante l'autenticazione per l'email: " + input.getEmail(), e);
             e.printStackTrace();
@@ -276,34 +266,6 @@ public class ClienteDAOImpl implements ClienteDAO {
 
     @Override
     public boolean updateBilancio (Cliente cliente) {
-
-//        String sql0 = "SELECT Bilancio FROM cliente where IDCliente=?";
-//        String sql = "UPDATE cliente set Bilancio=? where IDCliente=?";
-//
-//        try (Connection con2 = Database.getConnection(); PreparedStatement ps = con2.prepareStatement(sql0)) {
-//            ps.setString(1, cliente.getId());
-//
-//            ResultSet rs = ps.executeQuery();
-//
-//            if (rs.next()) {
-//                double bilancio = rs.getDouble("Bilancio");
-//                //importo += bilancio;
-//            }
-//
-//
-//        } catch (SQLException e) {
-//            throw new RuntimeException("Errore durante l'estrazione dei dati: ", e);
-//        }
-//
-//        try (Connection con = Database.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
-//          //  ps.setDouble(1, importo);
-//           // ps.setString(2, IdCliente);
-//            ps.executeUpdate();
-//            //Database.closeConnection(con);
-//            return true;
-//        } catch (SQLException e) {
-//            throw new RuntimeException("Errore durante l'aggiornamento password", e);
-//        }
         return false;
     }
 

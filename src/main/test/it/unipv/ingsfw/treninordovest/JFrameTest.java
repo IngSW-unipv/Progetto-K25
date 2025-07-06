@@ -15,28 +15,37 @@ public class JFrameTest  extends JFrame {
 
     @Test
     public void Test() {
+        String passwordOriginale = "PasswordSicura123!";
+        System.out.println("--- INIZIO TEST ---");
+        System.out.println("Password scelta per il test: [" + passwordOriginale + "]");
+        System.out.println("-------------------------------------------");
 
-//        Cliente cliente;
-//
-//        ILogin login = new  LoginFactoryProducer().getFactoryFromProperties("cliente");
-//
-//        cliente = (Cliente)  login.login("provamail@gmail.com","giacomoporetti");
-//
-//
-//        System.out.println("IdCliente   "+cliente.getId());
-//        System.out.println("IdTessera   "+cliente.getTessera().getIdTessera());
+        // 2. Hashing: Simuliamo la REGISTRAZIONE di un utente
+        String hashGenerato = PasswordUtils.hashPassword(passwordOriginale);
+        System.out.println("Hashing della password...");
+        System.out.println("Hash generato: [" + hashGenerato + "]");
+        System.out.println("La sua lunghezza è: " + hashGenerato.length()); // Deve essere 60
+        System.out.println("-------------------------------------------");
 
-        // 1. Crea un hash con il nuovo sistema (BCrypt)
-        String passwordDaSalvare = "PassTreno!2025";
-        String hashBCrypt = PasswordUtils.hashPassword(passwordDaSalvare);
+        // 3. Verifica: Simuliamo il LOGIN con la password corretta
+        System.out.println("Verifica con la password CORRETTA...");
+        boolean esitoCorretto = PasswordUtils.verifyPassword(passwordOriginale, hashGenerato);
+        System.out.println("Risultato della verifica: " + esitoCorretto);
+        System.out.println("-------------------------------------------");
 
-// 'hashBCrypt' conterrà qualcosa di simile a "$2a$10$..."
-        System.out.println("Nuovo hash: " + hashBCrypt);
+        // 4. Controprova: Simuliamo il LOGIN con una password sbagliata
+        String passwordSbagliata = "password-errata";
+        System.out.println("Verifica con la password SBAGLIATA (" + passwordSbagliata + ")...");
+        boolean esitoSbagliato = PasswordUtils.verifyPassword(passwordSbagliata, hashGenerato);
+        System.out.println("Risultato della verifica: " + esitoSbagliato);
+        System.out.println("-------------------------------------------");
 
-// 2. Ora la verifica con questo nuovo hash funzionerà
-        boolean corrisponde = PasswordUtils.verifyPassword(passwordDaSalvare, hashBCrypt);
-        System.out.println("La password corrisponde? " + corrisponde); // Questo stamperà 'true'
-
+        // 5. Conclusione del test
+        if (esitoCorretto && !esitoSbagliato) {
+            System.out.println("✅ TEST SUPERATO: La classe PasswordUtils e la libreria funzionano perfettamente.");
+        } else {
+            System.out.println("❌ TEST FALLITO: C'è un problema nella logica di base dell'hashing o della verifica.");
+        }
 
     }
 

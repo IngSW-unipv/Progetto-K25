@@ -46,9 +46,10 @@ public class GestioneUtenzaController implements ActionListener{
 
     private void registraCliente(){
 
-        String nome,cognome,sesso,password,cellulare,email,indirizzo,luogoNascita;
+        String nome,cognome,sesso,cellulare,email,indirizzo,luogoNascita;
         Date dataNascita;
         Cliente cliente;
+        char[] password;
 
         try {
 
@@ -64,15 +65,20 @@ public class GestioneUtenzaController implements ActionListener{
 
             cellulare = frame.getCustomerRegistrationPanel().getTxtCellulare().getText();
             email = frame.getCustomerRegistrationPanel().getTxtEmail().getText();
-            password = frame.getCustomerRegistrationPanel().getTxtPassword().toString();
+            password = frame.getCustomerRegistrationPanel().getTxtPassword().getPassword();
+
+            String passwordString = new String(password); // <-- Conversione corretta
+            java.util.Arrays.fill(password, ' ');
+
+
             indirizzo = frame.getCustomerRegistrationPanel().getTxtIndirizzo().getText();
             luogoNascita = frame.getCustomerRegistrationPanel().getTxtLuogoNascita().getText();
 
 
 
-            if (!password.isEmpty() && !nome.isEmpty() && !cognome.isEmpty() && !email.isEmpty() && !sesso.isEmpty() && !luogoNascita.isEmpty() && !cellulare.isEmpty() && !indirizzo.isEmpty() && !(dataNascita ==null)) {
+            if (!passwordString.isEmpty() && !nome.isEmpty() && !cognome.isEmpty() && !email.isEmpty() && !sesso.isEmpty() && !luogoNascita.isEmpty() && !cellulare.isEmpty() && !indirizzo.isEmpty() && !(dataNascita ==null)) {
 
-                cliente = new Cliente(UUID.randomUUID(),password,nome,cognome,luogoNascita,sesso,dataNascitaLocal,cellulare,indirizzo,0, email);
+                cliente = new Cliente(UUID.randomUUID(),passwordString,nome,cognome,luogoNascita,sesso,dataNascitaLocal,cellulare,indirizzo,0, email);
 
                 if (loginFacade.registraCliente(cliente)){
 
@@ -116,16 +122,20 @@ public class GestioneUtenzaController implements ActionListener{
             LocalDate dataNascitaLocal= dataNascita.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
             cellulare = frame.getEmployeeRegistrationPanel().getTxtCellulare().getText();
+
             password = frame.getEmployeeRegistrationPanel().getTxtPassword().getPassword();
+            String passwordString = new String(password); // <-- Conversione corretta
+            java.util.Arrays.fill(password, ' ');
+
             indirizzo = frame.getEmployeeRegistrationPanel().getTxtIndirizzo().getText();
             luogoNascita = frame.getEmployeeRegistrationPanel().getTxtLuogoNascita().getText();
             ruolo = frame.getEmployeeRegistrationPanel().getComboRuolo().toString();
 
 
 
-            if (!password.toString().isEmpty() && !nome.isEmpty() && !cognome.isEmpty() && !sesso.isEmpty() && !luogoNascita.isEmpty() && !cellulare.isEmpty() && !indirizzo.isEmpty() && !(dataNascita ==null)&& !dataNascitaLocal.isAfter(LocalDate.now())) {
+            if (!Arrays.toString(password).isEmpty() && !nome.isEmpty() && !cognome.isEmpty() && !sesso.isEmpty() && !luogoNascita.isEmpty() && !cellulare.isEmpty() && !indirizzo.isEmpty() && !(dataNascita ==null)&& !dataNascitaLocal.isAfter(LocalDate.now())) {
 
-                dipendente= new Dipendente(UUID.randomUUID(),password.toString(), nome, cognome, sesso, luogoNascita,dataNascitaLocal, cellulare, indirizzo, Dipendente.getStipendioByRuolo(ruolo), ruolo);
+                dipendente= new Dipendente(UUID.randomUUID(), passwordString, nome, cognome, sesso, luogoNascita,dataNascitaLocal, cellulare, indirizzo, Dipendente.getStipendioByRuolo(ruolo), ruolo);
 
                 if (loginFacade.registraDipendente(dipendente)){
 
@@ -148,7 +158,12 @@ public class GestioneUtenzaController implements ActionListener{
     }
     private void login(){
         String identificativo =  frame.getLoginPanel().getCampoUtente().getText();
-        String password = Arrays.toString(frame.getLoginPanel().getCampoPassword().getPassword());
+
+        char[] passwordInCaratteri = frame.getLoginPanel().getCampoPassword().getPassword();
+        String password = new String(passwordInCaratteri);
+        // Pulisci l'array per sicurezza subito dopo l'uso
+        java.util.Arrays.fill(passwordInCaratteri, ' ');
+
         String tipoUtente = (String )frame.getLoginPanel().getComboRuolo().getSelectedItem();
 
         try {
