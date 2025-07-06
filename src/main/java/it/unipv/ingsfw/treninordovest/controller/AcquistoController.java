@@ -77,6 +77,8 @@ public class AcquistoController implements ActionListener {
 
     }
 
+    private void mostraListaViaggi(){}
+
     /// Aggiunta degli Action Listener per i vari pannelli
 
     private void addListeners() {

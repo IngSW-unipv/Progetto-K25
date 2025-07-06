@@ -192,30 +192,53 @@ public class DipendenteDAOImpl implements DipendenteDAO {
     }
 
     @Override
-    public Dipendente autenticate(String id, String password)  {
-       /* System.out.println("Tentativo di autenticazione per id: " + id);
+    public Dipendente autenticate(Dipendente dipendente)  {
 
-       Dipendente dipendente = get(id);
-        if (dipendente == null) {
-            System.out.println("Dipendente non trovato nel database");
-            return null;
+        Dipendente autenticate = null;
+
+        String sql = "select ID,Userpassword,Nome,Cognome,Sesso,LuogoNascita,DataNascita,Cellulare,Indirizzo,Stipendio,Ruolo from utentiDipendenti where id=?";
+        try (Connection con = Database.getConnection(); PreparedStatement ps= con.prepareStatement(sql)) {
+            //Preparazione della Query
+            ps.setString(1,dipendente.getId().toString());
+            //Impostazione di estrapolazione query
+
+            try (ResultSet rs=ps.executeQuery()) {
+
+                if(rs.next()){
+                    String storePassword=rs.getString("UserPassword");
+                    if (PasswordUtils.verifyPassword(dipendente.getUserPassword(), storePassword)){
+                        String nome=rs.getString("nome");
+                        String cognome=rs.getString("cognome");
+
+                        double stipendio=rs.getDouble("stipendio");
+                        String luogoNascita=rs.getString("luogoNascita");
+
+                        Date dataNascita= rs.getDate("dataNascita");
+                        LocalDate dataNascitaLocal = dataNascita.toLocalDate();
+
+                        String sesso=rs.getString("sesso");
+                        String cellulare=rs.getString("cellulare");
+                        String indirizzo=rs.getString("indirizzo");
+                        String ruolo =rs.getString("ruolo");
+
+                        autenticate=new Dipendente(dipendente.getId(),storePassword,nome,cognome,luogoNascita, sesso, dataNascitaLocal,cellulare,indirizzo,stipendio,ruolo);
+
+
+                    }
+
+                }
+
+
+            }
+
+            //Chiusura connesione
+            //Database.closeConnection(con);
+        }catch(SQLException e){
+            throw new RuntimeException("Errore durante l'estrazione dei dati: ",e);
         }
 
-        System.out.println("Dipendente trovato. Verifica password...");
-        System.out.println("Password inserita: [lunghezza: " + password.length() + "]");
-        System.out.println("Password hash nel DB: " + dipendente.getUserPassword());
+        return autenticate;
 
-        boolean passwordValida = PasswordUtils.verifyPassword(password, dipendente.getUserPassword());
-        System.out.println("Risultato verifica password: " + passwordValida);
-
-        if (passwordValida) {
-            System.out.println("Autenticazione riuscita");
-            return dipendente;
-        } else {
-            System.out.println("Password non valida");
-            return null;
-        }*/
-        return null;
     }
 
     @Override

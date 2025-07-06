@@ -4,12 +4,12 @@ import it.unipv.ingsfw.treninordovest.model.dao.interfaces.DAO;
 
 public interface ClienteDAO extends DAO<Cliente> {
 
-    Cliente findById(String id);
+
 
     Cliente autenticateByEmail(Cliente credentials) ;
 
 
-    boolean updateBilancio(Cliente cliente) ;
+
 
     boolean updatePassword (Cliente cliente) ;
 

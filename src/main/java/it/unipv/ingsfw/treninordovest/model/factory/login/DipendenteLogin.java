@@ -8,6 +8,6 @@ public class DipendenteLogin implements ILogin<Dipendente> {
     @Override
     public Dipendente login(String username, String password) {
         DipendenteDAOImpl dipendenteDAO = new DipendenteDAOImpl();
-        return dipendenteDAO.get(new Dipendente(username, password));
+        return dipendenteDAO.autenticate(new Dipendente(username, password));
     }
 }

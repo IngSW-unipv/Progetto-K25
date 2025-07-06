@@ -201,10 +201,7 @@ public class ClienteDAOImpl implements ClienteDAO {
 
     /*Metodi da valutare*/
 
-    @Override
-    public Cliente findById(String id) {
-        return null;
-    }
+
 
     @Override
     public Cliente autenticateByEmail(Cliente input) {
@@ -262,12 +259,6 @@ public class ClienteDAOImpl implements ClienteDAO {
     }
 
 
-
-
-    @Override
-    public boolean updateBilancio (Cliente cliente) {
-        return false;
-    }
 
     @Override
     public boolean updatePassword (Cliente cliente) {
