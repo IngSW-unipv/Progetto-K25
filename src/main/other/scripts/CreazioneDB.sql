@@ -140,7 +140,7 @@ create table abbonamento(
 IDAbbonamento varchar(40) not null,
 Tipo varchar(30) not null,
 Scadenza date not null,
-IDTessera varchar(40),
+IDTessera varchar(40) not null,
 primary key (IDAbbonamento),
 foreign key (IDTessera) references tessera(IDTessera) on delete cascade on update cascade, 
 foreign key (IDAbbonamento) references titoloviaggio(IDTitolo) on delete cascade on update cascade

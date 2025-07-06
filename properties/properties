@@ -12,10 +12,10 @@ dipendente.factory.class.name=it.unipv.ingsfw.treninordovest.factory.implementat
 dipendente.dao.class.name=it.unipv.ingsfw.treninordovest.dao.implementations.utenti.DipendenteDAOImpl
 
 # Configurazione per le strategie di calcolo stipendio
-stipendio.capotreno.strategy.class.name=it.unipv.ingsfw.treninordovest.strategy.stipendio.CapotrenoStipendioConcrete
-stipendio.macchinista.strategy.class.name=it.unipv.ingsfw.treninordovest.strategy.stipendio.MacchinistaStipendioConcrete
-stipendio.controllore.strategy.class.name=it.unipv.ingsfw.treninordovest.strategy.stipendio.ControlloreStipendioConcrete
-stipendio.impiegato.strategy.class.name=it.unipv.ingsfw.treninordovest.strategy.stipendio.ImpiegatoStipendioConcrete
+stipendio.capotreno.strategy.class.name=it.unipv.ingsfw.treninordovest.model.strategy.stipendio.CapotrenoStipendioConcrete
+stipendio.macchinista.strategy.class.name=it.unipv.ingsfw.treninordovest.model.strategy.stipendio.MacchinistaStipendioConcrete
+stipendio.controllore.strategy.class.name=it.unipv.ingsfw.treninordovest.model.strategy.stipendio.ControlloreStipendioConcrete
+stipendio.impiegato.strategy.class.name=it.unipv.ingsfw.treninordovest.model.strategy.stipendio.ImpiegatoStipendioConcrete
 
 #Configurazione per abbonamenti
 settimanale.factory.class.name=it.unipv.ingsfw.treninordovest.model.strategy.abbonamento.AbbonamentoSettimanaleConcrete

@@ -9,14 +9,18 @@ public class TesseraDAOTest {
     @Test
     void getIdTesseraByCustomerIDTest() {
         TesseraDAOImpl dao = new TesseraDAOImpl();
-        String idCliente ="41a37ceb-7fb7-4a0c-98b8-11f4c62dcbe3";
-        String idCliente2="abc";
+        String idCliente ="9984e689-8418-4394-b9ca-1e7950a0feb9";
+        String tesseraAttesa = "c86b9cf8-d5b5-4cf0-b25a-55555ce33581";
+
+        String idCTesseraEstratta = dao.getIdTesseraByCustomerID(idCliente);
+
+
+        System.out.println("Tessera estratta:" + tesseraAttesa);
+        System.out.println("Tessera estratta :" + idCTesseraEstratta);
 
 
 
-        System.out.println(dao.getIdTesseraByCustomerID(idCliente));
-        System.out.println(dao.exists(idCliente));
-        System.out.println(dao.exists(idCliente2));
+
 
 
 

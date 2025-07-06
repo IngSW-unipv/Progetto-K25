@@ -19,7 +19,7 @@ import java.util.UUID;
 
 public class ClienteDAOImpl implements ClienteDAO {
 
-    private TesseraDAOImpl tesseraDAO = new TesseraDAOImpl();
+    private TesseraDAOImpl tesseraDAO;
 
     public ClienteDAOImpl() {
        this.tesseraDAO = new TesseraDAOImpl();
@@ -56,7 +56,7 @@ public class ClienteDAOImpl implements ClienteDAO {
                         String cellulare = rs.getString("cellulare");
                         String indirizzo = rs.getString("indirizzo");
 
-                        String idTessera = tesseraDAO.getIdTesseraByCustomerID(id);
+                        String idTessera = tesseraDAO.getIdTesseraByCustomerID(cliente.getId().toString());
 
                         cliente = new Cliente(UUID.fromString(id), password, nome, cognome, luogoNascita, sesso, dataNascitaLocal, cellulare, indirizzo, bilancio, email,new Tessera(idTessera));
 
@@ -232,7 +232,8 @@ public class ClienteDAOImpl implements ClienteDAO {
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
                     String storedHash = rs.getString("UserPassword");
-                    if (input.getEmail().equals(rs.getString("email"))  /*PasswordUtils.verifyPassword(input.getUserPassword(), storedHash)*/) {
+                    String email = rs.getString("email");
+                    if (email.equals(input.getEmail()) && PasswordUtils.verifyPassword(input.getUserPassword(), storedHash) ) {
 
                         String id= rs.getString("ID");
                         String nome=rs.getString("nome");
@@ -242,9 +243,9 @@ public class ClienteDAOImpl implements ClienteDAO {
                         LocalDate dataNascita= LocalDate.parse(rs.getString("dataNascita"));
                         String cellulare=rs.getString("cellulare");
                         String indirizzo=rs.getString("indirizzo");
-                        String email=rs.getString("email");
+                        //String email=rs.getString("email");
                         Object sesso=  rs.getObject("sesso");
-                        Tessera tessera= new Tessera(id);
+                        Tessera tessera= new Tessera(input.getTessera().getIdTessera());
 
                         clienteAutenticato= new Cliente(UUID.fromString(id),storedHash,nome,cognome,luogoNascita, (String) sesso,dataNascita,cellulare,indirizzo,bilancio,email,tessera);
 
