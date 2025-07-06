@@ -64,7 +64,7 @@ public class GestioneUtenzaController implements ActionListener{
 
             cellulare = frame.getCustomerRegistrationPanel().getTxtCellulare().getText();
             email = frame.getCustomerRegistrationPanel().getTxtEmail().getText();
-            password = frame.getCustomerRegistrationPanel().getTxtPassword().getText();
+            password = frame.getCustomerRegistrationPanel().getTxtPassword().toString();
             indirizzo = frame.getCustomerRegistrationPanel().getTxtIndirizzo().getText();
             luogoNascita = frame.getCustomerRegistrationPanel().getTxtLuogoNascita().getText();
 

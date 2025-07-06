@@ -221,41 +221,53 @@ public class ClienteDAOImpl implements ClienteDAO {
 
     @Override
     public Cliente autenticateByEmail(Cliente input) {
-
+        // Il valore predefinito è null, verrà popolato solo se il login ha successo.
         Cliente clienteAutenticato = null;
 
-        String sql = "SELECT ID,nome,cognome,UserPassword,bilancio,luogoNascita,dataNascita,sesso,cellulare,indirizzo,email FROM utentiClienti WHERE email=?";
+        // La vista 'utentiClienti' dovrebbe includere anche l'ID della tessera.
+        String sql = "SELECT ID, nome, cognome, UserPassword, bilancio, luogoNascita, dataNascita, sesso, cellulare, indirizzo, email FROM utentiClienti WHERE email = ?";
+
         try (Connection con = Database.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
 
             ps.setString(1, input.getEmail());
             try (ResultSet rs = ps.executeQuery()) {
+
+                // Controlla se è stato trovato un utente con quella email.
                 if (rs.next()) {
                     String storedHash = rs.getString("UserPassword");
-                    String email = rs.getString("email");
-                    if (email.equals(input.getEmail()) && PasswordUtils.verifyPassword(input.getUserPassword(), storedHash) ) {
 
-                        String id= rs.getString("ID");
-                        String nome=rs.getString("nome");
-                        String cognome=rs.getString("cognome");
-                        double bilancio=rs.getDouble("bilancio");
-                        String luogoNascita=rs.getString("luogoNascita");
-                        LocalDate dataNascita= LocalDate.parse(rs.getString("dataNascita"));
-                        String cellulare=rs.getString("cellulare");
-                        String indirizzo=rs.getString("indirizzo");
-                        //String email=rs.getString("email");
-                        Object sesso=  rs.getObject("sesso");
-                        Tessera tessera= new Tessera(input.getTessera().getIdTessera());
+                    // La verifica della password è l'unico controllo necessario qui.
+                    if (PasswordUtils.verifyPassword(input.getUserPassword(), storedHash)) {
 
-                        clienteAutenticato= new Cliente(UUID.fromString(id),storedHash,nome,cognome,luogoNascita, (String) sesso,dataNascita,cellulare,indirizzo,bilancio,email,tessera);
+                        // Se la password è corretta, popola l'oggetto Cliente con i dati dal DB.
+                        String id = rs.getString("ID");
+                        String nome = rs.getString("nome");
+                        String cognome = rs.getString("cognome");
+                        double bilancio = rs.getDouble("bilancio");
+                        String luogoNascita = rs.getString("luogoNascita");
+                        LocalDate dataNascita = rs.getDate("dataNascita").toLocalDate(); // Modo più pulito per convertire
+                        String cellulare = rs.getString("cellulare");
+                        String indirizzo = rs.getString("indirizzo");
+                        String email = rs.getString("email");
+                        String sesso = rs.getString("sesso"); // Usa getString per tipi VARCHAR
 
-                        return clienteAutenticato;
+                        // Recupera l'ID della tessera dal database, non dall'input.
+                        String idTessera = tesseraDAO.getIdTesseraByCustomerID(input.getId().toString());
+                        Tessera tessera = new Tessera(idTessera);
+
+                        // Crea l'oggetto Cliente autenticato, passando null per la password.
+                        clienteAutenticato = new Cliente(UUID.fromString(id), storedHash, nome, cognome, luogoNascita, sesso, dataNascita, cellulare, indirizzo, bilancio, email, tessera);
                     }
                 }
             }
         } catch (SQLException e) {
+            // Per la produzione, usa un logger (es. SLF4J) invece di printStackTrace.
+            // logger.error("Errore durante l'autenticazione per l'email: " + input.getEmail(), e);
             e.printStackTrace();
         }
+
+        // Ritorna l'oggetto cliente (se autenticato) o null (se fallito).
         return clienteAutenticato;
     }
 

@@ -5,11 +5,11 @@ db_psw=Andrea@2003
 
 
 
-cliente.factory.class.name=it.unipv.ingsfw.treninordovest.factory.implementations.ClienteLoginFactory
-cliente.dao.class.name=it.unipv.ingsfw.treninordovest.dao.implementations.utenti.ClienteDAOImpl
+#cliente.factory.class.name=it.unipv.ingsfw.treninordovest.factory.implementations.ClienteLoginFactory
+#cliente.dao.class.name=it.unipv.ingsfw.treninordovest.dao.implementations.utenti.ClienteDAOImpl
 
-dipendente.factory.class.name=it.unipv.ingsfw.treninordovest.factory.implementations.DipendenteLoginFactory
-dipendente.dao.class.name=it.unipv.ingsfw.treninordovest.dao.implementations.utenti.DipendenteDAOImpl
+#dipendente.factory.class.name=it.unipv.ingsfw.treninordovest.factory.implementations.DipendenteLoginFactory
+#dipendente.dao.class.name=it.unipv.ingsfw.treninordovest.dao.implementations.utenti.DipendenteDAOImpl
 
 # Configurazione per le strategie di calcolo stipendio
 stipendio.capotreno.strategy.class.name=it.unipv.ingsfw.treninordovest.model.strategy.stipendio.CapotrenoStipendioConcrete
