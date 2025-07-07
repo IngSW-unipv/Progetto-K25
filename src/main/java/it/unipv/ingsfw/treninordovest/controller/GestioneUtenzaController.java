@@ -168,9 +168,8 @@ public class GestioneUtenzaController implements ActionListener{
 
         try {
             if (facade.getRegistrationFacade().login(identificativo,password,tipoUtente)){
-                JOptionPane.showMessageDialog(null,"Login effettuato correttamente", "Info", JOptionPane.INFORMATION_MESSAGE);
-
                 frame.showPanel(frame.getLoginPanel().getComboRuolo().getSelectedItem().toString());
+                JOptionPane.showMessageDialog(null,"Login effettuato correttamente", "Info", JOptionPane.INFORMATION_MESSAGE);
             }
             else
                 JOptionPane.showMessageDialog(null, "Problema durante il login", "Errore", JOptionPane.ERROR_MESSAGE);

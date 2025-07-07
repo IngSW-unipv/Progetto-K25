@@ -242,14 +242,14 @@ public class DipendenteDAOImpl implements DipendenteDAO {
     }
 
     @Override
-    public boolean updatePassword(String id, String password) {
-        /*
+    public boolean updatePassword(Dipendente dipendente) {
+
         String sql = "UPDATE utente set UserPassword=? where ID=?";
-        String hashedPassword = PasswordUtils.hashPassword(password);
+        String hashedPassword = PasswordUtils.hashPassword(dipendente.getUserPassword());
 
         try (Connection con= Database.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
                 ps.setString(1, hashedPassword);
-                ps.setString(2, id);
+                ps.setString(2, dipendente.getId().toString());
                 ps.executeUpdate();
                // Database.closeConnection(con);
                 System.out.println("Password aggiornata con successo");
@@ -259,7 +259,5 @@ public class DipendenteDAOImpl implements DipendenteDAO {
             throw new RuntimeException("Errore durante l'aggiornamento della password",e);
         }
 
-         */
-        return false;
     }
 }

@@ -7,5 +7,5 @@ import java.sql.SQLException;
 public interface DipendenteDAO extends DAO<Dipendente> {
     Dipendente autenticate(Dipendente dipendente) throws SQLException;
 
-    boolean updatePassword (String id, String password);
+    boolean updatePassword (Dipendente dipendente);
 }
