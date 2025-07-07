@@ -223,7 +223,6 @@ public class DipendenteDAOImpl implements DipendenteDAO {
 
                         autenticate=new Dipendente(dipendente.getId(),storePassword,nome,cognome,luogoNascita, sesso, dataNascitaLocal,cellulare,indirizzo,stipendio,ruolo);
 
-
                     }
 
                 }

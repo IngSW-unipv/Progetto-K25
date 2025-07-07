@@ -50,6 +50,16 @@ public class UtenteService {
     }
 
     public boolean aggiornaPasswordDipendente(String nuovaPassword){
+        Dipendente dipendenteAttuale = (Dipendente) SessionManager.getInstance().getCurrentUser();
+
+        Dipendente dtoPassword = new Dipendente(dipendenteAttuale.getId().toString(),nuovaPassword);
+
+        if(dipendenteAttuale!=null) {
+            if(dipendenteDAO.updatePassword(dtoPassword)){
+                System.out.println("DEBUG:Password aggiornata con successo");
+                return true;
+            }
+        }
         return false;
     }
 

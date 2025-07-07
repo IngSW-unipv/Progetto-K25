@@ -308,7 +308,6 @@ public class GestioneUtenzaController implements ActionListener{
 
             case EmployeeProfilePanel.CMD_UpdateProfile:
                 aggiornaDatiProfiloDipendente();
-                
                 break;
 
             case EmployeeProfilePanel.CMD_ChangePassword:
