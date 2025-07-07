@@ -218,6 +218,10 @@ public class GestioneUtenzaController implements ActionListener{
     }
     private void aggiornaDatiProfiloDipendente(){
 
+        if(facade.getUtenteFacade().aggiornaProfiloDipendente()){
+            JOptionPane.showMessageDialog(null,"Profilo aggiornato correttamente", "Info", JOptionPane.INFORMATION_MESSAGE);
+
+        }
     }
 
 
