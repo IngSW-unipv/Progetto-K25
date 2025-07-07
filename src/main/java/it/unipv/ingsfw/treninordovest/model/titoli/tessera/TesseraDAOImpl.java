@@ -200,8 +200,9 @@ public class TesseraDAOImpl implements TesseraDAO {
     @Override
     public String getIdTesseraByCustomerID(String idCliente) {
 
-        String sql = "select IDTessera from tessera where IDCliente=?";
         String idTessera = "";
+        String sql = "select IDTessera from tessera where IDCliente=?";
+        //String idTessera = "";
 
         try (Connection con = Database.getConnection(); PreparedStatement ps = con.prepareStatement(sql); ) {
             //Query effettuata su una vista creata nel DB per semplificare l'estrazione dei dati
@@ -210,9 +211,7 @@ public class TesseraDAOImpl implements TesseraDAO {
 
             try (ResultSet rs=ps.executeQuery()){
                 if(rs.next()){
-
-                    idTessera=rs.getString("IDTessera");
-
+                    idTessera = rs.getString("IDTessera");;
                     return idTessera;
 
                 }
@@ -228,6 +227,6 @@ public class TesseraDAOImpl implements TesseraDAO {
 
 
 
-        return idTessera;
+       return idTessera;
     }
 }

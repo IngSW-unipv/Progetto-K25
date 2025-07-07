@@ -188,11 +188,31 @@ public class GestioneUtenzaController implements ActionListener{
         facade.getRegistrationFacade().logout();
 
     }
-    private void modificaDatiCliente(){}
+    private void modificaDatiCliente(){
+
+        char[] passwordChar = frame.getCustomerMainPanel().getProfilePanel().getTxtPassword().getPassword();
+        String password = new String(passwordChar);
+
+        if (facade.getUtenteFacade().aggiornaPasswordCliente(password)){
+            JOptionPane.showMessageDialog(null,"Password aggiornata correttamente", "Info", JOptionPane.INFORMATION_MESSAGE);
+        }
+
+    }
     private void modificaDatiDipendente(){
+
+        char[] passwordChar = frame.getEmployeeMainPanel().getProfilePanel().getTxtPassword().getPassword();
+        String password = new String(passwordChar);
+
+        if(facade.getUtenteFacade().aggiornaPasswordDipendente(password)){
+            JOptionPane.showMessageDialog(null,"Password aggiornata correttamente", "Info", JOptionPane.INFORMATION_MESSAGE);
+        }
 
     }
     private void aggiornaDatiProfiloCliente(){
+
+        if (facade.getUtenteFacade().aggiornaProfiloCliente()){
+            JOptionPane.showMessageDialog(null,"Profilo aggiornato correttamente", "Info", JOptionPane.INFORMATION_MESSAGE);
+        }
 
 
     }
@@ -265,6 +285,8 @@ public class GestioneUtenzaController implements ActionListener{
                 break;
             case LoginPanel.CMD_Login:
                 login();
+                frame.getLoginPanel().getCampoUtente().setText("");
+                frame.getLoginPanel().getCampoPassword().setText("");
                 break;
             case LoginPanel.CMD_Back:
                 frame.showPanel(JTreniNordOvestFrame.MAIN_MENU);
@@ -276,7 +298,9 @@ public class GestioneUtenzaController implements ActionListener{
 
             case CustomerProfilePanel.CMD_AGPASS:
                 //Da definire
-                System.out.println("Comando da definire");
+                modificaDatiCliente();
+                logout();
+                frame.showPanel(JTreniNordOvestFrame.MAIN_MENU);
                 break;
 
             case EmployeeProfilePanel.CMD_UpdateProfile:
@@ -285,7 +309,7 @@ public class GestioneUtenzaController implements ActionListener{
 
             case EmployeeProfilePanel.CMD_ChangePassword:
                 //Da definire
-                System.out.println("Comando da definire");
+                modificaDatiDipendente();
                 break;
 
             case EmployeeProfilePanel.CMD_Logout:

@@ -1,8 +1,9 @@
 package it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.cliente.panels;
 
+import it.unipv.ingsfw.treninordovest.model.utenti.cliente.Cliente;
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
@@ -16,7 +17,7 @@ public class CustomerProfilePanel extends JPanel implements PropertyChangeListen
     private final JTextField txtLuogoNascita;
     private final JTextField txtDataNascita;
     private final JTextField txtCellulare;
-    private final JTextField txtBilancio;
+    private final JTextField txtIdTessera;
     private final JTextField txtIndirizzo;
 
     // Campi per l'aggiornamento della password
@@ -87,8 +88,8 @@ public class CustomerProfilePanel extends JPanel implements PropertyChangeListen
         txtEmail = createReadOnlyTextField();
         addLabeledField(profileDataPanel, "Email:", txtEmail, profileGbc, row++);
 
-        txtBilancio = createReadOnlyTextField();
-        addLabeledField(profileDataPanel, "Bilancio:", txtBilancio, profileGbc, row++);
+       txtIdTessera = createReadOnlyTextField();
+       addLabeledField(profileDataPanel, "IdTessera:", txtIdTessera, profileGbc, row++);
 
         txtID = createReadOnlyTextField();
         addLabeledField(profileDataPanel, "ID Cliente:", txtID, profileGbc, row++);
@@ -98,7 +99,7 @@ public class CustomerProfilePanel extends JPanel implements PropertyChangeListen
         gbc.gridy = 1;
         gbc.gridheight = 10; // Occupa più righe
         gbc.fill = GridBagConstraints.BOTH; // Riempie lo spazio
-        gbc.weightx = 1.0; // Espansione orizzontale
+        gbc.weightx = 2.0; // Espansione orizzontale
         gbc.weighty = 1.0; // Espansione verticale
         add(profileDataPanel, gbc);
 
@@ -252,9 +253,10 @@ public class CustomerProfilePanel extends JPanel implements PropertyChangeListen
         this.txtCellulare.setText(cellulare);
     }
 
-    public void setTxtBilancio(String bilancio) {
-        this.txtBilancio.setText(bilancio);
+    public void setTxtIdTessera(String idTessera) {
+        this.txtIdTessera.setText(idTessera);
     }
+
 
     public void setTxtIndirizzo(String indirizzo) {
         this.txtIndirizzo.setText(indirizzo);
@@ -265,24 +267,28 @@ public class CustomerProfilePanel extends JPanel implements PropertyChangeListen
     }
 
 
+
+
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         String propertyName = evt.getPropertyName();
 
+        Cliente cliente = (Cliente) evt.getNewValue();
+
         if("cliente_aggiornato".equals(propertyName)){
-            String nome = (String) evt.getNewValue();
-            setTxtNome(nome);
-            String cognome = (String) evt.getNewValue();
-            setTxtCognome(cognome);
-            String email = (String) evt.getNewValue();
-            setTxtEmail(email);
-            String sesso = (String) evt.getNewValue();
-            setTxtSesso(sesso);
-            String id = (String) evt.getNewValue();
-            setTxtID(id);
-            String luogoNascita = (String) evt.getNewValue();
-            setTxtLuogoNascita(luogoNascita);
+            setTxtNome(cliente.getNome());
+            setTxtCognome(cliente.getCognome());
+            setTxtEmail(cliente.getEmail());
+            setTxtSesso(cliente.getSesso());
+            setTxtLuogoNascita(cliente.getLuogoNascita());
+            setTxtDataNascita(cliente.getDataNascita().toString());
+            setTxtCellulare(cliente.getCellulare());
+            setTxtIndirizzo(cliente.getIndirizzo());
+            setTxtIdTessera(cliente.getTessera().getIdTessera());
+            setTxtID(cliente.getId().toString());
+
         }
+
 
     }
 }

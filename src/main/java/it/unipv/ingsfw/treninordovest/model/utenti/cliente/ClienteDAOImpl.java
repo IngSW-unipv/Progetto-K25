@@ -28,6 +28,7 @@ public class ClienteDAOImpl implements ClienteDAO {
     @Override
     public Cliente get(Cliente cliente) {
 
+        Cliente clienteDB=null;
 
         String sql = "select ID,nome,cognome,email,Userpassword,bilancio,luogoNascita,dataNascita,sesso,cellulare,indirizzo,sesso from utentiClienti where ID=? ";
         //String hashedPassword = PasswordUtils.hashPassword(cliente.getUserPassword());
@@ -58,7 +59,7 @@ public class ClienteDAOImpl implements ClienteDAO {
 
                         String idTessera = tesseraDAO.getIdTesseraByCustomerID(cliente.getId().toString());
 
-                        cliente = new Cliente(UUID.fromString(id), password, nome, cognome, luogoNascita, sesso, dataNascitaLocal, cellulare, indirizzo, bilancio, email,new Tessera(idTessera));
+                        clienteDB = new Cliente(UUID.fromString(id), password, nome, cognome, luogoNascita, sesso, dataNascitaLocal, cellulare, indirizzo, bilancio, email,new Tessera(idTessera));
 
 
 
@@ -71,7 +72,7 @@ public class ClienteDAOImpl implements ClienteDAO {
             e.printStackTrace();
         }
 
-        return cliente;
+        return clienteDB;
     }
 
     @Override
@@ -261,18 +262,23 @@ public class ClienteDAOImpl implements ClienteDAO {
 
 
     @Override
-    public boolean updatePassword (Cliente cliente) {
+    public boolean updatePassword(Cliente cliente) {
 
-//        String hashedPassword = PasswordUtils.hashPassword(cliente.getUserPassword());
-//        String sql = "UPDATE utente set UserPassword=? where ID=?";
-//        try (Connection con = Database.getConnection(); PreparedStatement ps = con.prepareStatement(sql);) {
-//            //ps.setString(1, hashedPassword);
-//            //ps.setString(2, id);
-//            //Database.closeConnection(con);
-//            return ps.executeUpdate() > 0;
-//        } catch (SQLException e) {
-//            throw new RuntimeException("Errore durante l'aggiornamento della password", e);
-//        }
-        return false;
+        String hashedPassword = PasswordUtils.hashPassword(cliente.getUserPassword());
+
+        String sql = "UPDATE utente SET UserPassword = ? WHERE id = ?";
+
+        try (Connection con = Database.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setString(1, hashedPassword);
+
+            ps.setString(2, cliente.getId().toString());
+
+            return ps.executeUpdate() > 0;
+
+        } catch (SQLException e) {
+            // La gestione dell'eccezione è corretta.
+            throw new RuntimeException("Errore durante l'aggiornamento della password", e);
+        }
     }
 }
