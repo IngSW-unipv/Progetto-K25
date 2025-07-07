@@ -20,6 +20,7 @@ public class TreniNordOvestMainTest {
         treniNordOvestFacade.getRegistrationFacade().addPropertyChangeListener(frame);
         treniNordOvestFacade.getAcquistoFacade().addPropertyChangeListener(frame);
         treniNordOvestFacade.getUtenteFacade().addPropertyChangeListener(frame.getCustomerMainPanel().getProfilePanel());
+        treniNordOvestFacade.getAcquistoFacade().addViaggiDisponibiliPropertyChangeListener(frame.getCustomerMainPanel().getViaggiTabelPanel());
 
         new GestioneUtenzaController(frame);
         new AcquistoController(frame);

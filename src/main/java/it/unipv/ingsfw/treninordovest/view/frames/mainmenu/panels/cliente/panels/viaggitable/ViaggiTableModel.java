@@ -45,9 +45,9 @@ public class ViaggiTableModel extends AbstractTableModel {
             case 1:
                 return tratta.getTreno().getIdTreno();
             case 2:
-                return tratta.getPartenza().getIdFermata();
+                return tratta.getPartenza().getCitta();
                 case 3:
-                    return tratta.getDestinazione().getIdFermata();
+                    return tratta.getDestinazione().getCitta();
                     case 4:
                         return tratta.getOraPartenza();
                         case 5:

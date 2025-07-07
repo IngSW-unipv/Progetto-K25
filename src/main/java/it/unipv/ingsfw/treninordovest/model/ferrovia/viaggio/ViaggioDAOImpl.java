@@ -89,13 +89,14 @@ public class ViaggioDAOImpl implements ViaggioDAO {
 
                viaggio=new Viaggio(idViaggio,tratta,treno ,partenza,arrivo, oraPartenza.toLocalTime(), oraArrivo.toLocalTime(),dataViaggio.toLocalDate());
                 viaggi.add(viaggio);
+
             }
+            return viaggi;
            // Database.closeConnection(con);
 
         } catch (SQLException e) {
             throw new RuntimeException("Errore nel recupero dati",e);
         }
-        return viaggi;
     }
 
 

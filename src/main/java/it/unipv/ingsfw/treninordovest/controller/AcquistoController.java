@@ -3,10 +3,7 @@ package it.unipv.ingsfw.treninordovest.controller;
 import it.unipv.ingsfw.treninordovest.model.facade.TreniNordOvestFacade;
 import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.JTreniNordOvestFrame;
 import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.cliente.CustomerMainPanel;
-import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.cliente.panels.CardPurchasePanel;
-import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.cliente.panels.CreditCardDialog;
-import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.cliente.panels.SubscriptionPanel;
-import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.cliente.panels.TicketPurchasePanel;
+import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.cliente.panels.*;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -76,7 +73,9 @@ public class AcquistoController implements ActionListener {
 
     }
 
-    private void mostraListaViaggi(){}
+    private void mostraListaViaggi(){
+        facade.getAcquistoFacade().mostraViaggiDisponibili();
+    }
 
     /// Aggiunta degli Action Listener per i vari pannelli
 
@@ -84,6 +83,7 @@ public class AcquistoController implements ActionListener {
         view.getTicketPurchasePanel().getButtonAcquista().addActionListener(this);
         view.getSubscriptionPanel().getButtonAbbonati().addActionListener(this);
         view.getCardPurchasePanel().getButtonAcquistaTessera().addActionListener(this);
+        view.getTicketPurchasePanel().getButtonMostraViaggi().addActionListener(this);
 
     }
 
@@ -115,6 +115,10 @@ public class AcquistoController implements ActionListener {
 
             case CardPurchasePanel.CMD_AcquistaTessera:
                 acquistoTessera();
+                break;
+
+            case TicketPurchasePanel.CMD_MostraViaggi:
+                mostraListaViaggi();
                 break;
 
         }

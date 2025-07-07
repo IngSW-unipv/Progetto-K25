@@ -9,6 +9,7 @@ import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.cliente.panels
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeListener;
 
 // 1. Changed to extend JPanel
 public class CustomerMainPanel extends JPanel {
@@ -52,9 +53,9 @@ public class CustomerMainPanel extends JPanel {
         ticketPurchasePanel.add(tratteTablePanel);
 
         // Test panels
-        AcquistoBigliettoPanel acquistoBigliettoPanel = new AcquistoBigliettoPanel();
-        acquistoBigliettoPanel.setBackground(coloreSfondo);
-        tabbedPane.addTab("Acquisto", acquistoBigliettoPanel);
+//        AcquistoBigliettoPanel acquistoBigliettoPanel = new AcquistoBigliettoPanel();
+//        acquistoBigliettoPanel.setBackground(coloreSfondo);
+//        tabbedPane.addTab("Acquisto", acquistoBigliettoPanel);
 
         TitoliViaggioTablePanel titoliViaggioTablePanel = new TitoliViaggioTablePanel();
         titoliViaggioTablePanel.setBackground(coloreSfondo);
@@ -94,4 +95,7 @@ public class CustomerMainPanel extends JPanel {
     }
 
 
+    public ViaggiTablePanel getViaggiTabelPanel() {
+        return tratteTablePanel;
+    }
 }

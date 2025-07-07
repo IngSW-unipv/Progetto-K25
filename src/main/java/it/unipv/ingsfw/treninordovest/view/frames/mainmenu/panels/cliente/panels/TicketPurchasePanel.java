@@ -1,6 +1,8 @@
 package it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.cliente.panels;
 
 import com.toedter.calendar.JDateChooser;
+import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.cliente.panels.viaggitable.ViaggiTableModel;
+import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.cliente.panels.viaggitable.ViaggiTablePanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,12 +14,14 @@ public class TicketPurchasePanel extends JPanel {
     private JSpinner quantitaSpinner;
     private JTextField textFieldTratta;
     private JButton buttonAcquista;
+    private final JButton buttonMostraViaggi;
     private JCheckBox checkBoxRitorno;
     private JLabel labelRitorno;
     private JDateChooser dataRitorno;
     private JComboBox<String> comboTipoBiglietto;
     public static final String CMD_Acquista = "acquista";
-    //private TratteTablePanel tratteTablePanel;
+    public static final String CMD_MostraViaggi = "mostraViaggi";
+    //private ViaggiTablePanel tratteTablePanel;
 
     /*DA MODIFICARE*/
 
@@ -35,13 +39,13 @@ public class TicketPurchasePanel extends JPanel {
         checkBoxRitorno = new JCheckBox("Ritorno");
         dataRitorno = new JDateChooser();
         buttonAcquista = new JButton("Acquista Biglietto");
+        buttonMostraViaggi = new JButton("Mostra Viaggi");
         quantitaSpinner = new JSpinner();
         String[] tipo = new String[]{"Andata", "AndataRitorno"};
         comboTipoBiglietto = new JComboBox<>(tipo);
 
 
-        /*panelInput.add(labelDestinazione);
-        panelInput.add(textFieldDestinazione);*/
+        panelInput.add(buttonMostraViaggi);
         panelInput.add(labelIDTratta);
         panelInput.add(textFieldTratta);
         panelInput.add(buttonAcquista);
@@ -51,9 +55,9 @@ public class TicketPurchasePanel extends JPanel {
         panelInput.add(quantitaSpinner);
         panelInput.add(comboTipoBiglietto);
 
+
         buttonAcquista.setActionCommand(CMD_Acquista);
-
-
+        buttonMostraViaggi.setActionCommand(CMD_MostraViaggi);
 
 
         add(panelInput, BorderLayout.NORTH);
@@ -84,5 +88,9 @@ public class TicketPurchasePanel extends JPanel {
 
     public JComboBox<String> getComboTipoBiglietto() {
         return comboTipoBiglietto;
+    }
+
+    public JButton getButtonMostraViaggi() {
+        return buttonMostraViaggi;
     }
 }
