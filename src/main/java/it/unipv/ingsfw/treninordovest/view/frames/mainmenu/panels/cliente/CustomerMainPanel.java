@@ -79,6 +79,9 @@ public class CustomerMainPanel extends JPanel {
     public SubscriptionPanel getSubscriptionPanel() { return subscriptionPanel; }
     public CardPurchasePanel getCardPurchasePanel() { return cardPurchasePanel; }
     public CreditCardPanel getCreditCardPanel() { return creditCardPanel; }
+    public RefundPanel getRefundPanel() {
+        return refundPanel;
+    }
 
     public CustomerProfilePanel getProfilePanel() {
         return profilePanel;

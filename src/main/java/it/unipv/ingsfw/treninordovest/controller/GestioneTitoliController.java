@@ -18,6 +18,8 @@ public class GestioneTitoliController implements ActionListener{
     public void mostraAbbonamentiAcquistati(){}
     public void rinnovaAbbonamento(){}
 
+    private void addActionListeners() {}
+
     @Override
     public void actionPerformed(ActionEvent e) {
 

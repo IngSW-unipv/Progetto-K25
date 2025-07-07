@@ -1,5 +1,6 @@
 package it.unipv.ingsfw.treninordovest.controller;
 
+import it.unipv.ingsfw.treninordovest.model.facade.TreniNordOvestFacade;
 import it.unipv.ingsfw.treninordovest.model.facade.login.RegistrationFacade;
 import it.unipv.ingsfw.treninordovest.model.utenti.cliente.Cliente;
 import it.unipv.ingsfw.treninordovest.model.utenti.dipendente.Dipendente;
@@ -22,18 +23,16 @@ import java.util.UUID;
 public class GestioneUtenzaController implements ActionListener{
 
 
-    private final RegistrationFacade loginFacade;
+    private final TreniNordOvestFacade facade;
     private JTreniNordOvestFrame frame;
     private MainMenuPanel viewMainPanel;
-    private LoginPanel viewLoginPanel;
-    private CustomerRegistrationPanel viewCustomerRegistrationPanel;
 
 
     //Costruttore per la registazione clienti
     public GestioneUtenzaController( JTreniNordOvestFrame frame) {
-        this.viewMainPanel = frame.getMainMenuPanel();
+        //this.viewMainPanel = frame.getMainMenuPanel();
         this.frame = (JTreniNordOvestFrame) frame;
-        this.loginFacade = new RegistrationFacade();
+        this.facade = TreniNordOvestFacade.getInstance();
 
 
        // viewMainPanel.addActionListener(this);
@@ -80,7 +79,7 @@ public class GestioneUtenzaController implements ActionListener{
 
                 cliente = new Cliente(UUID.randomUUID(),passwordString,nome,cognome,luogoNascita,sesso,dataNascitaLocal,cellulare,indirizzo,0, email);
 
-                if (loginFacade.registraCliente(cliente)){
+                if (facade.getRegistrationFacade().registraCliente(cliente)){
 
                     JOptionPane.showMessageDialog(null,"Cliente registrato correttamente", "Info", JOptionPane.INFORMATION_MESSAGE);
                 }
@@ -137,7 +136,7 @@ public class GestioneUtenzaController implements ActionListener{
 
                 dipendente= new Dipendente(UUID.randomUUID(), passwordString, nome, cognome, sesso, luogoNascita,dataNascitaLocal, cellulare, indirizzo, Dipendente.getStipendioByRuolo(ruolo), ruolo);
 
-                if (loginFacade.registraDipendente(dipendente)){
+                if (facade.getRegistrationFacade().registraDipendente(dipendente)){
 
                     JOptionPane.showMessageDialog(null,"Dipendente registrato correttamente", "Info", JOptionPane.INFORMATION_MESSAGE);
                 }
@@ -167,7 +166,7 @@ public class GestioneUtenzaController implements ActionListener{
         String tipoUtente = (String )frame.getLoginPanel().getComboRuolo().getSelectedItem();
 
         try {
-            if (loginFacade.login(identificativo,password,tipoUtente)){
+            if (facade.getRegistrationFacade().login(identificativo,password,tipoUtente)){
                 JOptionPane.showMessageDialog(null,"Login effettuato correttamente", "Info", JOptionPane.INFORMATION_MESSAGE);
 
                 frame.showPanel(frame.getLoginPanel().getComboRuolo().getSelectedItem().toString());
@@ -185,7 +184,7 @@ public class GestioneUtenzaController implements ActionListener{
     }
     private  void logout(){
 
-        loginFacade.logout();
+        facade.getRegistrationFacade().logout();
 
     }
     private void modificaDatiCliente(){}

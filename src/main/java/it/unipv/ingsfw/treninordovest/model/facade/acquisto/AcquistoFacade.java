@@ -8,8 +8,7 @@ import java.time.LocalDate;
 
 public class AcquistoFacade implements IAcquistoFacade {
 
-    ;
-   private AcquistoService acquistoService;
+   private final AcquistoService acquistoService;
 
     public AcquistoFacade() {
         this.acquistoService = new AcquistoService();

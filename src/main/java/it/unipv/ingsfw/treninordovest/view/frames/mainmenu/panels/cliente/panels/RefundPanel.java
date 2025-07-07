@@ -8,6 +8,8 @@ public class RefundPanel extends JPanel {
     private JTextField textIDBiglietto;
     private JButton buttonRimborso;
 
+    public static final String CMD_Rimborso = "rimborso";
+
     public RefundPanel() {
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -27,6 +29,8 @@ public class RefundPanel extends JPanel {
         gbc.gridy = 1;
         gbc.gridwidth = 2;
         add(buttonRimborso, gbc);
+
+        buttonRimborso.setActionCommand(CMD_Rimborso);
     }
 
     // Getters per il Controller

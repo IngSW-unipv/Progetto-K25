@@ -1,13 +1,12 @@
 package it.unipv.ingsfw.treninordovest.controller;
 
-import it.unipv.ingsfw.treninordovest.model.facade.acquisto.AcquistoFacade;
+import it.unipv.ingsfw.treninordovest.model.facade.TreniNordOvestFacade;
 import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.JTreniNordOvestFrame;
 import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.cliente.CustomerMainPanel;
 import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.cliente.panels.CardPurchasePanel;
 import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.cliente.panels.CreditCardDialog;
 import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.cliente.panels.SubscriptionPanel;
 import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.cliente.panels.TicketPurchasePanel;
-import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.menu.MainMenuPanel;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -22,12 +21,12 @@ public class AcquistoController implements ActionListener {
 
     private final CustomerMainPanel view;
     private final JTreniNordOvestFrame frame;
-    private final AcquistoFacade acquistoFacade;
+    private final TreniNordOvestFacade facade;
 
     public AcquistoController(JTreniNordOvestFrame frame) {
         this.view = frame.getCustomerMainPanel();
         this.frame = frame;
-        this.acquistoFacade = new AcquistoFacade();
+        this.facade = TreniNordOvestFacade.getInstance();
 
         //Aggiunta dei listener
        addListeners();
@@ -44,7 +43,7 @@ public class AcquistoController implements ActionListener {
         String tipoPagamento = "cartacredito"; //Provvisorio
         int quantita = Integer.parseInt(view.getTicketPurchasePanel().getQuantitaSpinner().getValue().toString());
 
-        if (acquistoFacade.acquistaBiglietto(tipoBiglietto, tipoPagamento, quantita, idTratta, ritorno, dataRitorno)) {
+        if (facade.getAcquistoFacade().acquistaBiglietto(tipoBiglietto, tipoPagamento, quantita, idTratta, ritorno, dataRitorno)) {
             JOptionPane.showMessageDialog(view, "Biglietti acquistati");
         } else
             JOptionPane.showMessageDialog(view, "Errore durante l'acquisto dei biglietti!", "Errore", JOptionPane.ERROR_MESSAGE);
@@ -59,7 +58,7 @@ public class AcquistoController implements ActionListener {
         String tipoAcquisto = "cartacredito"; //DA DEFINIRE
         int quantita = 1;
 
-        if (acquistoFacade.acquistoAbbonamento(tipoAbbonamento, tipoAcquisto, quantita)) {
+        if (facade.getAcquistoFacade().acquistoAbbonamento(tipoAbbonamento, tipoAcquisto, quantita)) {
             JOptionPane.showMessageDialog(view, "Acquisto con successo!");
         } else
             JOptionPane.showMessageDialog(view, "Abbonamento già posseduto o tessera non valida!", "Errore", JOptionPane.ERROR_MESSAGE);
@@ -69,7 +68,7 @@ public class AcquistoController implements ActionListener {
     ///  Acquisto della tessera
     public void acquistoTessera() {
 
-        if (acquistoFacade.acquistaTessera()) {
+        if (facade.getAcquistoFacade().acquistaTessera()) {
             JOptionPane.showMessageDialog(view, "Acquisto con successo!");
         } else
             JOptionPane.showMessageDialog(view, "Errore !!! Tessera posseduta o non valida", "Errore", JOptionPane.ERROR_MESSAGE);
