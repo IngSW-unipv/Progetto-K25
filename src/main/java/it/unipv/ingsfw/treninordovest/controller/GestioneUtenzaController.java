@@ -6,6 +6,7 @@ import it.unipv.ingsfw.treninordovest.model.utenti.cliente.Cliente;
 import it.unipv.ingsfw.treninordovest.model.utenti.dipendente.Dipendente;
 import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.JTreniNordOvestFrame;
 import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.cliente.panels.CustomerProfilePanel;
+import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.dipendente.panels.EmployeeProfilePanel;
 import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.login.LoginPanel;
 import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.cliente.CustomerRegistrationPanel;
 import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.dipendente.EmployeeRegistrationPanel;
@@ -271,6 +272,25 @@ public class GestioneUtenzaController implements ActionListener{
 
             case CustomerProfilePanel.CMD_AGPROFILO:
                 aggiornaDatiProfiloCliente();
+                break;
+
+            case CustomerProfilePanel.CMD_AGPASS:
+                //Da definire
+                System.out.println("Comando da definire");
+                break;
+
+            case EmployeeProfilePanel.CMD_UpdateProfile:
+                aggiornaDatiProfiloDipendente();
+                break;
+
+            case EmployeeProfilePanel.CMD_ChangePassword:
+                //Da definire
+                System.out.println("Comando da definire");
+                break;
+
+            case EmployeeProfilePanel.CMD_Logout:
+                logout();
+                frame.showPanel(JTreniNordOvestFrame.MAIN_MENU);
                 break;
 
 
