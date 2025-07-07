@@ -22,6 +22,7 @@ public class CustomerMainPanel extends JPanel {
     private final ViaggiTablePanel tratteTablePanel = new ViaggiTablePanel();
     private final Color coloreSfondo = new Color(131, 168, 195);
     private final CreditCardPanel creditCardPanel;
+    private final TitoliViaggioTablePanel titoliViaggioTablePanel=new TitoliViaggioTablePanel();
 
     public CustomerMainPanel() {
         // 2. All window-specific calls are removed from the constructor.
@@ -56,8 +57,6 @@ public class CustomerMainPanel extends JPanel {
 //        AcquistoBigliettoPanel acquistoBigliettoPanel = new AcquistoBigliettoPanel();
 //        acquistoBigliettoPanel.setBackground(coloreSfondo);
 //        tabbedPane.addTab("Acquisto", acquistoBigliettoPanel);
-
-        TitoliViaggioTablePanel titoliViaggioTablePanel = new TitoliViaggioTablePanel();
         titoliViaggioTablePanel.setBackground(coloreSfondo);
         tabbedPane.addTab("Titoli", titoliViaggioTablePanel);
 
@@ -82,6 +81,10 @@ public class CustomerMainPanel extends JPanel {
     public CreditCardPanel getCreditCardPanel() { return creditCardPanel; }
     public RefundPanel getRefundPanel() {
         return refundPanel;
+    }
+
+    public TitoliViaggioTablePanel getTitoliViaggioTablePanel() {
+        return titoliViaggioTablePanel;
     }
 
     public CustomerProfilePanel getProfilePanel() {

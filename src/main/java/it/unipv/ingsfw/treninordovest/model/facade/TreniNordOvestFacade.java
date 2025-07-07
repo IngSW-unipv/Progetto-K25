@@ -3,7 +3,9 @@ package it.unipv.ingsfw.treninordovest.model.facade;
 import it.unipv.ingsfw.treninordovest.model.facade.acquisto.AcquistoFacade;
 import it.unipv.ingsfw.treninordovest.model.facade.login.RegistrationFacade;
 import it.unipv.ingsfw.treninordovest.model.facade.rimborso.RimborsoFacade;
+import it.unipv.ingsfw.treninordovest.model.facade.titoliviaggio.TitoloViaggioFacade;
 import it.unipv.ingsfw.treninordovest.model.facade.utente.UtenteFacade;
+import it.unipv.ingsfw.treninordovest.model.service.GestioneTitoliService;
 
 public class TreniNordOvestFacade {
 
@@ -13,6 +15,7 @@ public class TreniNordOvestFacade {
     private final RegistrationFacade loginFacade;
     private final RimborsoFacade rimborsoFacade;
     private final UtenteFacade utenteFacade;
+    private final TitoloViaggioFacade titoloViaggioFacade;
 
 
     public static TreniNordOvestFacade getInstance(){
@@ -26,6 +29,7 @@ public class TreniNordOvestFacade {
         this.loginFacade = new RegistrationFacade();
         this.rimborsoFacade = new RimborsoFacade();
         this.utenteFacade = new UtenteFacade();
+        this.titoloViaggioFacade = new TitoloViaggioFacade();
     }
 
 
@@ -43,6 +47,9 @@ public class TreniNordOvestFacade {
 
     public UtenteFacade getUtenteFacade(){
         return this.utenteFacade;
+    }
+    public TitoloViaggioFacade getTitoloViaggioFacade(){
+        return this.titoloViaggioFacade;
     }
 
 

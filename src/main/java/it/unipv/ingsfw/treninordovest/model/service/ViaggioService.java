@@ -19,21 +19,11 @@ public class ViaggioService {
         this.viaggioDAO = new ViaggioDAOImpl();
         propertyChangeSupport = new PropertyChangeSupport(this);
     }
-
-    public boolean cercaViaggio(String idViaggio) {
-
-        Viaggio viaggio;
-        viaggio = viaggioDAO.get(new Viaggio(idViaggio));
-
-        return false;
-
-    }
-
     //Lista dei viaggi da mostrare
     public void getViaggiDisponibili(){
        List<Viaggio> viaggi;
         viaggi=viaggioDAO.getAll();
-        
+
         propertyChangeSupport.firePropertyChange("ottieni_viaggi_disponibili", null, viaggi);
         System.out.println("DEBUG: Viaggi recepiti -- PCS");
     }

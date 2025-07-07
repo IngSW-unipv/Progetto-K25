@@ -289,7 +289,6 @@ public class GestioneUtenzaController implements ActionListener{
                 break;
             case LoginPanel.CMD_Login:
                 login();
-                facade.getAcquistoFacade().mostraViaggiDisponibili();
                 frame.getLoginPanel().getCampoUtente().setText("");
                 frame.getLoginPanel().getCampoPassword().setText("");
                 break;

@@ -181,7 +181,7 @@ public class BigliettoDAOImpl implements BigliettoDAO {
 
     @Override
     public List<Biglietto> getAllBigliettiByCliente(String idCliente) {
-        String sql ="select tb.IDTitolo,tb.Emissione,tb.Prezzo,tb.Validato,tb.DataValidazione,tb.TipoBiglietto,tb.tipo from titolibiglietti tb join pagamento pg on tb.IDPagamento=pg.IdPagamento where idCliente =? and Validato=true";
+        String sql ="select tb.IDTitolo,tb.Emissione,tb.Prezzo,tb.Validato,tb.DataValidazione,tb.TipoBiglietto from titolibiglietti tb join pagamento pg on tb.IDPagamento=pg.IdPagamento where idCliente =? ";
         List<Biglietto> listaBiglietti =  new ArrayList<>();
         Biglietto biglietto;
 
@@ -195,7 +195,7 @@ public class BigliettoDAOImpl implements BigliettoDAO {
                 Double prezzo = (Double) rs.getObject("Prezzo");
                 Boolean validato = (Boolean) rs.getObject("Validato");
                 Date dataValidazione = rs.getDate("DataValidazione");
-                String tipo = rs.getString("Tipo");
+                String tipo = rs.getString("TipoBiglietto");
 
                 biglietto=new Biglietto(UUID.fromString(idTitolo),emissione.toLocalDate(),prezzo,validato,tipo);
                 listaBiglietti.add(biglietto);

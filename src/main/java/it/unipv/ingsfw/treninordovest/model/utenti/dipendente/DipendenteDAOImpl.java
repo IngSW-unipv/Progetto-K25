@@ -164,7 +164,7 @@ public class DipendenteDAOImpl implements DipendenteDAO {
                 ps1.setString(1, dipendente.getId().toString());
                 ps1.setString(2, hashedPassword);
                 ps1.setString(3, dipendente.getNome());
-                ps1.setString(4,dipendente.getLuogoNascita());
+                ps1.setString(4,dipendente.getCognome());
                 ps1.setString(5, dipendente.getSesso());
                 ps1.setString(6, dipendente.getLuogoNascita());
                 ps1.setObject(7, dipendente.getDataNascita()); // Assicurati che il driver JDBC supporti JDBC 4.2+

@@ -5,13 +5,17 @@ import it.unipv.ingsfw.treninordovest.model.titoli.biglietto.Biglietto;
 
 import javax.swing.*;
 import java.awt.*;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.List;
 
-public class TitoliViaggioTablePanel extends JPanel {
+public class TitoliViaggioTablePanel extends JPanel implements PropertyChangeListener {
 
     // Nomi delle "carte" per il CardLayout
     public static final String ABBONAMENTI_CARD = "AbbonamentiCard";
     public static final String BIGLIETTI_CARD = "BigliettiCard";
+    public static final String SHOW_BIGLIETTI = "ShowBiglietti";
+    public static final String SHOW_ABBONAMENTI = "ShowAbbonamenti";
 
     private final AbbonamentiAcquistatiTableModel tableAbbonamentiModel;
     private final BigliettiAcquistatiTableModel tableBigliettiModel;
@@ -67,8 +71,8 @@ public class TitoliViaggioTablePanel extends JPanel {
         // Inizialmente mostra la carta degli abbonamenti
         cardLayout.show(cardsPanel, ABBONAMENTI_CARD);
 
-        btnShowAbbonamenti.setActionCommand("abbonamenti");
-        btnShowBiglietti.setActionCommand("biglietti");
+        btnShowAbbonamenti.setActionCommand(SHOW_ABBONAMENTI);
+        btnShowBiglietti.setActionCommand(SHOW_BIGLIETTI);
 
     }
 
@@ -109,5 +113,18 @@ public class TitoliViaggioTablePanel extends JPanel {
 
     public JButton getBtnShowBiglietti() {
         return btnShowBiglietti;
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+
+        if ("get_titoliBiglietti_acq".equals(evt.getPropertyName()) && evt.getNewValue() != null){
+            tableBigliettiModel.setData((List<Biglietto>) evt.getNewValue());
+
+        }
+        if("get_titoliAbbonamenti_acq".equals(evt.getPropertyName()) && evt.getNewValue() != null){
+            tableAbbonamentiModel.setData((List<Abbonamento>) evt.getNewValue());
+        }
+
     }
 }

@@ -11,6 +11,9 @@ public class BigliettiAcquistatiTableModel extends AbstractTableModel {
     private List<Biglietto> listaBiglietti = new ArrayList<>(); // Inizializzazione come lista vuota
     private final String[] columnNames = {"ID","Emissione","Data di validazione","Validazione"};
 
+    public BigliettiAcquistatiTableModel() {
+    }
+
     public void setData(List<Biglietto> biglietti) {
         this.listaBiglietti = biglietti != null ? biglietti : new ArrayList<>();
         // Notifica alla JTable che il modello è cambiato
