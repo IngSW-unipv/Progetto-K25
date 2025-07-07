@@ -309,11 +309,14 @@ public class GestioneUtenzaController implements ActionListener{
 
             case EmployeeProfilePanel.CMD_UpdateProfile:
                 aggiornaDatiProfiloDipendente();
+                
                 break;
 
             case EmployeeProfilePanel.CMD_ChangePassword:
                 //Da definire
                 modificaDatiDipendente();
+                logout();
+                frame.showPanel(JTreniNordOvestFrame.MAIN_MENU);
                 break;
 
             case EmployeeProfilePanel.CMD_Logout:
