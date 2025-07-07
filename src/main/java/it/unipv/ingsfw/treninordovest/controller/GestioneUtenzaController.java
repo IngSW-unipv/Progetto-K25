@@ -188,26 +188,45 @@ public class GestioneUtenzaController implements ActionListener{
 
     }
     private void modificaDatiCliente(){}
-    private void modificaDatiDipendente(){}
-    private void aggiornaDatiProfilo(){}
+    private void modificaDatiDipendente(){
+
+    }
+    private void aggiornaDatiProfiloCliente(){
+
+
+    }
+    private void aggiornaDatiProfiloDipendente(){
+
+    }
 
 
 
     private void addActionListener(){
 
+        //Action del pannello login
        frame.getLoginPanel().getBottoneAccesso().addActionListener(this);
         frame.getLoginPanel().getBottoneIndietro().addActionListener(this);
 
+        //Action dei menu di registrazione
         frame.getCustomerRegistrationPanel().getBtnRegister().addActionListener(this);
        frame.getEmployeeRegistrationPanel().getBtnRegister().addActionListener(this);
-
         frame.getCustomerRegistrationPanel() .getBtnMenuPrincipal().addActionListener(this);
         frame.getEmployeeRegistrationPanel().getBtnMenuPrincipal().addActionListener(this);
 
+        //Action del menu principale
         frame.getMainMenuPanel().getRegistrazioneDipendente().addActionListener(this);
         frame.getMainMenuPanel().getRegistrazioneCliente().addActionListener(this);
         frame.getMainMenuPanel().getAccesso().addActionListener(this);
+
+        //Action menu profilo cliente
         frame.getCustomerMainPanel().getProfilePanel().getBtnEsci().addActionListener(this);
+        frame.getCustomerMainPanel().getProfilePanel().getBtnAggiornaPassword().addActionListener(this);
+        frame.getCustomerMainPanel().getProfilePanel().getBtnAggiornaProfilo().addActionListener(this);
+
+        //Action menu profilo dipendente
+        frame.getEmployeeMainPanel().getProfilePanel().getBtnEsci().addActionListener(this);
+        frame.getEmployeeMainPanel().getProfilePanel().getBtnAggionaProfilo().addActionListener(this);
+        frame.getEmployeeMainPanel().getProfilePanel().getBtnAggiornaPassword().addActionListener(this);
     }
 
 
@@ -250,9 +269,8 @@ public class GestioneUtenzaController implements ActionListener{
                 frame.showPanel(JTreniNordOvestFrame.MAIN_MENU);
                 break;
 
-            case CustomerProfilePanel.CMD_LOGOUT:
-                logout();
-                frame.showPanel(JTreniNordOvestFrame.MAIN_MENU);
+            case CustomerProfilePanel.CMD_AGPROFILO:
+                aggiornaDatiProfiloCliente();
                 break;
 
 

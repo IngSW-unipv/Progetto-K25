@@ -14,9 +14,11 @@ public class GestioneTitoliController implements ActionListener{
     }
 
 
-    public void mostraBigliettiAcquistati(){}
-    public void mostraAbbonamentiAcquistati(){}
-    public void rinnovaAbbonamento(){}
+    private void mostraBigliettiAcquistati(){}
+    private void mostraAbbonamentiAcquistati(){}
+    private void rinnovaAbbonamento(){}
+    private void controllaTitolo(){}
+    private void validaTitolo(){}
 
     private void addActionListeners() {}
 

@@ -4,22 +4,25 @@ import javax.swing.*;
 import java.awt.*;
 
 public class EmployeeProfilePanel extends JPanel {
-    private JTextField txtNome;
-    private JTextField txtCognome;
-    private JTextField txtRuolo;
-    private JButton btnAggiornaPassword;
-    private JButton btnAggionaProfilo;
-    private JPasswordField txtPassword;
-    private JTextField txtSesso;
-    private JTextField txtID;
-    private JTextField txtLuogoNascita;
-    private JTextField txtDataNascita;
-    private JTextField txtCellulare;
-    private JTextField txtStipendio;
-    private JTextField txtIndirizzo;
-    private Color coloreSfondo;
-    private JButton btnEsci;
+    private final JTextField txtNome;
+    private final JTextField txtCognome;
+    private final JTextField txtRuolo;
+    private final JButton btnAggiornaPassword;
+    private final JButton btnAggionaProfilo;
+    private final JPasswordField txtPassword;
+    private final JTextField txtSesso;
+    private final JTextField txtID;
+    private final JTextField txtLuogoNascita;
+    private final JTextField txtDataNascita;
+    private final JTextField txtCellulare;
+    private final JTextField txtStipendio;
+    private final JTextField txtIndirizzo;
+    private final Color coloreSfondo;
+    private final JButton btnEsci;
 
+    public static final String CMD_Logout = "logout";
+    public static final String CMD_ChangePassword = "changePassword";
+    public static final String CMD_UpdateProfile = "updateProfile";
 
     public EmployeeProfilePanel() {
         setLayout(new GridBagLayout());
@@ -199,6 +202,10 @@ public class EmployeeProfilePanel extends JPanel {
         gbc.gridwidth = 2;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         add(btnEsci, gbc);
+
+        btnEsci.setActionCommand(CMD_Logout);
+        btnAggiornaPassword.setActionCommand(CMD_ChangePassword);
+        btnAggionaProfilo.setActionCommand(CMD_UpdateProfile);
 
 
 

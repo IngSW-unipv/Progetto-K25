@@ -10,6 +10,8 @@ public class EmployeeMainPanel extends JPanel {
     private final TravelDocCheckPanel travelDocCheckPanel = new TravelDocCheckPanel();
     private final EmployeeProfilePanel profilePanel = new EmployeeProfilePanel();
 
+
+
     public EmployeeMainPanel() {
         // 2. Rimosse tutte le impostazioni della finestra.
         // Imposta il layout per questo pannello.

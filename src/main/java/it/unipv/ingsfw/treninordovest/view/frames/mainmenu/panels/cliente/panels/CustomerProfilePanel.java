@@ -3,8 +3,10 @@ package it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.cliente.panel
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
-public class CustomerProfilePanel extends JPanel {
+public class CustomerProfilePanel extends JPanel implements PropertyChangeListener {
     // Campi per i dati del profilo (read-only)
     private final JTextField txtNome;
     private final JTextField txtCognome;
@@ -263,4 +265,24 @@ public class CustomerProfilePanel extends JPanel {
     }
 
 
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        String propertyName = evt.getPropertyName();
+
+        if("cliente_aggiornato".equals(propertyName)){
+            String nome = (String) evt.getNewValue();
+            setTxtNome(nome);
+            String cognome = (String) evt.getNewValue();
+            setTxtCognome(cognome);
+            String email = (String) evt.getNewValue();
+            setTxtEmail(email);
+            String sesso = (String) evt.getNewValue();
+            setTxtSesso(sesso);
+            String id = (String) evt.getNewValue();
+            setTxtID(id);
+            String luogoNascita = (String) evt.getNewValue();
+            setTxtLuogoNascita(luogoNascita);
+        }
+
+    }
 }
