@@ -32,6 +32,8 @@ public class GestioneTitoliController implements ActionListener{
         System.out.println("DEBUG : Mostra Biglietti");
     }
     private void mostraAbbonamentiAcquistati(){
+        List<Abbonamento> listaAbbonamenti = facade.getTitoloViaggioFacade().mostraAbbonamentiAcquistati();
+        titoliViaggioModel.setListaAbbonamenti(listaAbbonamenti);
         facade.getTitoloViaggioFacade().mostraAbbonamentiAcquistati();
         System.out.println("DEBUG : Mostra Abbonamenti");
     }
