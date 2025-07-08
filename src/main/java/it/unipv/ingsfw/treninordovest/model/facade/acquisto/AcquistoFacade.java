@@ -1,11 +1,12 @@
 package it.unipv.ingsfw.treninordovest.model.facade.acquisto;
 
 import it.unipv.ingsfw.treninordovest.model.dto.TitoloDTO;
+import it.unipv.ingsfw.treninordovest.model.ferrovia.viaggio.Viaggio;
 import it.unipv.ingsfw.treninordovest.model.service.AcquistoService;
-import it.unipv.ingsfw.treninordovest.model.service.ViaggioService;
+import it.unipv.ingsfw.treninordovest.model.service.viaggio.ViaggioService;
 
 import java.beans.PropertyChangeListener;
-import java.time.LocalDate;
+import java.util.List;
 
 
 public class AcquistoFacade implements IAcquistoFacade {
@@ -36,27 +37,12 @@ public class AcquistoFacade implements IAcquistoFacade {
     }
 
     @Override
-    public boolean mostraViaggiDisponibili() {
-        viaggioService.getViaggiDisponibili();
-
-        return false;
+    public List<Viaggio> mostraViaggiDisponibili() {
+        return viaggioService.getViaggiDisponibili();
     }
 
-    public void addPropertyChangeListener(PropertyChangeListener listener) {
-        acquistoService.addPropertyChangeListener(listener);
-    }
 
-    public void addViaggiDisponibiliPropertyChangeListener(PropertyChangeListener listener) {
-        viaggioService.addPropertyChangeListener(listener);
-    }
-    public void removeViaggiDisponibiliPropertyChangeListener(PropertyChangeListener listener) {
-        viaggioService.removePropertyChangeListener(listener);
-    }
 
-    public void removePropertyChangeListener(PropertyChangeListener listener) {
-        acquistoService.removePropertyChangeListener(listener);
-        viaggioService.removePropertyChangeListener(listener);
-    }
 
 
 

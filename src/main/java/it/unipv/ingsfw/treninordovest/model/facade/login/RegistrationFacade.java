@@ -40,13 +40,13 @@ public class RegistrationFacade implements ILoginFacade {
         return loginService.registraDipendente(dipendente);
     }
 
-
-    public void addPropertyChangeListener(PropertyChangeListener listener) {
-        loginService.addPropertyChangeListener(listener);
-    }
-    public void removePropertyChangeListener(PropertyChangeListener listener) {
-        loginService.removePropertyChangeListener(listener);
-    }
+//
+//    public void addPropertyChangeListener(PropertyChangeListener listener) {
+//        loginService.addPropertyChangeListener(listener);
+//    }
+//    public void removePropertyChangeListener(PropertyChangeListener listener) {
+//        loginService.removePropertyChangeListener(listener);
+//    }
 
 
 

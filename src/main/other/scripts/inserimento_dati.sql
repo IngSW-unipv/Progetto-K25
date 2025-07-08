@@ -98,3 +98,52 @@ INSERT INTO viaggio (IDViaggio, IDTratta, IDPartenza, IDArrivo, DataViaggio, Ora
 -- Viaggio TRA005 - FR9725 (Milano-Venezia)
 INSERT INTO viaggio (IDViaggio, IDTratta, IDPartenza, IDArrivo, DataViaggio, OrarioPartenza, OrarioArrivo, NumTreno) VALUES
     ('VGG007', 'TRA005', 'FRM001', 'FRM007', '2025-07-20', '16:00:00', '19:00:00', 'FR9725');
+
+-- Dati aggiuntivi per la tabella "viaggio"
+-- Generati mantenendo la coerenza con tratte, fermate e orari esistenti.
+
+-- Altri viaggi per la tratta TRA001 (Milano-Roma e viceversa)
+INSERT INTO viaggio (IDViaggio, IDTratta, IDPartenza, IDArrivo, DataViaggio, OrarioPartenza, OrarioArrivo, NumTreno) VALUES
+                                                                                                                         ('VGG008', 'TRA001', 'FRM001', 'FRM004', '2025-07-21', '08:00:00', '11:15:00', 'FR9502'), -- Altro Frecciarossa Milano-Roma
+                                                                                                                         ('VGG009', 'TRA001', 'FRM004', 'FRM001', '2025-07-22', '18:00:00', '21:15:00', 'IT9910'), -- Altro Italo di ritorno Roma-Milano
+                                                                                                                         ('VGG010', 'TRA001', 'FRM001', 'FRM004', '2025-07-24', '08:30:00', '11:45:00', 'IT9910'); -- Altro Italo Milano-Roma
+
+-- Viaggio di ritorno per la tratta TRA002 (Napoli-Roma)
+INSERT INTO viaggio (IDViaggio, IDTratta, IDPartenza, IDArrivo, DataViaggio, OrarioPartenza, OrarioArrivo, NumTreno) VALUES
+    ('VGG011', 'TRA002', 'FRM005', 'FRM004', '2025-07-23', '15:00:00', '16:10:00', 'IC703'); -- Ritorno Napoli-Roma in orario diverso
+
+-- Viaggio di ritorno per la tratta TRA003 (Venezia-Torino)
+INSERT INTO viaggio (IDViaggio, IDTratta, IDPartenza, IDArrivo, DataViaggio, OrarioPartenza, OrarioArrivo, NumTreno) VALUES
+    ('VGG012', 'TRA003', 'FRM007', 'FRM006', '2025-07-18', '19:00:00', '21:45:00', 'FA8406'); -- Frecciargento di ritorno in serata
+
+-- Viaggio di ritorno per la tratta TRA004 (Firenze-Bologna)
+INSERT INTO viaggio (IDViaggio, IDTratta, IDPartenza, IDArrivo, DataViaggio, OrarioPartenza, OrarioArrivo, NumTreno) VALUES
+    ('VGG013', 'TRA004', 'FRM003', 'FRM002', '2025-07-26', '09:00:00', '09:40:00', 'RV2177'); -- Regionale Veloce di ritorno in mattinata
+
+-- Altri viaggi e ritorni per la tratta TRA005 (Milano-Venezia)
+INSERT INTO viaggio (IDViaggio, IDTratta, IDPartenza, IDArrivo, DataViaggio, OrarioPartenza, OrarioArrivo, NumTreno) VALUES
+                                                                                                                         ('VGG014', 'TRA005', 'FRM001', 'FRM007', '2025-07-27', '16:00:00', '19:00:00', 'FR9725'), -- Altro Frecciarossa Milano-Venezia
+                                                                                                                         ('VGG015', 'TRA005', 'FRM007', 'FRM001', '2025-07-28', '10:15:00', '13:15:00', 'FR9725'); -- Frecciarossa di ritorno Venezia-Milano
+
+-- Un'altra corsa per il Roma-Napoli
+INSERT INTO viaggio (IDViaggio, IDTratta, IDPartenza, IDArrivo, DataViaggio, OrarioPartenza, OrarioArrivo, NumTreno) VALUES
+    ('VGG016', 'TRA002', 'FRM004', 'FRM005', '2025-07-29', '12:00:00', '13:10:00', 'IC703');
+
+-- Ulteriore blocco di 15 viaggi per popolare il database
+INSERT INTO viaggio (IDViaggio, IDTratta, IDPartenza, IDArrivo, DataViaggio, OrarioPartenza, OrarioArrivo, NumTreno) VALUES
+                                                                                                                         ('VGG017', 'TRA001', 'FRM001', 'FRM004', '2025-08-01', '08:00:00', '11:15:00', 'FR9502'), -- Inizio agosto, alta stagione Mi-Rm
+                                                                                                                         ('VGG018', 'TRA001', 'FRM004', 'FRM001', '2025-08-01', '17:00:00', '20:15:00', 'FR9502'), -- Ritorno in giornata
+                                                                                                                         ('VGG019', 'TRA002', 'FRM004', 'FRM005', '2025-08-02', '12:00:00', '13:10:00', 'IC703'),  -- Roma-Napoli per il weekend
+                                                                                                                         ('VGG020', 'TRA003', 'FRM006', 'FRM007', '2025-08-03', '07:30:00', '10:15:00', 'FA8406'), -- Torino-Venezia
+                                                                                                                         ('VGG021', 'TRA005', 'FRM001', 'FRM007', '2025-08-04', '16:00:00', '19:00:00', 'FR9725'), -- Milano-Venezia
+                                                                                                                         ('VGG022', 'TRA005', 'FRM007', 'FRM001', '2025-08-05', '09:15:00', '12:15:00', 'FR9725'), -- Ritorno Venezia-Milano
+                                                                                                                         ('VGG023', 'TRA004', 'FRM002', 'FRM003', '2025-08-06', '14:00:00', '14:40:00', 'RV2177'), -- Bologna-Firenze
+                                                                                                                         ('VGG024', 'TRA004', 'FRM003', 'FRM002', '2025-08-06', '19:20:00', '20:00:00', 'RV2177'), -- Ritorno in serata
+                                                                                                                         ('VGG025', 'TRA001', 'FRM001', 'FRM004', '2025-08-08', '08:30:00', '11:45:00', 'IT9910'), -- Italo Mi-Rm, pre-ferragosto
+                                                                                                                         ('VGG026', 'TRA001', 'FRM004', 'FRM001', '2025-08-10', '18:00:00', '21:15:00', 'IT9910'), -- Ritorno Roma-Milano
+                                                                                                                         ('VGG027', 'TRA003', 'FRM007', 'FRM006', '2025-08-11', '19:00:00', '21:45:00', 'FA8406'), -- Ritorno Venezia-Torino
+                                                                                                                         ('VGG028', 'TRA002', 'FRM005', 'FRM004', '2025-08-12', '08:00:00', '09:10:00', 'IC703'),  -- Ritorno Napoli-Roma mattutino
+                                                                                                                         ('VGG029', 'TRA001', 'FRM001', 'FRM004', '2025-08-14', '08:00:00', '11:15:00', 'FR9502'), -- Viaggio della vigilia di Ferragosto
+                                                                                                                         ('VGG030', 'TRA005', 'FRM001', 'FRM007', '2025-08-14', '16:00:00', '19:00:00', 'FR9725'), -- Altro viaggio della vigilia
+                                                                                                                         ('VGG031', 'TRA001', 'FRM004', 'FRM001', '2025-08-17', '19:00:00', '22:15:00', 'FR9502'); -- Ritorno post-Ferragosto
+

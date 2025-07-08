@@ -21,7 +21,6 @@ public class CustomerMainPanel extends JPanel {
     private final CustomerProfilePanel profilePanel = new CustomerProfilePanel();
     private final ViaggiTablePanel tratteTablePanel = new ViaggiTablePanel();
     private final Color coloreSfondo = new Color(131, 168, 195);
-    private final CreditCardPanel creditCardPanel;
     private final TitoliViaggioTablePanel titoliViaggioTablePanel=new TitoliViaggioTablePanel();
 
     public CustomerMainPanel() {
@@ -31,7 +30,6 @@ public class CustomerMainPanel extends JPanel {
 
         // We pass 'this' to the child panels so they can call back to the parent
         // to switch tabs.
-        this.creditCardPanel = new CreditCardPanel();
         this.ticketPurchasePanel = new TicketPurchasePanel();
 
         initComponents();
@@ -49,7 +47,6 @@ public class CustomerMainPanel extends JPanel {
         tabbedPane.addTab("Acquisto Tessera", cardPurchasePanel);
         tabbedPane.addTab("Rimborso", refundPanel);
         tabbedPane.addTab("Profilo", profilePanel);
-        tabbedPane.addTab("Pagamento Carta", creditCardPanel);
 
         ticketPurchasePanel.add(tratteTablePanel);
 
@@ -70,15 +67,11 @@ public class CustomerMainPanel extends JPanel {
      * Switches the visible tab to the payment panel.
      * This method can be called by child panels.
      */
-    public void showPaymentTab() {
-        tabbedPane.setSelectedComponent(creditCardPanel);
-    }
 
     // Getter methods remain the same, so controllers can access the panels
     public TicketPurchasePanel getTicketPurchasePanel() { return ticketPurchasePanel; }
     public SubscriptionPanel getSubscriptionPanel() { return subscriptionPanel; }
     public CardPurchasePanel getCardPurchasePanel() { return cardPurchasePanel; }
-    public CreditCardPanel getCreditCardPanel() { return creditCardPanel; }
     public RefundPanel getRefundPanel() {
         return refundPanel;
     }

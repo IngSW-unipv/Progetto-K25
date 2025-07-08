@@ -21,10 +21,10 @@ public class RegistrationService {
     private final DipendenteDAOImpl dipendenteDAO ;
 
 
-    public static final String ptNameLogin ="login_success";
-    public static final String ptNameLogout ="logout_success";
-    public static final String ptNameRegCliente ="customer_registration";
-    public static final String ptnRegDipendente ="employee_registration";
+//    public static final String ptNameLogin ="login_success";
+//    public static final String ptNameLogout ="logout_success";
+//    public static final String ptNameRegCliente ="customer_registration";
+//    public static final String ptnRegDipendente ="employee_registration";
 
 
     public RegistrationService() {
@@ -45,7 +45,7 @@ public class RegistrationService {
                 System.out.println("DEBUG: ID Utente:   "+user.getId());
 
                 SessionManager.getInstance().setCurrentUser(user);
-                support.firePropertyChange(ptNameLogin, null, user);
+//                support.firePropertyChange(ptNameLogin, null, user);
                 return true;
             }
 
@@ -61,7 +61,7 @@ public class RegistrationService {
     public boolean logout() {
         SessionManager.getInstance().logout();
         System.out.println("DEBUG: Login effettuato con successo -- PCS");
-        support.firePropertyChange(ptNameLogout, null, null);
+//        support.firePropertyChange(ptNameLogout, null, null);
         return true;
     }
 
@@ -70,7 +70,7 @@ public class RegistrationService {
         try {
             clienteDAO.insert(cliente);
             System.out.println("DEBUG: Registrazione Cliente effettuata con successo -- PCS");
-            support.firePropertyChange(ptNameRegCliente,null,cliente);
+//            support.firePropertyChange(ptNameRegCliente,null,cliente);
             return true;
 
 
@@ -86,7 +86,7 @@ public class RegistrationService {
         try {
             dipendenteDAO.insert(dipendente);
             System.out.println("DEBUG: Registrazione Dipendente effettuata con successo");
-            support.firePropertyChange(ptnRegDipendente,null,dipendente);
+//            support.firePropertyChange(ptnRegDipendente,null,dipendente);
             return true;
 
         }catch (Exception e) {
@@ -98,12 +98,12 @@ public class RegistrationService {
 
 
 
-    public void addPropertyChangeListener(PropertyChangeListener listener) {
-        support.addPropertyChangeListener(listener);
-    }
-    public void removePropertyChangeListener(PropertyChangeListener listener) {
-        support.removePropertyChangeListener(listener);
-    }
+//    public void addPropertyChangeListener(PropertyChangeListener listener) {
+//        support.addPropertyChangeListener(listener);
+//    }
+//    public void removePropertyChangeListener(PropertyChangeListener listener) {
+//        support.removePropertyChangeListener(listener);
+//    }
 
 
 }

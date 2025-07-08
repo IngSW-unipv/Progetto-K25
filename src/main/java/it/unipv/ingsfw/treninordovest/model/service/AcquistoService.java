@@ -28,12 +28,7 @@ public class AcquistoService {
     private final TesseraDAOImpl tesseraDAO;
     private Cliente clienteLoggato;
     private final PagamentoService pagamentoService;
-    private final PropertyChangeSupport support;
 
-    //Property name dei support
-    public final String ptNameAbbonamento ="abbonamento_acquistato";
-    public final String ptNameBiglietto ="biglietto_acquistato";
-    public final String ptnTessera ="tessera_acquistato";
 
     public AcquistoService() {
         this.abbonamentoDAO=new AbbonamentoDAOimpl();
@@ -41,8 +36,6 @@ public class AcquistoService {
         this.tesseraDAO=new TesseraDAOImpl();
         this.pagamentoService=new PagamentoService();
 
-
-        this.support=new PropertyChangeSupport(this);
     }
 
     public boolean acquistoAbbonamento(TitoloDTO titoloDTO) {
@@ -59,14 +52,6 @@ public class AcquistoService {
                 abbonamento.setPagamento(pag);
 
                 abbonamentoDAO.insert(abbonamento);
-
-//                for(int it =0; it<quantita; it++) {
-//                    abbonamentoDAO.insert(abbonamento);
-//                    abbonamento.setId(UUID.randomUUID().toString());
-//                }
-
-                support.firePropertyChange("abbonamento_acquistato", null, abbonamento);
-
                return true;
             } else if(clienteLoggato.getTessera()==null) {
                 System.out.println("Non disponi di una tessera");
@@ -105,20 +90,13 @@ public class AcquistoService {
                    biglietto.setId(UUID.randomUUID().toString());
                }
 
-
-               support.firePropertyChange("biglietto_acquistato", null, biglietto);
-
-
                return true;
             }
-
 
         }catch (Exception e) {
             e.printStackTrace();
             return false;
         }
-
-
         return false;
     }
 
@@ -131,7 +109,6 @@ public class AcquistoService {
             if (!(tesseraDAO.exists(clienteLoggato.getId().toString())) && clienteLoggato != null) {
                 Tessera tessera = new Tessera(UUID.randomUUID());
                 if (tesseraDAO.createTessera(tessera, clienteLoggato.getId().toString()))
-                    support.firePropertyChange("tessera_acquistata", null, tessera);
                     return true;
 
             }
@@ -148,12 +125,7 @@ public class AcquistoService {
 
 
 
-    public void addPropertyChangeListener(PropertyChangeListener listener) {
-        support.addPropertyChangeListener(listener);
-    }
-    public void removePropertyChangeListener(PropertyChangeListener listener) {
-        support.removePropertyChangeListener(listener);
-    }
+
 
 
 

@@ -125,10 +125,7 @@ public class JTreniNordOvestFrame extends JFrame implements PropertyChangeListen
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        String command = evt.getPropertyName();
-        if (command.equals(RegistrationService.ptNameLogin)) {
-            this.showPanel(CUSTOMER_MAINFRAME);
-        }
+
 
 
 

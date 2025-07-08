@@ -2,6 +2,8 @@ package it.unipv.ingsfw.treninordovest.controller;
 
 import it.unipv.ingsfw.treninordovest.model.dto.TitoloDTO;
 import it.unipv.ingsfw.treninordovest.model.facade.TreniNordOvestFacade;
+import it.unipv.ingsfw.treninordovest.model.ferrovia.viaggio.Viaggio;
+import it.unipv.ingsfw.treninordovest.model.service.viaggio.ViaggiModel;
 import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.JTreniNordOvestFrame;
 import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.cliente.CustomerMainPanel;
 import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.cliente.panels.*;
@@ -11,7 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.ZoneId;
-
+import java.util.List;
 
 
 public class AcquistoController implements ActionListener {
@@ -20,11 +22,13 @@ public class AcquistoController implements ActionListener {
     private final CustomerMainPanel view;
     private final JTreniNordOvestFrame frame;
     private final TreniNordOvestFacade facade;
+    private final ViaggiModel viaggiModel;
 
     public AcquistoController(JTreniNordOvestFrame frame) {
         this.view = frame.getCustomerMainPanel();
         this.frame = frame;
         this.facade = TreniNordOvestFacade.getInstance();
+        viaggiModel = new ViaggiModel();
 
         //Aggiunta dei listener
        addListeners();
@@ -79,7 +83,8 @@ public class AcquistoController implements ActionListener {
     }
 
     private void mostraListaViaggi(){
-        facade.getAcquistoFacade().mostraViaggiDisponibili();
+        List<Viaggio> viaggioList = facade.getAcquistoFacade().mostraViaggiDisponibili();
+        viaggiModel.setViaggi(viaggioList);
     }
 
     /// Aggiunta degli Action Listener per i vari pannelli
@@ -89,6 +94,8 @@ public class AcquistoController implements ActionListener {
         view.getSubscriptionPanel().getButtonAbbonati().addActionListener(this);
         view.getCardPurchasePanel().getButtonAcquistaTessera().addActionListener(this);
         view.getTicketPurchasePanel().getButtonMostraViaggi().addActionListener(this);
+
+        viaggiModel.addPropertyChangeListener(frame.getCustomerMainPanel().getViaggiTabelPanel());
 
     }
 

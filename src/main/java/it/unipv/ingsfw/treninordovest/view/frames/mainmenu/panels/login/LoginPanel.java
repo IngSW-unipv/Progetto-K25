@@ -7,7 +7,7 @@ import java.awt.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-public class LoginPanel extends JPanel implements PropertyChangeListener {
+public class LoginPanel extends JPanel  {
     //Dichiarazione dei componenti
     private final JTextField campoUtente;
     private final JPasswordField campoPassword;
@@ -96,16 +96,4 @@ public class LoginPanel extends JPanel implements PropertyChangeListener {
     }
 
 
-    @Override
-    public void propertyChange(PropertyChangeEvent evt) {
-
-        if (evt.getPropertyName().equals(RegistrationService.ptNameLogin)) {
-            campoUtente.setText(" ");
-            campoPassword.setText(" ");
-            System.out.println("DEBUG: Osservatore Login Panel --- Login Avvenuto");
-
-        }
-
-
-    }
 }

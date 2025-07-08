@@ -2,7 +2,6 @@ package it.unipv.ingsfw.treninordovest.controller;
 
 import it.unipv.ingsfw.treninordovest.model.dto.LoginDTO;
 import it.unipv.ingsfw.treninordovest.model.facade.TreniNordOvestFacade;
-import it.unipv.ingsfw.treninordovest.model.facade.login.RegistrationFacade;
 import it.unipv.ingsfw.treninordovest.model.utenti.cliente.Cliente;
 import it.unipv.ingsfw.treninordovest.model.utenti.dipendente.Dipendente;
 import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.JTreniNordOvestFrame;

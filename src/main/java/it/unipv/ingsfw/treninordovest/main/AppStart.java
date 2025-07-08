@@ -34,7 +34,7 @@ public class AppStart {
                 JTreniNordOvestFrame mainFrame = new JTreniNordOvestFrame();
 
                 RegistrationFacade loginFacade = new RegistrationFacade();
-                loginFacade.addPropertyChangeListener(mainFrame);
+                //loginFacade.addPropertyChangeListener(mainFrame);
 
                 // Configura e mostra il frame principale
                 mainFrame.setVisible(true);

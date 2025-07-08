@@ -1,4 +1,4 @@
-package it.unipv.ingsfw.treninordovest.model.service;
+package it.unipv.ingsfw.treninordovest.model.service.titoli;
 
 import it.unipv.ingsfw.treninordovest.model.titoli.abbonamento.Abbonamento;
 import it.unipv.ingsfw.treninordovest.model.titoli.abbonamento.AbbonamentoDAOimpl;
@@ -14,44 +14,33 @@ public class GestioneTitoliService {
 
     private final AbbonamentoDAOimpl abbonamentoDAO;
     private final BigliettoDAOImpl bigliettoDAO;
-    PropertyChangeSupport propertyChangeSupport;
 
 
     public GestioneTitoliService() {
         abbonamentoDAO = new AbbonamentoDAOimpl();
         bigliettoDAO = new BigliettoDAOImpl();
-        propertyChangeSupport = new PropertyChangeSupport(this);
     }
 
     //Lista degli abbonamenti
-    public void getTitoliAbbonamento(){
+    public List<Abbonamento> getTitoliAbbonamento(){
         String clienteLoggato = SessionManager.getInstance().getCurrentUser().getId().toString();
          List<Abbonamento> abbonamentoList = abbonamentoDAO.getAllAbbonamentiByCliente(clienteLoggato);
 
-        propertyChangeSupport.firePropertyChange("get_titoliAbbonamenti_acq",null,abbonamentoList);
-
+         return abbonamentoList;
     }
 
-    public void getTitoliBiglietto(){
+    public List<Biglietto> getTitoliBiglietto(){
         String clienteLoggato= SessionManager.getInstance().getCurrentUser().getId().toString();
         List<Biglietto> bigliettiList = bigliettoDAO.getAllBigliettiByCliente(clienteLoggato);
 
-        propertyChangeSupport.firePropertyChange("get_titoliBiglietti_acq",null,bigliettiList);
+        return bigliettiList;
 
     }
 
     public boolean controllaTitoloViaggio(){
 
 
-
         return false;
-    }
-
-    public void addPropertyChangeListener(PropertyChangeListener listener) {
-        propertyChangeSupport.addPropertyChangeListener(listener);
-    }
-    public void removePropertyChangeListener(PropertyChangeListener listener) {
-        propertyChangeSupport.removePropertyChangeListener(listener);
     }
 
 

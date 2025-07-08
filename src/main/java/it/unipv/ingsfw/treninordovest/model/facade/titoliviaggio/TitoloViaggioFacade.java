@@ -1,8 +1,11 @@
 package it.unipv.ingsfw.treninordovest.model.facade.titoliviaggio;
 
-import it.unipv.ingsfw.treninordovest.model.service.GestioneTitoliService;
+import it.unipv.ingsfw.treninordovest.model.service.titoli.GestioneTitoliService;
+import it.unipv.ingsfw.treninordovest.model.titoli.abbonamento.Abbonamento;
+import it.unipv.ingsfw.treninordovest.model.titoli.biglietto.Biglietto;
 
 import java.beans.PropertyChangeListener;
+import java.util.List;
 
 public class TitoloViaggioFacade implements ITitoloViaggioFacade{
 
@@ -13,20 +16,15 @@ public class TitoloViaggioFacade implements ITitoloViaggioFacade{
     }
 
     @Override
-    public void mostraBigliettiAcquistati() {
-        gestioneTitoliService.getTitoliBiglietto();
+    public List<Biglietto> mostraBigliettiAcquistati() {
+       return gestioneTitoliService.getTitoliBiglietto();
     }
 
     @Override
-    public void mostraAbbonamentiAcquistati() {
-        gestioneTitoliService.getTitoliAbbonamento();
+    public List<Abbonamento> mostraAbbonamentiAcquistati() {
+       return gestioneTitoliService.getTitoliAbbonamento();
     }
 
-    public void addPropertyChangeListener(PropertyChangeListener listener){
-        gestioneTitoliService.addPropertyChangeListener(listener);
-    }
-    public void removePropertyChangeListener(PropertyChangeListener listener){
-        gestioneTitoliService.removePropertyChangeListener(listener);
-    }
+
 
 }

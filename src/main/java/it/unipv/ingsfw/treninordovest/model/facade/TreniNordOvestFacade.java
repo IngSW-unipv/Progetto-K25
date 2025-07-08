@@ -5,7 +5,6 @@ import it.unipv.ingsfw.treninordovest.model.facade.login.RegistrationFacade;
 import it.unipv.ingsfw.treninordovest.model.facade.rimborso.RimborsoFacade;
 import it.unipv.ingsfw.treninordovest.model.facade.titoliviaggio.TitoloViaggioFacade;
 import it.unipv.ingsfw.treninordovest.model.facade.utente.UtenteFacade;
-import it.unipv.ingsfw.treninordovest.model.service.GestioneTitoliService;
 
 public class TreniNordOvestFacade {
 
