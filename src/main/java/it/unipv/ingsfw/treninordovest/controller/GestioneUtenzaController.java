@@ -1,5 +1,6 @@
 package it.unipv.ingsfw.treninordovest.controller;
 
+import it.unipv.ingsfw.treninordovest.model.dto.LoginDTO;
 import it.unipv.ingsfw.treninordovest.model.facade.TreniNordOvestFacade;
 import it.unipv.ingsfw.treninordovest.model.facade.login.RegistrationFacade;
 import it.unipv.ingsfw.treninordovest.model.utenti.cliente.Cliente;
@@ -163,20 +164,21 @@ public class GestioneUtenzaController implements ActionListener{
         String password = new String(passwordInCaratteri);
         // Pulisci l'array per sicurezza subito dopo l'uso
         java.util.Arrays.fill(passwordInCaratteri, ' ');
-
         String tipoUtente = (String )frame.getLoginPanel().getComboRuolo().getSelectedItem();
 
-        try {
-            if (facade.getRegistrationFacade().login(identificativo,password,tipoUtente)){
+        LoginDTO loginDTO = new LoginDTO(identificativo,password,tipoUtente);
+
+//        try {
+            if (facade.getRegistrationFacade().login(loginDTO)){
                 frame.showPanel(frame.getLoginPanel().getComboRuolo().getSelectedItem().toString());
                 JOptionPane.showMessageDialog(null,"Login effettuato correttamente", "Info", JOptionPane.INFORMATION_MESSAGE);
             }
             else
                 JOptionPane.showMessageDialog(null, "Problema durante il login", "Errore", JOptionPane.ERROR_MESSAGE);
 
-        }catch (Exception e){
-            System.out.println(e.getMessage());
-        }
+//        }catch (Exception e){
+//            System.out.println(e.getMessage());
+//        }
 
 
 

@@ -1,5 +1,6 @@
 package it.unipv.ingsfw.treninordovest.controller;
 
+import it.unipv.ingsfw.treninordovest.model.dto.TitoloDTO;
 import it.unipv.ingsfw.treninordovest.model.facade.TreniNordOvestFacade;
 import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.JTreniNordOvestFrame;
 import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.cliente.CustomerMainPanel;
@@ -40,7 +41,9 @@ public class AcquistoController implements ActionListener {
         String tipoPagamento = "cartacredito"; //Provvisorio
         int quantita = Integer.parseInt(view.getTicketPurchasePanel().getQuantitaSpinner().getValue().toString());
 
-        if (facade.getAcquistoFacade().acquistaBiglietto(tipoBiglietto, tipoPagamento, quantita, idTratta, ritorno, dataRitorno)) {
+        TitoloDTO titoloDTO = new TitoloDTO(tipoBiglietto, tipoPagamento, quantita, idTratta, ritorno, dataRitorno);
+
+        if (facade.getAcquistoFacade().acquistaBiglietto(titoloDTO)) {
             JOptionPane.showMessageDialog(view, "Biglietti acquistati");
         } else
             JOptionPane.showMessageDialog(view, "Errore durante l'acquisto dei biglietti!", "Errore", JOptionPane.ERROR_MESSAGE);
@@ -55,7 +58,9 @@ public class AcquistoController implements ActionListener {
         String tipoAcquisto = "cartacredito"; //DA DEFINIRE
         int quantita = 1;
 
-        if (facade.getAcquistoFacade().acquistoAbbonamento(tipoAbbonamento, tipoAcquisto, quantita)) {
+        TitoloDTO titoloDTO = new TitoloDTO(tipoAbbonamento, tipoAcquisto, quantita);
+
+        if (facade.getAcquistoFacade().acquistoAbbonamento(titoloDTO)) {
             JOptionPane.showMessageDialog(view, "Acquisto con successo!");
         } else
             JOptionPane.showMessageDialog(view, "Abbonamento già posseduto o tessera non valida!", "Errore", JOptionPane.ERROR_MESSAGE);

@@ -1,5 +1,6 @@
 package it.unipv.ingsfw.treninordovest.model.facade.acquisto;
 
+import it.unipv.ingsfw.treninordovest.model.dto.TitoloDTO;
 import it.unipv.ingsfw.treninordovest.model.service.AcquistoService;
 import it.unipv.ingsfw.treninordovest.model.service.ViaggioService;
 
@@ -19,13 +20,13 @@ public class AcquistoFacade implements IAcquistoFacade {
 
 
     @Override
-    public boolean acquistaBiglietto(String tipoBiglietto, String tipoPagamento, int quantita, String idTratta, boolean ritorno, LocalDate dataRitorno) {
-        return acquistoService.acquistoBiglietto(tipoBiglietto,tipoPagamento, quantita,idTratta,ritorno,dataRitorno);
+    public boolean acquistaBiglietto(TitoloDTO titoloDTO) {
+        return acquistoService.acquistoBiglietto(titoloDTO);
     }
 
     @Override
-    public boolean acquistoAbbonamento(String tipoAbbonamento,String tipoPagamento,int quantita) {
-        return acquistoService.acquistoAbbonamento(tipoAbbonamento,tipoPagamento,quantita);
+    public boolean acquistoAbbonamento(TitoloDTO titoloDTO) {
+        return acquistoService.acquistoAbbonamento(titoloDTO);
     }
 
     @Override

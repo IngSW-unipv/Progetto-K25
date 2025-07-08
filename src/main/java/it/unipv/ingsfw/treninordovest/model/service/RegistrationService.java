@@ -1,5 +1,6 @@
 package it.unipv.ingsfw.treninordovest.model.service;
 
+import it.unipv.ingsfw.treninordovest.model.dto.LoginDTO;
 import it.unipv.ingsfw.treninordovest.model.factory.login.ILogin;
 import it.unipv.ingsfw.treninordovest.model.factory.login.LoginFactoryProducer;
 import it.unipv.ingsfw.treninordovest.model.utenti.cliente.Cliente;
@@ -33,11 +34,11 @@ public class RegistrationService {
     }
 
 
-    public boolean login(String id, String password,String tipoUtente) {
+    public boolean login(LoginDTO loginDTO) {
         try {
 
-            ILogin loginFactory =  new LoginFactoryProducer().getFactoryFromProperties(tipoUtente);
-            Utente user = (Utente) loginFactory.login(id, password);
+            ILogin loginFactory =  new LoginFactoryProducer().getFactoryFromProperties(loginDTO.getTipoUtente());
+            Utente user = (Utente) loginFactory.login(loginDTO.getId(), loginDTO.getPassword());
 
             if (user != null) {
 

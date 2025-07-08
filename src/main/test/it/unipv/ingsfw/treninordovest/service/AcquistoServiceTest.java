@@ -26,11 +26,6 @@ public class AcquistoServiceTest {
         SessionManager.getInstance().setCurrentUser(cliente);
 
 
-        if (service.acquistoAbbonamento(tipoAbb,tipoPag,quantita)){
-            System.out.println("Acquisto Abbonamento completato");
-        } else {
-            System.out.println("Errore acquisto abbonamento");
-        }
 
     }
 }

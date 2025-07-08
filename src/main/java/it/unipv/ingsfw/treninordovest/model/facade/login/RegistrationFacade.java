@@ -1,6 +1,7 @@
 package it.unipv.ingsfw.treninordovest.model.facade.login;
 
 
+import it.unipv.ingsfw.treninordovest.model.dto.LoginDTO;
 import it.unipv.ingsfw.treninordovest.model.service.RegistrationService;
 import it.unipv.ingsfw.treninordovest.model.utenti.cliente.Cliente;
 import it.unipv.ingsfw.treninordovest.model.utenti.dipendente.Dipendente;
@@ -19,8 +20,8 @@ public class RegistrationFacade implements ILoginFacade {
 
 
     @Override
-    public boolean login(String id, String password, String tipoUtente) {
-       return loginService.login(id, password, tipoUtente) ;
+    public boolean login(LoginDTO loginDTO) {
+       return loginService.login(loginDTO) ;
     }
 
 

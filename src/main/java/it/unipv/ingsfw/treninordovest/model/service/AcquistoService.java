@@ -1,5 +1,6 @@
 package it.unipv.ingsfw.treninordovest.model.service;
 
+import it.unipv.ingsfw.treninordovest.model.dto.TitoloDTO;
 import it.unipv.ingsfw.treninordovest.model.factory.implementations.AbbonamentoStrategyFactory;
 import it.unipv.ingsfw.treninordovest.model.factory.implementations.BigliettoStrategyFactory;
 import it.unipv.ingsfw.treninordovest.model.ferrovia.viaggio.Viaggio;
@@ -44,9 +45,9 @@ public class AcquistoService {
         this.support=new PropertyChangeSupport(this);
     }
 
-    public boolean acquistoAbbonamento(String tipoAbbonamento,String tipoPagamento,int quantita) {
+    public boolean acquistoAbbonamento(TitoloDTO titoloDTO) {
 
-        IAbbonamentoStrategy abbonamentoStrategy = AbbonamentoStrategyFactory.getFactoryFromProperties(tipoAbbonamento);
+        IAbbonamentoStrategy abbonamentoStrategy = AbbonamentoStrategyFactory.getFactoryFromProperties(titoloDTO.getTipoTitolo());
         Abbonamento abbonamento;
         clienteLoggato = (Cliente) SessionManager.getInstance().getCurrentUser();
         Pagamento pag;
@@ -54,7 +55,7 @@ public class AcquistoService {
         try {
             if (clienteLoggato!=null && clienteLoggato.getTessera().getIdTessera()!=null) {
                 abbonamento = abbonamentoStrategy.createAbbonamento(clienteLoggato.getTessera());
-                pag =  pagamentoService.effettuaPagamento(tipoPagamento,quantita,abbonamentoStrategy.ottieniPrezzoAbbonamento());
+                pag =  pagamentoService.effettuaPagamento(titoloDTO.getTipoPagamento(), titoloDTO.getQuantita(), abbonamentoStrategy.ottieniPrezzoAbbonamento());
                 abbonamento.setPagamento(pag);
 
                 abbonamentoDAO.insert(abbonamento);
@@ -84,22 +85,22 @@ public class AcquistoService {
 
     }
 
-    public boolean acquistoBiglietto(String tipoBiglietto, String tipoPagamento, int quantita, String idViaggio,boolean ritorno, LocalDate dataRitorno) {
+    public boolean acquistoBiglietto(TitoloDTO titoloDTO) {
         clienteLoggato = (Cliente) SessionManager.getInstance().getCurrentUser();
         Pagamento pag;
         Biglietto biglietto;
-        IBigliettoStrategy bigliettoStrategy = BigliettoStrategyFactory.getFactoryFromProperties(tipoBiglietto);
+        IBigliettoStrategy bigliettoStrategy = BigliettoStrategyFactory.getFactoryFromProperties(titoloDTO.getTipoTitolo());
 
         try {
 
             if(clienteLoggato!=null) {
                biglietto = bigliettoStrategy.createBiglietto();
-               pag = pagamentoService.effettuaPagamento(tipoPagamento,quantita,bigliettoStrategy.ottieniPrezzoBiglietto());
+               pag = pagamentoService.effettuaPagamento(titoloDTO.getTipoPagamento(), titoloDTO.getQuantita(), bigliettoStrategy.ottieniPrezzoBiglietto());
                 biglietto.setPagamento(pag);
 
-               for(int it =0; it<quantita; it++) {
-                   biglietto.setTipoBiglietto(tipoBiglietto);
-                   biglietto.setViaggio(new Viaggio(idViaggio));
+               for(int it =0; it<titoloDTO.getQuantita(); it++) {
+                   biglietto.setTipoBiglietto(titoloDTO.getTipoTitolo());
+                   biglietto.setViaggio(new Viaggio(titoloDTO.getIdViaggio()));
                    bigliettoDAO.insert(biglietto);
                    biglietto.setId(UUID.randomUUID().toString());
                }
