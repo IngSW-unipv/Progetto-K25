@@ -1,7 +1,12 @@
 package it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.dipendente.panels;
 
+import it.unipv.ingsfw.treninordovest.model.utenti.cliente.Cliente;
+import it.unipv.ingsfw.treninordovest.model.utenti.dipendente.Dipendente;
+
 import javax.swing.*;
 import java.awt.*;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 public class EmployeeProfilePanel extends JPanel implements PropertyChangeListener {
     private final JTextField txtNome;
@@ -266,4 +271,23 @@ public class EmployeeProfilePanel extends JPanel implements PropertyChangeListen
     public void setTxtStipendio(String stipendioString) {
         this.txtStipendio.setText(stipendioString);
     }
+
+
+    public void propertyChange(PropertyChangeEvent evt) {
+        String propertyName = evt.getPropertyName();
+        if("dipendente_aggiornato".equals(propertyName)){
+            Dipendente dipendente = (Dipendente) evt.getNewValue();
+            setTxtNome(dipendente.getNome());
+            setTxtCognome(dipendente.getCognome());
+            setTxtSesso(dipendente.getSesso());
+            setTxtLuogoNascita(dipendente.getLuogoNascita());
+            setTxtDataNascita(dipendente.getDataNascita().toString());
+            setTxtCellulare(dipendente.getCellulare());
+            setTxtIndirizzo(dipendente.getIndirizzo());
+            setTxtID(dipendente.getId().toString());
+        }
+
+
+    }
+
 }

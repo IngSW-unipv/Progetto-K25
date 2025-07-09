@@ -67,7 +67,7 @@ public class UtenteService {
             SessionManager.getInstance().setCurrentUser(dipendenteAggiornato);
             return dipendenteAggiornato;
         }
-        return false;
+        return dipendenteAggiornato;
     }
 
 
