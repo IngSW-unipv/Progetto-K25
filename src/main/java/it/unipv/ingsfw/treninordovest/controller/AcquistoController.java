@@ -39,18 +39,30 @@ public class AcquistoController implements ActionListener {
     public void acquistoBiglietto() {
 
         String idTratta = view.getTicketPurchasePanel().getTextFieldTratta().getText();
-        boolean ritorno = view.getTicketPurchasePanel().getCheckBoxRitorno().isSelected();
-        LocalDate dataRitorno = view.getTicketPurchasePanel().getDataRitorno().getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+       // boolean ritorno = view.getTicketPurchasePanel().getCheckBoxRitorno().isSelected();
+        //LocalDate dataRitorno = view.getTicketPurchasePanel().getDataRitorno().getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         String tipoBiglietto = view.getTicketPurchasePanel().getComboTipoBiglietto().getSelectedItem().toString();
         String tipoPagamento = "cartacredito"; //Provvisorio
         int quantita = Integer.parseInt(view.getTicketPurchasePanel().getQuantitaSpinner().getValue().toString());
 
-        TitoloDTO titoloDTO = new TitoloDTO(tipoBiglietto, tipoPagamento, quantita, idTratta, ritorno, dataRitorno);
+        try {
+            if (!idTratta.isEmpty() && !(quantita == 0) && !tipoPagamento.isEmpty()) {
+                TitoloDTO titoloDTO = new TitoloDTO(tipoBiglietto, tipoPagamento, quantita, idTratta);//, ritorno, dataRitorno);
+                if (facade.getAcquistoFacade().acquistaBiglietto(titoloDTO)) {
+                    JOptionPane.showMessageDialog(view, "Biglietti acquistati");
+                } else
+                    JOptionPane.showMessageDialog(view, "Errore durante l'acquisto dei biglietti!", "Errore", JOptionPane.ERROR_MESSAGE);
 
-        if (facade.getAcquistoFacade().acquistaBiglietto(titoloDTO)) {
-            JOptionPane.showMessageDialog(view, "Biglietti acquistati");
-        } else
-            JOptionPane.showMessageDialog(view, "Errore durante l'acquisto dei biglietti!", "Errore", JOptionPane.ERROR_MESSAGE);
+            }  else throw new IllegalArgumentException("Impossibile acquistare i biglietti, parametri non validi");
+        }catch (IllegalArgumentException e){
+            System.out.println("DEBUG : " + e.getMessage());
+        }
+
+        
+
+
+
+
 
 
     }
@@ -103,9 +115,9 @@ public class AcquistoController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        CreditCardDialog creditCardDialog = new CreditCardDialog(frame);
-        creditCardDialog.getConfirmButton().addActionListener(this);
-        creditCardDialog.getCancelButton().addActionListener(this);
+        WizardDialog creditCardDialog = new WizardDialog(frame);
+//        creditCardDialog.getConfirmButton().addActionListener(this);
+//        creditCardDialog.getCancelButton().addActionListener(this);
 
         String command = e.getActionCommand();
         // Usa uno switch per eseguire l'azione corretta per ogni comando
@@ -113,16 +125,16 @@ public class AcquistoController implements ActionListener {
         switch (command) {
             case SubscriptionPanel.CMD_Abbonati:
                 creditCardDialog.showDialog();
-                if (creditCardDialog.getConfirmButton().getActionCommand().equals(CreditCardDialog.CMD_Confirm)) {
+               // if (creditCardDialog.getConfirmButton().getActionCommand().equals(CreditCardDialog.CMD_Confirm)) {
                     acquistoAbbonamento();
-                }
+               // }
                 break;
 
             case TicketPurchasePanel.CMD_Acquista:
                 creditCardDialog.showDialog();
-                if (creditCardDialog.getConfirmButton().getActionCommand().equals(CreditCardDialog.CMD_Confirm)) {
+                //if (creditCardDialog.getConfirmButton().getActionCommand().equals(CreditCardDialog.CMD_Confirm)) {
                     acquistoBiglietto();
-                }
+                //}
                 break;
 
             case CardPurchasePanel.CMD_AcquistaTessera:

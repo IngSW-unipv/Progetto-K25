@@ -29,6 +29,13 @@ public class TitoloDTO {
         this.tipoTitolo = tipoTitolo;
     }
 
+    public TitoloDTO(String tipoBiglietto, String tipoPagamento, int quantita, String idTratta) {
+        this.tipoPagamento = tipoPagamento;
+        this.quantita = quantita;
+        this.tipoTitolo = tipoBiglietto;
+        this.idViaggio = idTratta;
+    }
+
 
     public String getTipoTitolo() {
         return tipoTitolo;

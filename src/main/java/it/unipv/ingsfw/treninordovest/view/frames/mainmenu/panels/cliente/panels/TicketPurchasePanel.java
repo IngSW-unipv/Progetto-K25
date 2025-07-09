@@ -11,17 +11,18 @@ public class TicketPurchasePanel extends JPanel {
     //private JLabel labelDestinazione;
     //private JTextField textFieldDestinazione;
     private final JLabel labelIDTratta;
-    private JSpinner quantitaSpinner;
-    private JTextField textFieldTratta;
-    private JButton buttonAcquista;
+    private final JSpinner quantitaSpinner;
+    private final JTextField textFieldTratta;
+    private final JButton buttonAcquista;
     private final JButton buttonMostraViaggi;
-    private JCheckBox checkBoxRitorno;
-    private JLabel labelRitorno;
-    private JDateChooser dataRitorno;
+    private final JCheckBox checkBoxRitorno;
+    private final JLabel labelRitorno;
+    private final JDateChooser dataRitorno;
     private JComboBox<String> comboTipoBiglietto;
     public static final String CMD_Acquista = "acquista";
     public static final String CMD_MostraViaggi = "mostraViaggi";
     //private ViaggiTablePanel tratteTablePanel;
+    private CreditCardDialog creditCardDialog;
 
     /*DA MODIFICARE*/
 
@@ -45,13 +46,14 @@ public class TicketPurchasePanel extends JPanel {
         comboTipoBiglietto = new JComboBox<>(tipo);
 
 
+
         panelInput.add(buttonMostraViaggi);
         panelInput.add(labelIDTratta);
         panelInput.add(textFieldTratta);
         panelInput.add(buttonAcquista);
-        panelInput.add(checkBoxRitorno);
-        panelInput.add(labelRitorno);
-        panelInput.add(dataRitorno);
+//        panelInput.add(checkBoxRitorno);
+//        panelInput.add(labelRitorno);
+//        panelInput.add(dataRitorno);
         panelInput.add(quantitaSpinner);
         panelInput.add(comboTipoBiglietto);
 
@@ -92,5 +94,9 @@ public class TicketPurchasePanel extends JPanel {
 
     public JButton getButtonMostraViaggi() {
         return buttonMostraViaggi;
+    }
+
+    public CreditCardDialog getCreditCardDialog() {
+        return creditCardDialog;
     }
 }
