@@ -3,7 +3,7 @@ package it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.dipendente.pa
 import javax.swing.*;
 import java.awt.*;
 
-public class EmployeeProfilePanel extends JPanel {
+public class EmployeeProfilePanel extends JPanel implements PropertyChangeListener {
     private final JTextField txtNome;
     private final JTextField txtCognome;
     private final JTextField txtRuolo;

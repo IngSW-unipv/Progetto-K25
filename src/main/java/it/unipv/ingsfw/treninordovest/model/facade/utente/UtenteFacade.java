@@ -1,6 +1,7 @@
 package it.unipv.ingsfw.treninordovest.model.facade.utente;
 
-import it.unipv.ingsfw.treninordovest.model.service.UtenteService;
+import it.unipv.ingsfw.treninordovest.model.service.utente.UtenteService;
+import it.unipv.ingsfw.treninordovest.model.utenti.dipendente.Dipendente;
 
 import java.beans.PropertyChangeListener;
 
@@ -19,7 +20,7 @@ public class UtenteFacade implements IUtenteFacade{
     }
 
     @Override
-    public boolean aggiornaProfiloDipendente() {
+    public Dipendente aggiornaProfiloDipendente() {
         return service.aggiornaDatiDipendente();
     }
 
@@ -34,10 +35,5 @@ public class UtenteFacade implements IUtenteFacade{
     }
 
 
-    public void addPropertyChangeListener(PropertyChangeListener listener){
-        service.addPropertyChangeListener(listener);
-    }
-    public void removePropertyChangeListener(PropertyChangeListener listener){
-        service.removePropertyChangeListener(listener);
-    }
+
 }

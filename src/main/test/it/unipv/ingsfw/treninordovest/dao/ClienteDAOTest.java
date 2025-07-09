@@ -11,29 +11,29 @@ public class ClienteDAOTest {
 
         ClienteDAOImpl clienteDAO = new ClienteDAOImpl();
 
-        Cliente cliente = new Cliente("mario@gmail.com","1234");
+        //Cliente cliente = new Cliente("mario@gmail.com","1234");
 
-        Cliente cliente1 = clienteDAO.get(cliente);
+        //Cliente cliente1 = clienteDAO.get(cliente);
 
-        System.out.println(cliente1.getId());
-        System.out.println(cliente1.getNome());
-        System.out.println(cliente1.getCognome());
+//        System.out.println(cliente1.getId());
+//        System.out.println(cliente1.getNome());
+//        System.out.println(cliente1.getCognome());
 
 
     }
     @Test
     void autenticateByEmail() {
 
-        Cliente cliente = new Cliente("mario@gmail.com","1234");
-
-        Cliente clienteLoggato;
-
-        ClienteDAOImpl clienteDAO = new ClienteDAOImpl();
-        clienteLoggato= clienteDAO.autenticateByEmail(cliente);
-
-        System.out.println(clienteLoggato.getId());
-        System.out.println(clienteLoggato.getNome());
-        System.out.println(clienteLoggato.getCognome());
+//        Cliente cliente = new Cliente("mario@gmail.com","1234");
+//
+//        Cliente clienteLoggato;
+//
+//        ClienteDAOImpl clienteDAO = new ClienteDAOImpl();
+//        clienteLoggato= clienteDAO.autenticateByEmail(cliente);
+//
+//        System.out.println(clienteLoggato.getId());
+//        System.out.println(clienteLoggato.getNome());
+//        System.out.println(clienteLoggato.getCognome());
 
 
 

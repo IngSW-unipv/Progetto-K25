@@ -2,8 +2,10 @@ package it.unipv.ingsfw.treninordovest.controller;
 
 import it.unipv.ingsfw.treninordovest.model.dto.LoginDTO;
 import it.unipv.ingsfw.treninordovest.model.facade.TreniNordOvestFacade;
+import it.unipv.ingsfw.treninordovest.model.service.utente.ProfiloUtenteModel;
 import it.unipv.ingsfw.treninordovest.model.utenti.cliente.Cliente;
 import it.unipv.ingsfw.treninordovest.model.utenti.dipendente.Dipendente;
+import it.unipv.ingsfw.treninordovest.model.varie.SessionManager;
 import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.JTreniNordOvestFrame;
 import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.cliente.panels.CustomerProfilePanel;
 import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.dipendente.panels.EmployeeProfilePanel;
@@ -27,6 +29,7 @@ public class GestioneUtenzaController implements ActionListener{
     private final TreniNordOvestFacade facade;
     private JTreniNordOvestFrame frame;
     private MainMenuPanel viewMainPanel;
+    private ProfiloUtenteModel profiloUtenteModel;
 
 
     //Costruttore per la registazione clienti
@@ -34,7 +37,7 @@ public class GestioneUtenzaController implements ActionListener{
         //this.viewMainPanel = frame.getMainMenuPanel();
         this.frame = (JTreniNordOvestFrame) frame;
         this.facade = TreniNordOvestFacade.getInstance();
-
+        this.profiloUtenteModel=new ProfiloUtenteModel();
 
        // viewMainPanel.addActionListener(this);
 
@@ -211,17 +214,17 @@ public class GestioneUtenzaController implements ActionListener{
     private void aggiornaDatiProfiloCliente(){
 
         if (facade.getUtenteFacade().aggiornaProfiloCliente()){
+            profiloUtenteModel.setCliente(SessionManager.getInstance().getCurrentUser());
             JOptionPane.showMessageDialog(null,"Profilo aggiornato correttamente", "Info", JOptionPane.INFORMATION_MESSAGE);
         }
 
 
     }
     private void aggiornaDatiProfiloDipendente(){
+        Dipendente dipendente = facade.getUtenteFacade().aggiornaProfiloDipendente();
+        profiloUtenteModel.setDipendente(dipendente);
+        JOptionPane.showMessageDialog(null,"Profilo aggiornato correttamente", "Info", JOptionPane.INFORMATION_MESSAGE);
 
-        if(facade.getUtenteFacade().aggiornaProfiloDipendente()){
-            JOptionPane.showMessageDialog(null,"Profilo aggiornato correttamente", "Info", JOptionPane.INFORMATION_MESSAGE);
-
-        }
     }
 
 
@@ -252,6 +255,10 @@ public class GestioneUtenzaController implements ActionListener{
         frame.getEmployeeMainPanel().getProfilePanel().getBtnEsci().addActionListener(this);
         frame.getEmployeeMainPanel().getProfilePanel().getBtnAggionaProfilo().addActionListener(this);
         frame.getEmployeeMainPanel().getProfilePanel().getBtnAggiornaPassword().addActionListener(this);
+
+        profiloUtenteModel.addPropertyChangeListener(frame.getCustomerMainPanel().getProfilePanel());
+        profiloUtenteModel.addPropertyChangeListener(frame.getEmployeeMainPanel().getProfilePanel());
+
     }
 
 

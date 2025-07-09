@@ -1,6 +1,7 @@
 package it.unipv.ingsfw.treninordovest.model.utenti.cliente;
 
 
+import it.unipv.ingsfw.treninordovest.model.dto.LoginDTO;
 import it.unipv.ingsfw.treninordovest.model.factory.login.ILogin;
 import it.unipv.ingsfw.treninordovest.model.factory.login.LoginFactoryProducer;
 import it.unipv.ingsfw.treninordovest.model.titoli.tessera.Tessera;
@@ -32,9 +33,9 @@ public class Cliente extends Utente {
         this.tessera = tessera;
     }
 
-    public Cliente(String email,String password){
-        this.email = email;
-        this.setUserPassword(password);
+    public Cliente(LoginDTO loginDTO){
+        this.email = loginDTO.getId();
+        this.setUserPassword(loginDTO.getPassword());
     }
 
     public Cliente(UUID id,String password){
@@ -78,12 +79,12 @@ public class Cliente extends Utente {
 
 
     //Da vedere
-    public boolean login(String email, String password){
-       LoginFactoryProducer loginFactoryProducer = new LoginFactoryProducer();
-       ILogin loginn = loginFactoryProducer.getFactoryFromProperties("cliente");
-       loginn.login(email, password);
-       return true;
-    }
+//    public boolean login(String email, String password){
+//       LoginFactoryProducer loginFactoryProducer = new LoginFactoryProducer();
+//       ILogin loginn = loginFactoryProducer.getFactoryFromProperties("cliente");
+//       loginn.login(email, password);
+//       return true;
+//    }
 
     public Tessera getTessera() {
         return tessera;

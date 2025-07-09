@@ -1,4 +1,4 @@
-package it.unipv.ingsfw.treninordovest.model.service;
+package it.unipv.ingsfw.treninordovest.model.service.utente;
 
 import it.unipv.ingsfw.treninordovest.model.utenti.cliente.Cliente;
 import it.unipv.ingsfw.treninordovest.model.utenti.cliente.ClienteDAOImpl;
@@ -8,7 +8,6 @@ import it.unipv.ingsfw.treninordovest.model.varie.SessionManager;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-import java.util.List;
 
 public class UtenteService {
 
@@ -28,7 +27,6 @@ public class UtenteService {
         if(clienteAttuale!=null) {
             clienteAggiornato = clienteDAO.get(clienteAttuale);
             SessionManager.getInstance().setCurrentUser(clienteAggiornato);
-            propertyChangeSupport.firePropertyChange("cliente_aggiornato", null, clienteAggiornato);
             return true;
         }
         return false;
@@ -51,9 +49,7 @@ public class UtenteService {
 
     public boolean aggiornaPasswordDipendente(String nuovaPassword){
         Dipendente dipendenteAttuale = (Dipendente) SessionManager.getInstance().getCurrentUser();
-
         Dipendente dtoPassword = new Dipendente(dipendenteAttuale.getId().toString(),nuovaPassword);
-
         if(dipendenteAttuale!=null) {
             if(dipendenteDAO.updatePassword(dtoPassword)){
                 System.out.println("DEBUG:Password aggiornata con successo");
@@ -63,25 +59,17 @@ public class UtenteService {
         return false;
     }
 
-    public boolean aggiornaDatiDipendente(){
-        Dipendente dipendenteAggiornato;
+    public Dipendente aggiornaDatiDipendente(){
+        Dipendente dipendenteAggiornato = null;
         Dipendente dipendenteAttuale = (Dipendente) SessionManager.getInstance().getCurrentUser();
         if(dipendenteAttuale!=null) {
             dipendenteAggiornato = dipendenteDAO.get(dipendenteAttuale);
             SessionManager.getInstance().setCurrentUser(dipendenteAggiornato);
-            propertyChangeSupport.firePropertyChange("dipendente_aggiornato", null, dipendenteAggiornato);
-            return true;
+            return dipendenteAggiornato;
         }
         return false;
     }
 
-
-    public void addPropertyChangeListener(PropertyChangeListener listener) {
-        propertyChangeSupport.addPropertyChangeListener(listener);
-    }
-    public void removePropertyChangeListener(PropertyChangeListener listener) {
-        propertyChangeSupport.removePropertyChangeListener(listener);
-    }
 
 
 }

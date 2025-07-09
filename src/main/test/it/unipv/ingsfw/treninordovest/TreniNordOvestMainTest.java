@@ -19,7 +19,7 @@ public class TreniNordOvestMainTest {
         JTreniNordOvestFrame frame = new JTreniNordOvestFrame();
 
 
-        treniNordOvestFacade.getUtenteFacade().addPropertyChangeListener(frame.getCustomerMainPanel().getProfilePanel());
+        //treniNordOvestFacade.getUtenteFacade().addPropertyChangeListener(frame.getCustomerMainPanel().getProfilePanel());
 
         new GestioneUtenzaController(frame);
         new AcquistoController(frame);

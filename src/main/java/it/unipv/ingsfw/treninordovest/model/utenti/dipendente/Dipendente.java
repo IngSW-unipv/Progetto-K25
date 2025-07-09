@@ -1,6 +1,7 @@
 package it.unipv.ingsfw.treninordovest.model.utenti.dipendente;
 
 
+import it.unipv.ingsfw.treninordovest.model.dto.LoginDTO;
 import it.unipv.ingsfw.treninordovest.model.factory.implementations.StipendioStrategyFactory;
 import it.unipv.ingsfw.treninordovest.model.utenti.utente.Utente;
 import it.unipv.ingsfw.treninordovest.model.strategy.stipendio.IStipendioStrategy;
@@ -18,9 +19,9 @@ public class Dipendente extends Utente {
         super();
     }
 
-    public Dipendente(String id , String password) {
-        this.setId(UUID.fromString(id));
-        this.setUserPassword(password);
+    public Dipendente(LoginDTO loginDTO) {
+        this.setId(UUID.fromString(loginDTO.getId()));
+        this.setUserPassword(loginDTO.getPassword());
     }
 
 
@@ -30,6 +31,11 @@ public class Dipendente extends Utente {
         super(id, userPassword, nome, cognome, luogoNascita, sesso, dataNascita, cellulare, indirizzo);
         this.stipendio = stipendio;
         this.ruolo = ruolo;
+    }
+
+    public Dipendente(String string, String nuovaPassword) {
+        this.setUserPassword(nuovaPassword);
+        this.setId(UUID.fromString(string));
     }
 
 

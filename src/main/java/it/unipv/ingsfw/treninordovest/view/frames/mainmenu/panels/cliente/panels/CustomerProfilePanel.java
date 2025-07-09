@@ -272,10 +272,8 @@ public class CustomerProfilePanel extends JPanel implements PropertyChangeListen
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         String propertyName = evt.getPropertyName();
-
-        Cliente cliente = (Cliente) evt.getNewValue();
-
         if("cliente_aggiornato".equals(propertyName)){
+            Cliente cliente = (Cliente) evt.getNewValue();
             setTxtNome(cliente.getNome());
             setTxtCognome(cliente.getCognome());
             setTxtEmail(cliente.getEmail());

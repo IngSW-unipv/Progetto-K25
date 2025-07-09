@@ -18,7 +18,7 @@ public class JCustomerMainFrame extends JFrame {
     private final CustomerProfilePanel profilePanel = new CustomerProfilePanel();
     private final ViaggiTablePanel tratteTablePanel = new ViaggiTablePanel();
     private final Color coloreSfondo = new Color(131, 168, 195);
-
+    private final TitoliViaggioTablePanel titoliViaggioTablePanel = new TitoliViaggioTablePanel();
     private final CreditCardPanel creditCardPanel = new CreditCardPanel();
 
 
@@ -51,11 +51,7 @@ public class JCustomerMainFrame extends JFrame {
 
         //Test
 
-        AcquistoBigliettoPanel acquistoBigliettoPanel = new AcquistoBigliettoPanel();
-        acquistoBigliettoPanel.setBackground(coloreSfondo);
-        tabbedPane.addTab("Acquisto", acquistoBigliettoPanel);
 
-        TitoliViaggioTablePanel titoliViaggioTablePanel = new TitoliViaggioTablePanel();
         titoliViaggioTablePanel.setBackground(coloreSfondo);
         tabbedPane.addTab("Titoli", titoliViaggioTablePanel);
 
