@@ -11,8 +11,6 @@ import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.cliente.panels
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.List;
 
 
@@ -58,7 +56,7 @@ public class AcquistoController implements ActionListener {
             System.out.println("DEBUG : " + e.getMessage());
         }
 
-        
+
 
 
 
@@ -71,7 +69,7 @@ public class AcquistoController implements ActionListener {
     public void acquistoAbbonamento() {
 
         String tipoAbbonamento = view.getSubscriptionPanel().getComboTipo().getSelectedItem().toString();
-        String tipoAcquisto = "cartacredito"; //DA DEFINIRE
+        String tipoAcquisto = frame.getPaymentDialog().getMetodoPagamento(); //DA DEFINIRE
         int quantita = 1;
 
         TitoloDTO titoloDTO = new TitoloDTO(tipoAbbonamento, tipoAcquisto, quantita);
@@ -115,26 +113,18 @@ public class AcquistoController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        WizardDialog creditCardDialog = new WizardDialog(frame);
-//        creditCardDialog.getConfirmButton().addActionListener(this);
-//        creditCardDialog.getCancelButton().addActionListener(this);
-
         String command = e.getActionCommand();
         // Usa uno switch per eseguire l'azione corretta per ogni comando
         // CONTROLLA ATTENTAMENTE QUESTA PARTE NEL TUO CODICE!
         switch (command) {
             case SubscriptionPanel.CMD_Abbonati:
-                creditCardDialog.showDialog();
-               // if (creditCardDialog.getConfirmButton().getActionCommand().equals(CreditCardDialog.CMD_Confirm)) {
+                frame.getPaymentDialog().showDialog();
                     acquistoAbbonamento();
-               // }
                 break;
 
             case TicketPurchasePanel.CMD_Acquista:
-                creditCardDialog.showDialog();
-                //if (creditCardDialog.getConfirmButton().getActionCommand().equals(CreditCardDialog.CMD_Confirm)) {
+                frame.getPaymentDialog().showDialog();
                     acquistoBiglietto();
-                //}
                 break;
 
             case CardPurchasePanel.CMD_AcquistaTessera:

@@ -3,17 +3,18 @@ package it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.cliente.panel
 import javax.swing.*;
 import java.awt.*;
 
-public class WizardDialog extends JDialog {
+public class PaymentDialog extends JDialog {
 
     // Nomi univoci per ogni "carta" del nostro layout. Usare costanti è una buona pratica.
     private static final String PANEL_SCELTA = "Pannello di Scelta";
-    private static final String PANEL_CARTA_CREDITO = "Pannello Carta di Credito";
-    private static final String PANEL_PAYPAL = "Pannello PayPal";
+    private static final String PANEL_CARTA_CREDITO = "cartacredito";
+    private static final String PANEL_PAYPAL = "paypal";
 
-    private CardLayout cardLayout;
-    private JPanel pannelloContenitore; // Il "mazzo" di carte
+    private String metodoPagamento;
+    private final CardLayout cardLayout;
+    private final JPanel pannelloContenitore; // Il "mazzo" di carte
 
-    public WizardDialog(Frame owner) {
+    public PaymentDialog(Frame owner) {
         super(owner, "Procedura di Pagamento", true);
 
         // 1. Creazione del layout e del pannello contenitore
@@ -49,8 +50,8 @@ public class WizardDialog extends JDialog {
         panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
         JLabel titolo = new JLabel("Seleziona un metodo di pagamento:", SwingConstants.CENTER);
-        JButton btnCarta = new JButton("Procedi con Carta di Credito");
-        JButton btnPaypal = new JButton("Procedi con PayPal");
+        JButton btnCarta = new JButton("Carta di Credito");
+        JButton btnPaypal = new JButton("PayPal");
 
         // ActionListener per mostrare il pannello della carta di credito
         btnCarta.addActionListener(e -> cardLayout.show(pannelloContenitore, PANEL_CARTA_CREDITO));
@@ -89,6 +90,7 @@ public class WizardDialog extends JDialog {
         btnIndietro.addActionListener(e -> cardLayout.show(pannelloContenitore, PANEL_SCELTA));
         btnConferma.addActionListener(e -> {
             JOptionPane.showMessageDialog(this, "Pagamento con Carta effettuato!");
+            this.metodoPagamento = "cartacredito";
             dispose();
         });
 
@@ -123,6 +125,7 @@ public class WizardDialog extends JDialog {
         btnIndietro.addActionListener(e -> cardLayout.show(pannelloContenitore, PANEL_SCELTA));
         btnConferma.addActionListener(e -> {
             JOptionPane.showMessageDialog(this, "Pagamento con PayPal effettuato!");
+            this.metodoPagamento = "paypal";
             dispose();
         });
 
@@ -136,4 +139,9 @@ public class WizardDialog extends JDialog {
     public void showDialog() {
         this.setVisible(true);
     }
+
+    public String getMetodoPagamento(){
+        return this.metodoPagamento;
+    }
+
 }

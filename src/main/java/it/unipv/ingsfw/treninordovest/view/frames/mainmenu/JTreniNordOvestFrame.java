@@ -2,6 +2,7 @@ package it.unipv.ingsfw.treninordovest.view.frames.mainmenu;
 
 import it.unipv.ingsfw.treninordovest.model.service.RegistrationService;
 import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.cliente.CustomerMainPanel;
+import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.cliente.panels.PaymentDialog;
 import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.dipendente.panels.EmployeeMainPanel;
 import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.login.LoginPanel;
 import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.cliente.CustomerRegistrationPanel;
@@ -34,6 +35,7 @@ public class JTreniNordOvestFrame extends JFrame implements PropertyChangeListen
     private final LoginPanel loginPanel;
     private final CustomerMainPanel customerMainPanel;
     private final EmployeeMainPanel employeeMainPanel;
+    private final PaymentDialog paymentDialog;
 
     private CardLayout cardLayout;
     private JPanel mainContainer;
@@ -45,6 +47,7 @@ public class JTreniNordOvestFrame extends JFrame implements PropertyChangeListen
         this.loginPanel = new LoginPanel();
         this.customerMainPanel = new CustomerMainPanel();
         this.employeeMainPanel = new EmployeeMainPanel();
+        this.paymentDialog = new PaymentDialog(this);
 
         setTitle("Treninordovest - Benvenuti");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -117,6 +120,10 @@ public class JTreniNordOvestFrame extends JFrame implements PropertyChangeListen
     }
     public EmployeeMainPanel getEmployeeMainPanel() {
         return employeeMainPanel;
+    }
+
+    public PaymentDialog getPaymentDialog() {
+        return paymentDialog;
     }
 
 

@@ -8,7 +8,7 @@ public class MainTest {
     @Test
     void name() {
 
-
+        System.out.println();
 
     }
 }
