@@ -50,5 +50,9 @@ public abstract class TitoloViaggio {
         this.pagamento = pagamento;
     }
 
+    public boolean isValido(){
+        return emissione.isBefore(LocalDate.now()) && emissione.isAfter(LocalDate.now().minusYears(5));
+    }
+
 
 }

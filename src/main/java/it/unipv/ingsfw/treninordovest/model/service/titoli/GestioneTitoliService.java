@@ -4,6 +4,7 @@ import it.unipv.ingsfw.treninordovest.model.titoli.abbonamento.Abbonamento;
 import it.unipv.ingsfw.treninordovest.model.titoli.abbonamento.AbbonamentoDAOimpl;
 import it.unipv.ingsfw.treninordovest.model.titoli.biglietto.Biglietto;
 import it.unipv.ingsfw.treninordovest.model.titoli.biglietto.BigliettoDAOImpl;
+import it.unipv.ingsfw.treninordovest.model.utenti.dipendente.Dipendente;
 import it.unipv.ingsfw.treninordovest.model.varie.SessionManager;
 
 import java.beans.PropertyChangeListener;
@@ -37,7 +38,19 @@ public class GestioneTitoliService {
 
     }
 
-    public boolean controllaTitoloViaggio(){
+    public boolean controllaTitoloViaggio(String idTitolo){
+        Dipendente dipendenteLoggato = (Dipendente) SessionManager.getInstance().getCurrentUser();
+
+        if(dipendenteLoggato!=null) {
+            if(abbonamentoDAO.get(new Abbonamento(idTitolo)) != null){
+
+            }else if(bigliettoDAO.get(new Biglietto(idTitolo)) != null){
+
+            }
+
+
+        }
+
 
 
         return false;

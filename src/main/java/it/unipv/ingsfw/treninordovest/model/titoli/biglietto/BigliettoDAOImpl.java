@@ -14,6 +14,9 @@ import java.util.UUID;
 
 public class BigliettoDAOImpl implements BigliettoDAO {
 
+    public BigliettoDAOImpl() {
+    }
+
     @Override
     public Biglietto get(Biglietto biglietto) {
 

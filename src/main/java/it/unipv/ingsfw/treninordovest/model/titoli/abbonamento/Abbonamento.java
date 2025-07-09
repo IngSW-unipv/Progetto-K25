@@ -55,7 +55,13 @@ public class Abbonamento extends TitoloViaggio {
         this.tessera = tessera;
     }
 
+    @Override
+    public boolean isValido() {
+        if(LocalDate.now().isBefore(this.scadenza))
+            return true;
 
+        return false;
+    }
 }
 //getters e setters
 

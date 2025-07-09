@@ -76,4 +76,13 @@ public class Biglietto extends TitoloViaggio {
     public String getTipoBiglietto() {
         return tipoBiglietto;
     }
+
+    @Override
+    public boolean isValido() {
+        if  (this.validato && this.dataValidazione!=null){
+            return true;
+        }
+        return false;
+
+    }
 }
