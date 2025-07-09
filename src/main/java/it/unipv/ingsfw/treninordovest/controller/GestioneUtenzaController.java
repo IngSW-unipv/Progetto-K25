@@ -214,7 +214,7 @@ public class GestioneUtenzaController implements ActionListener{
     private void aggiornaDatiProfiloCliente(){
 
         if (facade.getUtenteFacade().aggiornaProfiloCliente()){
-            profiloUtenteModel.setCliente(SessionManager.getInstance().getCurrentUser());
+            profiloUtenteModel.setUtente(SessionManager.getInstance().getCurrentUser());
             JOptionPane.showMessageDialog(null,"Profilo aggiornato correttamente", "Info", JOptionPane.INFORMATION_MESSAGE);
         }
 
@@ -222,7 +222,7 @@ public class GestioneUtenzaController implements ActionListener{
     }
     private void aggiornaDatiProfiloDipendente(){
         Dipendente dipendente = facade.getUtenteFacade().aggiornaProfiloDipendente();
-        profiloUtenteModel.setDipendente(dipendente);
+        profiloUtenteModel.setUtente(dipendente);
         JOptionPane.showMessageDialog(null,"Profilo aggiornato correttamente", "Info", JOptionPane.INFORMATION_MESSAGE);
 
     }
