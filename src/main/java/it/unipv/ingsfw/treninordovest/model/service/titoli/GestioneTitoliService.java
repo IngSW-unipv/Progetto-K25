@@ -4,6 +4,7 @@ import it.unipv.ingsfw.treninordovest.model.titoli.abbonamento.Abbonamento;
 import it.unipv.ingsfw.treninordovest.model.titoli.abbonamento.AbbonamentoDAOimpl;
 import it.unipv.ingsfw.treninordovest.model.titoli.biglietto.Biglietto;
 import it.unipv.ingsfw.treninordovest.model.titoli.biglietto.BigliettoDAOImpl;
+import it.unipv.ingsfw.treninordovest.model.titoli.titoloviaggio.TitoloViaggio;
 import it.unipv.ingsfw.treninordovest.model.utenti.dipendente.Dipendente;
 import it.unipv.ingsfw.treninordovest.model.varie.SessionManager;
 
@@ -38,21 +39,20 @@ public class GestioneTitoliService {
 
     }
 
+
+    //METODO DA RIVISITARE
     public boolean controllaTitoloViaggio(String idTitolo){
         Dipendente dipendenteLoggato = (Dipendente) SessionManager.getInstance().getCurrentUser();
-
+        TitoloViaggio titoloViaggio;
         if(dipendenteLoggato!=null) {
             if(abbonamentoDAO.get(new Abbonamento(idTitolo)) != null){
-
+               titoloViaggio = abbonamentoDAO.get(new Abbonamento(idTitolo));
+                return titoloViaggio.isValido();
             }else if(bigliettoDAO.get(new Biglietto(idTitolo)) != null){
-
+                titoloViaggio = bigliettoDAO.get(new Biglietto(idTitolo));
+                return titoloViaggio.isValido();
             }
-
-
         }
-
-
-
         return false;
     }
 
