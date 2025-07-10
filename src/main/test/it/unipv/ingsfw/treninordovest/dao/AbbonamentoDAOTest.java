@@ -4,6 +4,7 @@ import it.unipv.ingsfw.treninordovest.model.titoli.abbonamento.Abbonamento;
 import it.unipv.ingsfw.treninordovest.model.titoli.abbonamento.AbbonamentoDAOimpl;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -14,12 +15,22 @@ public class AbbonamentoDAOTest {
 
         AbbonamentoDAOimpl abbonamentoDAO = new AbbonamentoDAOimpl();
 
-        String idCliente = "cd9714b9-d9a2-4b8f-b062-9a8056c25f0e";
-        List<Abbonamento> abbonamentoList = abbonamentoDAO.getAllAbbonamentiByCliente(idCliente);
+        try {
+        List<Abbonamento> lis = abbonamentoDAO.getAllAbbonamentiByCliente("1926-24dc-4149-a605-c275b334a69507e");
 
-        for (Abbonamento a : abbonamentoList) {
-            System.out.println(a.getId());
+        if(lis.isEmpty()){
+            throw new Exception("Nessun abbonamento trovato");
         }
+
+            for (Abbonamento abb : lis) {
+                System.out.println(abb.getId());
+            }
+
+
+        }catch (Exception e){
+            System.out.println("Eccezione: " + e.getMessage());
+        }
+
 
 
     }

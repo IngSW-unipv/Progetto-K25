@@ -14,35 +14,39 @@ public class RimborsoServiceTest {
     @Test
     void creaRimborsoTest() {
 
-        try {
+//        try {
             RimborsoDAOImpl rimborsoDAO = new RimborsoDAOImpl();
             Rimborso rimborso ;
 
             BigliettoDAOImpl bigliettoDAO = new BigliettoDAOImpl();
-            String idBiglietto= "09387ec3-fed9-4ffa-923f-5a55a2e1d372";
+            String idBiglietto= "09387e23-fed9-4ffa-923f-5a55a2e1d372";
             Biglietto biglietto = new Biglietto(idBiglietto);
 
             Biglietto bigliettoDB = bigliettoDAO.get(biglietto);
+            Cliente richiedente = null;
 
-            SessionManager.getInstance().setCurrentUser(new Cliente("cd9714b9-d9a2-4b8f-b062-9a8056c25f0e"));
-            Cliente richiedente = (Cliente) SessionManager.getInstance().getCurrentUser();
-            //view.getTextIDBiglietto().getText();
+            
+            try{
+                if (bigliettoDB != null) {
+                    System.out.println("Biglietto trovato");
+                    // JOptionPane.showMessageDialog(view, "ID Biglietto non valido riprovare", "Errore", JOptionPane.ERROR_MESSAGE);
+                    rimborso =new Rimborso(richiedente,bigliettoDB);
 
-
-
-            if (bigliettoDB != null) {
-                System.out.println("Biglietto trovato");
-                // JOptionPane.showMessageDialog(view, "ID Biglietto non valido riprovare", "Errore", JOptionPane.ERROR_MESSAGE);
-                rimborso =new Rimborso(richiedente,bigliettoDB);
-
-                rimborsoDAO.insert(rimborso);
+                    rimborsoDAO.insert(rimborso);
+                } else
+                    throw new  NullPointerException("Biglietto non trovato");
+            }catch (NullPointerException e){
+                System.out.println(e.getMessage() );
             }
 
 
-        }catch (Exception e) {
-            e.printStackTrace();
+           
 
-        }
+
+//        }catch (Exception e) {
+//            e.printStackTrace();
+//
+//        }
 
 
 

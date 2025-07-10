@@ -37,30 +37,29 @@ public class AcquistoController implements ActionListener {
     public void acquistoBiglietto() {
 
         String idTratta = view.getTicketPurchasePanel().getTextFieldTratta().getText();
-       // boolean ritorno = view.getTicketPurchasePanel().getCheckBoxRitorno().isSelected();
-        //LocalDate dataRitorno = view.getTicketPurchasePanel().getDataRitorno().getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         String tipoBiglietto = view.getTicketPurchasePanel().getComboTipoBiglietto().getSelectedItem().toString();
-        String tipoPagamento = "cartacredito"; //Provvisorio
+        String tipoPagamento = frame.getPaymentDialog().getMetodoPagamento();
         int quantita = Integer.parseInt(view.getTicketPurchasePanel().getQuantitaSpinner().getValue().toString());
 
         try {
-            if (!idTratta.isEmpty() && !(quantita == 0) && !tipoPagamento.isEmpty()) {
+
+            if(quantita<=0){
+                JOptionPane.showMessageDialog(view, "Quantità biglietti non valida", "Errore", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            if (!idTratta.isEmpty()) {
                 TitoloDTO titoloDTO = new TitoloDTO(tipoBiglietto, tipoPagamento, quantita, idTratta);//, ritorno, dataRitorno);
                 if (facade.getAcquistoFacade().acquistaBiglietto(titoloDTO)) {
                     JOptionPane.showMessageDialog(view, "Biglietti acquistati");
                 } else
                     JOptionPane.showMessageDialog(view, "Errore durante l'acquisto dei biglietti!", "Errore", JOptionPane.ERROR_MESSAGE);
 
-            }  else throw new IllegalArgumentException("Impossibile acquistare i biglietti, parametri non validi");
-        }catch (IllegalArgumentException e){
+            }
+        }catch (Exception e){
             System.out.println("DEBUG : " + e.getMessage());
+            JOptionPane.showMessageDialog(view, "Errore di sistema durante l'acquisto!", "Errore", JOptionPane.ERROR_MESSAGE);
         }
-
-
-
-
-
-
 
 
     }
@@ -69,25 +68,38 @@ public class AcquistoController implements ActionListener {
     public void acquistoAbbonamento() {
 
         String tipoAbbonamento = view.getSubscriptionPanel().getComboTipo().getSelectedItem().toString();
-        String tipoAcquisto = frame.getPaymentDialog().getMetodoPagamento(); //DA DEFINIRE
+        String tipoAcquisto = frame.getPaymentDialog().getMetodoPagamento();
         int quantita = 1;
 
         TitoloDTO titoloDTO = new TitoloDTO(tipoAbbonamento, tipoAcquisto, quantita);
 
-        if (facade.getAcquistoFacade().acquistoAbbonamento(titoloDTO)) {
-            JOptionPane.showMessageDialog(view, "Acquisto con successo!");
-        } else
-            JOptionPane.showMessageDialog(view, "Abbonamento già posseduto o tessera non valida!", "Errore", JOptionPane.ERROR_MESSAGE);
+        try {
+            if (facade.getAcquistoFacade().acquistoAbbonamento(titoloDTO)) {
+                JOptionPane.showMessageDialog(view, "Acquisto con successo!");
+            } else
+                JOptionPane.showMessageDialog(view, "Abbonamento già posseduto!", "Errore", JOptionPane.ERROR_MESSAGE);
+
+        } catch (Exception e){
+            System.out.println("DEBUG CONTROLLER : " + e.getMessage());
+            JOptionPane.showMessageDialog(view, "Errore di sistema durante l'acquisto!", "Errore", JOptionPane.ERROR_MESSAGE);
+        }
+
 
     }
 
     ///  Acquisto della tessera
     public void acquistoTessera() {
 
-        if (facade.getAcquistoFacade().acquistaTessera()) {
-            JOptionPane.showMessageDialog(view, "Acquisto con successo!");
-        } else
-            JOptionPane.showMessageDialog(view, "Errore !!! Tessera posseduta o non valida", "Errore", JOptionPane.ERROR_MESSAGE);
+        try {
+            if (facade.getAcquistoFacade().acquistaTessera()) {
+                JOptionPane.showMessageDialog(view, "Acquisto con successo!");
+            } else
+                JOptionPane.showMessageDialog(view, "Errore !!! Tessera posseduta o non valida", "Errore", JOptionPane.ERROR_MESSAGE);
+
+        } catch (Exception e) {
+            System.out.println("DEBUG CONTROLLER : " + e.getMessage());
+            JOptionPane.showMessageDialog(view, "Errore di sistema durante l'acquisto!", "Errore", JOptionPane.ERROR_MESSAGE);
+        }
 
 
     }

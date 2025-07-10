@@ -45,28 +45,24 @@ public class AcquistoService {
         clienteLoggato = (Cliente) SessionManager.getInstance().getCurrentUser();
         Pagamento pag;
 
-        try {
-            if (clienteLoggato!=null && clienteLoggato.getTessera().getIdTessera()!=null) {
+                if (clienteLoggato==null){
+                    System.out.println("Utente non loggato");
+                    return false;
+                }
+
+
+            if (clienteLoggato.getTessera().getIdTessera() != null) {
                 abbonamento = abbonamentoStrategy.createAbbonamento(clienteLoggato.getTessera());
                 pag =  pagamentoService.effettuaPagamento(titoloDTO.getTipoPagamento(), titoloDTO.getQuantita(), abbonamentoStrategy.ottieniPrezzoAbbonamento());
                 abbonamento.setPagamento(pag);
 
                 abbonamentoDAO.insert(abbonamento);
                return true;
-            } else if(clienteLoggato.getTessera()==null) {
+            } else {
                 System.out.println("Non disponi di una tessera");
-
+                return false;
             }
 
-
-        }catch (Exception e) {
-            System.out.println("Non disponi di una tessera");
-            e.getMessage();
-            e.printStackTrace();
-            return false;
-        }
-
-        return false;
 
     }
 
@@ -76,7 +72,6 @@ public class AcquistoService {
         Biglietto biglietto;
         IBigliettoStrategy bigliettoStrategy = BigliettoStrategyFactory.getFactoryFromProperties(titoloDTO.getTipoTitolo());
 
-        try {
 
             if(clienteLoggato!=null) {
                biglietto = bigliettoStrategy.createBiglietto();
@@ -91,13 +86,12 @@ public class AcquistoService {
                }
 
                return true;
+            } else {
+                System.out.println("DEBUG: Problemi durante l'acquisto di un biglietto");
+                return false;
             }
 
-        }catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-        return false;
+
     }
 
 
@@ -105,17 +99,15 @@ public class AcquistoService {
 
         clienteLoggato = (Cliente) SessionManager.getInstance().getCurrentUser();
 
-        try {
-            if (!(tesseraDAO.exists(clienteLoggato.getId().toString())) && clienteLoggato != null) {
-                Tessera tessera = new Tessera(UUID.randomUUID());
+        if (clienteLoggato==null){
+            System.out.println("Utente non loggato");
+            return false;
+        }
+
+        if (!(tesseraDAO.exists(clienteLoggato.getId().toString())) && clienteLoggato != null) {
+            Tessera tessera = new Tessera(UUID.randomUUID());
                 if (tesseraDAO.createTessera(tessera, clienteLoggato.getId().toString()))
                     return true;
-
-            }
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
 
         }
 

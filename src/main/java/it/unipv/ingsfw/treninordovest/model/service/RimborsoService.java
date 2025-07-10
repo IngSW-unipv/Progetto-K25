@@ -23,8 +23,14 @@ public class RimborsoService {
         Biglietto bigliettoDB;
         Cliente clienteLoggato = (Cliente) SessionManager.getInstance().getCurrentUser();
 
+
+        if (clienteLoggato == null) {
+            System.out.println("Utente non loggato");
+            return false;
+        }
+
         if(clienteLoggato!=null) {
-            try {
+
                 Biglietto biglietto = new Biglietto(idBiglietto);
 
                 bigliettoDB = bigliettoDao.get(biglietto);
@@ -39,10 +45,7 @@ public class RimborsoService {
                 }
                 else
                     System.out.println("Rimborso già effettuato o biglietto non trovato");
-            }catch (Exception e) {
-                e.printStackTrace();
-                return false;
-            }
+
         }
 
 

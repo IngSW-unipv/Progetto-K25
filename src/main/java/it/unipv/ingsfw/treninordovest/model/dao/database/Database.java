@@ -1,8 +1,6 @@
 package it.unipv.ingsfw.treninordovest.model.dao.database;
 
 import it.unipv.ingsfw.treninordovest.exceptions.DatabaseConnectionException;
-import it.unipv.ingsfw.treninordovest.model.dao.exception.PersistenceException;
-import org.hibernate.PersistentObjectException;
 
 import java.io.FileInputStream;
 import java.io.IOException;

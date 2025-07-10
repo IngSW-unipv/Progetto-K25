@@ -29,21 +29,15 @@ public class RegistrationService {
 
 
     public boolean login(LoginDTO loginDTO) {
-        try {
 
-            ILogin loginFactory =  new LoginFactoryProducer().getFactoryFromProperties(loginDTO.getTipoUtente());
-            Utente user = (Utente) loginFactory.login(loginDTO);
+        ILogin loginFactory =  new LoginFactoryProducer().getFactoryFromProperties(loginDTO.getTipoUtente());
+        Utente user = (Utente) loginFactory.login(loginDTO);
 
             if (user != null) {
                 System.out.println("DEBUG: ID Utente:   "+user.getId());
                 SessionManager.getInstance().setCurrentUser(user);
                 return true;
             }
-
-
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
 
         return false;
     }

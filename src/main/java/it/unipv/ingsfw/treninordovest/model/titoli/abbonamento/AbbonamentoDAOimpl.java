@@ -1,7 +1,7 @@
 package it.unipv.ingsfw.treninordovest.model.titoli.abbonamento;
 
 import it.unipv.ingsfw.treninordovest.model.dao.database.Database;
-import it.unipv.ingsfw.treninordovest.model.titoli.pagamento.Pagamento;
+import it.unipv.ingsfw.treninordovest.model.dao.exception.PersistenceException;
 import it.unipv.ingsfw.treninordovest.model.titoli.pagamento.PagamentoDAOImpl;
 import it.unipv.ingsfw.treninordovest.model.titoli.tessera.Tessera;
 import it.unipv.ingsfw.treninordovest.model.titoli.tessera.TesseraDAOImpl;
@@ -48,7 +48,7 @@ public class AbbonamentoDAOimpl implements AbbonamentoDAO {
 
 
             } catch (Exception e) {
-                throw new RuntimeException(e);
+                throw new PersistenceException("Problemi durante il recupero dei dati");
             }
             //Estrazione dei dati dal DB
 
@@ -90,7 +90,7 @@ public class AbbonamentoDAOimpl implements AbbonamentoDAO {
            // Database.closeConnection(con);
 
         } catch (SQLException e) {
-            throw new RuntimeException("Errore nel recupero degli abbonamenti",e);
+           throw new PersistenceException("Problemi durante il recupero dei dati");
         }
         return listaAbbonamenti;
     }
@@ -178,8 +178,7 @@ public class AbbonamentoDAOimpl implements AbbonamentoDAO {
 
                 Database.closeConnection(con);
         } catch (SQLException e) {
-            System.err.println("Errore durante inserimento degli abbonamenti"+e.getMessage());
-            e.printStackTrace();
+            throw new PersistenceException("Problemi durante il recupero dei dati");
         }
 
 
@@ -188,7 +187,7 @@ public class AbbonamentoDAOimpl implements AbbonamentoDAO {
 
 
     @Override
-    public List<Abbonamento> getAllAbbonamentiByCliente(String idCliente) {
+    public List<Abbonamento> getAllAbbonamentiByCliente(String idCliente) throws PersistenceException {
 
         String sql ="select ta.IDTitolo,ta.IDPagamento,ta.Prezzo,ta.Tipo,ta.Emissione,ta.Scadenza, ts.IDTessera from titoliabbonamenti ta join tessera ts on ta.IDTessera = ts.IDTessera where idCliente =?" ;
         List<Abbonamento> listaAbbonamenti =  new ArrayList<>();
@@ -216,7 +215,7 @@ public class AbbonamentoDAOimpl implements AbbonamentoDAO {
             // Database.closeConnection(con);
 
         } catch (SQLException e) {
-            throw new RuntimeException("Errore nel recupero degli abbonamenti",e);
+            throw new PersistenceException("Problemi durante il recupero dei dati");
         }
         return listaAbbonamenti;
 

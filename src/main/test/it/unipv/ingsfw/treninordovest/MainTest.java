@@ -1,6 +1,7 @@
 package it.unipv.ingsfw.treninordovest;
 
 import it.unipv.ingsfw.treninordovest.model.dto.TitoloDTO;
+import it.unipv.ingsfw.treninordovest.model.service.AcquistoService;
 import it.unipv.ingsfw.treninordovest.model.titoli.biglietto.Biglietto;
 import it.unipv.ingsfw.treninordovest.model.titoli.biglietto.BigliettoDAOImpl;
 import it.unipv.ingsfw.treninordovest.model.utils.PasswordUtils;
@@ -13,9 +14,14 @@ public class MainTest {
         Biglietto biglietto;
         BigliettoDAOImpl bigliettoDAO = new BigliettoDAOImpl();
 
-        biglietto = bigliettoDAO.get(new Biglietto("2fcea19f-5df3-4df2-a8b5-b5f74cecdee5"));
+        AcquistoService acquistoService = new AcquistoService();
 
-        System.out.println(biglietto.isValido());
+        try {
+            acquistoService.acquistoAbbonamento(new TitoloDTO("fwfwf","wddwdwq",3));
+
+        }catch (Exception e){
+            System.out.println("Eccezione: " + e.getMessage());
+        }
 
     }
 }

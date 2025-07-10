@@ -237,14 +237,15 @@ public class ClienteDAOImpl implements ClienteDAO {
                         String cellulare = rs.getString("cellulare");
                         String indirizzo = rs.getString("indirizzo");
                         String email = rs.getString("email");
-                        String sesso = rs.getString("sesso"); // Usa getString per tipi VARCHAR
+                        String sesso = rs.getString("sesso");
+                        Tessera tessera = new Tessera(tesseraDAO.getIdTesseraByCustomerID(id));
 
                         // Recupera l'ID della tessera dal database, non dall'input.
 
 
 
                         // Crea l'oggetto Cliente autenticato, passando null per la password.
-                        clienteAutenticato = new Cliente(UUID.fromString(id), storedHash, nome, cognome, luogoNascita, sesso, dataNascita, cellulare, indirizzo, bilancio, input.getEmail());
+                        clienteAutenticato = new Cliente(UUID.fromString(id), storedHash, nome, cognome, luogoNascita, sesso, dataNascita, cellulare, indirizzo, bilancio, input.getEmail(),tessera);
                     }
 
                 }
