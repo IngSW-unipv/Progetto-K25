@@ -285,6 +285,8 @@ public class EmployeeProfilePanel extends JPanel implements PropertyChangeListen
             setTxtCellulare(dipendente.getCellulare());
             setTxtIndirizzo(dipendente.getIndirizzo());
             setTxtID(dipendente.getId().toString());
+            setTxtRuolo(dipendente.getRuolo());
+            setTxtStipendio(Double.toString(dipendente.getStipendio()));
         }
 
 

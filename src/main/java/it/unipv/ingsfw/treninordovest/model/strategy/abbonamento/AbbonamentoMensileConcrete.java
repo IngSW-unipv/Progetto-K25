@@ -32,5 +32,6 @@ public class AbbonamentoMensileConcrete implements IAbbonamentoStrategy {
 
         return new Abbonamento(UUID.randomUUID(),LocalDate.now(),ottieniPrezzoAbbonamento(),getTipoAbbonamento(),getDataScadenza(),tessera);
     }
+    
 
 }

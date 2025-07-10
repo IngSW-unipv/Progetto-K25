@@ -318,7 +318,6 @@ public class GestioneUtenzaController implements ActionListener{
                 break;
 
             case EmployeeProfilePanel.CMD_ChangePassword:
-                //Da definire
                 modificaDatiDipendente();
                 logout();
                 frame.showPanel(JTreniNordOvestFrame.MAIN_MENU);

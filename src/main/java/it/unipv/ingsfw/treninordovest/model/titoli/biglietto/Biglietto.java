@@ -16,18 +16,18 @@ public class Biglietto extends TitoloViaggio {
     private Viaggio viaggio;
 
     //Costruttore vuoto
-    public Biglietto() {}
-
-    public Biglietto (String id){
-        setId(id);
+    public Biglietto() {
     }
 
+    public Biglietto(String id) {
+        setId(id);
+    }
 
 
     //Costruttore completo
 
 
-    public Biglietto(UUID id,Pagamento pagamento, LocalDate emissione,double prezzo, boolean validato, LocalDate dataValidazione, Viaggio viaggio, String tipoBiglietto) {
+    public Biglietto(UUID id, Pagamento pagamento, LocalDate emissione, double prezzo, boolean validato, LocalDate dataValidazione, Viaggio viaggio, String tipoBiglietto) {
         super(id, emissione, prezzo);
         setPagamento(pagamento);
         this.dataValidazione = dataValidazione;
@@ -38,7 +38,7 @@ public class Biglietto extends TitoloViaggio {
 
     public Biglietto(UUID uuid, LocalDate dataEmissione, double prezzo, boolean validazione, String tipoBiglietto, LocalDate dataValidazione) {
         super(uuid, dataEmissione, prezzo);
-      this.validato = validazione;
+        this.validato = validazione;
         this.tipoBiglietto = tipoBiglietto;
         this.dataValidazione = dataValidazione;
     }
