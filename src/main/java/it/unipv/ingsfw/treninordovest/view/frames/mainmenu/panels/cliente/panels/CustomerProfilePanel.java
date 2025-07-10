@@ -282,7 +282,11 @@ public class CustomerProfilePanel extends JPanel implements PropertyChangeListen
             setTxtDataNascita(cliente.getDataNascita().toString());
             setTxtCellulare(cliente.getCellulare());
             setTxtIndirizzo(cliente.getIndirizzo());
-            setTxtIdTessera(cliente.getTessera().getIdTessera());
+
+            if(cliente.getTessera() == null){
+                setTxtIdTessera("Nessuna Tessera");
+            } else
+                setTxtIdTessera(cliente.getTessera().getIdTessera());
             setTxtID(cliente.getId().toString());
 
         }

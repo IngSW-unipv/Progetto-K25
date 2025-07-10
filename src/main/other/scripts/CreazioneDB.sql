@@ -175,7 +175,7 @@ foreign key (IDArrivo) references fermata(IDFermata) on delete cascade on update
 create table biglietto(
     IDBiglietto varchar(40) not null,
     Validato bool default false,
-    DataValidazione date null ,
+   # DataValidazione date null ,
     IDViaggio varchar(40) not null ,
     TipoBiglietto varchar(40) not null ,  -- Può essere sola andata o andata e ritorno
     primary key (IDBiglietto),

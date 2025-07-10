@@ -57,9 +57,18 @@ public class ClienteDAOImpl implements ClienteDAO {
                         String cellulare = rs.getString("cellulare");
                         String indirizzo = rs.getString("indirizzo");
 
-                        String idTessera = tesseraDAO.getIdTesseraByCustomerID(cliente.getId().toString());
+                    if (tesseraDAO.getIdTesseraByCustomerID(id).isEmpty()) {
+                        clienteDB = new Cliente(UUID.fromString(id), password, nome, cognome, luogoNascita, sesso, dataNascita.toLocalDate(), cellulare, indirizzo, bilancio, email);
+                    } else
+                    {
+                        Tessera tessera = new Tessera(tesseraDAO.getIdTesseraByCustomerID(id));// Crea l'oggetto Cliente autenticato, passando null per la password.
+                        clienteDB = new Cliente(UUID.fromString(id), password, nome, cognome, luogoNascita, sesso, dataNascita.toLocalDate(), cellulare, indirizzo, bilancio,email,tessera);
+                    }
 
-                        clienteDB = new Cliente(UUID.fromString(id), password, nome, cognome, luogoNascita, sesso, dataNascitaLocal, cellulare, indirizzo, bilancio, email,new Tessera(idTessera));
+
+
+
+
 
 
 
@@ -236,16 +245,16 @@ public class ClienteDAOImpl implements ClienteDAO {
                         LocalDate dataNascita = rs.getDate("dataNascita").toLocalDate(); // Modo più pulito per convertire
                         String cellulare = rs.getString("cellulare");
                         String indirizzo = rs.getString("indirizzo");
-                        String email = rs.getString("email");
                         String sesso = rs.getString("sesso");
-                        Tessera tessera = new Tessera(tesseraDAO.getIdTesseraByCustomerID(id));
-
                         // Recupera l'ID della tessera dal database, non dall'input.
+                        if (tesseraDAO.getIdTesseraByCustomerID(id).isEmpty()) {
+                            clienteAutenticato = new Cliente(UUID.fromString(id), storedHash, nome, cognome, luogoNascita, sesso, dataNascita, cellulare, indirizzo, bilancio, input.getEmail());
+                        } else
+                        {
+                            Tessera tessera = new Tessera(tesseraDAO.getIdTesseraByCustomerID(id));// Crea l'oggetto Cliente autenticato, passando null per la password.
+                            clienteAutenticato = new Cliente(UUID.fromString(id), storedHash, nome, cognome, luogoNascita, sesso, dataNascita, cellulare, indirizzo, bilancio, input.getEmail(),tessera);
+                        }
 
-
-
-                        // Crea l'oggetto Cliente autenticato, passando null per la password.
-                        clienteAutenticato = new Cliente(UUID.fromString(id), storedHash, nome, cognome, luogoNascita, sesso, dataNascita, cellulare, indirizzo, bilancio, input.getEmail(),tessera);
                     }
 
                 }

@@ -7,19 +7,7 @@ public class TitoloDTO {
     private final String tipoPagamento;
     private final int quantita;
     private String idViaggio;
-    boolean ritorno;
-    private LocalDate dataRitorno;
 
-
-    //Per biglietto
-    public TitoloDTO(String tipoTitolo, String tipoPagamento, int quantita, String idViaggio, boolean ritorno, LocalDate dataRitorno) {
-        this.tipoPagamento = tipoPagamento;
-        this.quantita = quantita;
-        this.idViaggio = idViaggio;
-        this.ritorno = ritorno;
-        this.dataRitorno = dataRitorno;
-        this.tipoTitolo = tipoTitolo;
-    }
 
     //Per Abbonamento
 
@@ -53,11 +41,6 @@ public class TitoloDTO {
         return idViaggio;
     }
 
-    public boolean isRitorno() {
-        return ritorno;
-    }
 
-    public LocalDate getDataRitorno() {
-        return dataRitorno;
-    }
+
 }
