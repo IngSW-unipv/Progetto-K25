@@ -20,14 +20,21 @@ public class RimborsoController implements ActionListener {
         addActionListeners();
     }
 
-    public void effettuaRimborso() {
+    private void effettuaRimborso() {
 
         String idBiglietto = view.getCustomerMainPanel().getRefundPanel().getTextIDBiglietto().getText();
 
-        if(facade.getRimborsoFacade().rimborsoBiglietto(idBiglietto)){
-            JOptionPane.showMessageDialog(view, "Rimborso effettuato con successo! Al biglietto: " + idBiglietto);
-        }else
-            JOptionPane.showMessageDialog(view, "Errore durante l'effettuazione del rimborso!", "Errore", JOptionPane.ERROR_MESSAGE);
+        try {
+            if(facade.getRimborsoFacade().rimborsoBiglietto(idBiglietto)){
+                JOptionPane.showMessageDialog(view, "Rimborso effettuato con successo! Al biglietto: " + idBiglietto);
+            }else
+                JOptionPane.showMessageDialog(view, "Errore durante l'effettuazione del rimborso!", "Errore", JOptionPane.ERROR_MESSAGE);
+
+        }catch (Exception e){
+            System.out.println("DEBUG : " + e.getMessage());
+            JOptionPane.showMessageDialog(view, "Errore di sistema durante l'effettuazione del rimborso!", "Errore", JOptionPane.ERROR_MESSAGE);
+        }
+
 
 
     }

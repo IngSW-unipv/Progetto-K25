@@ -11,5 +11,6 @@ public interface IAbbonamentoStrategy {
     LocalDate getDataScadenza();
     LocalDate getEmissioneAbbonamento();
     Abbonamento createAbbonamento(Tessera tessera);
+
    
 }

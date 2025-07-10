@@ -13,5 +13,6 @@ public interface ITitoloViaggioFacade<T> {
     */
    List<Biglietto> mostraBigliettiAcquistati();
    List<Abbonamento> mostraAbbonamentiAcquistati();
+   boolean verificaTitoloViaggio(String id);
 
 }

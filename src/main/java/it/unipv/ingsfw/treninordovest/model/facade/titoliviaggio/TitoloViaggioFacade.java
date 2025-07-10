@@ -25,6 +25,10 @@ public class TitoloViaggioFacade implements ITitoloViaggioFacade{
        return gestioneTitoliService.getTitoliAbbonamento();
     }
 
+    @Override
+    public boolean verificaTitoloViaggio(String idTitolo) {
+        return gestioneTitoliService.controllaTitoloViaggio(idTitolo);
+    }
 
 
 }

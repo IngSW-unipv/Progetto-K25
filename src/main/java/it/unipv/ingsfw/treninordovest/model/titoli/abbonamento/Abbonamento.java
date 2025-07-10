@@ -57,10 +57,13 @@ public class Abbonamento extends TitoloViaggio {
 
     @Override
     public boolean isValido() {
-        if(LocalDate.now().isBefore(this.scadenza))
-            return true;
-
-        return false;
+        boolean valido = LocalDate.now().isBefore(this.scadenza);
+        if (valido) {
+            System.out.println("CONTROLLO: Abbonamento valido.");
+        } else {
+            System.out.println("CONTROLLO: Abbonamento scaduto.");
+        }
+        return valido;
     }
 }
 //getters e setters

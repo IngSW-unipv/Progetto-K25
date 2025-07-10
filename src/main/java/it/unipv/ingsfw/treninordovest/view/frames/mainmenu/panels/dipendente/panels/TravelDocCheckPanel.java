@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class TravelDocCheckPanel extends JPanel {
+    public static final String CMD_VERIFICA = "verifica_titolo";
     private final JTextField textFieldIdTitolo;
     private final JButton verificaButton;
 
@@ -28,6 +29,8 @@ public class TravelDocCheckPanel extends JPanel {
         gbc.gridy = 1;
         gbc.gridwidth = 2;
         add(verificaButton, gbc);
+
+        verificaButton.setActionCommand(CMD_VERIFICA);
     }
 
     public JTextField getTextFieldIdTitolo() {

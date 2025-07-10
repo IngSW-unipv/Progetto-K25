@@ -94,9 +94,8 @@ public class GestioneUtenzaController implements ActionListener{
             }
 
 
-        }catch (NullPointerException e){
+        }catch (Exception e){
             System.out.println(e.getMessage());
-            e.printStackTrace();
         }
 
 
@@ -153,7 +152,7 @@ public class GestioneUtenzaController implements ActionListener{
 
         }catch (Exception e){
             System.out.println(e.getMessage());
-            e.printStackTrace();
+
         }
 
 
@@ -170,7 +169,7 @@ public class GestioneUtenzaController implements ActionListener{
 
         LoginDTO loginDTO = new LoginDTO(identificativo,password,tipoUtente);
 
-//        try {
+        try {
             if (facade.getRegistrationFacade().login(loginDTO)){
                 frame.showPanel(frame.getLoginPanel().getComboRuolo().getSelectedItem().toString());
                 JOptionPane.showMessageDialog(null,"Login effettuato correttamente", "Info", JOptionPane.INFORMATION_MESSAGE);
@@ -178,9 +177,9 @@ public class GestioneUtenzaController implements ActionListener{
             else
                 JOptionPane.showMessageDialog(null, "Problema durante il login", "Errore", JOptionPane.ERROR_MESSAGE);
 
-//        }catch (Exception e){
-//            System.out.println(e.getMessage());
-//        }
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
 
 
 
@@ -330,8 +329,6 @@ public class GestioneUtenzaController implements ActionListener{
                 frame.showPanel(JTreniNordOvestFrame.MAIN_MENU);
                 break;
 
-
-            // È buona norma avere un caso di default
             default:
                 System.err.println("Comando non riconosciuto: " + command);
                 break;

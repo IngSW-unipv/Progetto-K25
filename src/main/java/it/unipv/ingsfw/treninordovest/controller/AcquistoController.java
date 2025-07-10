@@ -34,7 +34,7 @@ public class AcquistoController implements ActionListener {
     }
 
     ///  Acquisto dei biglietti
-    public void acquistoBiglietto() {
+    private void acquistoBiglietto() {
 
         String idTratta = view.getTicketPurchasePanel().getTextFieldTratta().getText();
         String tipoBiglietto = view.getTicketPurchasePanel().getComboTipoBiglietto().getSelectedItem().toString();
@@ -60,7 +60,7 @@ public class AcquistoController implements ActionListener {
     }
 
     ///  Acquisto dell'abbonamento
-    public void acquistoAbbonamento() {
+    private void acquistoAbbonamento() {
 
         String tipoAbbonamento = view.getSubscriptionPanel().getComboTipo().getSelectedItem().toString();
         String tipoAcquisto = frame.getPaymentDialog().getMetodoPagamento();
@@ -86,7 +86,7 @@ public class AcquistoController implements ActionListener {
     }
 
     ///  Acquisto della tessera
-    public void acquistoTessera() {
+    private void acquistoTessera() {
 
         try {
 

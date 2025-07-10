@@ -200,7 +200,7 @@ public class BigliettoDAOImpl implements BigliettoDAO {
                 Date dataValidazione = rs.getDate("DataValidazione");
                 String tipo = rs.getString("TipoBiglietto");
 
-                biglietto=new Biglietto(UUID.fromString(idTitolo),emissione.toLocalDate(),prezzo,validato,tipo);
+                biglietto=new Biglietto(UUID.fromString(idTitolo),emissione.toLocalDate(),prezzo,validato,tipo,dataValidazione.toLocalDate());
                 listaBiglietti.add(biglietto);
             }
 

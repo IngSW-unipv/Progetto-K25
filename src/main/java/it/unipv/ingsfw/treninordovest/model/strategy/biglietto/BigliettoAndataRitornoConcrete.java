@@ -26,10 +26,6 @@ public class BigliettoAndataRitornoConcrete implements IBigliettoStrategy {
         return LocalDate.now();
     }
 
-    private LocalDate getDataValidazione() {
-        return null;
-    }
-
     @Override
     public String getTipoBiglietto() {
         return "AndataRitorno";
