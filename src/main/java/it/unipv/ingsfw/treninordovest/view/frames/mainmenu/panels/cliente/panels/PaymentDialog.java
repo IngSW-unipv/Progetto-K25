@@ -133,7 +133,7 @@ public class PaymentDialog extends JDialog {
 
         btnIndietro.addActionListener(e -> cardLayout.show(pannelloContenitore, PANEL_SCELTA));
         btnConferma.addActionListener(e -> {
-            JOptionPane.showMessageDialog(this, "Pagamento con PayPal effettuato!");
+            JOptionPane.showMessageDialog(this, "Pagamento con PayPal in corso ...");
             this.metodoPagamento = "paypal";
             dispose();
         });
