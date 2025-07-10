@@ -5,10 +5,12 @@ import java.awt.*;
 
 public class PaymentDialog extends JDialog {
 
+    public static final String CMD_Confacquisto = "confacquisto";
     // Nomi univoci per ogni "carta" del nostro layout. Usare costanti è una buona pratica.
     private static final String PANEL_SCELTA = "Pannello di Scelta";
     private static final String PANEL_CARTA_CREDITO = "cartacredito";
     private static final String PANEL_PAYPAL = "paypal";
+
 
     private String metodoPagamento;
     private final CardLayout cardLayout;
@@ -92,14 +94,18 @@ public class PaymentDialog extends JDialog {
 
         btnIndietro.addActionListener(e -> cardLayout.show(pannelloContenitore, PANEL_SCELTA));
         btnConferma.addActionListener(e -> {
-            JOptionPane.showMessageDialog(this, "Pagamento con Carta effettuato!");
+            JOptionPane.showMessageDialog(this, "Pagamento con Carta in corso...");
             this.metodoPagamento = "cartacredito";
             dispose();
         });
 
+        btnConferma.setActionCommand(CMD_Confacquisto);
+
         navPanel.add(btnIndietro);
         navPanel.add(btnConferma);
         panel.add(navPanel, BorderLayout.SOUTH);
+
+
 
         return panel;
     }
@@ -131,6 +137,8 @@ public class PaymentDialog extends JDialog {
             this.metodoPagamento = "paypal";
             dispose();
         });
+
+        btnConferma.setActionCommand(CMD_Confacquisto);
 
         navPanel.add(btnIndietro);
         navPanel.add(btnConferma);

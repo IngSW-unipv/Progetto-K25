@@ -43,11 +43,6 @@ public class AcquistoController implements ActionListener {
 
         try {
 
-            if(quantita<=0){
-                JOptionPane.showMessageDialog(view, "Quantità biglietti non valida", "Errore", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-
             if (!idTratta.isEmpty()) {
                 TitoloDTO titoloDTO = new TitoloDTO(tipoBiglietto, tipoPagamento, quantita, idTratta);//, ritorno, dataRitorno);
                 if (facade.getAcquistoFacade().acquistaBiglietto(titoloDTO)) {
@@ -74,12 +69,15 @@ public class AcquistoController implements ActionListener {
         TitoloDTO titoloDTO = new TitoloDTO(tipoAbbonamento, tipoAcquisto, quantita);
 
         try {
-            if (facade.getAcquistoFacade().acquistoAbbonamento(titoloDTO)) {
-                JOptionPane.showMessageDialog(view, "Acquisto con successo!");
-            } else
-                JOptionPane.showMessageDialog(view, "Abbonamento già posseduto!", "Errore", JOptionPane.ERROR_MESSAGE);
+            if(frame.getPaymentDialog().getBtnConferma().getActionCommand().equals(PaymentDialog.CMD_Confacquisto)){
+                if (facade.getAcquistoFacade().acquistoAbbonamento(titoloDTO)) {
+                    JOptionPane.showMessageDialog(view, "Acquisto con successo!");
+                } else
+                    JOptionPane.showMessageDialog(view, "Abbonamento già posseduto!", "Errore", JOptionPane.ERROR_MESSAGE);
 
-        } catch (Exception e){
+            }
+
+                   } catch (Exception e){
             System.out.println("DEBUG CONTROLLER : " + e.getMessage());
             JOptionPane.showMessageDialog(view, "Errore di sistema durante l'acquisto!", "Errore", JOptionPane.ERROR_MESSAGE);
         }
@@ -93,6 +91,7 @@ public class AcquistoController implements ActionListener {
         try {
 
             if (facade.getAcquistoFacade().acquistaTessera()) {
+
                 JOptionPane.showMessageDialog(view, "Acquisto con successo!");
             } else
                 JOptionPane.showMessageDialog(view, "Errore !!! Tessera posseduta o non valida", "Errore", JOptionPane.ERROR_MESSAGE);
@@ -117,6 +116,7 @@ public class AcquistoController implements ActionListener {
         view.getSubscriptionPanel().getButtonAbbonati().addActionListener(this);
         view.getCardPurchasePanel().getButtonAcquistaTessera().addActionListener(this);
         view.getTicketPurchasePanel().getButtonMostraViaggi().addActionListener(this);
+        frame.getPaymentDialog().getBtnConferma().addActionListener(this);
 
         viaggiModel.addPropertyChangeListener(frame.getCustomerMainPanel().getViaggiTabelPanel());
 
@@ -136,8 +136,14 @@ public class AcquistoController implements ActionListener {
                 break;
 
             case TicketPurchasePanel.CMD_Acquista:
-                frame.getPaymentDialog().showDialog();
+                int qta = Integer.parseInt(view.getTicketPurchasePanel().getQuantitaSpinner().getValue().toString());
+                if(qta > 0){
+                    frame.getPaymentDialog().showDialog();
                     acquistoBiglietto();
+
+                } else
+                    JOptionPane.showMessageDialog(view, "Quantità biglietti non valida!", "Errore", JOptionPane.ERROR_MESSAGE);
+
                 break;
 
             case CardPurchasePanel.CMD_AcquistaTessera:
@@ -147,6 +153,8 @@ public class AcquistoController implements ActionListener {
             case TicketPurchasePanel.CMD_MostraViaggi:
                 mostraListaViaggi();
                 break;
+
+
 
         }
     }

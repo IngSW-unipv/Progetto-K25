@@ -1,6 +1,7 @@
 package it.unipv.ingsfw.treninordovest.model.service;
 
 
+import it.unipv.ingsfw.treninordovest.model.dto.PagamentoDTO;
 import it.unipv.ingsfw.treninordovest.model.strategy.ordine.Sale;
 import it.unipv.ingsfw.treninordovest.model.strategy.ordine.SaleLineItem;
 import it.unipv.ingsfw.treninordovest.model.strategy.pagamento.PagamentoContext;
@@ -18,7 +19,7 @@ public class PagamentoService {
     }
 
 
-    public Pagamento effettuaPagamento(String tipoPagamento,int quantita,double prezzo) {
+    public Pagamento effettuaPagamento(PagamentoDTO pagamentoDTO) {
 
         //Impostazione delle mie variabili
         Cliente clienteLoggato = (Cliente) SessionManager.getInstance().getCurrentUser();
@@ -26,9 +27,9 @@ public class PagamentoService {
 
         Sale vendita = new Sale();
 
-        vendita.addItem(new SaleLineItem(quantita, prezzo));
+        vendita.addItem(new SaleLineItem(pagamentoDTO.getQuantita(), pagamentoDTO.getPrezzo()));
 
-        PagamentoContext pagamentoContext = new PagamentoContext(tipoPagamento);
+        PagamentoContext pagamentoContext = new PagamentoContext(pagamentoDTO.getTipoPagamento());
 
 
         if (vendita.paga(pagamentoContext)){
@@ -42,6 +43,8 @@ public class PagamentoService {
 
             return pagamento;
 
+        } else{
+            System.out.println("Pagamento non effettuato");
         }
 
 

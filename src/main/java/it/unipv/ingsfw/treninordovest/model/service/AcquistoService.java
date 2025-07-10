@@ -1,5 +1,7 @@
 package it.unipv.ingsfw.treninordovest.model.service;
 
+
+import it.unipv.ingsfw.treninordovest.model.dto.PagamentoDTO;
 import it.unipv.ingsfw.treninordovest.model.dto.TitoloDTO;
 import it.unipv.ingsfw.treninordovest.model.factory.implementations.AbbonamentoStrategyFactory;
 import it.unipv.ingsfw.treninordovest.model.factory.implementations.BigliettoStrategyFactory;
@@ -15,15 +17,12 @@ import it.unipv.ingsfw.treninordovest.model.titoli.tessera.Tessera;
 import it.unipv.ingsfw.treninordovest.model.titoli.tessera.TesseraDAOImpl;
 import it.unipv.ingsfw.treninordovest.model.utenti.cliente.Cliente;
 import it.unipv.ingsfw.treninordovest.model.varie.SessionManager;
-import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.JTreniNordOvestFrame;
 
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
-import java.time.LocalDate;
+
 import java.util.UUID;
 
 public class AcquistoService {
-    private AbbonamentoDAOimpl abbonamentoDAO;
+    private final AbbonamentoDAOimpl abbonamentoDAO;
     private final BigliettoDAOImpl bigliettoDAO;
     private final TesseraDAOImpl tesseraDAO;
     private Cliente clienteLoggato;
@@ -53,9 +52,15 @@ public class AcquistoService {
 
             if (clienteLoggato.getTessera().getIdTessera() != null) {
                 abbonamento = abbonamentoStrategy.createAbbonamento(clienteLoggato.getTessera());
-                pag =  pagamentoService.effettuaPagamento(titoloDTO.getTipoPagamento(), titoloDTO.getQuantita(), abbonamentoStrategy.ottieniPrezzoAbbonamento());
-                abbonamento.setPagamento(pag);
+                PagamentoDTO pagamentoDTO = new PagamentoDTO(titoloDTO.getTipoPagamento(), titoloDTO.getQuantita(), abbonamentoStrategy.ottieniPrezzoAbbonamento());
+                pag =  pagamentoService.effettuaPagamento(pagamentoDTO);
 
+                if(pag==null){
+                    System.out.println(" DEBUG : Acquisto non effettuato, pagamento non valido");
+                    return false;
+                }
+
+                abbonamento.setPagamento(pag);
                 abbonamentoDAO.insert(abbonamento);
                return true;
             } else {
@@ -75,8 +80,14 @@ public class AcquistoService {
 
             if(clienteLoggato!=null) {
                biglietto = bigliettoStrategy.createBiglietto();
-               pag = pagamentoService.effettuaPagamento(titoloDTO.getTipoPagamento(), titoloDTO.getQuantita(), bigliettoStrategy.ottieniPrezzoBiglietto());
+               PagamentoDTO pagamentoDTO = new PagamentoDTO(titoloDTO.getTipoPagamento(), titoloDTO.getQuantita(), bigliettoStrategy.ottieniPrezzoBiglietto());
+               pag = pagamentoService.effettuaPagamento(pagamentoDTO);
                 biglietto.setPagamento(pag);
+
+                if(pag==null){
+                    System.out.println(" DEBUG : Acquisto non effettuato, pagamento non valido");
+                    return false;
+                }
 
                for(int it =0; it<titoloDTO.getQuantita(); it++) {
                    biglietto.setTipoBiglietto(titoloDTO.getTipoTitolo());
@@ -106,9 +117,7 @@ public class AcquistoService {
 
         if (!(tesseraDAO.exists(clienteLoggato.getId().toString())) && clienteLoggato != null) {
             Tessera tessera = new Tessera(UUID.randomUUID());
-                if (tesseraDAO.createTessera(tessera, clienteLoggato.getId().toString()))
-                    return true;
-
+            return tesseraDAO.createTessera(tessera, clienteLoggato.getId().toString());
         }
 
 

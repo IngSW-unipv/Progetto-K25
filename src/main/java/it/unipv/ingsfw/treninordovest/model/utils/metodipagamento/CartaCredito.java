@@ -1,5 +1,6 @@
 package it.unipv.ingsfw.treninordovest.model.utils.metodipagamento;
 
+
 import it.unipv.ingsfw.treninordovest.model.strategy.pagamento.IPagamentoStrategy;
 
 import java.time.LocalDate;
@@ -13,16 +14,18 @@ public class CartaCredito implements  IPagamentoStrategy {
     public CartaCredito() {
     }
 
-    public CartaCredito(String numeroCarta, LocalDate dataScadenza, String cvv) {
+    public CartaCredito(String numeroCarta, String cvv, LocalDate dataScadenza) {
         this.numeroCarta = numeroCarta;
-        this.dataScadenza = dataScadenza;
         this.cvv = cvv;
+        this.dataScadenza = dataScadenza;
     }
-
 
     @Override
     public boolean paga(double prezzo) {
-        return true;
+
+        Random r = new Random();
+
+        return r.nextBoolean();
     }
 
     @Override

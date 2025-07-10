@@ -8,9 +8,6 @@ public class PagamentoContext {
         pagamentoStrategy = psf.getFactoryFromProperties(tipoPagamento);
     }
 
-    /*public void setStrategy(IPagamentoStrategy strategy) {
-        this.pagamentoStrategy = strategy;
-    }*/
 
     public boolean paga(double amount) {
         if (pagamentoStrategy == null) throw new IllegalStateException("Strategia non impostata");
