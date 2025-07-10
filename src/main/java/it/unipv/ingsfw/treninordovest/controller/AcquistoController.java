@@ -91,6 +91,7 @@ public class AcquistoController implements ActionListener {
     public void acquistoTessera() {
 
         try {
+
             if (facade.getAcquistoFacade().acquistaTessera()) {
                 JOptionPane.showMessageDialog(view, "Acquisto con successo!");
             } else

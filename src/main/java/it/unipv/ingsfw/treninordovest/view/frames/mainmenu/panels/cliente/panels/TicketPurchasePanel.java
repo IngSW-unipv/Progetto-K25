@@ -21,8 +21,6 @@ public class TicketPurchasePanel extends JPanel {
     private JComboBox<String> comboTipoBiglietto;
     public static final String CMD_Acquista = "acquista";
     public static final String CMD_MostraViaggi = "mostraViaggi";
-    //private ViaggiTablePanel tratteTablePanel;
-    private CreditCardDialog creditCardDialog;
 
     /*DA MODIFICARE*/
 
@@ -96,7 +94,5 @@ public class TicketPurchasePanel extends JPanel {
         return buttonMostraViaggi;
     }
 
-    public CreditCardDialog getCreditCardDialog() {
-        return creditCardDialog;
-    }
+
 }

@@ -12,7 +12,10 @@ public class PaymentDialog extends JDialog {
 
     private String metodoPagamento;
     private final CardLayout cardLayout;
-    private final JPanel pannelloContenitore; // Il "mazzo" di carte
+    private final JPanel pannelloContenitore; //Card Layout
+
+    private JButton btnConferma;
+    private JButton btnIndietro;
 
     public PaymentDialog(Frame owner) {
         super(owner, "Procedura di Pagamento", true);
@@ -84,8 +87,8 @@ public class PaymentDialog extends JDialog {
 
         // Pannello per i bottoni di navigazione
         JPanel navPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-        JButton btnIndietro = new JButton("Indietro");
-        JButton btnConferma = new JButton("Conferma Pagamento");
+        btnIndietro = new JButton("Indietro");
+        btnConferma = new JButton("Conferma Pagamento");
 
         btnIndietro.addActionListener(e -> cardLayout.show(pannelloContenitore, PANEL_SCELTA));
         btnConferma.addActionListener(e -> {
@@ -119,8 +122,8 @@ public class PaymentDialog extends JDialog {
         panel.add(formPanel, BorderLayout.CENTER);
 
         JPanel navPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-        JButton btnIndietro = new JButton("Indietro");
-        JButton btnConferma = new JButton("Paga Ora");
+        btnIndietro = new JButton("Indietro");
+        btnConferma = new JButton("Paga Ora");
 
         btnIndietro.addActionListener(e -> cardLayout.show(pannelloContenitore, PANEL_SCELTA));
         btnConferma.addActionListener(e -> {
@@ -144,4 +147,11 @@ public class PaymentDialog extends JDialog {
         return this.metodoPagamento;
     }
 
+    public JButton getBtnConferma() {
+        return btnConferma;
+    }
+
+    public JButton getBtnIndietro() {
+        return btnIndietro;
+    }
 }
