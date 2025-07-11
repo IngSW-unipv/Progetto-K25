@@ -17,6 +17,7 @@ public class TitoloDTO {
         this.tipoTitolo = tipoTitolo;
     }
 
+    // Per acquisto Biglietto
     public TitoloDTO(String tipoBiglietto, String tipoPagamento, int quantita, String idTratta) {
         this.tipoPagamento = tipoPagamento;
         this.quantita = quantita;
