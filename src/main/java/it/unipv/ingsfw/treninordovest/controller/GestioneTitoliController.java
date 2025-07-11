@@ -65,7 +65,7 @@ public class GestioneTitoliController implements ActionListener{
         TitoloDTO titoloDTO = new TitoloDTO(idTitolo,tipoTitolo);
 
         try {
-            if(facade.getTitoloViaggioFacade().verificaTitoloViaggio(idTitolo)){
+            if(facade.getTitoloViaggioFacade().verificaTitoloViaggio(titoloDTO)){
                 JOptionPane.showMessageDialog(view, "Titolo già valido!");
             }
             else JOptionPane.showMessageDialog(view, "Titolo non validato!", "Errore", JOptionPane.ERROR_MESSAGE);
