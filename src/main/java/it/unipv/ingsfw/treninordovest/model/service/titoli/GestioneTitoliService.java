@@ -50,9 +50,14 @@ public class GestioneTitoliService {
                 return titoloViaggio.isValido();
             }else if(bigliettoDAO.get(new Biglietto(idTitolo)) != null){
                 titoloViaggio = bigliettoDAO.get(new Biglietto(idTitolo));
-                return titoloViaggio.isValido();
+
+                if(titoloViaggio.isValido() == false){
+                    ((Biglietto) titoloViaggio).setValidato(true);
+                }else
+                    return titoloViaggio.isValido();
             }
         }
+
         return false;
     }
 

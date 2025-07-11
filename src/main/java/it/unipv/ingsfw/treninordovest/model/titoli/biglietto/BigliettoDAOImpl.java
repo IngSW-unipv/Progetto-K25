@@ -42,7 +42,6 @@ public class BigliettoDAOImpl implements BigliettoDAO {
                 Double prezzo = (Double) rs.getObject("Prezzo");
                 Boolean validato = (Boolean) rs.getObject("Validato");
                 String tipoBiglietto = rs.getString("TipoBiglietto");
-                Date dataValidazione = rs.getDate("DataValidazione");
 
 
 

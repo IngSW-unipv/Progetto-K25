@@ -141,7 +141,7 @@ public class GestioneUtenzaController implements ActionListener{
 
                 if (facade.getRegistrationFacade().registraDipendente(dipendente)){
 
-                    JOptionPane.showMessageDialog(null,"Dipendente registrato correttamente", "Info", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null,"Dipendente registrato correttamente\n Questo è il tuo nuovo id \n" + dipendente.getId(), "Info", JOptionPane.INFORMATION_MESSAGE);
                 }
 
             } else

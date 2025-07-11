@@ -43,7 +43,7 @@ public class Biglietto extends TitoloViaggio {
         this.dataValidazione = LocalDate.now();
     }
 
-    public Biglietto(UUID uuid, LocalDate localDate, Double prezzo, Boolean validato, String tipo, LocalDate localDate1) {
+    public Biglietto(UUID uuid, LocalDate localDate, Double prezzo, Boolean validato, String tipo) {
         super(uuid, localDate, prezzo);
         this.validato = validato;
         this.tipoBiglietto = tipo;
@@ -88,15 +88,12 @@ public class Biglietto extends TitoloViaggio {
     public boolean isValido() {
         if (this.validato) {
             // Logica per controllare se è scaduto dopo l'obliterazione
-            System.out.println("CONTROLLO: Biglietto già utilizzato.");
-            return false; // Semplificato per l'esempio
-        }
-        if (!this.getViaggio().getDataViaggio().equals(LocalDate.now())) {
-            System.out.println("CONTROLLO: Biglietto non valido per la data odierna.");
-            return false;
-        }
-        System.out.println("CONTROLLO: Biglietto valido. Obliterazione...");
-        this.validato = true; // Modifica lo stato
-        return true;
+            System.out.println("CONTROLLO: Biglietto già validato.");
+            return true; // Semplificato per l'esempio
+        }else
+
+           return false; // Modifica lo stato
     }
+
+
 }
