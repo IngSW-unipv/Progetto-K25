@@ -14,7 +14,7 @@ public class CustomerMainPanel extends JPanel {
     private final JTabbedPane tabbedPane = new JTabbedPane();
     private final TicketPurchasePanel ticketPurchasePanel;
     private final SubscriptionPanel subscriptionPanel = new SubscriptionPanel();
-    private final CardPurchasePanel cardPurchasePanel = new CardPurchasePanel();
+   // private final CardPurchasePanel cardPurchasePanel = new CardPurchasePanel();
     private final RefundPanel refundPanel = new RefundPanel();
     private final CustomerProfilePanel profilePanel = new CustomerProfilePanel();
     private final ViaggiTablePanel tratteTablePanel = new ViaggiTablePanel();
@@ -32,13 +32,13 @@ public class CustomerMainPanel extends JPanel {
     private void initComponents() {
         ticketPurchasePanel.setBackground(coloreSfondo);
         subscriptionPanel.setBackground(coloreSfondo);
-        cardPurchasePanel.setBackground(coloreSfondo);
+       // cardPurchasePanel.setBackground(coloreSfondo);
         refundPanel.setBackground(coloreSfondo);
 
         tratteTablePanel.aggiornaTratta();
         tabbedPane.addTab("Acquisto Biglietto", ticketPurchasePanel);
         tabbedPane.addTab("Abbonamento", subscriptionPanel);
-        tabbedPane.addTab("Acquisto Tessera", cardPurchasePanel);
+       // tabbedPane.addTab("Acquisto Tessera", cardPurchasePanel);
         tabbedPane.addTab("Rimborso", refundPanel);
         tabbedPane.addTab("Profilo", profilePanel);
 
@@ -60,7 +60,7 @@ public class CustomerMainPanel extends JPanel {
     // Getter methods remain the same, so controllers can access the panels
     public TicketPurchasePanel getTicketPurchasePanel() { return ticketPurchasePanel; }
     public SubscriptionPanel getSubscriptionPanel() { return subscriptionPanel; }
-    public CardPurchasePanel getCardPurchasePanel() { return cardPurchasePanel; }
+   // public CardPurchasePanel getCardPurchasePanel() { return cardPurchasePanel; }
     public RefundPanel getRefundPanel() {
         return refundPanel;
     }

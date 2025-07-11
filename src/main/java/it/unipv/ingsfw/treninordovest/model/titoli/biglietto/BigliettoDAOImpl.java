@@ -1,6 +1,7 @@
 package it.unipv.ingsfw.treninordovest.model.titoli.biglietto;
 
 import it.unipv.ingsfw.treninordovest.model.dao.database.Database;
+import it.unipv.ingsfw.treninordovest.model.dao.exception.PersistenceException;
 import it.unipv.ingsfw.treninordovest.model.ferrovia.viaggio.Viaggio;
 import it.unipv.ingsfw.treninordovest.model.titoli.abbonamento.Abbonamento;
 import it.unipv.ingsfw.treninordovest.model.titoli.pagamento.Pagamento;
@@ -115,46 +116,13 @@ public class BigliettoDAOImpl implements BigliettoDAO {
     }
 
     @Override
-    public void update(Biglietto biglietto) {
-        /*
-        String sql1="UPDATE titoloviaggio set IDPagamento=?, Emissione=?, Prezzo=? where IDTitolo=?";
-        String sql2="UPDATE biglietto set ritorno=?, validato=?, dataRitorno=?, dataValidazione=?  where IDBiglietto=?";
-
-        try(Connection con = Database.getConnection();PreparedStatement ps1= con.prepareStatement(sql1);
-            PreparedStatement ps2 = con.prepareStatement(sql2)){
-
-            //Impostazione degli attributi
-            ps1.setString(1,biglietto.getIdPagamento());
-            ps1.setObject(2,biglietto.getEmissione());
-            ps1.setDouble(3,biglietto.getPrezzo());
-            ps1.setString(4,biglietto.getId());
-
-            ps2.setObject(1,biglietto.isValidato());
-            ps2.setObject(2,biglietto.isRitorno());
-            ps2.setObject(2,biglietto.getDataRitorno());
-            ps2.setObject(2,biglietto.getDataValidazione());
-            ps2.setString(3,biglietto.getId());
-
-            ps1.executeUpdate();
-            ps2.executeUpdate();
-
-            //Chiusura della connessione col Database
-            //Database.closeConnection(con);
-
-        } catch (Exception e) {
-            throw new RuntimeException("Errore durante l'aggiornamento dati",e);
-        }
-
-
-
-         */
-    }
+    public void update(Biglietto biglietto) {}
 
     @Override
     public void insert(Biglietto biglietto) {
 
         String sql1 = "INSERT INTO titoloviaggio (IDTitolo, IDPagamento, Emissione, Prezzo) VALUES (?, ?, ?, ?)";
-        String sql2 = "INSERT INTO biglietto (IDBiglietto, Validato, DataValidazione,IDViaggio,TipoBiglietto) VALUES (?,?,?,?,?)";
+        String sql2 = "INSERT INTO biglietto (IDBiglietto, Validato,IDViaggio,TipoBiglietto) VALUES (?,?,?,?)";
 
         try(Connection con = Database.getConnection(); PreparedStatement ps1= con.prepareStatement(sql1); PreparedStatement ps2 = con.prepareStatement(sql2)){
 
@@ -207,7 +175,7 @@ public class BigliettoDAOImpl implements BigliettoDAO {
             // Database.closeConnection(con);
 
         } catch (SQLException e) {
-            throw new RuntimeException("Errore nel recupero dei biglietti",e);
+            throw new PersistenceException("Errore nel recupero dei biglietti");
         }
         return listaBiglietti;
 

@@ -30,15 +30,30 @@ public class GestioneTitoliController implements ActionListener{
 
 
     private void mostraBigliettiAcquistati(){
-       List<Biglietto> listaBiglietti = facade.getTitoloViaggioFacade().mostraBigliettiAcquistati();
-       titoliViaggioModel.setListaBiglietti(listaBiglietti);
-        System.out.println("DEBUG : Mostra Biglietti");
+        try {
+            List<Biglietto> listaBiglietti = facade.getTitoloViaggioFacade().mostraBigliettiAcquistati();
+            titoliViaggioModel.setListaBiglietti(listaBiglietti);
+            System.out.println("DEBUG : Mostra Biglietti");
+        }catch (Exception e){
+            System.out.println("DEBUG : " + e.getMessage());
+            JOptionPane.showMessageDialog(view, "Nessun biglietto acquistato!", "Errore", JOptionPane.ERROR_MESSAGE);
+        }
+
     }
     private void mostraAbbonamentiAcquistati(){
-        List<Abbonamento> listaAbbonamenti = facade.getTitoloViaggioFacade().mostraAbbonamentiAcquistati();
-        titoliViaggioModel.setListaAbbonamenti(listaAbbonamenti);
-        facade.getTitoloViaggioFacade().mostraAbbonamentiAcquistati();
-        System.out.println("DEBUG : Mostra Abbonamenti");
+
+        try {
+            List<Abbonamento> listaAbbonamenti = facade.getTitoloViaggioFacade().mostraAbbonamentiAcquistati();
+            titoliViaggioModel.setListaAbbonamenti(listaAbbonamenti);
+            facade.getTitoloViaggioFacade().mostraAbbonamentiAcquistati();
+            System.out.println("DEBUG : Mostra Abbonamenti");
+
+        }catch (Exception e){
+            System.out.println("DEBUG : " + e.getMessage());
+            JOptionPane.showMessageDialog(view, "Nessun abbonamento acquistato!", "Errore", JOptionPane.ERROR_MESSAGE);
+        }
+
+
     }
 
     private void controllaTitolo(){

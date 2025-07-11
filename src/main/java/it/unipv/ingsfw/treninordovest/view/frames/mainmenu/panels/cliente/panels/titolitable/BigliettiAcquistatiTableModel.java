@@ -9,7 +9,7 @@ import java.util.List;
 public class BigliettiAcquistatiTableModel extends AbstractTableModel {
 
     private List<Biglietto> listaBiglietti = new ArrayList<>(); // Inizializzazione come lista vuota
-    private final String[] columnNames = {"ID","Emissione","Data di validazione","Validazione"};
+    private final String[] columnNames = {"ID","Emissione","Validazione","Prezzo"};
 
     public BigliettiAcquistatiTableModel() {
     }
@@ -44,9 +44,10 @@ public class BigliettiAcquistatiTableModel extends AbstractTableModel {
             case 1:
                 return biglietti.getEmissione();
             case 2:
-                return biglietti.getDataValidazione();
-            case 3:
                 return biglietti.isValidato();
+            case 3:
+                return biglietti.getPrezzo();
+
             default:
                 return null;
         }

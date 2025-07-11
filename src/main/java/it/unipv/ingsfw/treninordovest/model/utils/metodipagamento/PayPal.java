@@ -15,7 +15,8 @@ public class PayPal implements IPagamentoStrategy {
     public boolean paga(double prezzo) {
         // Adattamento: mappa l'importo e chiama l'API
 
-       return r.nextBoolean();
+       //return r.nextBoolean();
+        return true;
     }
 
     @Override

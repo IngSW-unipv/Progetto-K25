@@ -73,32 +73,31 @@ public class AcquistoService {
 
     public boolean acquistoBiglietto(TitoloDTO titoloDTO) {
         clienteLoggato = (Cliente) SessionManager.getInstance().getCurrentUser();
-        Pagamento pag;
-        Biglietto biglietto;
-        IBigliettoStrategy bigliettoStrategy = BigliettoStrategyFactory.getFactoryFromProperties(titoloDTO.getTipoTitolo());
-
 
             if(clienteLoggato!=null) {
-               biglietto = bigliettoStrategy.createBiglietto();
+                IBigliettoStrategy bigliettoStrategy = BigliettoStrategyFactory.getFactoryFromProperties(titoloDTO.getTipoTitolo());
+                Biglietto  biglietto = bigliettoStrategy.createBiglietto();
                PagamentoDTO pagamentoDTO = new PagamentoDTO(titoloDTO.getTipoPagamento(), titoloDTO.getQuantita(), bigliettoStrategy.ottieniPrezzoBiglietto());
-               pag = pagamentoService.effettuaPagamento(pagamentoDTO);
-                biglietto.setPagamento(pag);
+               Pagamento pag = pagamentoService.effettuaPagamento(pagamentoDTO);
 
-                if(pag==null){
-                    System.out.println(" DEBUG : Acquisto non effettuato, pagamento non valido");
-                    return false;
-                }
+               if (pag != null){
+                   biglietto.setPagamento(pag);
 
-               for(int it =0; it<titoloDTO.getQuantita(); it++) {
-                   biglietto.setTipoBiglietto(titoloDTO.getTipoTitolo());
-                   biglietto.setViaggio(new Viaggio(titoloDTO.getIdViaggio()));
-                   bigliettoDAO.insert(biglietto);
-                   biglietto.setId(UUID.randomUUID().toString());
-               }
+                   for(int it =0; it<titoloDTO.getQuantita(); it++) {
+                       biglietto.setTipoBiglietto(titoloDTO.getTipoTitolo());
+                       biglietto.setViaggio(new Viaggio(titoloDTO.getIdViaggio()));
+                       bigliettoDAO.insert(biglietto);
+                       biglietto.setId(UUID.randomUUID().toString());
+                   }
 
-               return true;
+                   return true;
+               } else
+                   return false;
+
+
+
             } else {
-                System.out.println("DEBUG: Problemi durante l'acquisto di un biglietto");
+                System.out.println("DEBUG: Cliente non loggato, operazione non consentita");
                 return false;
             }
 

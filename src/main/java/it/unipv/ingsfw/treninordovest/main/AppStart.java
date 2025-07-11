@@ -1,6 +1,12 @@
 package it.unipv.ingsfw.treninordovest.main;
 
+import it.unipv.ingsfw.treninordovest.controller.AcquistoController;
+import it.unipv.ingsfw.treninordovest.controller.GestioneTitoliController;
+import it.unipv.ingsfw.treninordovest.controller.GestioneUtenzaController;
+import it.unipv.ingsfw.treninordovest.controller.RimborsoController;
 import it.unipv.ingsfw.treninordovest.model.facade.login.RegistrationFacade;
+import it.unipv.ingsfw.treninordovest.model.service.AcquistoService;
+import it.unipv.ingsfw.treninordovest.model.service.RimborsoService;
 import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.JTreniNordOvestFrame;
 
 import javax.swing.*;
@@ -13,11 +19,14 @@ import java.util.logging.Level;
 public class AppStart {
     
     private static final Logger LOGGER = Logger.getLogger(AppStart.class.getName());
-    
+
     /**
      * Metodo main che avvia l'applicazione
      * @param args argomenti da linea di comando (non utilizzati)
      */
+
+
+
     public static void main(String[] args) {
         // Configurazione Look and Feel nativo del sistema
         try {
@@ -32,14 +41,16 @@ public class AppStart {
             try {
                 // Crea la finestra principale
                 JTreniNordOvestFrame mainFrame = new JTreniNordOvestFrame();
-
-                RegistrationFacade loginFacade = new RegistrationFacade();
-                //loginFacade.addPropertyChangeListener(mainFrame);
-
                 // Configura e mostra il frame principale
                 mainFrame.setVisible(true);
-                // Il controller viene già creato all'interno del JMainMenuFrame
-                // in base alla tua struttura attuale
+
+                //Inizializzazione dei controller e iniezione della vista;
+                new AcquistoController(mainFrame);
+                new GestioneUtenzaController(mainFrame);
+                new RimborsoController(mainFrame);
+                new GestioneTitoliController(mainFrame);
+
+
             } catch (Exception e) {
                 LOGGER.log(Level.SEVERE, "Errore durante l'inizializzazione dell'applicazione", e);
                 JOptionPane.showMessageDialog(
@@ -51,4 +62,7 @@ public class AppStart {
             }
         });
     }
+
+
+
 }

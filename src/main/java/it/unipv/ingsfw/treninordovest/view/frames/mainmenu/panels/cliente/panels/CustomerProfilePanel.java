@@ -25,12 +25,14 @@ public class CustomerProfilePanel extends JPanel implements PropertyChangeListen
 
     // Bottoni
     private final JButton btnAggiornaPassword;
-    private final JButton btnAggiornaProfilo; // Corretto il nome
+    private final JButton btnAggiornaProfilo;
+    private final JButton  btnAcquistaTessera;
     private final JButton btnEsci;
 
     public static final String CMD_LOGOUT="logout";
     public static final String CMD_AGPROFILO="update_profile";
     public static final String CMD_AGPASS="update_password";
+    public static final String CMD_AcquistaTessera = "acquistaTessera";
 
     public CustomerProfilePanel() {
         // Impostazioni generali del pannello
@@ -133,6 +135,15 @@ public class CustomerProfilePanel extends JPanel implements PropertyChangeListen
         pwdGbc.gridwidth = 2;
         passwordPanel.add(btnAggiornaPassword, pwdGbc);
 
+
+        btnAcquistaTessera = new JButton("Acquista Tessera");
+        pwdGbc.gridx = 0;
+        pwdGbc.gridy = 3;
+        pwdGbc.gridwidth = 2;
+        passwordPanel.add(btnAcquistaTessera, pwdGbc);
+
+
+
         // Aggiungi il pannello della password al pannello principale
         gbc.gridx = 0;
         gbc.gridy = 1;
@@ -185,6 +196,7 @@ public class CustomerProfilePanel extends JPanel implements PropertyChangeListen
         btnEsci.setActionCommand(CMD_LOGOUT);
         btnAggiornaProfilo.setActionCommand(CMD_AGPROFILO);
         btnAggiornaPassword.setActionCommand(CMD_AGPASS);
+        btnAcquistaTessera.setActionCommand(CMD_AcquistaTessera);
 
     }
 
@@ -266,8 +278,9 @@ public class CustomerProfilePanel extends JPanel implements PropertyChangeListen
         return btnEsci;
     }
 
-
-
+    public JButton getBtnAcquistaTessera() {
+        return btnAcquistaTessera;
+    }
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {

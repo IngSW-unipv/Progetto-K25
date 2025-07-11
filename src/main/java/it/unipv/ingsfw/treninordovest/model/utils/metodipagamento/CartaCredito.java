@@ -25,7 +25,10 @@ public class CartaCredito implements  IPagamentoStrategy {
 
         Random r = new Random();
 
-        return r.nextBoolean();
+        //return r.nextBoolean();
+
+        return true;
+
     }
 
     @Override

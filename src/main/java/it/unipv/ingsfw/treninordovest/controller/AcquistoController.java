@@ -114,7 +114,7 @@ public class AcquistoController implements ActionListener {
     private void addListeners() {
         view.getTicketPurchasePanel().getButtonAcquista().addActionListener(this);
         view.getSubscriptionPanel().getButtonAbbonati().addActionListener(this);
-        view.getCardPurchasePanel().getButtonAcquistaTessera().addActionListener(this);
+        view.getProfilePanel().getBtnAcquistaTessera().addActionListener(this);
         view.getTicketPurchasePanel().getButtonMostraViaggi().addActionListener(this);
         frame.getPaymentDialog().getBtnConferma().addActionListener(this);
 
@@ -146,7 +146,7 @@ public class AcquistoController implements ActionListener {
 
                 break;
 
-            case CardPurchasePanel.CMD_AcquistaTessera:
+            case CustomerProfilePanel.CMD_AcquistaTessera:
                 acquistoTessera();
                 break;
 

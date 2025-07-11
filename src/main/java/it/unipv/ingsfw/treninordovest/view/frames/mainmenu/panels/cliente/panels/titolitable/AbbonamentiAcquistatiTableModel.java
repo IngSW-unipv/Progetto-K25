@@ -47,7 +47,8 @@ public class AbbonamentiAcquistatiTableModel extends AbstractTableModel {
                     return abbonamenti.getTipoAbbonamento();
                     case 2:
                         return abbonamenti.getScadenza();
-
+            case 3:
+                return abbonamenti.getPrezzo();
 
 
             default:
