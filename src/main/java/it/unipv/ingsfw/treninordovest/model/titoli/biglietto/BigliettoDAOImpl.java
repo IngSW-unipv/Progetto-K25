@@ -62,37 +62,6 @@ public class BigliettoDAOImpl implements BigliettoDAO {
 
     @Override
     public List<Biglietto> getAll() {
-        /*
-        List<Biglietto> listaBiglietti= new ArrayList<>();
-        Biglietto biglietto;
-        String sql = "select IDTitolo, IDPagamento, Emissione, Prezzo, Ritorno, Validato, DataRitorno,DataValidazione from titoliBiglietti where idTitolo=?";
-
-        try (Connection con = Database.getConnection();PreparedStatement ps = con.prepareStatement(sql);ResultSet rs=ps.executeQuery()) {
-
-            //Query effettuata su una vista creata nel DB per semplificare l'estrazione dei dati
-
-            while (rs.next()){
-                String idTitolo = rs.getString("IDTitolo");
-                String idPagamento = rs.getString("IDPagamento");
-                LocalDate emissione = (LocalDate) rs.getObject("Emissione");
-                Double prezzo = (Double) rs.getObject("Prezzo");
-                Boolean validato = (Boolean) rs.getObject("Validato");
-                Boolean ritorno = (Boolean) rs.getObject("Ritorno");
-                LocalDate dataRitorno = (LocalDate) rs.getObject("DataRitorno");
-                LocalDate dataValidazione = (LocalDate) rs.getObject("DataValidazione");
-
-                biglietto=new Biglietto(UUID.fromString(idTitolo),emissione,prezzo,ritorno,validato,dataRitorno,dataValidazione);
-                listaBiglietti.add(biglietto);
-            }
-
-
-            //Database.closeConnection(con);
-
-        } catch (SQLException e) {
-           throw new RuntimeException("Errore nel recupero dei biglietti",e);
-        }
-
-         */
         return null;
     }
 
@@ -107,7 +76,7 @@ public class BigliettoDAOImpl implements BigliettoDAO {
             ps.executeUpdate();
             //Database.closeConnection(con);
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
            throw new RuntimeException("Errore durante l'eliminazione dati",e);
         }
 
@@ -115,7 +84,20 @@ public class BigliettoDAOImpl implements BigliettoDAO {
     }
 
     @Override
-    public void update(Biglietto biglietto) {}
+    public void update(Biglietto biglietto) {
+
+        String sql1="UPDATE biglietto set Validato=true where idBiglietto = ?";
+
+        try(Connection con = Database.getConnection();PreparedStatement ps = con.prepareStatement(sql1)){
+            ps.setString(1, biglietto.getId().toString());
+            ps.executeUpdate();
+            //Database.closeConnection(con);
+
+        } catch (SQLException e) {
+            throw new PersistenceException("Errore durante l'aggiornamento dati");
+        }
+
+    }
 
     @Override
     public void insert(Biglietto biglietto) {

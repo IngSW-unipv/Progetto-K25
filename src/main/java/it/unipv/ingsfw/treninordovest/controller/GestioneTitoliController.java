@@ -1,5 +1,6 @@
 package it.unipv.ingsfw.treninordovest.controller;
 
+import it.unipv.ingsfw.treninordovest.model.dto.TitoloDTO;
 import it.unipv.ingsfw.treninordovest.model.facade.TreniNordOvestFacade;
 import it.unipv.ingsfw.treninordovest.model.service.titoli.GestioneTitoliService;
 import it.unipv.ingsfw.treninordovest.model.service.titoli.TitoliViaggioModel;
@@ -59,6 +60,9 @@ public class GestioneTitoliController implements ActionListener{
     private void controllaTitolo(){
 
         String idTitolo = view.getEmployeeMainPanel().getTravelDocCheckPanel().getTextFieldIdTitolo().getText();
+        String tipoTitolo = view.getEmployeeMainPanel().getTravelDocCheckPanel().getComboTipoTitolo().getSelectedItem().toString();
+
+        TitoloDTO titoloDTO = new TitoloDTO(idTitolo,tipoTitolo);
 
         try {
             if(facade.getTitoloViaggioFacade().verificaTitoloViaggio(idTitolo)){

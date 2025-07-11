@@ -1,5 +1,8 @@
 package it.unipv.ingsfw.treninordovest.model.service.titoli;
 
+import it.unipv.ingsfw.treninordovest.model.dto.TitoloDTO;
+import it.unipv.ingsfw.treninordovest.model.factory.implementations.ValidazioneTitoliStrategyFactory;
+import it.unipv.ingsfw.treninordovest.model.strategy.validazione.IValidazioneTitoliStrategy;
 import it.unipv.ingsfw.treninordovest.model.titoli.abbonamento.Abbonamento;
 import it.unipv.ingsfw.treninordovest.model.titoli.abbonamento.AbbonamentoDAOimpl;
 import it.unipv.ingsfw.treninordovest.model.titoli.biglietto.Biglietto;
@@ -41,21 +44,19 @@ public class GestioneTitoliService {
 
 
     //METODO DA RIVISITARE
-    public boolean controllaTitoloViaggio(String idTitolo){
+    public boolean controllaTitoloViaggio(TitoloDTO titoloDTO){
         Dipendente dipendenteLoggato = (Dipendente) SessionManager.getInstance().getCurrentUser();
-        TitoloViaggio titoloViaggio;
         if(dipendenteLoggato!=null) {
-            if(abbonamentoDAO.get(new Abbonamento(idTitolo)) != null){
-               titoloViaggio = abbonamentoDAO.get(new Abbonamento(idTitolo));
-                return titoloViaggio.isValido();
-            }else if(bigliettoDAO.get(new Biglietto(idTitolo)) != null){
-                titoloViaggio = bigliettoDAO.get(new Biglietto(idTitolo));
-
-                if(titoloViaggio.isValido() == false){
-                    ((Biglietto) titoloViaggio).setValidato(true);
-                }else
-                    return titoloViaggio.isValido();
+            IValidazioneTitoliStrategy validazioneTitoliStrategy = ValidazioneTitoliStrategyFactory.getFactoryFromProperties(titoloDTO.getTipoTitolo());
+            if(validazioneTitoliStrategy.getValidazione(titoloDTO.getId().toString())){
+                System.out.println("DEBUG: Service Controllo Eseguito");
+                return true;
+            } else {
+                validazioneTitoliStrategy.valida(titoloDTO.getId().toString());
+                System.out.println("DEBUG: Validazione in corso");
             }
+
+
         }
 
         return false;

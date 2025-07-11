@@ -23,4 +23,11 @@ public class ValidazioneBigliettoConcrete implements IValidazioneTitoliStrategy{
 
         return false;
     }
+
+    @Override
+    public void valida(String idTitolo) {
+        BigliettoDAO bigliettoDAO = new BigliettoDAOImpl();
+        bigliettoDAO.update(new Biglietto(idTitolo));
+
+    }
 }

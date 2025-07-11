@@ -1,5 +1,6 @@
 package it.unipv.ingsfw.treninordovest.model.facade.titoliviaggio;
 
+import it.unipv.ingsfw.treninordovest.model.dto.TitoloDTO;
 import it.unipv.ingsfw.treninordovest.model.service.titoli.GestioneTitoliService;
 import it.unipv.ingsfw.treninordovest.model.titoli.abbonamento.Abbonamento;
 import it.unipv.ingsfw.treninordovest.model.titoli.biglietto.Biglietto;
@@ -26,8 +27,8 @@ public class TitoloViaggioFacade implements ITitoloViaggioFacade{
     }
 
     @Override
-    public boolean verificaTitoloViaggio(String idTitolo) {
-        return gestioneTitoliService.controllaTitoloViaggio(idTitolo);
+    public boolean verificaTitoloViaggio(TitoloDTO titoloDTO) {
+        return gestioneTitoliService.controllaTitoloViaggio(titoloDTO);
     }
 
 

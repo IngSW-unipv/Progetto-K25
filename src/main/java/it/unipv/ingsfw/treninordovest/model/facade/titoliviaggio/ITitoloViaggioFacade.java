@@ -1,5 +1,6 @@
 package it.unipv.ingsfw.treninordovest.model.facade.titoliviaggio;
 
+import it.unipv.ingsfw.treninordovest.model.dto.TitoloDTO;
 import it.unipv.ingsfw.treninordovest.model.titoli.abbonamento.Abbonamento;
 import it.unipv.ingsfw.treninordovest.model.titoli.biglietto.Biglietto;
 
@@ -13,6 +14,6 @@ public interface ITitoloViaggioFacade<T> {
     */
    List<Biglietto> mostraBigliettiAcquistati();
    List<Abbonamento> mostraAbbonamentiAcquistati();
-   boolean verificaTitoloViaggio(String id);
+   boolean verificaTitoloViaggio(TitoloDTO titoloDTO);
 
 }

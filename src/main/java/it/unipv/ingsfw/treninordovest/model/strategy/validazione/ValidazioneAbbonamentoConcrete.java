@@ -23,4 +23,8 @@ public class ValidazioneAbbonamentoConcrete implements IValidazioneTitoliStrateg
 
         return false;
     }
+
+    @Override
+    public void valida(String idTitolo) {
+    }
 }
