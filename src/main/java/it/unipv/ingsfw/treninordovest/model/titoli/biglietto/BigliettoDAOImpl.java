@@ -46,7 +46,7 @@ public class BigliettoDAOImpl implements BigliettoDAO {
 
 
 
-               bigliettoDB=new Biglietto(UUID.fromString(idTitolo),pagamento,emissione.toLocalDate(),prezzo,validato,dataValidazione.toLocalDate(),viaggio,tipoBiglietto);
+               bigliettoDB=new Biglietto(UUID.fromString(idTitolo),pagamento,emissione.toLocalDate(),prezzo,validato,viaggio,tipoBiglietto);
             }
             //Database.closeConnection(con);
 

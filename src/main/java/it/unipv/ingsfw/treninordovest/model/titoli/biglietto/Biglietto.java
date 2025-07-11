@@ -11,7 +11,6 @@ import java.util.UUID;
 public class Biglietto extends TitoloViaggio {
     //Attributi
     private boolean validato;
-    private LocalDate dataValidazione;
     private String tipoBiglietto;
     private Viaggio viaggio;
 
@@ -27,10 +26,9 @@ public class Biglietto extends TitoloViaggio {
     //Costruttore completo
 
 
-    public Biglietto(UUID id, Pagamento pagamento, LocalDate emissione, double prezzo, boolean validato, LocalDate dataValidazione, Viaggio viaggio, String tipoBiglietto) {
+    public Biglietto(UUID id, Pagamento pagamento, LocalDate emissione, double prezzo, boolean validato, Viaggio viaggio, String tipoBiglietto) {
         super(id, emissione, prezzo);
         setPagamento(pagamento);
-        this.dataValidazione = dataValidazione;
         this.tipoBiglietto = tipoBiglietto;
         this.viaggio = viaggio;
         this.validato = validato;
@@ -40,14 +38,12 @@ public class Biglietto extends TitoloViaggio {
         super(uuid, dataEmissione, prezzo);
         this.validato = validazione;
         this.tipoBiglietto = tipoBiglietto;
-        this.dataValidazione = LocalDate.now();
     }
 
     public Biglietto(UUID uuid, LocalDate localDate, Double prezzo, Boolean validato, String tipo) {
         super(uuid, localDate, prezzo);
         this.validato = validato;
         this.tipoBiglietto = tipo;
-        this.dataValidazione = localDate1;
     }
 
 
@@ -58,14 +54,6 @@ public class Biglietto extends TitoloViaggio {
 
     public void setValidato(boolean validato) {
         this.validato = validato;
-    }
-
-    public LocalDate getDataValidazione() {
-        return dataValidazione;
-    }
-
-    public void setDataValidazione(LocalDate dataValidazione) {
-        this.dataValidazione = dataValidazione;
     }
 
     public void setViaggio(Viaggio viaggio) {
