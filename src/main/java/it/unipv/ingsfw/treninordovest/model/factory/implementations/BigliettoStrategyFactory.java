@@ -9,10 +9,13 @@ import java.io.FileInputStream;
 import java.util.Properties;
 
 public class BigliettoStrategyFactory {
+
+    private static final String PROPERTIES_FILE = "properties/patternproperties";
+
     public static IBigliettoStrategy getFactoryFromProperties(String tipo) {
         try {
             Properties pr = new Properties(System.getProperties());
-            pr.load(new FileInputStream("properties/properties"));
+            pr.load(new FileInputStream(PROPERTIES_FILE));
 
             // Converte il tipo di utente in minuscolo per la costruzione della chiave
             String tipoLowerCase = tipo.toLowerCase();
@@ -25,6 +28,8 @@ public class BigliettoStrategyFactory {
             if (factoryClassName == null) {
                 throw new IllegalArgumentException("Tipo di biglietto non supportato: " + tipo);
             }
+
+
 
             return (IBigliettoStrategy) Class.forName(factoryClassName).getDeclaredConstructor().newInstance();
         } catch (Exception e) {

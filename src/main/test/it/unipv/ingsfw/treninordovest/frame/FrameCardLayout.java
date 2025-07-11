@@ -1,11 +1,10 @@
 package it.unipv.ingsfw.treninordovest.frame;
 
-import it.unipv.ingsfw.treninordovest.controller.GestioneUtenzaController;
+
 import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.cliente.panels.*;
 import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.cliente.panels.pagamenti.CreditCardPanel;
 import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.cliente.panels.titolitable.TitoliViaggioTablePanel;
-import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.cliente.panels.viaggitable.ViaggiTablePanel;
-import it.unipv.ingsfw.treninordovest.view.frames.utenti.clienti.menu.JCustomerMainFrame;
+
 
 import javax.smartcardio.Card;
 import javax.swing.*;

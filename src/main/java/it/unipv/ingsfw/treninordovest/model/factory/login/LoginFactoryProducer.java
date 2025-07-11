@@ -13,11 +13,13 @@ public class LoginFactoryProducer {
 
     private ILogin login=null;
 
+    private static final String PROPERTIES_FILE = "properties/patternproperties";
+
     public  ILogin getFactoryFromProperties(String tipo) {
 
             try {
                 Properties pr = new Properties(System.getProperties());
-                pr.load(new FileInputStream("properties/properties"));
+                pr.load(new FileInputStream(PROPERTIES_FILE));
 
                 // Converte il tipo di utente in minuscolo per la costruzione della chiave
                 String tipoLowerCase = tipo.toLowerCase();

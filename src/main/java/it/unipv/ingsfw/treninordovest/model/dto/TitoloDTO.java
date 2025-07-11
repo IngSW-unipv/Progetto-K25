@@ -1,16 +1,16 @@
 package it.unipv.ingsfw.treninordovest.model.dto;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 public class TitoloDTO {
-    private final String tipoTitolo;
-    private final String tipoPagamento;
-    private final int quantita;
-    private String idViaggio;
+    private  String tipoTitolo;
+    private  String tipoPagamento;
+    private  int quantita;
+    private  String idViaggio;
+    private UUID idTitolo;
 
-
-    //Per Abbonamento
-
+    //Per Acquisto Abbonamento
     public TitoloDTO(String tipoTitolo, String tipoPagamento, int quantita) {
         this.tipoPagamento = tipoPagamento;
         this.quantita = quantita;
@@ -22,6 +22,12 @@ public class TitoloDTO {
         this.quantita = quantita;
         this.tipoTitolo = tipoBiglietto;
         this.idViaggio = idTratta;
+    }
+
+    //Per validazione
+    public TitoloDTO (String id , String tipoTitolo){
+        this.idTitolo = UUID.fromString(id);
+        this.tipoTitolo=tipoTitolo;
     }
 
 
@@ -41,6 +47,7 @@ public class TitoloDTO {
         return idViaggio;
     }
 
-
-
+    public UUID getId() {
+        return idTitolo;
+    }
 }

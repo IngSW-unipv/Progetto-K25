@@ -14,6 +14,10 @@ public abstract class TitoloViaggio {
     //Costruttore vuoto
     public TitoloViaggio() {}
 
+    public TitoloViaggio (String uuid){
+        this.id = UUID.fromString(uuid);
+    }
+
     //Costruttore completo
     public TitoloViaggio(UUID id, LocalDate emissione, double prezzo) {
         this.id = id;

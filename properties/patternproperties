@@ -1,10 +1,3 @@
-DBDRIVER = com.mysql.cj.jdbc.Driver
-DBURL = jdbc:mysql://localhost:3306/treninordovest
-db_usn=root
-db_psw=Andrea@2003
-
-
-
 #cliente.factory.class.name=it.unipv.ingsfw.treninordovest.factory.implementations.ClienteLoginFactory
 #cliente.dao.class.name=it.unipv.ingsfw.treninordovest.dao.implementations.utenti.ClienteDAOImpl
 
@@ -23,18 +16,20 @@ annuale.factory.class.name=it.unipv.ingsfw.treninordovest.model.strategy.abbonam
 mensile.factory.class.name=it.unipv.ingsfw.treninordovest.model.strategy.abbonamento.AbbonamentoMensileConcrete
 
 #Configurazione per biglietto
-#andata.strategy.class.name=it.unipv.ingsfw.treninordovest.model.strategy.biglietto.BigliettoAndataConcrete
-#andataritorno.strategy.class.name=it.unipv.ingsfw.treninordovest.model.strategy.biglietto.BigliettoAndataRitornoConcrete
+andata.strategy.class.name=it.unipv.ingsfw.treninordovest.model.strategy.biglietto.BigliettoAndataConcrete
+andataritorno.strategy.class.name=it.unipv.ingsfw.treninordovest.model.strategy.biglietto.BigliettoAndataRitornoConcrete
 
 
 #Metodi di pagamento
-#cartacredito.strategy.class.name=it.unipv.ingsfw.treninordovest.model.utils.metodipagamento.CartaCredito
-#paypal.strategy.class.name=it.unipv.ingsfw.treninordovest.model.utils.metodipagamento.PayPal
+cartacredito.strategy.class.name=it.unipv.ingsfw.treninordovest.model.utils.metodipagamento.CartaCredito
+paypal.strategy.class.name=it.unipv.ingsfw.treninordovest.model.utils.metodipagamento.PayPal
 
 
 #Login
-#clienteLogin.factory.class.name=it.unipv.ingsfw.treninordovest.model.factory.login.ClienteLogin
-#dipendenteLogin.factory.class.name=it.unipv.ingsfw.treninordovest.model.factory.login.DipendenteLogin
+clienteLogin.factory.class.name=it.unipv.ingsfw.treninordovest.model.factory.login.ClienteLogin
+dipendenteLogin.factory.class.name=it.unipv.ingsfw.treninordovest.model.factory.login.DipendenteLogin
 
-
+#Validazione
+bigliettoValidazione.strategy.class.name=it.unipv.ingsfw.treninordovest.model.strategy.validazione.ValidazioneBigliettoConcrete
+abbonamentoValidazione.strategy.class.name=it.unipv.ingsfw.treninordovest.model.strategy.validazione.ValidazioneAbbonamentoConcrete
 

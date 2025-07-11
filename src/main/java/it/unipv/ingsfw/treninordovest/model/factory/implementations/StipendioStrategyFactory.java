@@ -11,9 +11,10 @@ import java.util.logging.Logger;
 public class StipendioStrategyFactory {
 
     private static final Logger LOGGER = Logger.getLogger(StipendioStrategyFactory.class.getName());
-    private static final String PROPERTIES_FILE = "properties/properties";
+    private static final String PROPERTIES_FILE = "properties/patternproperties";
     private static final String PROPERTY_PREFIX = "stipendio.";
     private static final String PROPERTY_SUFFIX = ".strategy.class.name";
+
 
     /**
      * Restituisce la strategia di calcolo stipendio per il ruolo specificato
