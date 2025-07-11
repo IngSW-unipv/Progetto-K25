@@ -1,5 +1,6 @@
 package it.unipv.ingsfw.treninordovest.model.factory.implementations;
 
+import it.unipv.ingsfw.treninordovest.exceptions.FactoryException;
 import it.unipv.ingsfw.treninordovest.model.strategy.pagamento.IPagamentoStrategy;
 
 import java.io.FileInputStream;
@@ -25,7 +26,7 @@ public class PagamentoStrategyFactory {
 
             return (IPagamentoStrategy) Class.forName(factoryClassName).getDeclaredConstructor().newInstance();
         } catch (Exception e) {
-            throw new RuntimeException("Errore nella creazione della factory: " + e.getMessage(), e);
+            throw new FactoryException("Errore nella creazione della factory dei pagamenti" );
         }
     }
 

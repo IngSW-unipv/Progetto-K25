@@ -1,5 +1,6 @@
 package it.unipv.ingsfw.treninordovest.model.factory.implementations;
 
+import it.unipv.ingsfw.treninordovest.exceptions.FactoryException;
 import it.unipv.ingsfw.treninordovest.model.strategy.stipendio.IStipendioStrategy;
 
 import java.io.FileInputStream;
@@ -49,7 +50,7 @@ public class StipendioStrategyFactory {
 
         } catch (Exception e) {
             LOGGER.log(Level.SEVERE, "Errore durante la creazione della strategia di stipendio per il ruolo: " + ruolo, e);
-            throw new RuntimeException("Impossibile creare la strategia di stipendio: " + e.getMessage(), e);
+            throw new FactoryException("Impossibile creare la strategia di stipendio: " );
         }
     }
 

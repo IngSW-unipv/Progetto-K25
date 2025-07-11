@@ -1,6 +1,7 @@
 package it.unipv.ingsfw.treninordovest.model.factory.implementations;
 
 
+import it.unipv.ingsfw.treninordovest.exceptions.FactoryException;
 import it.unipv.ingsfw.treninordovest.model.strategy.abbonamento.IAbbonamentoStrategy;
 
 
@@ -27,7 +28,7 @@ public class AbbonamentoStrategyFactory {
 
             return (IAbbonamentoStrategy) Class.forName(factoryClassName).getDeclaredConstructor().newInstance();
         } catch (Exception e) {
-            throw new RuntimeException("Errore nella creazione della factory: " + e.getMessage(), e);
+            throw new FactoryException("Errore nella creazione della factory degli abbonamenti");
         }
     }
 }
