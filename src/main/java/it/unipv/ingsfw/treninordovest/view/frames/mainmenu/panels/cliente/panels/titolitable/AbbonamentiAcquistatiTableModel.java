@@ -10,7 +10,7 @@ import java.util.List;
 public class AbbonamentiAcquistatiTableModel extends AbstractTableModel {
 
     private List<Abbonamento> listaAbbonamenti = new ArrayList<>(); // Inizializzazione come lista vuota
-    private final String[] columnNames = {"ID","Tipo","Scadenza"};
+    private final String[] columnNames = {"ID","Tipo","Scadenza", "Prezzo"};
 
     public AbbonamentiAcquistatiTableModel() {
         // Il costruttore ora è pulito perché l'inizializzazione è fatta nella dichiarazione
