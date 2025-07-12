@@ -67,7 +67,7 @@ public class ViaggioDAOImpl implements ViaggioDAO {
         List<Viaggio> viaggi= new ArrayList<>();
 
         //Avvio della connessione col DB
-        String sql = "select * from Viaggio";
+        String sql = "select * from viaggio";
         Viaggio viaggio;
         try (Connection con = Database.getConnection(); PreparedStatement  ps = con.prepareStatement(sql); ResultSet rs=ps.executeQuery()) {
 
