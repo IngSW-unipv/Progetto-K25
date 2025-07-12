@@ -195,6 +195,7 @@ public class GestioneUtenzaController implements ActionListener{
         char[] passwordChar = frame.getCustomerMainPanel().getProfilePanel().getTxtPassword().getPassword();
         String password = new String(passwordChar);
 
+
         if (facade.getUtenteFacade().aggiornaPasswordCliente(password)){
             JOptionPane.showMessageDialog(null,"Password aggiornata correttamente", "Info", JOptionPane.INFORMATION_MESSAGE);
         }
@@ -204,6 +205,7 @@ public class GestioneUtenzaController implements ActionListener{
 
         char[] passwordChar = frame.getEmployeeMainPanel().getProfilePanel().getTxtPassword().getPassword();
         String password = new String(passwordChar);
+
 
         if(facade.getUtenteFacade().aggiornaPasswordDipendente(password)){
             JOptionPane.showMessageDialog(null,"Password aggiornata correttamente", "Info", JOptionPane.INFORMATION_MESSAGE);
@@ -307,10 +309,13 @@ public class GestioneUtenzaController implements ActionListener{
                 break;
 
             case CustomerProfilePanel.CMD_AGPASS:
-                //Da definire
-                modificaDatiCliente();
-                logout();
-                frame.showPanel(JTreniNordOvestFrame.MAIN_MENU);
+                if(frame.getCustomerMainPanel().getProfilePanel().getTxtPassword().getPassword().length>8){
+                    modificaDatiCliente();
+                    logout();
+                    frame.showPanel(JTreniNordOvestFrame.MAIN_MENU);
+                } else
+                    JOptionPane.showMessageDialog(null,"Password troppo corta", "Errore", JOptionPane.ERROR_MESSAGE);
+
                 break;
 
             case EmployeeProfilePanel.CMD_UpdateProfile:
@@ -318,9 +323,13 @@ public class GestioneUtenzaController implements ActionListener{
                 break;
 
             case EmployeeProfilePanel.CMD_ChangePassword:
-                modificaDatiDipendente();
-                logout();
-                frame.showPanel(JTreniNordOvestFrame.MAIN_MENU);
+
+                if(frame.getEmployeeMainPanel().getProfilePanel().getTxtPassword().getPassword().length>8){
+                    modificaDatiDipendente();
+                    logout();
+                    frame.showPanel(JTreniNordOvestFrame.MAIN_MENU);
+                }else
+                    JOptionPane.showMessageDialog(null,"Password troppo corta", "Errore", JOptionPane.ERROR_MESSAGE);
                 break;
 
             case EmployeeProfilePanel.CMD_Logout:
