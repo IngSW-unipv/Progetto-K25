@@ -54,8 +54,6 @@ public class JTreniNordOvestFrame extends JFrame implements PropertyChangeListen
         setSize(WIDHT, HEIGHT);
         setLocationRelativeTo(null);
         initComponents();
-        initListeners();
-        initController();
 
     }
 
@@ -83,13 +81,7 @@ public class JTreniNordOvestFrame extends JFrame implements PropertyChangeListen
 
     }
 
-    private void initListeners(){
-    }
 
-    private void initController(){
-        //new GestioneUtenzaController(this.mainMenuPanel,this);
-        //new AcquistoController(this.customerMainPanel);
-    }
 
     /**
      * Public method that allows other parts of your application (like controllers)

@@ -62,7 +62,14 @@ public class GestioneTitoliController implements ActionListener{
         String idTitolo = view.getEmployeeMainPanel().getTravelDocCheckPanel().getTextFieldIdTitolo().getText();
         String tipoTitolo = view.getEmployeeMainPanel().getTravelDocCheckPanel().getComboTipoTitolo().getSelectedItem().toString();
 
+        if(idTitolo.isEmpty() || tipoTitolo.isEmpty()){
+            JOptionPane.showMessageDialog(view, "Inserire un id valido!", "Errore", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         TitoloDTO titoloDTO = new TitoloDTO(idTitolo,tipoTitolo);
+
+
 
         try {
             if(facade.getTitoloViaggioFacade().verificaTitoloViaggio(titoloDTO)){

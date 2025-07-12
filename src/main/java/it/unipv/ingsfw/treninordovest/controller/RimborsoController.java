@@ -8,6 +8,7 @@ import it.unipv.ingsfw.treninordovest.view.frames.mainmenu.panels.cliente.panels
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.UUID;
 
 public class RimborsoController implements ActionListener {
 
@@ -23,6 +24,11 @@ public class RimborsoController implements ActionListener {
     private void effettuaRimborso() {
 
         String idBiglietto = view.getCustomerMainPanel().getRefundPanel().getTextIDBiglietto().getText();
+
+        if (idBiglietto.isEmpty()) {
+            JOptionPane.showMessageDialog(view, "Inserire un id valido!", "Errore", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
         try {
             if(facade.getRimborsoFacade().rimborsoBiglietto(idBiglietto)){

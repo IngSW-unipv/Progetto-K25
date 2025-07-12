@@ -18,7 +18,7 @@ public class MainMenuPanel extends JPanel {
     private final JButton registrazioneCliente;
     private final JButton registrazioneDipendente;
     private final JButton accesso;
-    private Color coloreSfondo;
+    private final Color coloreSfondo = new Color(255, 255, 195);
 
     public MainMenuPanel() {
         setLayout(new GridBagLayout());
@@ -29,6 +29,8 @@ public class MainMenuPanel extends JPanel {
         accesso = new JButton("Accesso");
         registrazioneCliente = new JButton("Registrazione Cliente");
         registrazioneDipendente = new JButton("Registrazione Dipendente");
+
+        this.setBackground(coloreSfondo);
 
         accesso.setActionCommand(CMD_Accesso);
         registrazioneCliente.setActionCommand(CMD_RegistrazioneCliente);
