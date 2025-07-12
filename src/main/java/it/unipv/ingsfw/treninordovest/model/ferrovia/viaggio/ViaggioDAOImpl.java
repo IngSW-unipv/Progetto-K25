@@ -25,7 +25,7 @@ public class ViaggioDAOImpl implements ViaggioDAO {
     @Override
     public Viaggio get(Viaggio viaggio) {
         Viaggio viaggioEstr = null;
-        String sql = "select * from Viaggio where idViaggio=?";
+        String sql = "select * from viaggio where idViaggio=?";
 
         try (Connection con = Database.getConnection(); PreparedStatement ps = con.prepareStatement(sql);) {
 
