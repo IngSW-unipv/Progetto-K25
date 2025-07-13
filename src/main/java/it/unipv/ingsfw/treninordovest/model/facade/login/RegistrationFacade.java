@@ -5,12 +5,9 @@ import it.unipv.ingsfw.treninordovest.model.dto.LoginDTO;
 import it.unipv.ingsfw.treninordovest.model.service.RegistrationService;
 import it.unipv.ingsfw.treninordovest.model.utenti.cliente.Cliente;
 import it.unipv.ingsfw.treninordovest.model.utenti.dipendente.Dipendente;
-import it.unipv.ingsfw.treninordovest.model.utenti.utente.Utente;
-
-import java.beans.PropertyChangeListener;
 
 
-public class RegistrationFacade implements ILoginFacade {
+public class RegistrationFacade implements IRegistrationFacade {
 
     private final RegistrationService loginService;
 

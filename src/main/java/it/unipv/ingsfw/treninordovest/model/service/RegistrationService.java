@@ -16,13 +16,12 @@ import java.beans.PropertyChangeSupport;
 public class RegistrationService {
 
 
-    private final PropertyChangeSupport support ;
+
     private final ClienteDAOImpl clienteDAO;
     private final DipendenteDAOImpl dipendenteDAO ;
 
 
     public RegistrationService() {
-        this.support = new PropertyChangeSupport(this);
         clienteDAO = new ClienteDAOImpl();
         dipendenteDAO = new DipendenteDAOImpl();
     }
