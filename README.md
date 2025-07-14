@@ -20,13 +20,10 @@ ___
 >- Registrazione: Il dipendente immetterà i propri dati personali registrandosi al sistema.
 >- Controllo Titoli: Il controllore in questo caso in veste di dipendente avrà la possibilià di controllare i titoli di viaggio
 >- Ruoli: in base al ruolo ogni dipendente ha uno stipendio (Capotreno 2000, Macchinista 1800...) e così via.
-
 ---
-> <b>Avvertenze</b>: è necessario installare le librerie jcalendar-1.4.jar e mysql-connector-java-8.0.19.jar
 
-___
-<h3>Tecnologie Usate</h3>
->- SDK : Oracle OpenJDK 23 --> JAVASE23
+## Tecnologie Usate
+>- SDK : Oracle OpenJDK 23 (JAVASE23)
 >- Java Swing per la grafica
 >- MySQL per la base dati
 >- JUnit per i test
@@ -34,5 +31,10 @@ ___
 ## Autori
 >- Andrea Ballarè
 >- Gabriel Mihai Jurca
+---
+
+ <h2> <b>Avvertenze</b> </h2> 
+
+> - È necessario installare le librerie jcalendar-1.4.jar e mysql-connector-java-8.0.19.jar 
 
 

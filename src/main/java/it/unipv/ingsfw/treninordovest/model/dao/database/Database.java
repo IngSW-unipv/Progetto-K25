@@ -43,8 +43,8 @@ public class Database {
         try (FileInputStream fis = new FileInputStream(filePath)) {
             p.load(fis);
         }catch(IOException e) {
-           // System.err.println("Errore nella lettura dei parametri di connessione: "+e.getMessage());
-           // e.printStackTrace();
+            System.err.println("Errore nella lettura dei parametri di connessione: "+e.getMessage());
+            e.printStackTrace();
 
         }
         return p;

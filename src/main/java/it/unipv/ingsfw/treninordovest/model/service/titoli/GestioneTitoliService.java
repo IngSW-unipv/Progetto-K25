@@ -7,12 +7,10 @@ import it.unipv.ingsfw.treninordovest.model.titoli.abbonamento.Abbonamento;
 import it.unipv.ingsfw.treninordovest.model.titoli.abbonamento.AbbonamentoDAOimpl;
 import it.unipv.ingsfw.treninordovest.model.titoli.biglietto.Biglietto;
 import it.unipv.ingsfw.treninordovest.model.titoli.biglietto.BigliettoDAOImpl;
-import it.unipv.ingsfw.treninordovest.model.titoli.titoloviaggio.TitoloViaggio;
 import it.unipv.ingsfw.treninordovest.model.utenti.dipendente.Dipendente;
 import it.unipv.ingsfw.treninordovest.model.varie.SessionManager;
 
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
+
 import java.util.List;
 
 public class GestioneTitoliService {
@@ -43,7 +41,6 @@ public class GestioneTitoliService {
     }
 
 
-    //METODO DA RIVISITARE
     public boolean controllaTitoloViaggio(TitoloDTO titoloDTO){
         Dipendente dipendenteLoggato = (Dipendente) SessionManager.getInstance().getCurrentUser();
         if(dipendenteLoggato!=null) {
