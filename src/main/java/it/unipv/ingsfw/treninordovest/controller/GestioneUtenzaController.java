@@ -63,6 +63,7 @@ public class GestioneUtenzaController implements ActionListener{
             dataNascita  = frame.getCustomerRegistrationPanel().getDataNascita().getDate();
             if(dataNascita==null){
                 JOptionPane.showMessageDialog(null,"Data nascita non inserita","Error",JOptionPane.ERROR_MESSAGE);
+                return;
             }
             LocalDate dataNascitaLocal= dataNascita.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
@@ -79,7 +80,7 @@ public class GestioneUtenzaController implements ActionListener{
 
 
 
-            if (!passwordString.isEmpty() && !nome.isEmpty() && !cognome.isEmpty() && !email.isEmpty() && !sesso.isEmpty() && !luogoNascita.isEmpty() && !cellulare.isEmpty() && !indirizzo.isEmpty() && !(dataNascita ==null)) {
+            if (!passwordString.isEmpty() && !nome.isEmpty() && !cognome.isEmpty() && !email.isEmpty() && !sesso.isEmpty() && !luogoNascita.isEmpty() && !cellulare.isEmpty() && !indirizzo.isEmpty()) {
 
                 cliente = new Cliente(UUID.randomUUID(),passwordString,nome,cognome,luogoNascita,sesso,dataNascitaLocal,cellulare,indirizzo,0, email);
 
@@ -120,6 +121,7 @@ public class GestioneUtenzaController implements ActionListener{
             dataNascita  = frame.getEmployeeRegistrationPanel().getDataNascita().getDate();
             if(dataNascita==null){
                 JOptionPane.showMessageDialog(null,"Data nascita non inserita","Error",JOptionPane.ERROR_MESSAGE);
+                return;
             }
             LocalDate dataNascitaLocal= dataNascita.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
@@ -135,7 +137,8 @@ public class GestioneUtenzaController implements ActionListener{
 
 
 
-            if (!Arrays.toString(password).isEmpty() && !nome.isEmpty() && !cognome.isEmpty() && !sesso.isEmpty() && !luogoNascita.isEmpty() && !cellulare.isEmpty() && !indirizzo.isEmpty() && !(dataNascita ==null)&& !dataNascitaLocal.isAfter(LocalDate.now())) {
+            if (!Arrays.toString(password).isEmpty() && !nome.isEmpty() && !cognome.isEmpty() && !sesso.isEmpty() && !luogoNascita.isEmpty() && !cellulare.isEmpty() && !indirizzo.isEmpty() && !dataNascitaLocal.isAfter(LocalDate.now())) {
+
 
                 dipendente= new Dipendente(UUID.randomUUID(), passwordString, nome, cognome, sesso, luogoNascita,dataNascitaLocal, cellulare, indirizzo, Dipendente.getStipendioByRuolo(ruolo), ruolo);
 
@@ -167,15 +170,20 @@ public class GestioneUtenzaController implements ActionListener{
         java.util.Arrays.fill(passwordInCaratteri, ' ');
         String tipoUtente = (String )frame.getLoginPanel().getComboRuolo().getSelectedItem();
 
+        if(password.isEmpty() || identificativo.isEmpty()){
+            JOptionPane.showMessageDialog(null,"Compilazione di tutti i campi obbligatoria", "Errore", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         LoginDTO loginDTO = new LoginDTO(identificativo,password,tipoUtente);
 
         try {
             if (facade.getRegistrationFacade().login(loginDTO)){
                 frame.showPanel(frame.getLoginPanel().getComboRuolo().getSelectedItem().toString());
-                JOptionPane.showMessageDialog(null,"Login effettuato correttamente", "Info", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null,"Accesso effettuato correttamente", "Info", JOptionPane.INFORMATION_MESSAGE);
             }
             else
-                JOptionPane.showMessageDialog(null, "Problema durante il login", "Errore", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Dati inseriti non validi", "Errore", JOptionPane.ERROR_MESSAGE);
 
         }catch (Exception e){
             System.out.println(e.getMessage());

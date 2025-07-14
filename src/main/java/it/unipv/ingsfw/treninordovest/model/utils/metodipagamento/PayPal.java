@@ -5,7 +5,7 @@ import it.unipv.ingsfw.treninordovest.model.strategy.pagamento.IPagamentoStrateg
 import java.util.Random;
 
 public class PayPal implements IPagamentoStrategy {
-    Random r = new Random();
+
 
     public PayPal() {
         String nomeAccount = "AccountPayPal";
@@ -14,9 +14,9 @@ public class PayPal implements IPagamentoStrategy {
     @Override
     public boolean paga(double prezzo) {
         // Adattamento: mappa l'importo e chiama l'API
-
-       //return r.nextBoolean();
-        return true;
+        Random r = new Random();
+       return r.nextBoolean();
+        //return true;
     }
 
     @Override
