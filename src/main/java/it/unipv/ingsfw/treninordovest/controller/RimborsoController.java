@@ -34,7 +34,7 @@ public class RimborsoController implements ActionListener {
             if(facade.getRimborsoFacade().rimborsoBiglietto(idBiglietto)){
                 JOptionPane.showMessageDialog(view, "Rimborso effettuato con successo! Al biglietto: " + idBiglietto);
             }else
-                JOptionPane.showMessageDialog(view, "Errore durante l'effettuazione del rimborso!", "Errore", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(view, "Rimborso già effettuato o id non valido!", "Errore", JOptionPane.ERROR_MESSAGE);
 
         }catch (Exception e){
             System.out.println("DEBUG : " + e.getMessage());

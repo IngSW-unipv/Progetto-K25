@@ -24,7 +24,7 @@ public class Rimborso {
     public Rimborso(Cliente richiedente,Biglietto biglietto) {
        this.idRimborso =UUID.randomUUID() ;
        this.dataRimborso = LocalDate.now();
-       this.totale= totaleMenoTasse(biglietto.getPrezzo());
+       this.totale= biglietto.getPrezzo();
        this.cliente = richiedente;
        this.biglietto=biglietto;
     }
@@ -59,9 +59,5 @@ public class Rimborso {
     }
 
 
-    private double totaleMenoTasse(double importo){
-        double tasse = 0.22;
-       return importo-importo*tasse;
-    }
 
 }
